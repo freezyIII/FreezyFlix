@@ -37,7 +37,28 @@ document.addEventListener('DOMContentLoaded', () => {
     const movieGrid = document.getElementById("movieGrid");
     const movieContainer = document.getElementById("movieContainer");
 
-    // Fonction pour ajouter les films à la grille
+    // Ajouter un film à la section "À la une"
+    function addFeaturedMovie(movie) {
+        const movieItem = document.createElement("div");
+        movieItem.classList.add("movie-item");
+
+        const img = document.createElement("img");
+        img.src = movie.thumbnail;
+        img.alt = "Film";
+        movieItem.appendChild(img);
+
+        const resolution = document.createElement("div");
+        resolution.classList.add("resolution");
+        resolution.textContent = movie.resolution;
+        movieItem.appendChild(resolution);
+
+        // Ajouter un événement de clic pour ouvrir le lecteur vidéo avec la description
+        movieItem.addEventListener('click', () => openMovieDetail(movie));
+
+        movieContainer.appendChild(movieItem);
+    }
+
+    // Fonction pour ajouter les films à la grille "Découvrir d'autres films"
     function addMovieToGrid(movie) {
         const gridItem = document.createElement("div");
         gridItem.classList.add("movie-grid-item");
@@ -71,6 +92,10 @@ document.addEventListener('DOMContentLoaded', () => {
         observer.observe(gridItem);
     }
 
-    // Ajouter les films à la grille
+    // Ajouter le film à la une
+    featuredMovies.forEach(movie => addFeaturedMovie(movie));
+
+    // Ajouter les autres films à la grille
     otherMovies.forEach(movie => addMovieToGrid(movie));
+
 });
