@@ -15,6 +15,8 @@ function createWindow() {
 
   // Charge l'URL hébergée sur GitHub Pages
   win.loadURL('https://freezyiii.github.io/FreezyFlix/');
+  win.webContents.reloadIgnoringCache();
+
 
   // Maximiser la fenêtre immédiatement après sa création
   win.maximize();
