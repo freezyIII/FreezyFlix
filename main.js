@@ -5,7 +5,7 @@ let win;
 function createWindow() {
   win = new BrowserWindow({
     width: 1500,
-    height: 1400,
+    height: 900,
     webPreferences: {
       nodeIntegration: true,
       contextIsolation: false,
@@ -19,7 +19,7 @@ function createWindow() {
 
 
   // Maximiser la fenêtre immédiatement après sa création
-  win.maximize();
+
 
   // Supprime le menu par défaut (optionnel)
   Menu.setApplicationMenu(null);
