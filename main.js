@@ -19,7 +19,7 @@ function createWindow() {
 
 
   // Maximiser la fenêtre immédiatement après sa création
-
+  win.maximize();
 
   // Supprime le menu par défaut (optionnel)
   Menu.setApplicationMenu(null);
