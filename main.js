@@ -1,12 +1,14 @@
 const { app, BrowserWindow, Menu } = require('electron');
 
+let win;
+
 function createWindow() {
-  const win = new BrowserWindow({
+  win = new BrowserWindow({
     width: 1500,
     height: 900,
     webPreferences: {
       nodeIntegration: true,
-      contextIsolation: false, // Ajouter ceci pour autoriser le rechargement
+      contextIsolation: false,
     },
     menuBarVisible: false  // Désactive la barre de menus
   });
@@ -20,9 +22,14 @@ function createWindow() {
   // Supprime le menu par défaut (optionnel)
   Menu.setApplicationMenu(null);
 
-  // Forcer le rechargement de la page pour ne pas utiliser le cache
-  win.webContents.on('did-finish-load', () => {
-    win.webContents.reloadIgnoringCache();
+  // Utilisez un seul rechargement lors de l'ouverture de l'application
+  win.webContents.once('did-finish-load', () => {
+    // Si nécessaire, ici on pourrait vérifier si des changements ont eu lieu
+    // Exemple d'une méthode conditionnelle pour vérifier si une mise à jour a été faite
+    const shouldReload = false; // Remplacez cette logique selon vos besoins
+    if (shouldReload) {
+      win.webContents.reloadIgnoringCache();
+    }
   });
 }
 
