@@ -1,4 +1,3 @@
-/* Reset de style de base */
 * {
     margin: 0;
     padding: 0;
@@ -13,7 +12,6 @@ body {
     overflow-x: hidden;
 }
 
-/* Header */
 header {
     background: #212121;
     padding: 0 20px;
@@ -36,7 +34,12 @@ header .logo img {
     width: auto;
 }
 
-/* Navigation */
+nav {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
 nav ul {
     display: flex;
     list-style: none;
@@ -63,7 +66,6 @@ nav ul li a:hover {
     color: #ff6347;
 }
 
-/* Hero Section */
 .hero {
     background: #333;
     padding: 80px 20px;
@@ -79,20 +81,33 @@ nav ul li a:hover {
     font-size: 1.5rem;
 }
 
-/* Carousel des films */
+.content {
+    padding: 20px;
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    align-items: center;
+}
+
+/* Films "À la une" */
 .movie-carousel {
     width: 100%;
+    position: relative;
     margin: 20px auto;
 }
 
 .movie-container {
     display: flex;
     justify-content: flex-start;
+    padding-left: 0;
     gap: 15px;
 }
 
-.movie-item,
-.movie-grid-item {
+.movie-item {
+    width: 300px;
+    height: 450px;
+    margin-left: 15px;
+    text-align: center;
     background: #222;
     border-radius: 15px;
     box-shadow: 0 4px 10px rgba(0, 0, 0, 0.5);
@@ -100,35 +115,47 @@ nav ul li a:hover {
     transition: transform 0.3s ease;
 }
 
-.movie-item:hover,
-.movie-grid-item:hover {
+.movie-item:hover {
     transform: scale(1.05);
     box-shadow: 0 8px 20px rgba(0, 0, 0, 0.8);
 }
 
-.movie-item img,
-.movie-grid-item img {
+.movie-item img {
     width: 100%;
     height: 100%;
     object-fit: cover;
     border-radius: 15px;
 }
 
-/* Résolution dans les films */
-.resolution {
+/* Modifications dans la section de style des films */
+.movie-item .resolution {
     position: absolute;
     top: 10px;
     left: 10px;
-    background: yellow;
-    color: black;
+    background: yellow;  /* Fond jaune */
+    color: black;         /* Texte noir */
     font-size: 14px;
     font-weight: bold;
     padding: 5px 10px;
     border-radius: 5px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.5);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.5);  /* Un petit ombre autour du rectangle */
 }
 
-/* Section des films à découvrir */
+/* Retirer la résolution sous l'image */
+.movie-grid-item .resolution {
+    background: yellow;  /* Fond jaune */
+    color: black;         /* Texte noir */
+    font-size: 14px;
+    font-weight: bold;
+    padding: 5px 10px;
+    border-radius: 5px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.5); /* Ajouter une ombre pour plus de visibilité */
+    position: absolute;
+    top: 10px;
+    left: 10px;
+}
+
+/* Films "Découvrir d'autres films" */
 .movie-grid-section {
     padding: 40px 20px;
     background: #181818;
@@ -142,13 +169,42 @@ nav ul li a:hover {
 }
 
 #movieGrid {
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: center;
-    gap: 10px;
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr)); /* Ajuste le nombre de colonnes selon la taille de l'écran */
+    gap: 10px; /* Réduit l'espace entre les éléments */
+    justify-items: center; /* Assure que chaque film est centré */
+    justify-content: center; /* Centrage global des éléments */
 }
 
-/* Vidéo Player */
+.movie-grid-item {
+    width: 200px;
+    height: 300px;
+    background: #222;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.5);
+    transition: transform 0.3s ease;
+    cursor: pointer;
+    position: relative;
+    margin: 0 5px; /* Réduit l'espace entre les films */
+}
+#movieGrid {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center; /* Centre les films horizontalement */
+}
+
+.movie-grid-item img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    border-radius: 10px;
+}
+
+.movie-grid-item:hover {
+    transform: scale(1.05);
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.8);
+}
+
 .video-player {
     position: fixed;
     top: 0;
@@ -170,9 +226,10 @@ nav ul li a:hover {
     max-height: 800px;
 }
 
-button#closeButton,
-button#backButton {
+button#closeButton {
     position: absolute;
+    top: 20px;
+    right: 20px;
     padding: 10px 20px;
     background-color: #FF6347;
     border: none;
@@ -182,12 +239,9 @@ button#backButton {
     font-size: 16px;
 }
 
-button#closeButton:hover,
-button#backButton:hover {
+button#closeButton:hover {
     background-color: #FF4500;
 }
-
-/* Détails du film */
 .movie-detail {
     display: flex;
     flex-direction: column;
@@ -211,4 +265,21 @@ button#backButton:hover {
     color: #ccc;
     text-align: center;
     max-width: 800px;
+}
+
+button#backButton {
+    position: absolute;
+    top: 20px;
+    left: 20px;
+    padding: 10px 20px;
+    background-color: #FF6347;
+    border: none;
+    color: white;
+    font-weight: bold;
+    cursor: pointer;
+    font-size: 16px;
+}
+
+button#backButton:hover {
+    background-color: #FF4500;
 }
