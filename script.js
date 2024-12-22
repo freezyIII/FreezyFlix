@@ -30,8 +30,9 @@ document.addEventListener('DOMContentLoaded', () => {
 
     // Fonction pour ajouter des films à la grille
     function addMoviesToGrid() {
-        // Charger les films jusqu'à 10 à la fois pour améliorer les performances
-        for (let i = movieIndex; i < movieIndex + 10 && i < otherMovies.length; i++) {
+        // Charger les films jusqu'à 10 à la fois
+        const numberOfMoviesToAdd = 10;
+        for (let i = movieIndex; i < movieIndex + numberOfMoviesToAdd && i < otherMovies.length; i++) {
             const movie = otherMovies[i];
             const gridItem = document.createElement("div");
             gridItem.classList.add("movie-grid-item");
@@ -51,21 +52,11 @@ document.addEventListener('DOMContentLoaded', () => {
             movieGrid.appendChild(gridItem);
         }
 
-        movieIndex += 10; // Augmenter l'index pour ajouter 10 films à chaque fois
+        movieIndex += numberOfMoviesToAdd; // Mettre à jour l'index pour charger les films suivants
     }
 
-    // Ajout des films "À la une" dès le début
+    // Ajout des films "À la une"
     featuredMovies.forEach(movie => addFeaturedMovie(movie));
-
-    // Détecter le défilement et charger des films quand l'utilisateur atteint le bas
-    window.addEventListener('scroll', () => {
-        if (window.innerHeight + window.scrollY >= document.body.offsetHeight - 100) {
-            addMoviesToGrid(); // Charger les films au fur et à mesure du défilement
-        }
-    });
-
-    // Ajouter les films au début
-    addMoviesToGrid();
 
     // Fonction pour ajouter un film à la section "À la une"
     function addFeaturedMovie(movie) {
@@ -87,7 +78,7 @@ document.addEventListener('DOMContentLoaded', () => {
         movieContainer.appendChild(movieItem);
     }
 
-    // Fonction pour ouvrir la vidéo
+    // Fonction pour ouvrir la vidéo du film
     function openMovieDetail(movie) {
         const movieDetail = document.getElementById('movieDetail');
         const videoPlayer = document.createElement('video');
@@ -111,5 +102,26 @@ document.addEventListener('DOMContentLoaded', () => {
     document.getElementById('backButton').addEventListener('click', function () {
         document.getElementById('movieDetail').style.display = 'none';  // Masquer le détail du film
     });
+
+    // Observer pour détecter quand on atteint le bas de la page
+    const observer = new IntersectionObserver((entries, observer) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                addMoviesToGrid(); // Ajouter des films lorsque l'élément devient visible
+                observer.unobserve(entry.target); // Désactiver l'observation une fois que les films ont été ajoutés
+            }
+        });
+    }, {
+        rootMargin: '200px', // Démarrer le chargement 200px avant d'arriver au bas
+        threshold: 1.0 // Quand l'élément est entièrement visible
+    });
+
+    // Créer un élément de déclenchement (sentinelle) pour observer la fin de la grille
+    const sentinel = document.createElement("div");
+    movieGrid.appendChild(sentinel);
+    observer.observe(sentinel); // Observer cet élément
+
+    // Charger les films au démarrage
+    addMoviesToGrid();
 
 });
