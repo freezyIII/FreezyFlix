@@ -283,7 +283,7 @@ button#backButton {
 button#backButton:hover {
     background-color: #FF4500;
 }
-/* Ajoute une animation pour l'apparition des films */
+/* Ajoute une animation pour l'apparition des films uniquement dans la section "Découvrir d'autres films" */
 .lazy-load {
     opacity: 0;
     transition: opacity 0.6s ease-in-out;
