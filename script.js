@@ -19,13 +19,17 @@ document.addEventListener('DOMContentLoaded', () => {
         { thumbnail: "https://i.ibb.co/7yBKXsr/3044641-1.jpg", resolution: "1080p", video: "Garfield Héros malgré lui.mp4" },
         { thumbnail: "https://i.ibb.co/jy6MpM8/19bc78f00ec32afa499f22eaaaf87c6257984e6863b92301803c470a9378ec56-1.jpg", resolution: "1080p", video: "Garfield Héros malgré lui.mp4" },
         { thumbnail: "https://i.ibb.co/8NJPWQj/0472053-1.jpg", resolution: "4K", video: "Garfield Héros malgré lui.mp4" },
+        { thumbnail: "https://i.ibb.co/XYRNH37/output-1.jpg", resolution: "4K", video: "Garfield Héros malgré lui" },
+        { thumbnail: "https://i.ibb.co/4Ww5fXm/terrifier-4bd553c496-1.jpg", resolution: "1080p", video: "Garfield Héros malgré lui.mp4" },
+        { thumbnail: "https://i.ibb.co/7yBKXsr/3044641-1.jpg", resolution: "1080p", video: "Garfield Héros malgré lui.mp4" },
+        { thumbnail: "https://i.ibb.co/jy6MpM8/19bc78f00ec32afa499f22eaaaf87c6257984e6863b92301803c470a9378ec56-1.jpg", resolution: "1080p", video: "Garfield Héros malgré lui.mp4" },
+        { thumbnail: "https://i.ibb.co/8NJPWQj/0472053-1.jpg", resolution: "4K", video: "Garfield Héros malgré lui.mp4" },
         { thumbnail: "", resolution: "4K", video: "Garfield Héros malgré lui.mp4" },
         { thumbnail: "", resolution: "4K", video: "Garfield Héros malgré lui.mp4" },
         { thumbnail: "", resolution: "4K", video: "" },
     ];
 
     const movieGrid = document.getElementById("movieGrid");
-    const movieContainer = document.getElementById("movieContainer");
 
     // Ajouter un film à la section "Découvrir d'autres films"
     function addMovieToGrid(movie) {
@@ -45,7 +49,7 @@ document.addEventListener('DOMContentLoaded', () => {
         movieGrid.appendChild(gridItem);
     }
 
-    // Ajouter les films
+    // Ajouter les films à la section "Découvrir d'autres films"
     otherMovies.forEach(movie => addMovieToGrid(movie));
 
     // Intersection Observer pour l'affichage des films au scroll
