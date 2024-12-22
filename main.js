@@ -13,6 +13,11 @@ function createWindow() {
     menuBarVisible: false  // Désactive la barre de menus
   });
 
+  // Vider le cache avant de charger l'URL
+  win.webContents.session.clearCache(() => {
+    console.log('Cache vidé');
+  });
+
   // Charge l'URL hébergée sur GitHub Pages
   win.loadURL('https://freezyiii.github.io/FreezyFlix/');
 
@@ -22,10 +27,8 @@ function createWindow() {
   // Supprime le menu par défaut (optionnel)
   Menu.setApplicationMenu(null);
 
-  // Utilisez un seul rechargement lors de l'ouverture de l'application
+  // Optionnel : Utiliser un seul rechargement lors de l'ouverture de l'application
   win.webContents.once('did-finish-load', () => {
-    // Si nécessaire, ici on pourrait vérifier si des changements ont eu lieu
-    // Exemple d'une méthode conditionnelle pour vérifier si une mise à jour a été faite
     const shouldReload = false; // Remplacez cette logique selon vos besoins
     if (shouldReload) {
       win.webContents.reloadIgnoringCache();
