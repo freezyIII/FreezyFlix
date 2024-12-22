@@ -1,7 +1,7 @@
 document.addEventListener('DOMContentLoaded', () => {
 
     const featuredMovies = [
-        { thumbnail: "https://i.ibb.co/4Ww5fXm/terrifier-4bd553c496-1.jpg", resolution: "4K", video: "movie1.mp4" }
+        { thumbnail: "https://mega.nz/file/ZT9QgahR", resolution: "4K", video: "movie1.mp4" }
     ];
     const otherMovies = [
         { thumbnail: "https://i.ibb.co/XYRNH37/output-1.jpg", resolution: "4K", video: "Garfield Héros malgré lui" },
