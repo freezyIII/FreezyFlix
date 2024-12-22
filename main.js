@@ -1,29 +1,37 @@
-const { app, BrowserWindow, Menu } = require('electron')
+const { app, BrowserWindow, Menu } = require('electron');
 
-function createWindow () {
+function createWindow() {
   const win = new BrowserWindow({
     width: 1500,
     height: 900,
     webPreferences: {
-      nodeIntegration: true
+      nodeIntegration: true,
+      contextIsolation: false, // Ajouter ceci pour autoriser le rechargement
     },
     menuBarVisible: false  // Désactive la barre de menus
-  })
+  });
 
-  // Charge votre fichier HTML
-  win.loadFile('index.html')
+  // Charge l'URL hébergée sur GitHub Pages
+  win.loadURL('https://freezyiii.github.io/FreezyFlix/');
 
   // Maximiser la fenêtre immédiatement après sa création
-  win.maximize()
+  win.maximize();
 
-  // Optionnel : Pour Windows et Linux, vous pouvez également supprimer le menu en utilisant :
-  Menu.setApplicationMenu(null) // Supprime le menu par défaut
+  // Supprime le menu par défaut (optionnel)
+  Menu.setApplicationMenu(null);
+
+  // Forcer le rechargement de la page pour ne pas utiliser le cache
+  win.webContents.on('did-finish-load', () => {
+    win.webContents.reloadIgnoringCache();
+  });
 }
 
-app.whenReady().then(createWindow)
+// Crée la fenêtre quand l'application est prête
+app.whenReady().then(createWindow);
 
+// Quitte l'application quand toutes les fenêtres sont fermées
 app.on('window-all-closed', () => {
   if (process.platform !== 'darwin') {
-    app.quit()
+    app.quit();
   }
-})
+});
