@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>FreezyFlix - Votre plateforme de streaming en haute définition</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <header>
+        <nav>
+            <a href="#top" class="logo" aria-label="Accueil">
+                <img src="Logo FreezyIII.png" alt="Logo FreezyIII">
+            </a>
+            <ul class="nav-links">
+                <li><a href="#top">Accueil</a></li>
+                <li><a href="#">Films</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <section class="hero" id="top">
+        <h1>Bienvenue sur notre plateforme de streaming !</h1>
+        <p>Regardez vos films et séries préférées en haute définition.</p>
+    </section>
+
+    <section class="content">
+        <h2>Films à la une</h2>
+        <div class="movie-carousel" id="movieCarousel">
+            <div class="movie-container" id="movieContainer"></div>
+        </div>
+    </section>
+
+    <section class="movie-grid-section">
+        <h2>Découvrir d'autres films</h2>
+        <div id="movieGrid"></div>
+    </section>
+
+    <div id="videoPlayer" class="video-player" style="display:none;">
+        <div id="videoContainer"></div>
+        <button id="closeButton">Fermer</button>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
