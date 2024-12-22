@@ -182,10 +182,16 @@ nav ul li a:hover {
     background: #222;
     border-radius: 10px;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.5);
-    transition: transform 0.3s ease;
+    transition: transform 0.3s ease, opacity 0.5s ease-in-out; /* Ajoute une transition fluide */
     cursor: pointer;
     position: relative;
     margin: 0 5px; /* Réduit l'espace entre les films */
+    opacity: 0; /* Masqué par défaut */
+    transform: translateY(30px); /* Position légèrement décalée */
+}
+.movie-grid-item.visible {
+    opacity: 1; /* Visibilité */
+    transform: translateY(0); /* Position normale */
 }
 #movieGrid {
     display: flex;
