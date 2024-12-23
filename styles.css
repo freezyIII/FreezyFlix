@@ -1,16 +1,3 @@
-/* Variables globales */
-:root {
-    --primary-bg-color: #121212;
-    --secondary-bg-color: #212121;
-    --highlight-color: #FF6347;
-    --text-color: white;
-    --text-muted: #bbb;
-    --card-bg-color: #222;
-    --shadow-color: rgba(0, 0, 0, 0.5);
-    --button-hover-color: #FF4500;
-}
-
-/* Reset CSS */
 * {
     margin: 0;
     padding: 0;
@@ -18,17 +5,15 @@
     user-select: none;
 }
 
-/* Corps de la page */
 body {
     font-family: Arial, sans-serif;
-    background: var(--primary-bg-color);
-    color: var(--text-color);
+    background: #121212;
+    color: white;
     overflow-x: hidden;
 }
 
-/* Header */
 header {
-    background: var(--secondary-bg-color);
+    background: #212121;
     padding: 0 20px;
     display: flex;
     justify-content: center;
@@ -49,7 +34,6 @@ header .logo img {
     width: auto;
 }
 
-/* Navigation */
 nav {
     display: flex;
     justify-content: center;
@@ -72,22 +56,21 @@ nav ul li:first-child {
 }
 
 nav ul li a {
-    color: var(--text-color);
+    color: white;
     text-decoration: none;
     font-size: 18px;
     font-weight: bold;
 }
 
 nav ul li a:hover {
-    color: var(--highlight-color);
+    color: #ff6347;
 }
 
-/* Section Hero */
 .hero {
     background: #333;
     padding: 80px 20px;
     text-align: center;
-    color: var(--text-muted);
+    color: #bbb;
 }
 
 .hero h1 {
@@ -98,7 +81,6 @@ nav ul li a:hover {
     font-size: 1.5rem;
 }
 
-/* Contenu des Films */
 .content {
     padding: 20px;
     display: flex;
@@ -107,7 +89,7 @@ nav ul li a:hover {
     align-items: center;
 }
 
-/* Carousel des Films */
+/* Films "À la une" */
 .movie-carousel {
     width: 100%;
     position: relative;
@@ -117,49 +99,63 @@ nav ul li a:hover {
 .movie-container {
     display: flex;
     justify-content: flex-start;
+    padding-left: 0;
     gap: 15px;
 }
 
-/* Card Film */
-.movie-item, .movie-grid-item {
+.movie-item {
     width: 300px;
     height: 450px;
+    margin-left: 15px;
     text-align: center;
-    background: var(--card-bg-color);
+    background: #222;
     border-radius: 15px;
-    box-shadow: 0 4px 10px var(--shadow-color);
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.5);
     position: relative;
     transition: transform 0.3s ease;
 }
 
-.movie-item img, .movie-grid-item img {
+.movie-item:hover {
+    transform: scale(1.05);
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.8);
+}
+
+.movie-item img {
     width: 100%;
     height: 100%;
     object-fit: cover;
     border-radius: 15px;
 }
 
-/* Effets de survol des films */
-.movie-item:hover, .movie-grid-item:hover {
-    transform: scale(1.05);
-    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.8);
-}
-
-/* Résolution des films */
-.movie-item .resolution, .movie-grid-item .resolution {
+/* Modifications dans la section de style des films */
+.movie-item .resolution {
     position: absolute;
     top: 10px;
     left: 10px;
-    background: yellow;
-    color: black;
+    background: yellow;  /* Fond jaune */
+    color: black;         /* Texte noir */
     font-size: 14px;
     font-weight: bold;
     padding: 5px 10px;
     border-radius: 5px;
-    box-shadow: 0 4px 8px var(--shadow-color);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.5);  /* Un petit ombre autour du rectangle */
 }
 
-/* Section "Découvrir d'autres films" */
+/* Retirer la résolution sous l'image */
+.movie-grid-item .resolution {
+    background: yellow;  /* Fond jaune */
+    color: black;         /* Texte noir */
+    font-size: 14px;
+    font-weight: bold;
+    padding: 5px 10px;
+    border-radius: 5px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.5); /* Ajouter une ombre pour plus de visibilité */
+    position: absolute;
+    top: 10px;
+    left: 10px;
+}
+
+/* Films "Découvrir d'autres films" */
 .movie-grid-section {
     padding: 40px 20px;
     background: #181818;
@@ -168,27 +164,40 @@ nav ul li a:hover {
 
 .movie-grid-section h2 {
     font-size: 2rem;
-    color: var(--text-color);
+    color: #fff;
     margin-bottom: 20px;
 }
 
 #movieGrid {
     display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr)); /* Colonne flexible */
-    gap: 10px;
-    justify-items: center;
-    justify-content: center;
+    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr)); /* Ajuste le nombre de colonnes selon la taille de l'écran */
+    gap: 10px; /* Réduit l'espace entre les éléments */
+    justify-items: center; /* Assure que chaque film est centré */
+    justify-content: center; /* Centrage global des éléments */
 }
 
 .movie-grid-item {
     width: 200px;
     height: 300px;
-    background: var(--card-bg-color);
+    background: #222;
     border-radius: 10px;
-    box-shadow: 0 4px 8px var(--shadow-color);
-    cursor: pointer;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.5);
     transition: transform 0.3s ease;
-    margin: 0 5px;
+    cursor: pointer;
+    position: relative;
+    margin: 0 5px; /* Réduit l'espace entre les films */
+}
+#movieGrid {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center; /* Centre les films horizontalement */
+}
+
+.movie-grid-item img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    border-radius: 10px;
 }
 
 .movie-grid-item:hover {
@@ -196,7 +205,6 @@ nav ul li a:hover {
     box-shadow: 0 8px 16px rgba(0, 0, 0, 0.8);
 }
 
-/* Section Video */
 .video-player {
     position: fixed;
     top: 0;
@@ -223,19 +231,17 @@ button#closeButton {
     top: 20px;
     right: 20px;
     padding: 10px 20px;
-    background-color: var(--highlight-color);
+    background-color: #FF6347;
     border: none;
-    color: var(--text-color);
+    color: white;
     font-weight: bold;
     cursor: pointer;
     font-size: 16px;
 }
 
 button#closeButton:hover {
-    background-color: var(--button-hover-color);
+    background-color: #FF4500;
 }
-
-/* Section Détails Film */
 .movie-detail {
     display: flex;
     flex-direction: column;
@@ -243,7 +249,7 @@ button#closeButton:hover {
     justify-content: center;
     height: 100vh;
     background-color: rgba(0, 0, 0, 0.9);
-    color: var(--text-color);
+    color: white;
     padding: 20px;
     position: fixed;
     top: 0;
@@ -266,35 +272,14 @@ button#backButton {
     top: 20px;
     left: 20px;
     padding: 10px 20px;
-    background-color: var(--highlight-color);
+    background-color: #FF6347;
     border: none;
-    color: var(--text-color);
+    color: white;
     font-weight: bold;
     cursor: pointer;
     font-size: 16px;
 }
 
 button#backButton:hover {
-    background-color: var(--button-hover-color);
-}
-
-/* Responsive Design */
-@media screen and (max-width: 768px) {
-    header {
-        height: 60px;
-        padding: 0 15px;
-    }
-
-    .movie-item, .movie-grid-item {
-        width: 90%;
-        margin-left: 0;
-    }
-
-    .hero h1 {
-        font-size: 2rem;
-    }
-
-    .hero p {
-        font-size: 1.2rem;
-    }
+    background-color: #FF4500;
 }
