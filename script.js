@@ -31,11 +31,9 @@ document.addEventListener('DOMContentLoaded', () => {
     });
 
     // Ajouter un événement pour rechercher en temps réel
-document.addEventListener('DOMContentLoaded', () => {
-    document.querySelectorAll('a[href="#top"]').forEach(link => {
-        link.addEventListener('click', (e) => {
-            e.preventDefault();
-            window.scrollTo({ top: 0, behavior: 'smooth' });
-        });
+    searchBox.addEventListener('input', () => {
+        const query = searchBox.value.trim();
+        const results = searchMovies(query);
+        // Tu peux ici afficher les résultats en temps réel si tu veux
     });
 });
