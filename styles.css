@@ -66,38 +66,6 @@ nav ul li a:hover {
     color: #ff6347;
 }
 
-/* Zone de recherche et loupe */
-.search-container {
-    display: flex;
-    align-items: center;
-    background-color: #333;
-    border-radius: 5px;
-    padding: 5px 10px;
-    margin-left: 30px; /* Ajoute de l'espace entre le dernier lien et la recherche */
-}
-
-.search-container input[type="text"] {
-    background-color: #444;
-    border: none;
-    color: white;
-    padding: 5px 10px;
-    font-size: 16px;
-    border-radius: 5px;
-    width: 200px; /* Largeur de la zone de texte */
-}
-
-.search-container input[type="text"]:focus {
-    outline: none;
-}
-
-.search-container .search-icon {
-    width: 20px;
-    height: 20px;
-    margin-left: 10px;
-    cursor: pointer;
-}
-
-/* Hero */
 .hero {
     background: #333;
     padding: 80px 20px;
@@ -159,21 +127,35 @@ nav ul li a:hover {
     border-radius: 15px;
 }
 
-/* Résolution de film */
+/* Modifications dans la section de style des films */
 .movie-item .resolution {
     position: absolute;
     top: 10px;
     left: 10px;
-    background: yellow;
-    color: black;
+    background: yellow;  /* Fond jaune */
+    color: black;         /* Texte noir */
     font-size: 14px;
     font-weight: bold;
     padding: 5px 10px;
     border-radius: 5px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.5);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.5);  /* Un petit ombre autour du rectangle */
 }
 
-/* Grille des films */
+/* Retirer la résolution sous l'image */
+.movie-grid-item .resolution {
+    background: yellow;  /* Fond jaune */
+    color: black;         /* Texte noir */
+    font-size: 14px;
+    font-weight: bold;
+    padding: 5px 10px;
+    border-radius: 5px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.5); /* Ajouter une ombre pour plus de visibilité */
+    position: absolute;
+    top: 10px;
+    left: 10px;
+}
+
+/* Films "Découvrir d'autres films" */
 .movie-grid-section {
     padding: 40px 20px;
     background: #181818;
@@ -188,9 +170,10 @@ nav ul li a:hover {
 
 #movieGrid {
     display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
-    gap: 10px;
-    justify-items: center;
+    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr)); /* Ajuste le nombre de colonnes selon la taille de l'écran */
+    gap: 10px; /* Réduit l'espace entre les éléments */
+    justify-items: center; /* Assure que chaque film est centré */
+    justify-content: center; /* Centrage global des éléments */
 }
 
 .movie-grid-item {
@@ -202,7 +185,12 @@ nav ul li a:hover {
     transition: transform 0.3s ease;
     cursor: pointer;
     position: relative;
-    margin: 0 5px;
+    margin: 0 5px; /* Réduit l'espace entre les films */
+}
+#movieGrid {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center; /* Centre les films horizontalement */
 }
 
 .movie-grid-item img {
@@ -220,7 +208,6 @@ nav ul li a:hover {
 button#closeButton:hover {
     background-color: #FF4500;
 }
-
 .movie-detail {
     display: flex;
     flex-direction: column;
@@ -246,19 +233,42 @@ button#closeButton:hover {
     max-width: 800px;
 }
 
-button#backButton {
+/* Conteneur de recherche dans la headbar */
+.search-container {
+    display: flex;
+    align-items: center;
     position: absolute;
-    top: 20px;
-    left: 20px;
-    padding: 10px 20px;
-    background-color: #FF6347;
-    border: none;
-    color: white;
-    font-weight: bold;
-    cursor: pointer;
-    font-size: 16px;
+    right: 20px; /* Positionne à droite */
+    top: 50%;
+    transform: translateY(-50%);
 }
 
-button#backButton:hover {
-    background-color: #FF4500;
+/* Zone de recherche */
+.search-box {
+    background-color: #444; /* Gris clair */
+    color: white;
+    border: none;
+    padding: 5px 10px;
+    border-radius: 5px;
+    font-size: 16px;
+    margin-right: 10px; /* Espacement entre la recherche et la loupe */
+    width: 200px;
+}
+
+/* Icône de la loupe */
+.search-icon {
+    background-color: transparent;
+    border: none;
+    color: white;
+    font-size: 18px;
+    cursor: pointer;
+}
+
+/* Ajout d'un effet de survol pour la loupe */
+.search-icon:hover {
+    color: #ff6347; /* Changer la couleur de la loupe au survol */
+}
+
+.search-icon i {
+    font-size: 20px; /* Ajuster la taille de l'icône */
 }
