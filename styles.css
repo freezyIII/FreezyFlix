@@ -233,22 +233,6 @@ button#closeButton:hover {
     max-width: 800px;
 }
 
-button#backButton {
-    position: absolute;
-    top: 20px;
-    left: 20px;
-    padding: 10px 20px;
-    background-color: #FF6347;
-    border: none;
-    color: white;
-    font-weight: bold;
-    cursor: pointer;
-    font-size: 16px;
-}
-
-button#backButton:hover {
-    background-color: #FF4500;
-}
 /* Conteneur de recherche dans la headbar */
 .search-container {
     display: flex;
@@ -283,5 +267,9 @@ button#backButton:hover {
 /* Ajout d'un effet de survol pour la loupe */
 .search-icon:hover {
     color: #ff6347; /* Changer la couleur de la loupe au survol */
+}
+
+.search-icon i {
+    font-size: 20px; /* Ajuster la taille de l'icône */
 }
 
