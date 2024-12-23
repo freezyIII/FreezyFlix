@@ -242,6 +242,7 @@ button#closeButton:hover {
     top: 50%;
     transform: translateY(-50%);
 }
+
 /* Zone de recherche */
 .search-box {
     background-color: #444; /* Gris clair */
