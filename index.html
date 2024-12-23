@@ -5,7 +5,6 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>FreezyFlix - Votre plateforme de streaming en haute définition</title>
     <link rel="stylesheet" href="styles.css">
-    <!-- Inclure Font Awesome -->
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet">
 </head>
 <body>
@@ -16,13 +15,13 @@
             </a>
             <ul class="nav-links">
                 <li><a href="#top">Accueil</a></li>
-                <li><a href="#">Films</a></li>
+                <li><a href="#films">Films</a></li>
             </ul>
-            <!-- Zone de recherche et icône de loupe -->
             <div class="search-container">
-                <input type="text" class="search-box" placeholder="Rechercher..." aria-label="Rechercher">
-                <button class="search-icon" aria-label="Rechercher">
-                    <i class="fas fa-search"></i> <!-- Icône de loupe -->
+                <label for="searchBox" class="sr-only">Rechercher</label>
+                <input type="text" id="searchBox" class="search-box" placeholder="Rechercher..." aria-label="Rechercher">
+                <button class="search-icon" aria-label="Lancer la recherche">
+                    <i class="fas fa-search"></i>
                 </button>
             </div>
         </nav>
@@ -34,11 +33,10 @@
             <p>Regardez vos films et séries préférées en haute définition.</p>
         </section>
 
-        <section class="content">
+        <section class="content" id="films">
             <h2>Films à la une</h2>
-            <div class="movie-carousel" id="movieCarousel">
+            <div class="movie-carousel">
                 <div class="movie-container">
-                    <!-- Film à la une -->
                     <div class="movie-item">
                         <img src="https://i.imgur.com/wyNUyaR.jpeg" alt="Film à la une">
                         <div class="resolution">4K</div>
@@ -49,8 +47,7 @@
 
         <section class="movie-grid-section">
             <h2>Découvrir d'autres films</h2>
-            <div id="movieGrid">
-                <!-- Autres films -->
+            <div class="movie-grid">
                 <div class="movie-grid-item">
                     <img src="https://i.imgur.com/i3Tr6jB.jpeg" alt="Film 1">
                     <div class="resolution">4K</div>
@@ -70,12 +67,15 @@
             </div>
         </section>
 
-        <!-- Zone de recherche -->
         <section class="search-section">
-            <input type="text" id="searchInput" placeholder="Rechercher un film..." aria-label="Rechercher">
-            <button id="searchButton" aria-label="Lancer la recherche">
-                <i class="fas fa-search"></i>
-            </button>
+            <h2>Rechercher un film</h2>
+            <div class="search-wrapper">
+                <label for="searchInput" class="sr-only">Rechercher un film</label>
+                <input type="text" id="searchInput" placeholder="Rechercher un film..." aria-label="Rechercher">
+                <button id="searchButton" aria-label="Lancer la recherche">
+                    <i class="fas fa-search"></i>
+                </button>
+            </div>
         </section>
     </main>
 
