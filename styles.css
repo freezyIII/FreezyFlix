@@ -242,6 +242,17 @@ button#closeButton:hover {
     top: 50%;
     transform: translateY(-50%);
 }
+/* Zone de recherche */
+.search-box {
+    background-color: #444; /* Gris clair */
+    color: white;
+    border: none;
+    padding: 5px 10px;
+    border-radius: 5px;
+    font-size: 16px;
+    margin-right: 10px; /* Espacement entre la recherche et la loupe */
+    width: 200px;
+}
 
 /* Icône de la loupe */
 .search-icon {
