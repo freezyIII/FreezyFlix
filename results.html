@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Résultats de recherche</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <header>
+        <nav>
+            <a href="#top" class="logo" aria-label="Accueil">
+                <img src="Logo FreezyIII.png" alt="Logo FreezyFlix">
+            </a>
+            <ul class="nav-links">
+                <li><a href="#top">Accueil</a></li>
+                <li><a href="#">Films</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <section class="movie-grid-section">
+        <h2>Résultats de recherche</h2>
+        <div id="movieGrid"></div>
+    </section>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const results = JSON.parse(localStorage.getItem('searchResults')) || [];
+            const movieGrid = document.getElementById('movieGrid');
+            
+            if (results.length > 0) {
+                results.forEach(movie => {
+                    const movieItem = document.createElement('div');
+                    movieItem.classList.add('movie-grid-item');
+                    movieItem.innerHTML = `
+                        <img src="${movie.image}" alt="${movie.title}">
+                        <div class="resolution">${movie.resolution}</div>
+                        <p class="movie-title">${movie.title}</p>
+                    `;
+                    movieGrid.appendChild(movieItem);
+                });
+            } else {
+                movieGrid.innerHTML = "<p>Aucun film trouvé pour cette recherche.</p>";
+            }
+        });
+    </script>
+</body>
+</html>
