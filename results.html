@@ -33,11 +33,11 @@
                 results.forEach(movie => {
                     const movieItem = document.createElement('div');
                     movieItem.classList.add('movie-grid-item');
-                    movieItem.innerHTML = 
-                        <img src="${movie.image}" alt="${movie.title}">
-                        <div class="resolution">${movie.resolution}</div>
-                        <p class="movie-title">${movie.title}</p>
-                    ;
+                    movieItem.innerHTML = `
+    <img src="${movie.image}" alt="${movie.title}">
+    <div class="resolution">${movie.resolution}</div>
+    <p class="movie-title">${movie.title}</p>
+`;
                     movieGrid.appendChild(movieItem);
                 });
             } else {
