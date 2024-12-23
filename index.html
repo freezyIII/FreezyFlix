@@ -5,27 +5,19 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>FreezyFlix - Votre plateforme de streaming en haute définition</title>
     <link rel="stylesheet" href="styles.css">
-    <!-- Inclure Font Awesome -->
-    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet">
 </head>
 <body>
     <header>
-    <nav>
-        <a href="#top" class="logo" aria-label="Accueil">
-            <img src="Logo FreezyIII.png" alt="Logo FreezyFlix">
-        </a>
-        <ul class="nav-links">
-            <li><a href="#top">Accueil</a></li>
-            <li><a href="#">Films</a></li>
-        </ul>
-        <!-- Dans la barre de navigation -->
-        <div class="search-container">
-            <input type="text" class="search-box" placeholder="Rechercher un film...">
-            <button class="search-icon">
-                <i class="fas fa-search"></i>
-            </button>
-        </div>
-    </nav>
+        <nav>
+            <!-- Lien vers la page d'accueil avec un identifiant -->
+            <a href="#" id="goHome" class="logo" aria-label="Accueil">
+                <img src="Logo FreezyIII.png" alt="Logo FreezyFlix">
+            </a>
+            <ul class="nav-links">
+                <li><a href="#" id="goHomeLink">Accueil</a></li>
+                <li><a href="#">Films</a></li>
+            </ul>
+        </nav>
     </header>
 
     <section class="hero" id="top">
@@ -39,7 +31,7 @@
             <div class="movie-container" id="movieContainer">
                 <!-- Film à la une -->
                 <div class="movie-item">
-                    <img src="https://i.imgur.com/wyNUyaR.jpeg">
+                    <img src="https://i.imgur.com/wyNUyaR.jpeg" alt="Film à la une">
                     <div class="resolution">4K</div>
                 </div>
             </div>
@@ -50,22 +42,21 @@
         <h2>Découvrir d'autres films</h2>
         <div id="movieGrid">
             <!-- Autres films -->
-            <div class="movie-grid-item"><img src=""><div class="resolution"></div></div> <!--  -->
-            <div class="movie-grid-item"><img src=""><div class="resolution"></div></div> <!--  -->
-            <div class="movie-grid-item"><img src=""><div class="resolution"></div></div> <!--  -->
-            <div class="movie-grid-item"><img src=""><div class="resolution"></div></div> <!--  -->
-            <div class="movie-grid-item"><img src=""><div class="resolution"></div></div> <!--  -->
-            <div class="movie-grid-item"><img src=""><div class="resolution"></div></div> <!--  -->
-            <div class="movie-grid-item"><img src=""><div class="resolution"></div></div> <!--  -->
-            <div class="movie-grid-item"><img src="https://i.imgur.com/i3Tr6jB.jpeg"><div class="resolution">4K</div></div> <!-- There's Something in the Barn -->
-            <div class="movie-grid-item"><img src="https://i.imgur.com/PpkJr2u.jpeg"><div class="resolution">1080p</div></div> <!-- Violent Night -->
-            <div class="movie-grid-item"><img src="https://i.imgur.com/1wanblj.jpeg"><div class="resolution">1080p</div></div> <!-- Anna et l'Apocalypse -->
-            <div class="movie-grid-item"><img src="https://i.imgur.com/yKxf3NM.jpeg"><div class="resolution">4K</div></div> <!-- Avengers Endgame -->
-            
-            <!-- Ajouter plus de films ici -->
+            <div class="movie-grid-item"><img src="https://i.imgur.com/i3Tr6jB.jpeg" alt="Film 1"><div class="resolution">4K</div></div>
+            <div class="movie-grid-item"><img src="https://i.imgur.com/PpkJr2u.jpeg" alt="Film 2"><div class="resolution">1080p</div></div>
+            <div class="movie-grid-item"><img src="https://i.imgur.com/1wanblj.jpeg" alt="Film 3"><div class="resolution">1080p</div></div>
+            <div class="movie-grid-item"><img src="https://i.imgur.com/yKxf3NM.jpeg" alt="Film 4"><div class="resolution">4K</div></div>
         </div>
     </section>
-    
+
+    <!-- Zone de recherche -->
+    <section class="search-section">
+        <input type="text" id="searchInput" placeholder="Rechercher un film..." aria-label="Recherche">
+        <button id="searchButton" aria-label="Lancer la recherche">
+            <img src="search-icon.svg" alt="Loupe">
+        </button>
+    </section>
+
     <script src="script.js"></script>
 </body>
 </html>
