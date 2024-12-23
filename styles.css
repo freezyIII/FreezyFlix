@@ -66,6 +66,38 @@ nav ul li a:hover {
     color: #ff6347;
 }
 
+/* Zone de recherche et loupe */
+.search-container {
+    display: flex;
+    align-items: center;
+    background-color: #333;
+    border-radius: 5px;
+    padding: 5px 10px;
+    margin-left: 30px; /* Ajoute de l'espace entre le dernier lien et la recherche */
+}
+
+.search-container input[type="text"] {
+    background-color: #444;
+    border: none;
+    color: white;
+    padding: 5px 10px;
+    font-size: 16px;
+    border-radius: 5px;
+    width: 200px; /* Largeur de la zone de texte */
+}
+
+.search-container input[type="text"]:focus {
+    outline: none;
+}
+
+.search-container .search-icon {
+    width: 20px;
+    height: 20px;
+    margin-left: 10px;
+    cursor: pointer;
+}
+
+/* Hero */
 .hero {
     background: #333;
     padding: 80px 20px;
@@ -127,37 +159,21 @@ nav ul li a:hover {
     border-radius: 15px;
 }
 
-/* Section de recherche */
-.search-section {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    margin: 20px 0;
+/* Résolution de film */
+.movie-item .resolution {
+    position: absolute;
+    top: 10px;
+    left: 10px;
+    background: yellow;
+    color: black;
+    font-size: 14px;
+    font-weight: bold;
+    padding: 5px 10px;
+    border-radius: 5px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.5);
 }
 
-.search-section input {
-    padding: 10px;
-    font-size: 16px;
-    border: 2px solid #ddd;
-    border-radius: 4px;
-    background-color: #333;
-    color: white;
-    width: 250px;
-}
-
-.search-section button {
-    margin-left: 10px;
-    background: none;
-    border: none;
-    cursor: pointer;
-}
-
-.search-section button img {
-    width: 24px;
-    height: 24px;
-}
-
-/* Films "Découvrir d'autres films" */
+/* Grille des films */
 .movie-grid-section {
     padding: 40px 20px;
     background: #181818;
@@ -186,6 +202,7 @@ nav ul li a:hover {
     transition: transform 0.3s ease;
     cursor: pointer;
     position: relative;
+    margin: 0 5px;
 }
 
 .movie-grid-item img {
@@ -198,4 +215,50 @@ nav ul li a:hover {
 .movie-grid-item:hover {
     transform: scale(1.05);
     box-shadow: 0 8px 16px rgba(0, 0, 0, 0.8);
+}
+
+button#closeButton:hover {
+    background-color: #FF4500;
+}
+
+.movie-detail {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: 100vh;
+    background-color: rgba(0, 0, 0, 0.9);
+    color: white;
+    padding: 20px;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    z-index: 200;
+    visibility: hidden;
+}
+
+#movieDescription {
+    margin-top: 20px;
+    font-size: 1.2rem;
+    color: #ccc;
+    text-align: center;
+    max-width: 800px;
+}
+
+button#backButton {
+    position: absolute;
+    top: 20px;
+    left: 20px;
+    padding: 10px 20px;
+    background-color: #FF6347;
+    border: none;
+    color: white;
+    font-weight: bold;
+    cursor: pointer;
+    font-size: 16px;
+}
+
+button#backButton:hover {
+    background-color: #FF4500;
 }
