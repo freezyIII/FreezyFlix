@@ -1,18 +1,39 @@
 document.addEventListener('DOMContentLoaded', () => {
-    // Fonction qui gère le lazy loading pour les films
-    const movieGrid = document.getElementById("movieGrid");
+    const searchBox = document.querySelector('.search-box');
+    const searchIcon = document.querySelector('.search-icon');
+    
+    const movies = [
+        { title: "Avengers Endgame", image: "https://i.imgur.com/yKxf3NM.jpeg", resolution: "4K" },
+        { title: "Anna et l'Apocalypse", image: "https://i.imgur.com/1wanblj.jpeg", resolution: "1080p" },
+        { title: "Violent Night", image: "https://i.imgur.com/PpkJr2u.jpeg", resolution: "1080p" },
+        { title: "There's Something in the Barn", image: "https://i.imgur.com/i3Tr6jB.jpeg", resolution: "4K" },
+    ];
+    
+    // Fonction de recherche
+    function searchMovies(query) {
+        // Recherche floue : correspondance partielle du titre
+        const results = movies.filter(movie => movie.title.toLowerCase().includes(query.toLowerCase()));
+        return results;
+    }
 
-    // Ajouter un événement de défilement pour afficher les films quand ils sont visibles
-    const observer = new IntersectionObserver((entries, observer) => {
-        entries.forEach(entry => {
-            if (entry.isIntersecting) {
-                entry.target.classList.add('visible');
-                observer.unobserve(entry.target); // Arrêter d'observer après l'animation
-            }
-        });
-    }, { threshold: 0.1 });
+    // Ajouter l'événement au bouton de recherche
+    searchIcon.addEventListener('click', () => {
+        const query = searchBox.value.trim();
+        if (query) {
+            const results = searchMovies(query);
 
-    // Observer pour chaque élément de film dans la grille
-    const movieItems = document.querySelectorAll('.movie-grid-item');
-    movieItems.forEach(item => observer.observe(item));
+            // Sauvegarder les résultats dans le localStorage pour la page de résultats
+            localStorage.setItem('searchResults', JSON.stringify(results));
+
+            // Rediriger vers la page des résultats
+            window.location.href = 'results.html'; // Assure-toi que cette page existe
+        }
+    });
+
+    // Ajouter un événement pour rechercher en temps réel
+    searchBox.addEventListener('input', () => {
+        const query = searchBox.value.trim();
+        const results = searchMovies(query);
+        // Tu peux ici afficher les résultats en temps réel si tu veux
+    });
 });
