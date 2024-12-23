@@ -10,60 +10,78 @@
 </head>
 <body>
     <header>
-    <nav>
-        <a href="#top" class="logo" aria-label="Accueil">
-            <img src="Logo FreezyIII.png" alt="Logo FreezyFlix">
-        </a>
-        <ul class="nav-links">
-            <li><a href="#top">Accueil</a></li>
-            <li><a href="#">Films</a></li>
-        </ul>
-        <!-- Zone de recherche et icône de loupe -->
-        <div class="search-container">
-            <input type="text" class="search-box" placeholder="Rechercher...">
-            <button class="search-icon">
-                <i class="fas fa-search"></i> <!-- Icône de loupe -->
-            </button>
-        </div>
-    </nav>
+        <nav>
+            <a href="#top" class="logo" aria-label="Accueil">
+                <img src="Logo_FreezyIII.png" alt="Logo FreezyFlix">
+            </a>
+            <ul class="nav-links">
+                <li><a href="#top">Accueil</a></li>
+                <li><a href="#">Films</a></li>
+            </ul>
+            <!-- Zone de recherche et icône de loupe -->
+            <div class="search-container">
+                <input type="text" class="search-box" placeholder="Rechercher..." aria-label="Rechercher">
+                <button class="search-icon" aria-label="Rechercher">
+                    <i class="fas fa-search"></i> <!-- Icône de loupe -->
+                </button>
+            </div>
+        </nav>
     </header>
 
-    <section class="hero" id="top">
-        <h1>Bienvenue sur notre plateforme de Streaming !</h1>
-        <p>Regardez vos films et séries préférées en haute définition.</p>
-    </section>
+    <main>
+        <section class="hero" id="top">
+            <h1>Bienvenue sur notre plateforme de Streaming !</h1>
+            <p>Regardez vos films et séries préférées en haute définition.</p>
+        </section>
 
-    <section class="content">
-        <h2>Films à la une</h2>
-        <div class="movie-carousel" id="movieCarousel">
-            <div class="movie-container" id="movieContainer">
-                <!-- Film à la une -->
-                <div class="movie-item">
-                    <img src="https://i.imgur.com/wyNUyaR.jpeg" alt="Film à la une">
+        <section class="content">
+            <h2>Films à la une</h2>
+            <div class="movie-carousel" id="movieCarousel">
+                <div class="movie-container">
+                    <!-- Film à la une -->
+                    <div class="movie-item">
+                        <img src="https://i.imgur.com/wyNUyaR.jpeg" alt="Film à la une">
+                        <div class="resolution">4K</div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="movie-grid-section">
+            <h2>Découvrir d'autres films</h2>
+            <div id="movieGrid">
+                <!-- Autres films -->
+                <div class="movie-grid-item">
+                    <img src="https://i.imgur.com/i3Tr6jB.jpeg" alt="Film 1">
+                    <div class="resolution">4K</div>
+                </div>
+                <div class="movie-grid-item">
+                    <img src="https://i.imgur.com/PpkJr2u.jpeg" alt="Film 2">
+                    <div class="resolution">1080p</div>
+                </div>
+                <div class="movie-grid-item">
+                    <img src="https://i.imgur.com/1wanblj.jpeg" alt="Film 3">
+                    <div class="resolution">1080p</div>
+                </div>
+                <div class="movie-grid-item">
+                    <img src="https://i.imgur.com/yKxf3NM.jpeg" alt="Film 4">
                     <div class="resolution">4K</div>
                 </div>
             </div>
-        </div>
-    </section>
+        </section>
 
-    <section class="movie-grid-section">
-        <h2>Découvrir d'autres films</h2>
-        <div id="movieGrid">
-            <!-- Autres films -->
-            <div class="movie-grid-item"><img src="https://i.imgur.com/i3Tr6jB.jpeg" alt="Film 1"><div class="resolution">4K</div></div>
-            <div class="movie-grid-item"><img src="https://i.imgur.com/PpkJr2u.jpeg" alt="Film 2"><div class="resolution">1080p</div></div>
-            <div class="movie-grid-item"><img src="https://i.imgur.com/1wanblj.jpeg" alt="Film 3"><div class="resolution">1080p</div></div>
-            <div class="movie-grid-item"><img src="https://i.imgur.com/yKxf3NM.jpeg" alt="Film 4"><div class="resolution">4K</div></div>
-        </div>
-    </section>
+        <!-- Zone de recherche -->
+        <section class="search-section">
+            <input type="text" id="searchInput" placeholder="Rechercher un film..." aria-label="Rechercher">
+            <button id="searchButton" aria-label="Lancer la recherche">
+                <i class="fas fa-search"></i>
+            </button>
+        </section>
+    </main>
 
-    <!-- Zone de recherche -->
-    <section class="search-section">
-        <input type="text" id="searchInput" placeholder="Rechercher un film..." aria-label="Recherche">
-        <button id="searchButton" aria-label="Lancer la recherche">
-            <img src="search-icon.svg" alt="Loupe">
-        </button>
-    </section>
+    <footer>
+        <p>&copy; 2024 FreezyFlix. Tous droits réservés.</p>
+    </footer>
 
     <script src="script.js"></script>
 </body>
