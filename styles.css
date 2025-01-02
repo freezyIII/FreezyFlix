@@ -117,8 +117,9 @@ strong {
 
 ::-webkit-scrollbar {
     width: 10px;
-    background-color: #666;
+    background-color: rgba(90, 87, 87, 0.678)
 }
 ::-webkit-scrollbar-thumb {
-    background-color: rgb(255, 0, 0);
+    background-color: rgb(202, 10, 10);
+    border-radius: 5px;
 }
