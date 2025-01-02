@@ -114,3 +114,11 @@ strong {
     margin-top: 10px;
     margin-bottom: 10px;
 }
+
+::-webkit-scrollbar {
+    width: 10px;
+    background-color: #666;
+}
+::-webkit-scrollbar-thunmb {
+    background-color: #f39;
+}
