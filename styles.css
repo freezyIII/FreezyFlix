@@ -119,6 +119,6 @@ strong {
     width: 10px;
     background-color: #666;
 }
-::-webkit-scrollbar-thunmb {
-    background-color: #f39;
+::-webkit-scrollbar-thumb {
+    background-color: rgb(255, 0, 0);
 }
