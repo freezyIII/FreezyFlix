@@ -1,5 +1,5 @@
 *{margin:0;padding:0;box-sizing:border-box;user-select:none}
-body { font-family: Arial, sans-serif; background: #121212; color: white; overflow-x: hidden; overflow-y: auto; -ms-overflow-style: none; scrollbar-width: none; } body::-webkit-scrollbar { display: none; }
+body { font-family: Arial, sans-serif; background: #121212; color: white; overflow-y: scroll; -ms-overflow-style: auto; scrollbar-width: auto; }
 body::-webkit-scrollbar{display:none;}
 header{background:#212121;padding:0 20px;display:flex;justify-content:center;align-items:center;height:80px;position:relative}
 header .logo{position:absolute;left:20px;top:50%;transform:translateY(-50%)}
