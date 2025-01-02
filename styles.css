@@ -1,6 +1,5 @@
 *{margin:0;padding:0;box-sizing:border-box;user-select:none}
-body { font-family: Arial, sans-serif; background: #121212; color: white; overflow-y: scroll; -ms-overflow-style: auto; scrollbar-width: auto; }
-body::-webkit-scrollbar{display:none;}
+body{font-family:Arial,sans-serif;background:#121212;color:white;overflow-x:hidden}
 header{background:#212121;padding:0 20px;display:flex;justify-content:center;align-items:center;height:80px;position:relative}
 header .logo{position:absolute;left:20px;top:50%;transform:translateY(-50%)}
 header .logo img{height:120px;width:auto}
@@ -13,7 +12,7 @@ nav ul li a:hover{color:#ff6347}
 .hero{background:#333;padding:70px 20px;text-align:center;color:#bbb}
 .hero h1{font-size:3rem}
 .hero p{font-size:1.5rem}
-.content{padding:20px;display:flex;justify-content:center;flex-direction:column;align-items:center;overflow-y: auto;height: 100vh;}
+.content{padding:20px;display:flex;justify-content:center;flex-direction:column;align-items:center}
 .movie-carousel{width:100%;margin:20px auto;display:flex;justify-content:center;gap:20px;padding:0 10px;box-sizing:border-box;overflow:visible;align-items:center;height:450px}
 .movie-container{display:flex;flex-wrap:nowrap;transition:transform 1s ease;gap:10px}
 .movie-item{width:300px;height:450px;text-align:center;background:#222;border-radius:15px;box-shadow:0 4px 10px rgba(0,0,0,0.5);position:relative;transition:transform 0.3s ease;z-index:1}
@@ -114,11 +113,4 @@ strong {
 .movie-duration, .movie-release-date, .movie-size {
     margin-top: 10px;
     margin-bottom: 10px;
-}
-
-html, body {
-  height: 100%;  /* Assurez-vous que le body prend toute la hauteur de la fenêtre */
-  margin: 0;
-  padding: 0;
-  overflow: hidden;  /* Masque la barre de défilement */
 }
