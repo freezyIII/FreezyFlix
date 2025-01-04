@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Page de Publicité</title>
+    <style>
+        /* Styles existants */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            user-select: none;
+        }
+        body {
+            font-family: Arial, sans-serif;
+            background: #121212;
+            color: white;
+            overflow-x: hidden;
+        }
+        header {
+            background: #212121;
+            padding: 0 20px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 80px;
+            position: relative;
+        }
+        header .logo {
+            position: absolute;
+            left: 0;
+            top: 50%;
+            transform: translateY(-50%);
+        }
+        header .logo img {
+            height: 120px;
+            width: auto;
+        }
+        .movie-ad {
+            text-align: center;
+            padding: 20px;
+            background-color: #333;
+            margin-top: 20px;
+            border-radius: 10px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.8);
+        }
+        .download-btn {
+            background-color: #2c6b2f;
+            color: white;
+            font-size: 1.4rem;
+            padding: 0.5rem 1rem;
+            border: none;
+            border-radius: 6px;
+            cursor: pointer;
+            text-transform: uppercase;
+            font-weight: bold;
+            text-align: center;
+            transition: background-color 0.3s ease;
+            margin-top: 3rem;
+        }
+        .download-btn:hover {
+            background-color: #255b26;
+        }
+        .download-btn:disabled {
+            background-color: gray;
+            cursor: not-allowed;
+        }
+        .movie-size {
+            margin-top: 1rem;
+            color: #ccc;
+            font-size: 1.2rem;
+        }
+        .movie-title {
+            font-size: 1.8rem;
+            color: #fff;
+            margin-top: 1rem;
+            font-weight: bold;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <a href="index.html" class="logo" aria-label="Accueil">
+            <img src="https://i.imgur.com/ebAC1j0.png" alt="Logo FreezyFlix">
+        </a>
+    </header>
+
+    <section class="movie-ad">
+        <div id="movieTitle" class="movie-title">Chargement...</div>
+        <button id="downloadButton" class="download-btn" disabled>Télécharger</button>
+        <div id="movieSize" class="movie-size"></div>
+    </section>
+
+<script>
+document.addEventListener('DOMContentLoaded', () => {
+    const urlParams = new URLSearchParams(window.location.search);
+    const movieData = urlParams.get('data');
+    const movieId = parseInt(urlParams.get('id'));
+
+    if (movieData) {
+        const movie = JSON.parse(decodeURIComponent(movieData));
+
+        // Affichez les informations du film
+        const movieTitleElement = document.getElementById('movieTitle');
+        movieTitleElement.textContent = `${movie.title} [${movie.resolution}]`; // Ajout de la résolution
+
+        document.getElementById('movieSize').textContent = `Taille : ${movie.size || 'Non spécifié'}`;
+
+        // Activez le bouton de téléchargement
+        document.getElementById('downloadButton').disabled = false;
+
+        document.getElementById('downloadButton').addEventListener('click', () => {
+            window.location.href = `download.html?id=${movieId}`;
+        });
+    } else {
+        document.getElementById('movieTitle').textContent = 'Film non trouvé';
+    }
+});
+</script>
+    
+    
+</body>
+</html>

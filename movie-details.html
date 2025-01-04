@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Détails du Film</title>
+    <link rel="stylesheet" href="styles.css">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet">
+</head>
+<body>
+
+    <header>
+        <nav>
+            <a href="index.html" class="logo" aria-label="Accueil">
+                <img src="https://i.imgur.com/ebAC1j0.png" alt="Logo FreezyFlix">
+                
+                <ul>
+                    <li><a class="acceuil" href="#Accueil">Accueil</a></li>
+                    <li><a class="films" href="#Films">Films</a></li>
+                    <li><a class="faq" href="#FAQ">FAQ</a></li>
+                </ul>
+
+            <div class="search-container">
+                <input type="text" class="search-box" id="searchInput" name="q" placeholder="Rechercher..." autocomplete="off" />
+                <button class="search-icon" aria-label="Rechercher">
+                    <i class="fas fa-search"></i>
+                </button>
+            </div>
+        </nav>
+    </header>
+
+    <section class="movie-detail">
+        <h1 id="movieTitle"></h1>
+        <div id="movieIframeContainer" class="movie-iframe-container"></div>
+        <div id="movieCategory" class="movie-category-container">
+            <p id="movieCategoryText" class="movie-category"></p>
+        </div>
+        <div class="container">
+            <button id="downloadButton" class="download-btn"></button>
+        </div>
+        <p id="movieDescription" class="movie-description"></p>
+        <p id="movieReleaseDate" class="movie-release-date">
+            <strong>Date de sortie :</strong> <span id="releaseDateValue"></span>
+        </p>
+        <p id="movieDuration" class="movie-duration">
+            <strong>Durée :</strong> <span id="durationValue"></span>
+        </p>
+        <p id="movieSize" class="movie-size">
+            <strong>Taille :</strong> <span id="sizeValue"></span>
+        </p>
+    </section>
+<script>
+    const allMovies = [
+        { id: 1, title: "There's Something in the Barn", resolution: "4K", youtubeUrl: "https://www.youtube.com/embed/5Wnq-MFK_0k", description: "Bill, ses deux enfants et leur belle-mère déménagent dans la splendeur norvégienne enneigée, au sein d'un chalet isolé. Les parents forcent l'enthousiasme, la fille boude ses amies perdues et le fils se rend vite à l'évidence : il y a quelque chose dans la grange.", category: "", releaseDate: "10 novembre 2023", duration: "", size: "" },
+        { id: 2, title: "Violent Night", resolution: "1080p", youtubeUrl: "https://www.youtube.com/embed/X5bs3RuQ7iI", description: "Une équipe d'élite de mercenaires fait irruption dans un complexe familial la veille de Noël, prenant tout le monde en otage à l'intérieur. Cependant, ils ne sont pas préparés à un combattant surprise: le Père Noël est sur le terrain et il est sur le point de montrer pourquoi ce Nick n'est pas un saint.", category: "", releaseDate: "2 décembre 2022", duration: "1h51", size: "1,85 GB" },
+        { id: 3, title: "Anna et l'Apocalypse", resolution: "1080p", youtubeUrl: "https://www.youtube.com/embed/BVV4G1ZzX1w", description: "Une apocalypse de zombie menace la petite ville de Little Haven -- à Noël -- forçant Anna et ses amis à se battre, chanter et danser pour survivre, faisant face aux morts-vivants dans une course désespérée pour rejoindre leurs proches.", category: "Fantastique, Musical, Aventure",  releaseDate: "30 novembre 2018", duration: "1h33", size: "6,28 GB" },
+        { id: 4, title: "Avengers Endgame", resolution: "1080p", youtubeUrl: "https://www.youtube.com/embed/wV-Q0o2OQjQ", description: "Le Titan Thanos, ayant réussi à s'approprier les six Pierres d'Infinité et à les réunir sur le Gantelet doré, a pu réaliser son objectif de pulvériser la moitié de la population de l'Univers. Cinq ans plus tard, Scott Lang, alias Ant-Man, parvient à s'échapper de la dimension subatomique où il était coincé. Il propose aux Avengers une solution pour faire revenir à la vie tous les êtres disparus, dont leurs alliés et coéquipiers : récupérer les Pierres d'Infinité dans le passé.", category: "",  releaseDate: "", duration: "", size: "" },
+        { id: 5, title: "Bienvenue chez les Loud Espionner peut attendre", resolution: "1080p", youtubeUrl: "https://www.youtube.com/embed/3gPGMqXUFl0", description: "Lincoln Loud et sa famille se préparent à accueillir leur nouvelle Mamounette, Myrtille, lors d'un mariage sur une île paradisiaque. Cependant, les festivités prennent une tournure inattendue lorsqu'un vieil ennemi du passé d'agent secret de Myrtille fait son apparition sur l'île. Mamounette est enlevée, poussant Lincoln à entraîner sa famille dans une mission de super-espionnage pour la sauver.", category: "",  releaseDate: "21 juin 2024", duration: "", size: "" },
+        { id: 6, title: "Garfield Héros malgré lui", resolution: "1080p", youtubeUrl: "https://www.youtube.com/embed/cldTF5e8wpQ", description: "Garfield, le célèbre chat d'intérieur, amateur de lasagnes et qui déteste les lundis, est sur le point d'être embarqué dans une folle aventure. Après avoir retrouvé son père disparu, Vic, un chat des rues mal peigné, Garfield et son ami le chien Odie, sont forcés de quitter leur quotidien confortable pour aider Vic à accomplir un cambriolage aussi risqué qu'hilarant.", category: "",  releaseDate: "31 juillet 2024", duration: "1h43", size: "1,50 GB" },
+        { id: 7, title: "Astérix Le Domaine des dieux", resolution: "1080p", youtubeUrl: "https://www.youtube.com/embed/yi-ryA07otI", description: "Les irréductibles Gaulois du village d'Astérix résistent encore et toujours à l'envahisseur romain. L'empereur César comprend qu'il ne peut rien obtenir par la force, car ces derniers disposent de la fameuse potion magique qui les rend invincibles.", category: "",  releaseDate: "26 novembre 2014", duration: "", size: "" },
+        { id: 8, title: "Descendants L'Ascension de Red", resolution: "1080p", youtubeUrl: "https://www.youtube.com/embed/xiQ7Dk0k81M", description: "Après que la Reine de Cœur a fomenté un coup d'État sur Auradon, sa fille rebelle Red et la fille perfectionniste de Cendrillon, Chloé, remontent le temps pour annuler l'événement traumatisant qui a poussé la mère de Red sur la voie de l'infamie.", category: "",  releaseDate: "12 juillet 2024", duration: "1h31", size: "1,38 GB" },
+        { id: 9, title: "L'Étrange Noël du petit Batman", resolution: "1080p", youtubeUrl: "https://www.youtube.com/embed/__x2YwpykQ0", description: "Damian Wayne veut suivre les traces de son père, trop protecteur et en retrait de la vie de super-héros, Batman. Lorsque le devoir appelle ce chevalier noir pendant le réveillon, Damian, resté seul à la maison, découvre un sinistre complot, élaboré par les pires super-vilains de Gotham, visant à voler Noël. Damian veut prouver à son père qu'il peut protéger Gotham et vient à la rescousse pour sauver Noël, tout en découvrant ce qu'il faut sacrifier pour devenir un héros.", category: "",  releaseDate: "8 décembre 2023", duration: "1h36", size: "1,83 GB" },
+        { id: 10, title: "Ninja Turtles Teenage Years", resolution: "1080p", youtubeUrl: "https://www.youtube.com/embed/LUIxqARrf8k", description: "Après des années passées loin du monde des humains, les frères Tortues entreprennent de gagner le cœur des New-Yorkais et d'être acceptés comme des adolescents normaux grâce à des actes héroïques.", category: "",  releaseDate: "2 août 2023", duration: "1h39", size: "1,66 GB" },
+        { id: 11, title: "South Park la fin de l'obésité", resolution: "1080p", youtubeUrl: "https://www.youtube.com/embed/73RPp7QnbDM", description: "Les médicaments amaigrissants prennent d'assaut la paisible ville de montagne de South Park. Lorsque Eric Cartman, obèse et grossier, se voit refuser l'accès à ces médicaments, il recrute Kyle, Stan, Butters et Kenny pour l'aider.", category: "",  releaseDate: "25 mai 2024", duration: "50 min", size: "782 Mo" },
+        { id: 12, title: "Tempête de boulettes géantes", resolution: "1080p", youtubeUrl: "https://www.youtube.com/embed/8CtlT4QTvig", description: "Alors que Swallow Falls connaît une période de vache maigre, ses habitants ont seulement les moyens de manger des sardines. Flint Lockwood, un inventeur raté, pense qu'il a la réponse à cette situation difficile.", category: "",  releaseDate: "21 octobre 2009", duration: "1h29", size: "1,37 GB" },
+        { id: 13, title: "L'île des Miam-nimaux Tempête de boulettes géantes 2", resolution: "1080p", youtubeUrl: "https://www.youtube.com/embed/C4MKKPAJ4dE", description: "Depuis la destruction de Swallow Falls par la machine à changer l'eau en nourriture qu'il a inventée, Flint Lockwood travaille pour la compagnie de l'inventeur Chester V, son héros d'enfance, à San Franjose.", category: "",  releaseDate: "5 février 2014", duration: "1h34", size: "1,46 GB" },
+        { id: 14, title: "Astérix Le Secret de la potion magique", resolution: "1080p", youtubeUrl: "https://www.youtube.com/embed/gXbR3zonMRk", description: "Après une chute lors de la cueillette du gui, le druide Panoramix se blesse et décide qu'il est temps de trouver un remplaçant à qui il pourra enseigner la fameuse recette de la potion magique. À l'aide d'Astérix et Obélix, Panoramix parcourt la Gaule à la recherche d'un druide.", category: "",  releaseDate: "5 décembre 2018", duration: "1h24", size: "1,35 GB" },
+        { id: 15, title: "Wonka", resolution: "4K", youtubeUrl: "https://www.youtube.com/embed/yPmOnBX_7Ww", description: "Le jeune Willy Wonka, extraordinaire inventeur, magicien et chocolatier, tente de mettre en place une boutique de chocolat en ville. Il affronte le cartel des chocolatiers qui voit d'un mauvais oeil son arrivée, alors qu'il se met à créer ses premières friandises uniques au monde tout en rencontrant les Oompa-Loompas.", category: "",  releaseDate: "13 décembre 2023", duration: "1h56", size: "4,96 GB" },
+    ];
+
+    document.addEventListener('DOMContentLoaded', () => {
+    const searchInput = document.getElementById('searchInput');
+    const searchButton = document.querySelector('.search-icon');
+
+    const handleSearch = () => {
+        const query = searchInput.value.trim();
+        if (query) {
+            window.location.href = `results.html?q=${encodeURIComponent(query)}`;
+        }
+    };
+
+    searchInput.addEventListener('keypress', (e) => {
+        if (e.key === 'Enter') {
+            e.preventDefault();
+            handleSearch();
+        }
+    });
+
+    searchButton.addEventListener('click', () => {
+        handleSearch();
+    });
+
+    // Supposons que l'ID du film est passé dans l'URL
+    const urlParams = new URLSearchParams(window.location.search);
+    const movieId = parseInt(urlParams.get('id'));
+
+    // Cherche le film dans le tableau
+    const movie = allMovies.find(movie => movie.id === movieId);
+
+    if (movie) {
+        const titleElement = document.getElementById('movieTitle');
+        titleElement.textContent = movie.title;
+
+        const iframeContainer = document.getElementById('movieIframeContainer');
+        const iframe = document.createElement('iframe');
+        iframe.src = movie.youtubeUrl;
+        iframe.width = "100%";
+        iframe.height = "600px";
+        iframeContainer.appendChild(iframe);
+
+        const movieDescription = document.getElementById('movieDescription');
+        movieDescription.textContent = movie.description;
+
+        const movieReleaseDate = document.getElementById('releaseDateValue');
+        movieReleaseDate.textContent = movie.releaseDate;
+
+        const movieDuration = document.getElementById('durationValue');
+        movieDuration.textContent = movie.duration;
+
+        const movieSize = document.getElementById('sizeValue');
+        movieSize.textContent = movie.size;
+
+        const downloadButton = document.getElementById('downloadButton');
+        downloadButton.textContent = 'Télécharger';
+
+
+        const handleDownloadClick = () => {
+    // Encode les données du film
+    const movieData = encodeURIComponent(JSON.stringify({
+        title: movie.title,
+        size: movie.size,
+        resolution: movie.resolution
+    }));
+
+    // Redirige vers Google avec les données du film comme paramètres dans l'URL
+    window.location.href = `https://www.google.com/search?q=Film:${movie.title}&data=${movieData}`;
+};
+downloadButton.addEventListener('click', handleDownloadClick);
+
+
+    } else {
+        console.error('Film non trouvé');
+    }
+});
+</script>
+</body>
+</html>
