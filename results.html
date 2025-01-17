@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Résultats de recherche</title>
+    <link rel="stylesheet" href="styles.css">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet">
+</head>
+<body>
+
+
+<header>
+<nav><a href="index.html" class="logo" aria-label="Accueil">
+<img src="https://i.imgur.com/7Ddaoy6.png" alt="Logo FreezyFlix"></a>
+
+
+<ul>
+<li><a class="acceuil" href="index.html">Accueil</a></li>
+<li><a class="faq" href="faq.html">FAQ</a></li>
+</ul>
+            
+
+<div class="search-container">
+<form action="results.html" method="GET" id="searchForm">
+<input type="text" class="search-box" id="searchInput" name="q" placeholder="Rechercher..." autocomplete="off" />
+<button type="submit" class="search-icon" aria-label="Rechercher"><i class="fas fa-search"></i></button></form></div></nav>
+</header>
+
+
+<section class="movie-grid-section-results">
+<h2>Résultats de recherche</h2>
+<p id="resultsCountMessage" aria-live="polite" style="display: none;"></p>
+<div id="movieGrid" class="movie-grid"></div>
+<p id="noResultsMessage" style="display: none; color: white; text-align: center;">Aucun résultat trouvé</p>
+</section>
+    
+    
+
+<!-- Films --> 
+<!-- { id: , title: "", image: "", resolution: "1080p" }, -->
+<script>const allMovies = [
+        { id: 12, title: "Wonka", image: "https://i.imgur.com/E8u1cWC.png", resolution: "4K" },
+        { id: 11, title: "Astérix Le Secret de la potion magique", image: "https://i.imgur.com/pHwKexK.png", resolution: "1080p" },
+        { id: 10, title: "L'île des Miam-nimaux Tempête de boulettes géantes 2", image: "https://i.imgur.com/vWFCNbd.png", resolution: "1080p" },
+        { id: 9, title: "Tempête de boulettes géantes", image: "https://i.imgur.com/HZKkI4T.png", resolution: "1080p" },
+        { id: 8, title: "South Park la fin de l'obésité", image: "https://i.imgur.com/WItI643.png", resolution: "1080p" },
+        { id: 7, title: "Ninja Turtles Teenage Years", image: "https://i.imgur.com/L7gLeDh.png", resolution: "1080p" },
+        { id: 6, title: "L'Étrange Noël du petit Batman", image: "https://i.imgur.com/49k2NVQ.png", resolution: "1080p" },
+        { id: 5, title: "Descendants L'Ascension de Red", image: "https://i.imgur.com/FrJY4mf.jpeg", resolution: "1080p" },
+        { id: 4, title: "Garfield Héros malgré lui", image: "https://i.imgur.com/FxQKHhv.png", resolution: "1080p" },
+        { id: 3, title: "Dear Santa", image: "https://i.imgur.com/GM7Qb7d.png", resolution: "4K" },
+        { id: 2, title: "Violent Night", image: "https://i.imgur.com/PpkJr2u.jpeg", resolution: "1080p" },
+        { id: 1, title: "There's Something in the Barn", image: "https://i.imgur.com/i3Tr6jB.jpeg", resolution: "4K", youtubeUrl: "https://www.youtube.com/watch?v=5AhEm7pyc74" }
+];
+
+
+
+function displayResults(movies) {
+    const movieGrid = document.getElementById('movieGrid');
+    const noResultsMessage = document.getElementById('noResultsMessage');
+    const resultsCountMessage = document.getElementById('resultsCountMessage');
+    
+    movieGrid.innerHTML = movies.map(movie => `
+        <div class="movie-grid-item">
+            <a href="movie-details.html?id=${movie.id}" class="movie-link">
+                <img src="${movie.image}" alt="${movie.title}">
+                <div class="resolution">${movie.resolution}</div>
+            </a>
+        </div>
+    `).join('');
+
+    if (movies.length === 0) {
+        noResultsMessage.style.display = 'block';
+        resultsCountMessage.style.display = 'none';
+    } else {
+        noResultsMessage.style.display = 'none';
+        resultsCountMessage.style.display = 'block';
+        resultsCountMessage.textContent = `${movies.length} film${movies.length > 1 ? 's' : ''} trouvé${movies.length > 1 ? 's' : ''}`;
+    }
+}
+
+function removeAccents(str) {
+    return str.normalize("NFD").replace(/[\u0300-\u036f]/g, "");
+}
+
+function searchMovies() {
+    const query = removeAccents(document.getElementById('searchInput').value.trim().toLowerCase());
+    const filteredMovies = query ? allMovies.filter(m => 
+        removeAccents(m.title.toLowerCase()).includes(query)
+    ) : allMovies;
+    
+    displayResults(filteredMovies);
+
+    const url = new URL(window.location.href);
+    url.searchParams.set('q', query);
+    window.history.pushState({}, '', url);
+}
+
+document.getElementById('searchInput').addEventListener('keypress', (e) => {
+    const query = document.getElementById('searchInput').value.trim();
+    if (e.key === 'Enter' && query) {
+        e.preventDefault();
+        searchMovies();
+    }
+});
+
+document.querySelector('.search-icon').addEventListener('click', () => {
+    const query = document.getElementById('searchInput').value.trim();
+    if (query) {
+        searchMovies();
+    }
+});
+
+const query = new URLSearchParams(window.location.search).get('q') || '';
+document.getElementById('searchInput').value = query;
+if (query) searchMovies(); else displayResults(allMovies);
+
+document.addEventListener('DOMContentLoaded', () => {
+    const movieItems = document.querySelectorAll('.movie-item');
+
+    movieItems.forEach((item, index) => {
+        item.style.animationDelay = `${index * 0.1}s`;
+        item.style.opacity = '1';
+    });
+});
+
+function displaySearchResults(movies) {
+    const movieGrid = document.getElementById('movieGrid');
+    movieGrid.innerHTML = '';
+    
+    if (movies.length === 0) {
+        document.getElementById('noResultsMessage').style.display = 'block';
+        return;
+    }
+    
+    document.getElementById('noResultsMessage').style.display = 'none';
+    
+    movies.forEach(movie => {
+        const movieItem = document.createElement('div');
+        movieItem.classList.add('movie-grid-item');
+        
+        const movieLink = document.createElement('a');
+        movieLink.href = `movie-details.html?id=${movie.id}`;
+        
+        const movieImg = document.createElement('img');
+        movieImg.src = movie.imageUrl;
+        movieImg.alt = movie.title;
+        
+        const resolutionDiv = document.createElement('div');
+        resolutionDiv.classList.add('resolution');
+        resolutionDiv.textContent = movie.resolution;
+        
+        movieLink.appendChild(movieImg);
+        movieLink.appendChild(resolutionDiv);
+        movieItem.appendChild(movieLink);
+        
+        movieGrid.appendChild(movieItem);
+    });
+}
+document.querySelectorAll('.movie-item, .movie-grid-item').forEach(function(item) {
+var img = item.querySelector('img');
+var title = img.alt;
+item.setAttribute('data-title', title);});
+    </script>
+</body>
+</html>
