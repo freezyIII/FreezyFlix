@@ -1,0 +1,41 @@
+// server.js (Node.js Express)
+const express = require('express');
+const fs = require('fs');
+const app = express();
+const port = 3000;
+
+// Route pour obtenir le nombre de connexions
+app.get('/connections', (req, res) => {
+  fs.readFile('./connections.json', 'utf8', (err, data) => {
+    if (err) {
+      res.status(500).send("Erreur de lecture du fichier.");
+      return;
+    }
+    res.json(JSON.parse(data));
+  });
+});
+
+// Route pour mettre à jour le nombre de connexions
+app.post('/connections', (req, res) => {
+  fs.readFile('./connections.json', 'utf8', (err, data) => {
+    if (err) {
+      res.status(500).send("Erreur de lecture du fichier.");
+      return;
+    }
+
+    let connections = JSON.parse(data);
+    connections.count++;
+
+    fs.writeFile('./connections.json', JSON.stringify(connections), (err) => {
+      if (err) {
+        res.status(500).send("Erreur de mise à jour du fichier.");
+        return;
+      }
+      res.json(connections);
+    });
+  });
+});
+
+app.listen(port, () => {
+  console.log(`Server is running on http://localhost:${port}`);
+});
