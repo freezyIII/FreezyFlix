@@ -6,8 +6,10 @@
     <title>Résultats de recherche</title>
     <link rel="stylesheet" href="styles.css">
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet">
+    <style>@import url('https://fonts.googleapis.com/css2?family=Titan+One&display=swap');</style>
+    <style>@import url('https://fonts.googleapis.com/css2?family=Federant&display=swap');</style>
 </head>
-<body>
+<body class="page_results">
 
 
 <header>
@@ -15,9 +17,10 @@
 <img src="https://i.imgur.com/7Ddaoy6.png" alt="Logo FreezyFlix"></a>
 
 
-<ul>
-<li><a class="acceuil" href="index.html">Accueil</a></li>
-<li><a class="faq" href="faq.html">FAQ</a></li>
+<ul class="federant-regular">
+<li><a href="index.html">Accueil</a></li>
+<li><a href="index.html">Films</a></li>
+<li><a href="faq.html">FAQ</a></li>
 </ul>
             
 
@@ -29,7 +32,7 @@
 
 
 <section class="movie-grid-section-results">
-<h2>Résultats de recherche</h2>
+<h2 class="titan-one-regular">Résultats de recherche</h2>
 <p id="resultsCountMessage" aria-live="polite" style="display: none;"></p>
 <div id="movieGrid" class="movie-grid"></div>
 <p id="noResultsMessage" style="display: none; color: white; text-align: center;">Aucun résultat trouvé</p>
@@ -39,6 +42,7 @@
 
 <!-- Films --> 
 <!-- { id: , title: "", image: "", resolution: "1080p" }, -->
+
 <script>const allMovies = [
         { id: 12, title: "Wonka", image: "https://i.imgur.com/E8u1cWC.png", resolution: "4K" },
         { id: 11, title: "Astérix Le Secret de la potion magique", image: "https://i.imgur.com/pHwKexK.png", resolution: "1080p" },
@@ -162,6 +166,6 @@ document.querySelectorAll('.movie-item, .movie-grid-item').forEach(function(item
 var img = item.querySelector('img');
 var title = img.alt;
 item.setAttribute('data-title', title);});
-    </script>
+</script>
 </body>
 </html>

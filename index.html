@@ -6,52 +6,36 @@
     <title>FreezyFlix - Votre plateforme de streaming en haute définition</title>
     <link rel="stylesheet" href="styles.css">
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet">
+    <style>@import url('https://fonts.googleapis.com/css2?family=Titan+One&display=swap');</style>
+    <style>@import url('https://fonts.googleapis.com/css2?family=Federant&display=swap');</style>
 </head>
-<body>
+<body class="page_index">
 
 
 <header>
-<a href="https://freezyiii.github.io/FreezyFlix/" class="logo" aria-label="Accueil">
+<a href="index.html" class="logo" aria-label="Accueil">
 <img src="https://i.imgur.com/7Ddaoy6.png" alt="Logo FreezyFlix"></a>
 
 
-<ul>
-<li><a class="acceuil" href="https://freezyiii.github.io/FreezyFlix/">Accueil</a></li>
-<li><a class="faq" href="https://freezyiii.github.io/FreezyFlix/faq">FAQ</a></li>
+<ul class="federant-regular">
+<li><a href="index.html">Accueil</a></li>
+<li><a href="index.html">Films</a></li>
+<li><a href="faq.html">FAQ</a></li>
 </ul>
 
 <div class="search-container">
-<form action="https://freezyiii.github.io/FreezyFlix/results" method="GET" id="searchForm">
+<form action="results.html" method="GET" id="searchForm">
 <input type="text" class="search-box" id="searchInput" name="q" placeholder="Rechercher..." autocomplete="off" />
 <button type="submit" class="search-icon" aria-label="Rechercher">
 <i class="fas fa-search"></i>
 </button></form></div>
-
-
-
-<button class="settings-button">
-        <img src="https://i.imgur.com/0Mnmf9H.png" alt="Paramètres">
-    </button>
-    
-    <div id="menu" class="hidden">
-        <p>Menu</p>
-        <div class="switch-container">
-            <span class="zoom-text">Animations</span>
-            <label class="switch">
-                <input type="checkbox" id="zoom-switch" checked>
-                <span class="slider"></span>
-            </label>
-        </div>
-    </div>
-    
-      
 </header>
 
-
+<div id="active-users">Utilisateurs actifs : 0</div>
 
 <!-- Films à la une -->
 
-<section class="content"><h2>Films à la une</h2><div id="movieCarousel" class="movie-carousel"><div class="movie-container">
+<section class="content"><h2 class="titan-one-regular">Films à la une</h2><div id="movieCarousel" class="movie-carousel"><div class="movie-container">
         <div class="movie-item"><a href="movie-details.html?id=12"><img src="https://i.imgur.com/Yj99NTq.png" alt="Wonka"><div class="resolution">4K</div></a></div>
         <div class="movie-item"><a href="movie-details.html?id="><img src="https://i.imgur.com/QG1SWYr.jpeg" alt="Film à la une"><div class="resolution">4K</div></a></div>
         <div class="movie-item"><a href="movie-details.html?id="><img src="https://i.imgur.com/QG1SWYr.jpeg" alt="Film à la une"><div class="resolution">4K</div></a></div>
@@ -65,7 +49,7 @@
 <!-- Films à découvrir -->
 <!--<div class="movie-grid-item"><a href="movie-details.html?id=26"><img src="" alt=""><div class="resolution">1080p</div></a></div>-->
 
-<section class="movie-grid-section"><h2>Découvrir d'autres films</h2><div class="movie-grid">
+<section class="movie-grid-section"><h2 class="titan-one-regular">Découvrir d'autres films</h2><div class="movie-grid">
         <div class="movie-grid-item"><a href="movie-details.html?id=12"><img src="https://i.imgur.com/E8u1cWC.png" alt="Wonka"><div class="resolution">4K</div></a></div>
         <div class="movie-grid-item"><a href="movie-details.html?id=11"><img src="https://i.imgur.com/pHwKexK.png" alt="Astérix Le Secret de la potion magique"><div class="resolution">1080p</div></a></div>
         <div class="movie-grid-item"><a href="movie-details.html?id=10"><img src="https://i.imgur.com/vWFCNbd.png" alt="L'île des Miam-nimaux Tempête de boulettes géantes 2"><div class="resolution">1080p</div></a></div>
@@ -124,7 +108,9 @@ document.getElementById('zoom-switch').addEventListener('change', function() {
 });
 
 
-</script>
 
+</script>
+<script src="renderer.js"></script>
+<footer><p>&copy; 2025 FeezyFlix. Tous droits réservés.</p></footer>
 </body>
 </html>

@@ -21,7 +21,7 @@ h1 {color: white;}
 
 
 <body>
-<header><h1>FAQ - Foire Aux Questions</h1><a href="https://freezyiii.github.io/FreezyFlix/" class="logo" aria-label="Accueil"><img src="https://i.imgur.com/7Ddaoy6.png" alt="Logo FreezyFlix"></a></header>
+<header><h1>FAQ - Foire Aux Questions</h1><a href="index.html" class="logo" aria-label="Accueil"><img src="https://i.imgur.com/7Ddaoy6.png" alt="Logo FreezyFlix"></a></header>
 
 
 <div class="container"><h2>Les questions fréquemment posées</h2>
@@ -31,12 +31,12 @@ h1 {color: white;}
                 <div class="faq-answer"><p>Il n'est pas possible de regarder un film directement sur notre plateforme. Les films sont uniquement téléchargeables via le bouton vert « Télécharger » situé sous chaque bande-annonce.</p></div></div>
 
             <div class="faq-item"onclick="toggleFAQ(1)">
-                <div class="faq-question">Le lien de téléchargement ne fonctionne-t-il plus ?</div>
-                <div class="faq-answer"><p>Si le lien ne fonctionne pas, rejoignez notre <a href="https://discord.gg/5kX3Sb2wd4" target="_blank" class="discord-link">Discord</a> et signalez-le dans le salon « Aide ».</p></div></div>
+                <div class="faq-question">Le lien de téléchargement ne fonctionne plus ?</div>
+                <div class="faq-answer"><p>Si le lien ne fonctionne pas, rejoignez notre <a href="https://discord.gg/5kX3Sb2wd4" target="_blank" class="discord-link">Discord</a> et signalez-le dans le salon « Signalements ».</p></div></div>
 
             <div class="faq-item"onclick="toggleFAQ(2)">
                 <div class="faq-question">Quelle est la qualité des films ?</div>
-                <div class="faq-answer"><p>Les films sont disponibles en 1080p Full HD, avec certains également en 4K.</p></div></div>
+                <div class="faq-answer"><p>Les films sont disponibles en 1080p Full HD non compréssé, avec certains également en 4K.</p></div></div>
 
             <div class="faq-item"onclick="toggleFAQ(3)">
                 <div class="faq-question">Je n'ai pas d'écran 4K, comment faire ?</div>
@@ -47,12 +47,12 @@ h1 {color: white;}
                 <div class="faq-answer"><p>Utilisez un lecteur compatible comme <a href="https://mpc-hc.org/" target="_blank" style="text-decoration: underline; color: black;">MPC-HC</a> pour lire les fichiers encodés en H.265.</p></div></div></div></div>
 
 
-    <script>
-        function toggleFAQ(index) {
-            const faqItems = document.querySelectorAll('.faq-item');
-            faqItems.forEach((item, i) => {
-                if (i !== index) item.classList.remove('active');
-            });
-            faqItems[index].classList.toggle('active');}
-    </script>
+<script>
+function toggleFAQ(index) {
+const faqItems = document.querySelectorAll('.faq-item');
+faqItems.forEach((item, i) => {
+if (i !== index) item.classList.remove('active');
+});
+faqItems[index].classList.toggle('active');}
+</script>
 </body>

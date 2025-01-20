@@ -6,23 +6,25 @@
     <title>Détails du Film</title>
     <link rel="stylesheet" href="styles.css">
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet">
+    <style>@import url('https://fonts.googleapis.com/css2?family=Titan+One&display=swap');</style>
+    <style>@import url('https://fonts.googleapis.com/css2?family=Federant&display=swap');</style>
 </head>
-<body>
-
+<body class="page_movie_details">
 
 <header>
-<a href="https://freezyiii.github.io/FreezyFlix/" class="logo" aria-label="Accueil">
+<a href="index.html" class="logo" aria-label="Accueil">
 <img src="https://i.imgur.com/7Ddaoy6.png" alt="Logo FreezyFlix">
              
 
-<ul>
-<li><a class="acceuil" href="https://freezyiii.github.io/FreezyFlix/">Accueil</a></li>
-<li><a class="faq" href="https://freezyiii.github.io/FreezyFlix/faq.html">FAQ</a></li>
+<ul class="federant-regular">
+<li><a href="index.html">Accueil</a></li>
+<li><a href="index.html">Films</a></li>
+<li><a href="faq.html">FAQ</a></li>
 </ul>
 
 
 <div class="search-container">
-<form action="https://freezyiii.github.io/FreezyFlix/results.html" method="GET" id="searchForm">
+<form action="results.html" method="GET" id="searchForm">
 <input type="text" class="search-box" id="searchInput" name="q" placeholder="Rechercher..." autocomplete="off" />
 <button type="submit" class="search-icon" aria-label="Rechercher">
 <i class="fas fa-search"></i>
@@ -31,7 +33,7 @@
 
 
 <section class="movie-detail">
-<h1 id="movieTitle"></h1>
+<h1 class="titan-one-regular" id="movieTitle"></h1>
 <div id="movieIframeContainer" class="movie-iframe-container"></div>
 <div id="movieCategory" class="movie-category-container"><p id="movieCategoryText" class="movie-category"></p></div>
 <div class="container"><button id="downloadButton" class="download-btn"></button></div>
@@ -46,8 +48,8 @@
 
 <!-- Films -->  <!-- Action / Animation / Aventure / Comédie / Comédie musicale / Drame / Fantasy / Guerre / Horreur / Romance / Science-fiction / Thriller -->
 <!-- { id: , title: "", resolution: "", youtubeUrl: "", description: "", category: "",  releaseDate: "", duration: "", size: "", downloadUrl: "" }, -->
-   <script>
- const allMovies = [
+  
+<script>const allMovies = [
  { id: 12, title: "Wonka", 
      resolution: "4K", 
      youtubeUrl: "https://www.youtube.com/embed/yPmOnBX_7Ww", 
@@ -160,15 +162,14 @@
  },
  { id: 1, title: "There's Something in the Barn", 
      resolution: "4K", 
-     youtubeUrl: "https://www.youtube.com/embed/r_JtyzhoXX0", 
+     youtubeUrl: "https://www.youtube.com/embed/5Wnq-MFK_0k", 
      description: "Bill, ses deux enfants et leur belle-mère déménagent dans la splendeur norvégienne enneigée, au sein d'un chalet isolé. Les parents forcent l'enthousiasme, la fille boude ses amies perdues et le fils se rend vite à l'évidence : il y a quelque chose dans la grange.", 
      category: "Horreur / Thriller", 
      releaseDate: "10 novembre 2023", 
      duration: "1h40", 
      size: "4,27 GB", 
      downloadUrl: "" 
- }
-];
+}];
 
 
 
@@ -220,7 +221,6 @@ document.addEventListener('DOMContentLoaded', () => {
         console.error('Film non trouvé');
     }
 });
-
 </script>
 </body>
 </html>
