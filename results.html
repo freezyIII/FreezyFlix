@@ -1,13 +1,13 @@
 <!DOCTYPE html>
 <html lang="fr">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Résultats de recherche</title>
-    <link rel="stylesheet" href="styles.css">
-    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet">
-    <style>@import url('https://fonts.googleapis.com/css2?family=Titan+One&display=swap');</style>
-    <style>@import url('https://fonts.googleapis.com/css2?family=Federant&display=swap');</style>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Résultats de recherche</title>
+<link rel="stylesheet" href="styles.css">
+<link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet">
+<style>@import url('https://fonts.googleapis.com/css2?family=Titan+One&display=swap');</style>
+<style>@import url('https://fonts.googleapis.com/css2?family=Federant&display=swap');</style>
 </head>
 <body class="page_results">
 
@@ -21,6 +21,7 @@
 <li><a href="index.html">Accueil</a></li>
 <li><a href="index.html">Films</a></li>
 <li><a href="faq.html">FAQ</a></li>
+<li><a href="https://www.paypal.com/donate/?hosted_button_id=9TKRSPG4UTSJ2" target="_blank">Faire un don</a></li>
 </ul>
             
 
@@ -66,7 +67,7 @@ function displayResults(movies) {
     const resultsCountMessage = document.getElementById('resultsCountMessage');
     
     movieGrid.innerHTML = movies.map(movie => `
-        <div class="movie-grid-item">
+        <div class="movie-grid-item" data-title="${movie.title}">
             <a href="movie-details.html?id=${movie.id}" class="movie-link">
                 <img src="${movie.image}" alt="${movie.title}">
                 <div class="resolution">${movie.resolution}</div>

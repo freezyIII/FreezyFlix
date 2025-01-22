@@ -1,12 +1,12 @@
 * {margin: 0; padding: 0; box-sizing: border-box; user-select: none;}
-.page_index {font-family: 'Arial', sans-serif;background: #131820;}
-.page_results{font-family: 'Arial', sans-serif;background: #192335;}
-.page_movie_details {font-family: 'Arial', sans-serif;background-color: #131820;}
+.page_index {font-family: 'Arial', sans-serif;background: #2d2d2d;}
+.page_results{font-family: 'Arial', sans-serif;background: #2d2d2d;}
+.page_movie_details {font-family: 'Arial', sans-serif;background-color: #2d2d2d;}
 .container {display: flex; justify-content: center;}
 .description-title {font-size: 1.8rem; color: #d40000; margin-bottom: 10px; text-align: center;}
 .download-btn {display: inline-block;background-color: #00796b;color: #fff;font-size: 1.4rem;padding: 0.5rem 1rem;margin-top: 2rem;border: none;border-radius: 6px;cursor: pointer;text-transform: uppercase;font-weight: bold;text-align: center;transition: background-color 0.3s ease;margin-left: auto;margin-right: auto;}
 .download-btn:hover {background-color: #004d40;}
-header {background: #1E293B;padding: 0 20px;display: flex;justify-content: center;align-items: center;height: 80px;position: relative;}
+header {background: #1f1f1f ;padding: 0 20px;display: flex;justify-content: center;align-items: center;height: 80px;position: relative;}
 header .logo {position: absolute; left: 30px; top: 52%; transform: translateY(-50%);}
 header .logo img {height: 60px; width: auto;}
 h2 {color: #ef2626;}
@@ -30,7 +30,7 @@ h2 {color: #ef2626;}
 .movie-item .resolution {background: gold; color: black; font-size: 12px; font-weight: bold; padding: 5px 10px; border-radius: 5px; box-shadow: 0 4px 8px rgba(0, 0, 0, 0.5); position: absolute; top: 10px; left: 10px; pointer-events: none;}
 .movie-grid-item .resolution {background: gold; color: black; font-size: 12px; font-weight: bold; padding: 5px 10px; border-radius: 5px; position: absolute; top: 10px; left: 10px; pointer-events: none;}
 .movie-grid {display: grid;grid-template-columns: repeat(8, 200px);grid-gap: 12px;justify-content: center;box-sizing: border-box;margin: 0 auto;}
-.movie-grid-section {padding: 40px 20px;background: #1E293B;text-align: center;}
+.movie-grid-section {padding: 40px 20px;background: #121212;text-align: center;}
 .movie-grid-section-results {padding: 40px 20px;text-align: center;}
 .movie-grid-section h2 {font-size: 2rem; margin-bottom: 20px;}
 .movie-grid-section p {padding-bottom: 40px;margin-top: 10px;font-size: 1.2rem;color: white;text-align: center;}
@@ -47,7 +47,7 @@ ul li {margin: 0 10px;}
 ul li a {text-decoration: none;color: #ffffffeb;font-weight: bold;font-size: 20px;transition: all 0.3s ease;}
 ul li a:hover {text-decoration: underline;transform: scale(1.1);color: rgb(255, 45, 45);}
 .search-container {display: flex;align-items: center;position: absolute;right: 30px;top: 50%;transform: translateY(-50%);}
-.search-box {background-color: #1E293B;color: white;border: none;padding: 8px 10px;border-radius: 20px;font-size: 18px;margin-right: 5px;width: 250px;box-shadow: 0px 0px 3px rgba(211, 211, 211, 0.415);}
+.search-box {background-color: rgb(29, 37, 49);color: white;border: none;padding: 8px 10px;border-radius: 20px;font-size: 18px;margin-right: 5px;width: 250px;box-shadow: 0px 0px 3px rgba(211, 211, 211, 0.415);}
 .search-box:focus {outline: none;box-shadow: 0 0 8px rgba(0, 0, 0, 0.7);}
 .search-icon {background-color: transparent;border: none;color: white;font-size: 18px;cursor: pointer;transition: transform 0.3s ease, color 0.3s ease;}
 .search-icon:hover {color: #ff7300;transform: scale(1.07) translateY(-1%);}
@@ -79,4 +79,113 @@ footer {text-align: center;background-color: #000000;color: white;padding: 10px 
         transform: translateX(0) scale(1);
         opacity: 1;
     }
+}
+
+
+
+
+
+
+
+
+:root {--faq-primary-color: #353333;--faq-secondary-color: #0f0f0f;--faq-accent-color: #4CAF50;--faq-text-color: #ffffff;--faq-background-color: #2d2d2d;--faq-white: #fff;--faq-link-color: blue;--faq-hover-color: #000000;}
+body.faq-page {font-family: 'Poppins', sans-serif;background-color: var(--faq-background-color);margin: 0;padding: 0;color: var(--faq-text-color);user-select: none;}
+header.faq-header {background: #1f1f1f;padding: 0 20px;display: flex;justify-content: center;align-items: center;height: 80px;position: relative;}
+.faq-logo {position: absolute;left: 30px;top: 50%;transform: translateY(-50%);} 
+.faq-logo img {height: 60px;width: auto;}
+.faq-container {width: 85%;max-width: 1200px;margin: 30px auto;padding: 0;}
+.faq-item-container {display: grid;grid-template-columns: 1fr;gap: 10px;}
+.faq-item {background-color: var(--faq-white);padding: 20px;border-radius: 8px;box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);transition: box-shadow 0.3s ease;cursor: pointer;}
+.faq-item:hover {box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2);}
+.faq-question-container {display: flex;justify-content: space-between;align-items: center;}
+.faq-question {font-size: 1.3rem;font-weight: 600;margin: 0;color: var(--faq-secondary-color);cursor: pointer;padding: 4px 21px;position: relative;}
+.faq-question::before {content: "";position: absolute;left: -10px;top: 50%;width: 13px;height: 13px;border-left: 2px solid var(--faq-secondary-color);border-bottom: 2px solid var(--faq-secondary-color);transform: translateY(-50%) rotate(225deg);transition: transform 0.1s ease;}
+.faq-answer {visibility: hidden;height: 0;overflow: hidden;margin-top: 5px;font-size: 1rem;line-height: 1.6;color: var(--faq-hover-color);transition: height 0.3s ease, visibility 0.3s ease, opacity 0.3s ease;opacity: 0;}
+.faq-item.active .faq-answer {visibility: visible;height: auto;opacity: 1;}
+.faq-item.active .faq-question::before {transform: translateY(-50%) rotate(315deg);}
+.faq-discord-link {color: var(--faq-link-color);text-decoration: none;}
+.faq-discord-link:hover {text-decoration: underline;}
+  
+
+
+/* Style de base pour le lien */
+.animated-link {
+    font-size: 20px;
+    font-weight: bold;
+    text-decoration: none;
+    color: black;
+    display: inline-block;
+}
+  
+/* Style pour chaque lettre */
+.animated-link span {
+    display: inline-block;
+    opacity: 0;
+    animation: colorChange 3s infinite; /* Animation pour changer la couleur */
+}
+  
+/* Animation de changement de couleur avec des couleurs plus vives */
+@keyframes colorChange {
+    0% {
+        opacity: 1;
+        color: #FF4C4C; /* Rouge vif */
+    }
+    20% {
+        opacity: 1;
+        color: #FF6F61; /* Corail énergique */
+    }
+    40% {
+        opacity: 1;
+        color: #FFD700; /* Jaune doré */
+    }
+    60% {
+        opacity: 1;
+        color: #32CD32; /* Vert lime éclatant */
+    }
+    80% {
+        opacity: 1;
+        color: #1E90FF; /* Bleu ciel lumineux */
+    }
+    100% {
+        opacity: 1;
+        color: #FF1493; /* Rose éclatant */
+    }
+}
+  
+/* Animation séquencée pour chaque lettre */
+.animated-link span:nth-child(1) {
+    animation-delay: 0s;
+}
+.animated-link span:nth-child(2) {
+    animation-delay: 0.1s;
+}
+.animated-link span:nth-child(3) {
+    animation-delay: 0.2s;
+}
+.animated-link span:nth-child(4) {
+    animation-delay: 0.3s;
+}
+.animated-link span:nth-child(5) {
+    animation-delay: 0.4s;
+}
+.animated-link span:nth-child(6) {
+    animation-delay: 0.5s;
+}
+.animated-link span:nth-child(7) {
+    animation-delay: 0.6s;
+}
+.animated-link span:nth-child(8) {
+    animation-delay: 0.7s;
+}
+.animated-link span:nth-child(9) {
+    animation-delay: 0.8s;
+}
+.animated-link span:nth-child(10) {
+    animation-delay: 0.9s;
+}
+.animated-link span:nth-child(11) {
+    animation-delay: 1s;
+}
+.animated-link span:nth-child(12) {
+    animation-delay: 1.1s;
 }

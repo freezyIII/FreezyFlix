@@ -21,7 +21,11 @@
 <li><a href="index.html">Accueil</a></li>
 <li><a href="index.html">Films</a></li>
 <li><a href="faq.html">FAQ</a></li>
-</ul>
+<li><a href="https://www.paypal.com/donate/?hosted_button_id=9TKRSPG4UTSJ2" class="animated-link">
+<span>F</span><span>a</span><span>i</span><span>r</span><span>e</span> 
+<span>u</span><span>n</span> 
+<span>d</span><span>o</span><span>n</span>
+</a></li></ul>
 
 <div class="search-container">
 <form action="results.html" method="GET" id="searchForm">
@@ -32,7 +36,6 @@
 </header>
 
 
-<div id="user-count">Chargement des utilisateurs...</div>
 
 <!-- Films à la une -->
 
@@ -70,46 +73,10 @@
 <script>
 
 document.querySelectorAll('.movie-item, .movie-grid-item').forEach(function(item) {
-    var img = item.querySelector('img');
-    var title = img.alt;
-    item.setAttribute('data-title', title);
+var img = item.querySelector('img');
+var title = img.alt;
+item.setAttribute('data-title', title);
 });
-
-document.querySelector('.settings-button').addEventListener('click', function() {
-    var menu = document.getElementById('menu');
-    menu.classList.toggle('show');
-});
-
-document.getElementById('zoom-switch').addEventListener('change', function() {
-    var movieItems = document.querySelectorAll('.movie-item img');
-    var movieGridItems = document.querySelectorAll('.movie-grid-item');
-
-    if (this.checked) {
-        console.log("Zoom au survol : On");
-        movieItems.forEach(function(img) {
-            img.style.transition = 'transform 0.3s ease';
-            img.classList.add('zoom-enabled');
-        });
-        
-        movieGridItems.forEach(function(item) {
-            item.classList.remove('zoom-disabled');
-        });
-
-    } else {
-        console.log("Animations : Off");
-        movieItems.forEach(function(img) {
-            img.style.transition = 'none';
-            img.classList.remove('zoom-enabled');
-        });
-
-        movieGridItems.forEach(function(item) {
-            item.classList.add('zoom-disabled');
-        });
-    }
-});
-
-
-
 </script>
 <footer><p>&copy; 2025 FeezyFlix. Tous droits réservés.</p></footer>
 </body>
