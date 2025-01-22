@@ -1,17 +1,3 @@
-img {
-  -webkit-user-drag: none;  /* Pour les navigateurs Webkit (Chrome, Safari) */
-  -moz-user-drag: none;     /* Pour Firefox */
-  -o-user-drag: none;       /* Pour Opera */
-  user-drag: none;          /* Pour les autres navigateurs */
-}
-
-/* Optionnel : désactiver le texte sélectionnable */
-body {
-  -webkit-user-select: none; 
-  -moz-user-select: none;
-  -ms-user-select: none;
-  user-select: none;
-}
 * {margin: 0; padding: 0; box-sizing: border-box; user-select: none;}
 .page_index {font-family: 'Arial', sans-serif;background: #2d2d2d;}
 .page_results{font-family: 'Arial', sans-serif;background: #2d2d2d;}
