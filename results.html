@@ -19,16 +19,21 @@
 
 <ul class="federant-regular">
 <li><a href="index.html">Accueil</a></li>
-<li><a href="index.html">Films</a></li>
+<li><a href="categories.html">Catégories</a></li>
 <li><a href="faq.html">FAQ</a></li>
-<li><a href="https://www.paypal.com/donate/?hosted_button_id=9TKRSPG4UTSJ2" target="_blank">Faire un don</a></li>
-</ul>
+<li><a href="https://www.paypal.com/donate/?hosted_button_id=9TKRSPG4UTSJ2" class="animated-link" target="_blank">
+<span>F</span><span>a</span><span>i</span><span>r</span><span>e</span> 
+<span>u</span><span>n</span> 
+<span>d</span><span>o</span><span>n</span>
+</a></li></ul>
             
 
 <div class="search-container">
 <form action="results.html" method="GET" id="searchForm">
 <input type="text" class="search-box" id="searchInput" name="q" placeholder="Rechercher..." autocomplete="off" />
-<button type="submit" class="search-icon" aria-label="Rechercher"><i class="fas fa-search"></i></button></form></div></nav>
+<button type="submit" class="search-icon" aria-label="Rechercher"><i class="fas fa-search"></i></button></form>
+<p id="searchErrorMessage" style="display: none; color: red; text-align: center;">Veuillez entrer un terme de recherche.</p> <!-- Message d'erreur -->
+</div></nav>
 </header>
 
 
@@ -38,6 +43,11 @@
 <div id="movieGrid" class="movie-grid"></div>
 <p id="noResultsMessage" style="display: none; color: white; text-align: center;">Aucun résultat trouvé</p>
 </section>
+
+<section class="movie-detail">
+<button onclick="window.history.back();" class="back-button">
+<i class="fas fa-arrow-left"></i>
+</button>
     
     
 
@@ -45,6 +55,7 @@
 <!-- { id: , title: "", image: "", resolution: "1080p" }, -->
 
 <script>const allMovies = [
+        { id: 13, title: "Sonic 3", image: "https://i.imgur.com/7Yj3yRy.png", resolution: "1080p" },
         { id: 12, title: "Wonka", image: "https://i.imgur.com/E8u1cWC.png", resolution: "4K" },
         { id: 11, title: "Astérix Le Secret de la potion magique", image: "https://i.imgur.com/pHwKexK.png", resolution: "1080p" },
         { id: 10, title: "L'île des Miam-nimaux Tempête de boulettes géantes 2", image: "https://i.imgur.com/vWFCNbd.png", resolution: "1080p" },
@@ -59,14 +70,12 @@
         { id: 1, title: "There's Something in the Barn", image: "https://i.imgur.com/i3Tr6jB.jpeg", resolution: "4K", youtubeUrl: "https://www.youtube.com/watch?v=5AhEm7pyc74" }
 ];
 
-
-
 function displayResults(movies) {
     const movieGrid = document.getElementById('movieGrid');
     const noResultsMessage = document.getElementById('noResultsMessage');
     const resultsCountMessage = document.getElementById('resultsCountMessage');
     
-    movieGrid.innerHTML = movies.map(movie => `
+    movieGrid.innerHTML = movies.map(movie => ` 
         <div class="movie-grid-item" data-title="${movie.title}">
             <a href="movie-details.html?id=${movie.id}" class="movie-link">
                 <img src="${movie.image}" alt="${movie.title}">
@@ -91,10 +100,21 @@ function removeAccents(str) {
 
 function searchMovies() {
     const query = removeAccents(document.getElementById('searchInput').value.trim().toLowerCase());
-    const filteredMovies = query ? allMovies.filter(m => 
+    const searchErrorMessage = document.getElementById('searchErrorMessage');
+
+
+    if (!query) {
+        searchErrorMessage.style.display = 'block';
+        displayResults([]);
+        return;
+    }
+
+    searchErrorMessage.style.display = 'none';
+
+    const filteredMovies = allMovies.filter(m => 
         removeAccents(m.title.toLowerCase()).includes(query)
-    ) : allMovies;
-    
+    );
+
     displayResults(filteredMovies);
 
     const url = new URL(window.location.href);
@@ -117,56 +137,16 @@ document.querySelector('.search-icon').addEventListener('click', () => {
     }
 });
 
-const query = new URLSearchParams(window.location.search).get('q') || '';
-document.getElementById('searchInput').value = query;
-if (query) searchMovies(); else displayResults(allMovies);
-
 document.addEventListener('DOMContentLoaded', () => {
-    const movieItems = document.querySelectorAll('.movie-item');
-
-    movieItems.forEach((item, index) => {
-        item.style.animationDelay = `${index * 0.1}s`;
-        item.style.opacity = '1';
-    });
-});
-
-function displaySearchResults(movies) {
-    const movieGrid = document.getElementById('movieGrid');
-    movieGrid.innerHTML = '';
-    
-    if (movies.length === 0) {
-        document.getElementById('noResultsMessage').style.display = 'block';
-        return;
+    const query = new URLSearchParams(window.location.search).get('q') || '';
+    document.getElementById('searchInput').value = query;
+    if (query) {
+        searchMovies();
+    } else {
+        document.getElementById('searchErrorMessage').style.display = 'none';
+        displayResults(allMovies);
     }
-    
-    document.getElementById('noResultsMessage').style.display = 'none';
-    
-    movies.forEach(movie => {
-        const movieItem = document.createElement('div');
-        movieItem.classList.add('movie-grid-item');
-        
-        const movieLink = document.createElement('a');
-        movieLink.href = `movie-details.html?id=${movie.id}`;
-        
-        const movieImg = document.createElement('img');
-        movieImg.src = movie.imageUrl;
-        movieImg.alt = movie.title;
-        
-        const resolutionDiv = document.createElement('div');
-        resolutionDiv.classList.add('resolution');
-        resolutionDiv.textContent = movie.resolution;
-        
-        movieLink.appendChild(movieImg);
-        movieLink.appendChild(resolutionDiv);
-        movieItem.appendChild(movieLink);
-        
-        movieGrid.appendChild(movieItem);
-    });
-}
-document.querySelectorAll('.movie-item, .movie-grid-item').forEach(function(item) {
-var img = item.querySelector('img');
-var title = img.alt;
-item.setAttribute('data-title', title);});
+});
 </script>
 </body>
 </html>

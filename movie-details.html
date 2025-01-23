@@ -18,10 +18,13 @@
 
 <ul class="federant-regular">
 <li><a href="index.html">Accueil</a></li>
-<li><a href="index.html">Films</a></li>
+<li><a href="categories.html">Catégories</a></li>
 <li><a href="faq.html">FAQ</a></li>
-<li><a href="https://www.paypal.com/donate/?hosted_button_id=9TKRSPG4UTSJ2" target="_blank">Faire un don</a></li>
-</ul>
+<li><a href="https://www.paypal.com/donate/?hosted_button_id=9TKRSPG4UTSJ2" class="animated-link" target="_blank">
+<span>F</span><span>a</span><span>i</span><span>r</span><span>e</span> 
+<span>u</span><span>n</span> 
+<span>d</span><span>o</span><span>n</span>
+</a></li></ul>
 
 
 <div class="search-container">
@@ -32,13 +35,16 @@
 </button></form></div>
 </header>
 
-
 <section class="movie-detail">
+<button onclick="window.history.back();" class="back-button">
+<i class="fas fa-arrow-left"></i>
+</button>
+
 <h1 class="titan-one-regular" id="movieTitle"></h1>
 <div id="movieIframeContainer" class="movie-iframe-container"></div>
 <div id="movieCategory" class="movie-category-container"><p id="movieCategoryText" class="movie-category"></p></div>
 <div class="container"><button id="downloadButton" class="download-btn"></button></div>
-
+  
 <p id="movieDescription" class="movie-description"></p>
 <p id="movieReleaseDate" class="movie-release-date"><strong>Date de sortie :</strong> <span id="releaseDateValue"></span></p>
 <p id="movieDuration" class="movie-duration"><strong>Durée :</strong> <span id="durationValue"></span></p>
@@ -46,132 +52,97 @@
 </section>
 
 
-
 <!-- Films -->  <!-- Action / Animation / Aventure / Comédie / Comédie musicale / Drame / Fantasy / Guerre / Horreur / Romance / Science-fiction / Thriller -->
-<!-- { id: , title: "", resolution: "", youtubeUrl: "", description: "", category: "",  releaseDate: "", duration: "", size: "", downloadUrl: "" }, -->
-  
-<script>const allMovies = [
- { id: 12, title: "Wonka", 
-     resolution: "4K", 
-     youtubeUrl: "https://www.youtube.com/embed/yPmOnBX_7Ww", 
-     description: "Le jeune Willy Wonka, extraordinaire inventeur, magicien et chocolatier, tente de mettre en place une boutique de chocolat en ville. Il affronte le cartel des chocolatiers qui voit d'un mauvais oeil son arrivée, alors qu'il se met à créer ses premières friandises uniques au monde tout en rencontrant les Oompa-Loompas.", 
-     category: "Aventure / Comédie musicale / Fantasy",  
-     releaseDate: "13 décembre 2023", 
-     duration: "1h56", 
-     size: "4,96 GB", 
-     downloadUrl: "https://www.clictune.com/kl2i" 
- },
- { id: 11, title: "Astérix Le Secret de la potion magique", 
-     resolution: "1080p", 
-     youtubeUrl: "https://www.youtube.com/embed/gXbR3zonMRk", 
-     description: "Après une chute lors de la cueillette du gui, le druide Panoramix se blesse et décide qu'il est temps de trouver un remplaçant à qui il pourra enseigner la fameuse recette de la potion magique. À l'aide d'Astérix et Obélix, Panoramix parcourt la Gaule à la recherche d'un druide.", 
-     category: "Animation / Aventure / Comédie / Fantasy",  
-     releaseDate: "5 décembre 2018", 
-     duration: "1h24", 
-     size: "1,35 GB", 
-     downloadUrl: "https://www.clictune.com/kkkE" 
- },
- { id: 10, title: "L'île des Miam-nimaux Tempête de boulettes géantes 2", 
-     resolution: "1080p", 
-     youtubeUrl: "https://www.youtube.com/embed/C4MKKPAJ4dE", 
-     description: "Depuis la destruction de Swallow Falls par la machine à changer l'eau en nourriture qu'il a inventée, Flint Lockwood travaille pour la compagnie de l'inventeur Chester V, son héros d'enfance, à San Franjose.", 
-     category: "Animation / Aventure / Comédie / Fantasy",  
-     releaseDate: "5 février 2014", 
-     duration: "1h34", 
-     size: "1,46 GB", 
-     downloadUrl: "https://www.clictune.com/kkkJ" 
- },
- { id: 9, title: "Tempête de boulettes géantes", 
-     resolution: "1080p", 
-     youtubeUrl: "https://www.youtube.com/embed/8CtlT4QTvig", 
-     description: "Alors que Swallow Falls connaît une période de vache maigre, ses habitants ont seulement les moyens de manger des sardines. Flint Lockwood, un inventeur raté, pense qu'il a la réponse à cette situation difficile.", 
-     category: "Animation / Aventure / Comédie / Fantasy",  
-     releaseDate: "21 octobre 2009", 
-     duration: "1h29", 
-     size: "1,37 GB", 
-     downloadUrl: "https://www.clictune.com/kkkM" 
- },
- { id: 8, title: "South Park la fin de l'obésité", 
-     resolution: "1080p", 
-     youtubeUrl: "https://www.youtube.com/embed/73RPp7QnbDM", 
-     description: "Les médicaments amaigrissants prennent d'assaut la paisible ville de montagne de South Park. Lorsque Eric Cartman, obèse et grossier, se voit refuser l'accès à ces médicaments, il recrute Kyle, Stan, Butters et Kenny pour l'aider.", 
-     category: "Animation / Comédie",  
-     releaseDate: "25 mai 2024", 
-     duration: "50 min", 
-     size: "782 Mo", 
-     downloadUrl: "https://www.clictune.com/kkkL" 
- },
- { id: 7, title: "Ninja Turtles Teenage Years", 
-     resolution: "1080p", 
-     youtubeUrl: "https://www.youtube.com/embed/LUIxqARrf8k", 
-     description: "Après des années passées loin du monde des humains, les frères Tortues entreprennent de gagner le cœur des New-Yorkais et d'être acceptés comme des adolescents normaux grâce à des actes héroïques.", 
-     category: "Action / Animation / Aventure / Comédie / Fantasy",  
-     releaseDate: "2 août 2023", 
-     duration: "1h39", 
-     size: "1,66 GB", 
-     downloadUrl: "https://www.clictune.com/kkkK" 
- },
- { id: 6, title: "L'Étrange Noël du petit Batman", 
-     resolution: "1080p", 
-     youtubeUrl: "https://www.youtube.com/embed/__x2YwpykQ0", 
-     description: "Damian Wayne veut suivre les traces de son père, trop protecteur et en retrait de la vie de super-héros, Batman. Lorsque le devoir appelle ce chevalier noir pendant le réveillon, Damian, resté seul à la maison, découvre un sinistre complot, élaboré par les pires super-vilains de Gotham, visant à voler Noël. Damian veut prouver à son père qu'il peut protéger Gotham et vient à la rescousse pour sauver Noël, tout en découvrant ce qu'il faut sacrifier pour devenir un héros.", 
-     category: "Animation / Comédie / Fantasy",  
-     releaseDate: "8 décembre 2023", 
-     duration: "1h36", 
-     size: "1,83 GB", 
-     downloadUrl: "https://www.clictune.com/kkkI" 
- },
- { id: 5, title: "Descendants L'Ascension de Red", 
-     resolution: "1080p", 
-     youtubeUrl: "https://www.youtube.com/embed/xiQ7Dk0k81M", 
-     description: "Après que la Reine de Cœur a fomenté un coup d'État sur Auradon, sa fille rebelle Red et la fille perfectionniste de Cendrillon, Chloé, remontent le temps pour annuler l'événement traumatisant qui a poussé la mère de Red sur la voie de l'infamie.", 
-     category: "Animation / Comédie / Fantasy / Comédie musicale",  
-     releaseDate: "12 juillet 2024", 
-     duration: "1h31", 
-     size: "1,38 GB", 
-     downloadUrl: "https://www.clictune.com/kkkG" 
- },
- { id: 4, title: "Garfield Héros malgré lui", 
-     resolution: "1080p", 
-     youtubeUrl: "https://www.youtube.com/embed/cldTF5e8wpQ", 
-     description: "Garfield, le célèbre chat d'intérieur, amateur de lasagnes et qui déteste les lundis, est sur le point d'être embarqué dans une folle aventure. Après avoir retrouvé son père disparu, Vic, un chat des rues mal peigné, Garfield et son ami le chien Odie, sont forcés de quitter leur quotidien confortable pour aider Vic à accomplir un cambriolage aussi risqué qu'hilarant.", 
-     category: "Animation / Aventure / Comédie / Fantasy",  
-     releaseDate: "31 juillet 2024", 
-     duration: "1h43", 
-     size: "1,50 GB", 
-     downloadUrl: "https://www.clictune.com/kkkH" 
- },
- { id: 3, title: "Dear Santa", 
-     resolution: "4K", 
-     youtubeUrl: "https://www.youtube.com/embed/2wtZuX3KAhY", 
-     description: "Lorsqu'un jeune garçon envoie sa liste de souhaits de Noël au père Noël avec une faute d'orthographe cruciale, un Jack Black diabolique arrive pour faire des ravages pendant les vacances.", 
-     category: "Comédie / Drame",  
-     releaseDate: "25 novembre 2024", 
-     duration: "1h49", 
-     size: "4,59 GB", 
-     downloadUrl: "https://www.clictune.com/kl2n" 
- },
- { id: 2, title: "Violent Night", 
-     resolution: "1080p", 
-     youtubeUrl: "https://www.youtube.com/embed/X5bs3RuQ7iI", 
-     description: "Une équipe d'élite de mercenaires fait irruption dans un complexe familial la veille de Noël, prenant tout le monde en otage à l'intérieur. Cependant, ils ne sont pas préparés à un combattant surprise: le Père Noël est sur le terrain et il est sur le point de montrer pourquoi ce Nick n'est pas un saint.", 
-     category: "Action / Comédie / Horreur / Thriller", 
-     releaseDate: "2 décembre 2022", 
-     duration: "1h51", 
-     size: "1,85 GB", 
-     downloadUrl: "https://www.clictune.com/kkkN" 
- },
- { id: 1, title: "There's Something in the Barn", 
-     resolution: "4K", 
-     youtubeUrl: "https://www.youtube.com/embed/5Wnq-MFK_0k", 
-     description: "Bill, ses deux enfants et leur belle-mère déménagent dans la splendeur norvégienne enneigée, au sein d'un chalet isolé. Les parents forcent l'enthousiasme, la fille boude ses amies perdues et le fils se rend vite à l'évidence : il y a quelque chose dans la grange.", 
-     category: "Horreur / Thriller", 
-     releaseDate: "10 novembre 2023", 
-     duration: "1h40", 
-     size: "4,27 GB", 
-     downloadUrl: "" 
-}];
+<!-- 
+{ id: , title: "",
+resolution: "",
+youtubeUrl: "",
+description: "",
+category: "", 
+releaseDate: "",
+duration: "",
+size: "",
+downloadUrl: "" }, 
+-->
 
+<script>const allMovies = [
+{ id: 13, title: "Sonic 3", resolution: "1080p",
+youtubeUrl: "https://www.youtube.com/embed/TQ-9We-lxiA",
+description: "Sonic, Knuckles et Tails sont à nouveau réunis face à un puissant nouvel adversaire, Shadow, un mystérieux vilain doté de pouvoirs comme ils n'en ont encore jamais vu. Leurs habiletés étant toutes surclassées, l'Équipe Sonic doit tenter une alliance improbable dans l'espoir d'arrêter Shadow et de protéger la planète.", category: "Animation / Aventure / Comédie / Science-fiction",
+releaseDate: "25 décembre 2024", duration: "1h50", size: "1.84 GB",downloadUrl: "" 
+},
+{ id: 12, title: "Wonka", resolution: "4K", 
+youtubeUrl: "https://www.youtube.com/embed/yPmOnBX_7Ww", 
+description: "Le jeune Willy Wonka, extraordinaire inventeur, magicien et chocolatier, tente de mettre en place une boutique de chocolat en ville. Il affronte le cartel des chocolatiers qui voit d'un mauvais oeil son arrivée, alors qu'il se met à créer ses premières friandises uniques au monde tout en rencontrant les Oompa-Loompas.", 
+category: "Aventure / Comédie musicale / Fantasy",  
+releaseDate: "13 décembre 2023", duration: "1h56", size: "4,96 GB", downloadUrl: "https://www.clictune.com/kl2i" 
+},
+{ id: 11, title: "Astérix Le Secret de la potion magique", resolution: "1080p", 
+youtubeUrl: "https://www.youtube.com/embed/gXbR3zonMRk", 
+description: "Après une chute lors de la cueillette du gui, le druide Panoramix se blesse et décide qu'il est temps de trouver un remplaçant à qui il pourra enseigner la fameuse recette de la potion magique. À l'aide d'Astérix et Obélix, Panoramix parcourt la Gaule à la recherche d'un druide.", 
+category: "Animation / Aventure / Comédie / Fantasy",  
+releaseDate: "5 décembre 2018", duration: "1h24", size: "1,35 GB", downloadUrl: "https://www.clictune.com/kkkE" 
+},
+{ id: 10, title: "L'île des Miam-nimaux Tempête de boulettes géantes 2", resolution: "1080p", 
+youtubeUrl: "https://www.youtube.com/embed/C4MKKPAJ4dE", 
+description: "Depuis la destruction de Swallow Falls par la machine à changer l'eau en nourriture qu'il a inventée, Flint Lockwood travaille pour la compagnie de l'inventeur Chester V, son héros d'enfance, à San Franjose.", 
+category: "Animation / Aventure / Comédie / Fantasy",  
+releaseDate: "5 février 2014", duration: "1h34", size: "1,46 GB", downloadUrl: "https://www.clictune.com/kkkJ" 
+},
+{ id: 9, title: "Tempête de boulettes géantes", resolution: "1080p", 
+youtubeUrl: "https://www.youtube.com/embed/8CtlT4QTvig", 
+description: "Alors que Swallow Falls connaît une période de vache maigre, ses habitants ont seulement les moyens de manger des sardines. Flint Lockwood, un inventeur raté, pense qu'il a la réponse à cette situation difficile.", 
+category: "Animation / Aventure / Comédie / Fantasy",  
+releaseDate: "21 octobre 2009", duration: "1h29", size: "1,37 GB", downloadUrl: "https://www.clictune.com/kkkM" 
+},
+{ id: 8, title: "South Park la fin de l'obésité", resolution: "1080p", 
+youtubeUrl: "https://www.youtube.com/embed/73RPp7QnbDM", 
+description: "Les médicaments amaigrissants prennent d'assaut la paisible ville de montagne de South Park. Lorsque Eric Cartman, obèse et grossier, se voit refuser l'accès à ces médicaments, il recrute Kyle, Stan, Butters et Kenny pour l'aider.", 
+category: "Animation / Comédie",  
+releaseDate: "25 mai 2024", duration: "50 min", size: "782 Mo", downloadUrl: "https://www.clictune.com/kkkL" 
+},
+{ id: 7, title: "Ninja Turtles Teenage Years", resolution: "1080p", 
+youtubeUrl: "https://www.youtube.com/embed/LUIxqARrf8k", 
+description: "Après des années passées loin du monde des humains, les frères Tortues entreprennent de gagner le cœur des New-Yorkais et d'être acceptés comme des adolescents normaux grâce à des actes héroïques.", 
+category: "Action / Animation / Aventure / Comédie / Fantasy",  
+releaseDate: "2 août 2023", duration: "1h39", size: "1,66 GB", downloadUrl: "https://www.clictune.com/kkkK" 
+},
+{ id: 6, title: "L'Étrange Noël du petit Batman", resolution: "1080p", 
+youtubeUrl: "https://www.youtube.com/embed/__x2YwpykQ0", 
+description: "Damian Wayne veut suivre les traces de son père, trop protecteur et en retrait de la vie de super-héros, Batman. Lorsque le devoir appelle ce chevalier noir pendant le réveillon, Damian, resté seul à la maison, découvre un sinistre complot, élaboré par les pires super-vilains de Gotham, visant à voler Noël. Damian veut prouver à son père qu'il peut protéger Gotham et vient à la rescousse pour sauver Noël, tout en découvrant ce qu'il faut sacrifier pour devenir un héros.", 
+category: "Animation / Comédie / Fantasy",  
+releaseDate: "8 décembre 2023", duration: "1h36", size: "1,83 GB", downloadUrl: "https://www.clictune.com/kkkI" 
+},
+{ id: 5, title: "Descendants L'Ascension de Red", resolution: "1080p", 
+youtubeUrl: "https://www.youtube.com/embed/xiQ7Dk0k81M", 
+description: "Après que la Reine de Cœur a fomenté un coup d'État sur Auradon, sa fille rebelle Red et la fille perfectionniste de Cendrillon, Chloé, remontent le temps pour annuler l'événement traumatisant qui a poussé la mère de Red sur la voie de l'infamie.", 
+category: "Animation / Comédie / Fantasy / Comédie musicale",  
+releaseDate: "12 juillet 2024", duration: "1h31", size: "1,38 GB", downloadUrl: "https://www.clictune.com/kkkG" 
+},
+{ id: 4, title: "Garfield Héros malgré lui", resolution: "1080p", 
+youtubeUrl: "https://www.youtube.com/embed/cldTF5e8wpQ", 
+description: "Garfield, le célèbre chat d'intérieur, amateur de lasagnes et qui déteste les lundis, est sur le point d'être embarqué dans une folle aventure. Après avoir retrouvé son père disparu, Vic, un chat des rues mal peigné, Garfield et son ami le chien Odie, sont forcés de quitter leur quotidien confortable pour aider Vic à accomplir un cambriolage aussi risqué qu'hilarant.", 
+category: "Animation / Aventure / Comédie / Fantasy",  
+releaseDate: "31 juillet 2024", duration: "1h43", size: "1,50 GB", downloadUrl: "https://www.clictune.com/kkkH" 
+},
+{ id: 3, title: "Dear Santa", resolution: "4K", 
+youtubeUrl: "https://www.youtube.com/embed/2wtZuX3KAhY", 
+description: "Lorsqu'un jeune garçon envoie sa liste de souhaits de Noël au père Noël avec une faute d'orthographe cruciale, un Jack Black diabolique arrive pour faire des ravages pendant les vacances.", 
+category: "Comédie / Drame",  
+releaseDate: "25 novembre 2024", duration: "1h49", size: "4,59 GB", downloadUrl: "https://www.clictune.com/kl2n" 
+},
+{ id: 2, title: "Violent Night", resolution: "1080p", 
+youtubeUrl: "https://www.youtube.com/embed/X5bs3RuQ7iI", 
+description: "Une équipe d'élite de mercenaires fait irruption dans un complexe familial la veille de Noël, prenant tout le monde en otage à l'intérieur. Cependant, ils ne sont pas préparés à un combattant surprise: le Père Noël est sur le terrain et il est sur le point de montrer pourquoi ce Nick n'est pas un saint.", 
+category: "Action / Comédie / Horreur / Thriller", 
+releaseDate: "2 décembre 2022", duration: "1h51", size: "1,85 GB", downloadUrl: "https://www.clictune.com/kkkN" 
+},
+{ id: 1, title: "There's Something in the Barn", resolution: "4K", 
+youtubeUrl: "https://www.youtube.com/embed/5Wnq-MFK_0k", 
+description: "Bill, ses deux enfants et leur belle-mère déménagent dans la splendeur norvégienne enneigée, au sein d'un chalet isolé. Les parents forcent l'enthousiasme, la fille boude ses amies perdues et le fils se rend vite à l'évidence : il y a quelque chose dans la grange.", 
+category: "Horreur / Thriller", 
+releaseDate: "10 novembre 2023", duration: "1h40", size: "4,27 GB", downloadUrl: "https://www.clictune.com/klF9" 
+}];
 
 
 
@@ -221,6 +192,9 @@ document.addEventListener('DOMContentLoaded', () => {
     } else {
         console.error('Film non trouvé');
     }
+});
+document.addEventListener('dragstart', (event) => {
+  event.preventDefault();
 });
 </script>
 </body>

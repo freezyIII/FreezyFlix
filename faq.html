@@ -15,13 +15,15 @@
 <h1>FAQ - Foire Aux Questions</h1>
 </header>
 
-<nav>
 <ul class="federant-regular">
 <li><a href="index.html">Accueil</a></li>
-<li><a href="index.html">Films</a></li>
+<li><a href="categories.html">Catégories</a></li>
 <li><a href="faq.html">FAQ</a></li>
-<li><a href="https://www.paypal.com/donate/?hosted_button_id=9TKRSPG4UTSJ2" target="_blank">Faire un don</a></li>
-</nav>
+<li><a href="https://www.paypal.com/donate/?hosted_button_id=9TKRSPG4UTSJ2" class="animated-link" target="_blank">
+<span>F</span><span>a</span><span>i</span><span>r</span><span>e</span> 
+<span>u</span><span>n</span> 
+<span>d</span><span>o</span><span>n</span>
+</a></li></ul>
 
 
 <div class="faq-container"><h1>Les questions fréquemment posées</h1>
@@ -52,5 +54,8 @@
       });
       faqItems[index].classList.toggle('active');
     }
-  </script>
+    document.addEventListener('dragstart', (event) => {
+  event.preventDefault();
+});
+</script>
 </body>
