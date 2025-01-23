@@ -45,6 +45,8 @@ ul li {margin: 0 10px;}
 ul li a {text-decoration: none;color: #ffffffeb;font-weight: bold;font-size: 20px;transition: all 0.3s ease;}
 ul li a:hover {text-decoration: underline;transform: scale(1.1);color: rgb(255, 45, 45);}
 ul li a.no-underline:hover {text-decoration: none;}
+ul li a[href="categories.html"] {pointer-events: none;color: #ffffffeb;}
+ul li a[href="categories.html"]:hover {text-decoration: none;transform: scale(1.1);color: rgb(255, 45, 45);}
 .search-container {display: flex;align-items: center;position: absolute;right: 30px;top: 50%;transform: translateY(-50%);}
 .search-box {background-color: #1f1f1f;color: white;border: none;padding: 8px 10px;border-radius: 20px;font-size: 18px;margin-right: 5px;width: 250px;box-shadow: 0px 0px 3px rgba(211, 211, 211, 0.415);}
 .search-box:focus {outline: none;box-shadow: 0 0 8px rgba(0, 0, 0, 0.7);}
