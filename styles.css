@@ -40,8 +40,79 @@ h2 {color: #ef2626;}
 #movieIframeContainer iframe {width: 800px; height: 450px; border: none;border-radius: 20px 20px 0 0;}
 #movieTitle {font-size: 2rem;margin-bottom: 20px;margin-top: 20px;text-align: center;color: #ef2626;}
 #resultsCountMessage {font-size: 1rem; color: #ffffff;margin-top: 0.3rem;margin-bottom: 1.8rem;}
-ul {position: absolute;top: 41.4px;left: 215px;padding: 0;list-style-type: none;display: flex;justify-content: flex-start;}
-ul li {margin: 0 10px; text-decoration: underline;transform: scale(1.1);color: rgb(255, 45, 45);color: #ffffff;font-weight: bold;font-size: 20px;transition: all 0.3s ease;}
+ul {
+    position: absolute;
+    top: 41.4px;
+    left: 215px;
+    padding: 0;
+    list-style-type: none;
+    display: flex;
+    justify-content: flex-start;
+}
+
+ul li {
+    margin: 0 10px;
+    position: relative; /* Nécessaire pour positionner les sous-catégories */
+}
+
+ul li a, ul li span {
+    text-decoration: none;
+    color: #ffffffeb;
+    font-weight: bold;
+    font-size: 20px;
+    transition: all 0.3s ease;
+    cursor: pointer;
+}
+
+ul li a:hover, ul li span:hover {
+    text-decoration: underline;
+    transform: scale(1.1);
+    color: rgb(255, 45, 45);
+}
+
+ul li a.no-underline:hover {
+    text-decoration: none;
+}
+
+.categories span {
+    cursor: pointer; /* Pointer même si ce n'est pas cliquable */
+}
+
+ul.categories .subcategories {
+    position: absolute;
+    top: 30px; /* Ajuste selon le design */
+    left: 0;
+    background-color: rgba(0, 0, 0, 0.8);
+    padding: 10px 0;
+    border-radius: 5px;
+    display: none; /* Caché par défaut */
+    flex-direction: column;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
+    z-index: 10;
+}
+
+ul.categories .subcategories li {
+    margin: 5px 15px;
+}
+
+ul.categories .subcategories li a {
+    font-size: 18px;
+    font-weight: normal;
+    color: #ffffff;
+    text-decoration: none;
+    display: block;
+    transition: color 0.3s ease;
+}
+
+ul.categories .subcategories li a:hover {
+    color: rgb(255, 45, 45);
+    text-decoration: underline;
+}
+
+.categories:hover .subcategories {
+    display: flex; /* Affiche les sous-catégories au survol */
+}
+
 .search-container {display: flex;align-items: center;position: absolute;right: 30px;top: 50%;transform: translateY(-50%);}
 .search-box {background-color: #1f1f1f;color: white;border: none;padding: 8px 10px;border-radius: 20px;font-size: 18px;margin-right: 5px;width: 250px;box-shadow: 0px 0px 3px rgba(211, 211, 211, 0.415);}
 .search-box:focus {outline: none;box-shadow: 0 0 8px rgba(0, 0, 0, 0.7);}
