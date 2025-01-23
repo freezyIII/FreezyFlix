@@ -41,81 +41,76 @@ h2 {color: #ef2626;}
 #movieTitle {font-size: 2rem;margin-bottom: 20px;margin-top: 20px;text-align: center;color: #ef2626;}
 #resultsCountMessage {font-size: 1rem; color: #ffffff;margin-top: 0.3rem;margin-bottom: 1.8rem;}
 ul {
-  position: absolute;
-  top: 41.4px;
-  left: 215px;
-  padding: 0;
-  list-style-type: none;
-  display: flex;
-  justify-content: flex-start;
+    position: absolute;
+    top: 41.4px;
+    left: 215px;
+    padding: 0;
+    list-style-type: none;
+    display: flex;
+    justify-content: flex-start;
 }
 
 ul li {
-  margin: 0 10px;
-  position: relative; /* Necessary for dropdown */
+    margin: 0 10px;
+    position: relative; /* Nécessaire pour positionner les sous-catégories */
 }
 
-ul li a {
-  text-decoration: none;
-  color: #ffffffeb;
-  font-weight: bold;
-  font-size: 20px;
-  transition: all 0.3s ease;
+ul li a, ul li span {
+    text-decoration: none;
+    color: #ffffffeb;
+    font-weight: bold;
+    font-size: 20px;
+    transition: all 0.3s ease;
+    cursor: pointer;
 }
 
-ul li a:hover {
-  text-decoration: underline;
-  transform: scale(1.1);
-  color: rgb(255, 45, 45);
+ul li a:hover, ul li span:hover {
+    text-decoration: underline;
+    transform: scale(1.1);
+    color: rgb(255, 45, 45);
 }
 
 ul li a.no-underline:hover {
-  text-decoration: none;
+    text-decoration: none;
 }
 
 .categories span {
-  color: #ffffffeb;
-  font-weight: bold;
-  font-size: 20px;
-  cursor: pointer;
-  transition: all 0.3s ease;
+    cursor: pointer; /* Pointer même si ce n'est pas cliquable */
 }
 
-.categories span:hover {
-  color: rgb(255, 45, 45);
-  transform: scale(1.1);
+ul.categories .subcategories {
+    position: absolute;
+    top: 30px; /* Ajuste selon le design */
+    left: 0;
+    background-color: rgba(0, 0, 0, 0.8);
+    padding: 10px 0;
+    border-radius: 5px;
+    display: none; /* Caché par défaut */
+    flex-direction: column;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
+    z-index: 10;
 }
 
-.dropdown {
-  display: none;
-  position: absolute;
-  top: 100%; /* Position the dropdown below the parent */
-  left: 0;
-  background-color: #333; /* Dropdown background */
-  padding: 10px 0;
-  list-style-type: none;
-  box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.3);
-  z-index: 1000;
+ul.categories .subcategories li {
+    margin: 5px 15px;
 }
 
-.dropdown li {
-  padding: 5px 15px;
+ul.categories .subcategories li a {
+    font-size: 18px;
+    font-weight: normal;
+    color: #ffffff;
+    text-decoration: none;
+    display: block;
+    transition: color 0.3s ease;
 }
 
-.dropdown li a {
-  text-decoration: none;
-  color: #ffffffeb;
-  font-size: 18px;
-  display: block;
-  transition: all 0.3s ease;
+ul.categories .subcategories li a:hover {
+    color: rgb(255, 45, 45);
+    text-decoration: underline;
 }
 
-.dropdown li a:hover {
-  color: rgb(255, 45, 45);
-}
-
-.categories:hover .dropdown {
-  display: block;
+.categories:hover .subcategories {
+    display: flex; /* Affiche les sous-catégories au survol */
 }
 
 .search-container {display: flex;align-items: center;position: absolute;right: 30px;top: 50%;transform: translateY(-50%);}
