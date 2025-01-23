@@ -75,18 +75,17 @@ ul li a.no-underline:hover {
 }
 
 .categories span {
-    cursor: default; /* Le curseur ne montre pas une main (non cliquable) */
-    pointer-events: none; /* Désactive toute interaction */
+    cursor: default; /* Non cliquable */
 }
 
 .categories {
-    cursor: pointer; /* Le curseur reste sous forme de main pour montrer qu'il y a une action au survol */
+    cursor: pointer; /* Le curseur reste une main pour montrer l'action */
 }
 
 ul.categories .subcategories {
     position: absolute;
-    top: 40px; /* Positionnement en dessous du bouton "Catégories" */
-    left: 0;
+    top: 100%; /* Aligne la liste juste sous le bouton */
+    left: 0; /* Aligne la liste avec le bord gauche du bouton */
     background-color: rgba(0, 0, 0, 0.8);
     padding: 10px 0;
     border-radius: 5px;
@@ -94,7 +93,7 @@ ul.categories .subcategories {
     flex-direction: column;
     box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
     z-index: 10;
-    width: 150px; /* Taille ajustée pour aligner les sous-catégories */
+    min-width: 150px; /* Taille du menu */
 }
 
 ul.categories .subcategories li {
@@ -119,6 +118,7 @@ ul.categories .subcategories li a:hover {
 .categories:hover .subcategories {
     display: flex; /* Affiche les sous-catégories au survol */
 }
+
 
 .search-container {display: flex;align-items: center;position: absolute;right: 30px;top: 50%;transform: translateY(-50%);}
 .search-box {background-color: #1f1f1f;color: white;border: none;padding: 8px 10px;border-radius: 20px;font-size: 18px;margin-right: 5px;width: 250px;box-shadow: 0px 0px 3px rgba(211, 211, 211, 0.415);}
