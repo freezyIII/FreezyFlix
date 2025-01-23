@@ -75,12 +75,17 @@ ul li a.no-underline:hover {
 }
 
 .categories span {
-    cursor: pointer; /* Pointer même si ce n'est pas cliquable */
+    cursor: default; /* Le curseur ne montre pas une main (non cliquable) */
+    pointer-events: none; /* Désactive toute interaction */
+}
+
+.categories {
+    cursor: pointer; /* Le curseur reste sous forme de main pour montrer qu'il y a une action au survol */
 }
 
 ul.categories .subcategories {
     position: absolute;
-    top: 30px; /* Ajuste selon le design */
+    top: 40px; /* Positionnement en dessous du bouton "Catégories" */
     left: 0;
     background-color: rgba(0, 0, 0, 0.8);
     padding: 10px 0;
@@ -89,10 +94,12 @@ ul.categories .subcategories {
     flex-direction: column;
     box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
     z-index: 10;
+    width: 150px; /* Taille ajustée pour aligner les sous-catégories */
 }
 
 ul.categories .subcategories li {
-    margin: 5px 15px;
+    margin: 5px 0;
+    padding: 0 15px;
 }
 
 ul.categories .subcategories li a {
