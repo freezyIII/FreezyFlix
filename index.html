@@ -230,7 +230,7 @@ window.addEventListener('load', () => {
 });
 async function loadMovies() {
   try {
-    const response = await fetch('films.json');
+    const response = await fetch('film.json');
     const movies = await response.json();
 
     const movieGrid = document.getElementById('movie-grid');
