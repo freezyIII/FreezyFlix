@@ -102,7 +102,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
         downloadButton.addEventListener('click', () => {
             if (movie.downloadUrl) {
-                window.location.href = movie.downloadUrl;
+                window.open(movie.downloadUrl, '_blank');
             } else {
                 alert('Aucun lien de téléchargement disponible pour ce film.');
             }
