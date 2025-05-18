@@ -85,8 +85,29 @@
     </div>
   </div>
 
-<div class="movie-grid" id="movie-grid"></div>
 
+<!--<div class="movie-grid-item" category=""><a href="movie-details.html?title="><img src=""  loading="lazy"><div class="resolution">1080p</div></a></div>-->
+
+<div class="movie-grid">
+<div class="movie-grid-item" category="Action / Animation / Aventure / Comédie / Fantastique / Science-fiction"> <a href="movie-details.html?title=Sonic 2, le film">                                       <img src="https://i.imgur.com/eCkKVwa.png"  loading="lazy"><div class="resolution">1080p</div></a></div>
+<div class="movie-grid-item" category="Action / Aventure / Comédie / Fantastique">                               <a href="movie-details.html?title=Red One">                                                <img src="https://i.imgur.com/pDKXMz3.png"  loading="lazy"><div class="resolution">1080p</div></a></div>
+<div class="movie-grid-item" category="Action / Aventure / Fantastique / Science-fiction">                       <a href="movie-details.html?title=Aquaman et le Royaume perdu">                            <img src="https://i.imgur.com/LTHjf0H.png"  loading="lazy"><div class="resolution">1080p</div></a></div>
+<div class="movie-grid-item" category="Action / Aventure / Fantastique / Science-fiction">                       <a href="movie-details.html?title=Aquaman">                                                <img src="https://i.imgur.com/c05yvpE.jpeg" loading="lazy"><div class="resolution">1080p</div></a></div>
+<div class="movie-grid-item" category="Action / Animation / Aventure / Comédie">                                 <a href="movie-details.html?title=Minecraft, le film">                                     <img src="https://i.imgur.com/ij81S7j.png"  loading="lazy"><div class="resolution">1080p</div></a></div>
+<div class="movie-grid-item" category="Animation / Aventure / Comédie / Science-fiction">                        <a href="movie-details.html?title=Sonic 3, le film">                                       <img src="https://i.imgur.com/7Yj3yRy.png"  loading="lazy"><div class="resolution">1080p</div></a></div>
+<div class="movie-grid-item" category="Aventure / Comédie musicale / Fantastique">                               <a href="movie-details.html?title=Wonka">                                                  <img src="https://i.imgur.com/E8u1cWC.png"  loading="lazy"><div class="resolution">1080p</div></a></div>
+<div class="movie-grid-item" category="Animation / Aventure / Comédie / Comédie Musicale / Fantastique">         <a href="movie-details.html?title=Astérix : Le Secret de la potion magique">               <img src="https://i.imgur.com/pHwKexK.png"  loading="lazy"><div class="resolution">1080p</div></a></div>
+<div class="movie-grid-item" category="Action / Animation / Aventure / Comédie / Fantastique">                   <a href="movie-details.html?title=L'Île des Miam-nimaux : Tempête de boulettes géantes 2"> <img src="https://i.imgur.com/vWFCNbd.png"  loading="lazy"><div class="resolution">1080p</div></a></div>
+<div class="movie-grid-item" category="Animation / Aventure / Comédie / Fantastique">                            <a href="movie-details.html?title=Tempête de boulettes géantes">                           <img src="https://i.imgur.com/HZKkI4T.png"  loading="lazy"><div class="resolution">1080p</div></a></div>
+<div class="movie-grid-item" category="Animation / Comédie">                                                     <a href="movie-details.html?title=South Park : la fin de l'obésité">                       <img src="https://i.imgur.com/WItI643.png"  loading="lazy"><div class="resolution">1080p</div></a></div>
+<div class="movie-grid-item" category="Action / Animation / Aventure / Comédie / Fantastique">                   <a href="movie-details.html?title=Ninja Turtles: Teenage Years">                           <img src="https://i.imgur.com/L7gLeDh.png"  loading="lazy"><div class="resolution">1080p</div></a></div>
+<div class="movie-grid-item" category="Animation / Comédie / Fantastique">                                       <a href="movie-details.html?title=L'Étrange Noël du petit Batman">                         <img src="https://i.imgur.com/49k2NVQ.png"  loading="lazy"><div class="resolution">1080p</div></a></div>
+<div class="movie-grid-item" category="Animation / Comédie / Fantastique / Comédie musicale">                    <a href="movie-details.html?title=Descendants : L'Ascension de Red">                       <img src="https://i.imgur.com/UB6WbZR.png"  loading="lazy"><div class="resolution">1080p</div></a></div>
+<div class="movie-grid-item" category="Animation / Aventure / Comédie / Fantastique">                            <a href="movie-details.html?title=Garfield : Héros malgré lui">                            <img src="https://i.imgur.com/FxQKHhv.png"  loading="lazy"><div class="resolution">1080p</div></a></div>
+<div class="movie-grid-item" category="Comédie / Drame">                                                         <a href="movie-details.html?title=Dear Santa">                                             <img src="https://i.imgur.com/GM7Qb7d.png"  loading="lazy"><div class="resolution">4K</div></a></div>
+<div class="movie-grid-item" category="Action / Comédie / Horreur / Thriller">                                   <a href="movie-details.html?title=Violent Night">                                          <img src="https://i.imgur.com/PpkJr2u.jpeg" loading="lazy"><div class="resolution">1080p</div></a></div>
+<div class="movie-grid-item" category="Comédie / Horreur / Thriller">                                            <a href="movie-details.html?title=There's Something in the Barn">                          <img src="https://i.imgur.com/i3Tr6jB.jpeg" loading="lazy"><div class="resolution">4K</div></a></div>
+</div></section>
 
 
 
@@ -228,37 +249,6 @@ window.addEventListener('load', () => {
     resetFilters();
   }
 });
-async function loadMovies() {
-  try {
-    const response = await fetch('film.json');
-    const movies = await response.json();
-
-    const movieGrid = document.getElementById('movie-grid');
-    movieGrid.innerHTML = ''; // vider avant d'ajouter
-
-    movies.forEach(movie => {
-      const categoriesStr = movie.category.join(' / ');
-      const movieHTML = `
-        <div class="movie-grid-item" category="${categoriesStr}" data-year="${movie.year}" data-title="${movie.title}">
-          <a href="${movie.url}">
-            <img src="${movie.image}" loading="lazy" alt="${movie.title}" />
-            <div class="resolution">${movie.resolution}</div>
-          </a>
-        </div>
-      `;
-      movieGrid.insertAdjacentHTML('beforeend', movieHTML);
-    });
-
-    // Puis on relance les fonctions de filtrage (si besoin)
-    resetFilters();
-
-  } catch (error) {
-    console.error('Erreur chargement films:', error);
-  }
-}
-
-// Appeler au chargement de la page
-window.addEventListener('load', loadMovies);
 
 </script>
 
