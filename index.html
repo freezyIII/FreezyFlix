@@ -1,0 +1,239 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>FreezyFlix - Votre plateforme de streaming en haute définition</title>
+<link rel="stylesheet" href="styles.css" />
+<link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet" />
+<style>@import url('https://fonts.googleapis.com/css2?family=Titan+One&display=swap');</style>
+<style>@import url('https://fonts.googleapis.com/css2?family=Federant&display=swap');</style>
+</head>
+<body class="page_index">
+
+<header>
+  <a href="index.html" class="logo" aria-label="Accueil">
+    <img src="https://i.imgur.com/7Ddaoy6.png" alt="Logo FreezyFlix" />
+  </a>
+  <ul class="federant-regular">
+    <li><a href="index.html">Accueil</a></li>
+    <li><a href="#" id="categories-link">Catégories</a></li>
+    <li><a href="faq.html">FAQ</a></li>
+    <li><a href="https://www.paypal.com/donate/?hosted_button_id=9TKRSPG4UTSJ2" class="animated-link no-underline" target="_blank">
+      <span>F</span><span>a</span><span>i</span><span>r</span><span>e</span> 
+      <span>u</span><span>n</span> 
+      <span>d</span><span>o</span><span>n</span>
+    </a></li>
+  </ul>
+  <div class="search-container">
+    <input type="text" id="search-input" class="search-box" placeholder="Rechercher..." />
+    <button onclick="filterGames()" class="search-icon">🔍</button>
+  </div>
+</header>
+
+<section class="content">
+  <h2 class="titan-one-regular">Films à la une</h2>
+  <div id="movieCarousel" class="movie-carousel">
+    <div class="movie-container">
+      <div class="movie-item"><a href="movie-details.html?title=Minecraft, le film"><img src="https://i.imgur.com/OT3zPtV.png" loading="lazy" /><div class="resolution">1080p</div></a></div>
+      <div class="movie-item"><a href="movie-details.html?title=Violent Night"><img src="https://fr.web.img6.acsta.net/pictures/22/10/19/17/48/3044641.jpg" loading="lazy" /><div class="resolution">1080p</div></a></div>
+      <div class="movie-item"><a href="movie-details.html?title=Sonic 3, le film"><img src="https://fr.web.img4.acsta.net/img/85/e7/85e77c51c172da4aec13679210295a11.jpg" loading="lazy" /><div class="resolution">1080p</div></a></div>
+      <div class="movie-item"><a href="movie-details.html?title=Red One"><img src="https://fr.web.img6.acsta.net/c_310_420/img/11/4d/114d28897d8f491d67f12b943711e9b0.jpg" loading="lazy" /><div class="resolution">1080p</div></a></div>
+      <div class="movie-item"><a href="movie-details.html?title=Ninja Turtles: Teenage Years"><img src="https://fr.web.img4.acsta.net/pictures/23/06/28/10/49/2274361.jpg" loading="lazy" /><div class="resolution">1080p</div></a></div>
+    </div>
+  </div>
+</section>
+
+<section style="text-align:center; margin: 20px 0;">
+  <div id="random-movie-box" style="display:inline-block; padding: 20px 40px; border: 3px solid #00aaff; border-radius: 10px; cursor:pointer; font-weight:bold; font-size: 1.2em; color:#00aaff; user-select:none;">🎬 Film Aléatoire</div>
+</section>
+
+<section class="movie-grid-section">
+  <h2 class="titan-one-regular">Découvrir d'autres films</h2>
+
+  <div id="filter-panel" style="margin: 20px auto; max-width: 600px; padding: 15px; border-radius: 8px; background: #00aaff22; border: 2px solid #00aaff; font-family: 'Federant', cursive;">
+    <div style="display: flex; gap: 20px; flex-wrap: wrap; justify-content: center; align-items: center;">
+      <div style="flex: 1 1 200px; min-width: 180px;">
+        <label for="category-filter" style="color: #0077cc; font-weight: 700; display: block; margin-bottom: 6px; font-size: 1rem;">Catégorie :</label>
+        <select id="category-filter" style="width: 100%; padding: 8px 12px; font-size: 1rem; border: 2px solid #00aaff; border-radius: 6px; background-color: white; color: #0077cc; cursor: pointer; transition: border-color 0.3s;">
+          <option value="" selected>Toutes les catégories</option>
+          <option value="action">Action</option>
+          <option value="animation">Animation</option>
+          <option value="aventure">Aventure</option>
+          <option value="comédie">Comédie</option>
+          <option value="comédie musicale">Comédie musicale</option>
+          <option value="drame">Drame</option>
+          <option value="fantastique">Fantastique</option>
+          <option value="horreur">Horreur</option>
+          <option value="science-fiction">Science-fiction</option>
+          <option value="thriller">Thriller</option>
+        </select>
+      </div>
+
+      <div style="flex: 1 1 120px; min-width: 120px;">
+        <label for="year-filter" style="color: #0077cc; font-weight: 700; display: block; margin-bottom: 6px; font-size: 1rem;">Année :</label>
+        <select id="year-filter" style="width: 100%; padding: 8px 12px; font-size: 1rem; border: 2px solid #00aaff; border-radius: 6px; background-color: white; color: #0077cc; cursor: pointer; transition: border-color 0.3s;">
+          <option value="all" selected>Toutes</option>
+          <option value="2025">2025</option>
+          <option value="2024">2024</option>
+          <option value="2023">2023</option>
+          <option value="2022">2022</option>
+          <option value="2021">2021</option>
+          <option value="2020">2020</option>
+          <option value="2019">2019</option>
+          <option value="2018">2018</option>
+        </select>
+      </div>
+
+      <div style="flex: 0 0 auto; align-self: flex-end;">
+        <button id="reset-filters" style="background-color: #00aaff; border: none; color: white; padding: 10px 20px; font-weight: 700; font-size: 1rem; border-radius: 6px; cursor: pointer; transition: background-color 0.3s;">
+          Réinitialiser
+        </button>
+      </div>
+    </div>
+  </div>
+
+<div class="movie-grid">
+<div class="movie-grid-item" category="Action / Animation / Aventure / Comédie / Fantastique / Science-fiction"><a href="movie-details.html?title=Sonic 2, le film"><img src="https://i.imgur.com/eCkKVwa.png" loading="lazy"><div class="resolution">1080p</div></a></div>
+<div class="movie-grid-item" category="Action / Aventure / Comédie / Fantastique"><a href="movie-details.html?title=Red One"><img src="https://i.imgur.com/pDKXMz3.png" loading="lazy"><div class="resolution">1080p</div></a></div>
+<div class="movie-grid-item" category="Action / Aventure / Fantastique / Science-fiction"><a href="movie-details.html?title=Aquaman et le Royaume perdu"><img src="https://i.imgur.com/LTHjf0H.png" loading="lazy"><div class="resolution">1080p</div></a></div>
+<div class="movie-grid-item" category="Action / Aventure / Fantastique / Science-fiction"><a href="movie-details.html?title=Aquaman"><img src="https://i.imgur.com/c05yvpE.jpeg" loading="lazy"><div class="resolution">1080p</div></a></div>
+<div class="movie-grid-item" category="Action / Animation / Aventure / Comédie"><a href="movie-details.html?title=Minecraft, le film"><img src="https://i.imgur.com/ij81S7j.png" loading="lazy"><div class="resolution">1080p</div></a></div>
+<div class="movie-grid-item" category="Animation / Aventure / Comédie / Science-fiction"><a href="movie-details.html?title=Sonic 3, le film"><img src="https://i.imgur.com/7Yj3yRy.png" loading="lazy"><div class="resolution">1080p</div></a></div>
+<div class="movie-grid-item" category="Aventure / Comédie musicale / Fantastique"><a href="movie-details.html?title=Wonka"><img src="https://i.imgur.com/E8u1cWC.png" loading="lazy"><div class="resolution">1080p</div></a></div>
+<div class="movie-grid-item" category="Animation / Aventure / Comédie / Fantastique"><a href="movie-details.html?title=Astérix : Le Secret de la potion magique"><img src="https://i.imgur.com/pHwKexK.png" loading="lazy"><div class="resolution">1080p</div></a></div>
+<div class="movie-grid-item" category="Animation / Aventure / Comédie / Fantastique"><a href="movie-details.html?title=L'Île des Miam-nimaux : Tempête de boulettes géantes 2"><img src="https://i.imgur.com/vWFCNbd.png" loading="lazy"><div class="resolution">1080p</div></a></div>
+<div class="movie-grid-item" category="Animation / Aventure / Comédie / Fantastique"><a href="movie-details.html?title=Tempête de boulettes géantes"><img src="https://i.imgur.com/HZKkI4T.png" loading="lazy"><div class="resolution">1080p</div></a></div>
+<div class="movie-grid-item" category="Animation / Comédie"><a href="movie-details.html?title=South Park : la fin de l'obésité"><img src="https://i.imgur.com/WItI643.png" loading="lazy"><div class="resolution">1080p</div></a></div>
+<div class="movie-grid-item" category="Action / Animation / Aventure / Comédie / Fantastique"><a href="movie-details.html?title=Ninja Turtles: Teenage Years"><img src="https://i.imgur.com/L7gLeDh.png" loading="lazy"><div class="resolution">1080p</div></a></div>
+<div class="movie-grid-item" category="Animation / Comédie / Fantastique"><a href="movie-details.html?title=L'Étrange Noël du petit Batman"><img src="https://i.imgur.com/49k2NVQ.png" loading="lazy"><div class="resolution">1080p</div></a></div>
+<div class="movie-grid-item" category="Animation / Comédie / Fantastique / Comédie musicale"><a href="movie-details.html?title=Descendants : L'Ascension de Red"><img src="https://i.imgur.com/UB6WbZR.png" loading="lazy"><div class="resolution">1080p</div></a></div>
+<div class="movie-grid-item" category="Animation / Aventure / Comédie / Fantastique"><a href="movie-details.html?title=Garfield : Héros malgré lui"><img src="https://i.imgur.com/FxQKHhv.png" loading="lazy"><div class="resolution">1080p</div></a></div>
+<div class="movie-grid-item" category="Comédie / Drame"><a href="movie-details.html?title=Dear Santa"><img src="https://i.imgur.com/GM7Qb7d.png" loading="lazy"><div class="resolution">4K</div></a></div>
+<div class="movie-grid-item" category="Action / Comédie / Horreur / Thriller"><a href="movie-details.html?title=Violent Night"><img src="https://i.imgur.com/PpkJr2u.jpeg" loading="lazy"><div class="resolution">1080p</div></a></div>
+<div class="movie-grid-item" category="Comédie / Horreur / Thriller"><a href="movie-details.html?title=There's Something in the Barn"><img src="https://i.imgur.com/i3Tr6jB.jpeg" loading="lazy"><div class="resolution">4K</div></a></div>
+</div></section>
+
+
+
+<script>
+// Ajout de l'attribut data-title à chaque élément film pour faciliter la recherche
+document.querySelectorAll('.movie-grid-item, .movie-item').forEach(item => {
+  const link = item.querySelector('a');
+  if (!link) return;
+
+  const url = new URL(link.href, window.location.origin);
+  const title = url.searchParams.get('title');
+  if (title) item.setAttribute('data-title', title);
+});
+
+// Fonction pour retirer les accents
+function removeAccents(str) {
+  return str.normalize("NFD").replace(/[\u0300-\u036f]/g, "");
+}
+
+// Fonction de filtrage par recherche texte
+function filterMoviesBySearch() {
+  const input = document.getElementById("search-input").value.trim().toLowerCase();
+  const searchTerm = removeAccents(input);
+  const movieItems = document.querySelectorAll(".movie-grid-item");
+  const sectionFeatured = document.querySelector('.content');
+  const sectionRandom = document.getElementById('random-movie-box').parentElement;
+  const sectionDiscover = document.querySelector('.movie-grid-section');
+
+  if (!searchTerm) {
+    localStorage.removeItem('searchQuery');
+    movieItems.forEach(item => item.style.display = "block");
+    sectionFeatured.style.display = "";
+    sectionRandom.style.display = "";
+    sectionDiscover.style.display = "";
+    return;
+  }
+
+  localStorage.setItem('searchQuery', searchTerm);
+  let visibleCount = 0;
+
+  movieItems.forEach(item => {
+    const title = removeAccents((item.getAttribute('data-title') || "").toLowerCase());
+    const match = title.includes(searchTerm);
+    item.style.display = match ? "block" : "none";
+    if (match) visibleCount++;
+  });
+
+  sectionFeatured.style.display = "none";
+  sectionRandom.style.display = "none";
+  sectionDiscover.style.display = visibleCount ? "block" : "none";
+}
+
+// Recherche au clic sur l’icône loupe
+document.querySelector('.search-icon').addEventListener('click', filterMoviesBySearch);
+// Recherche au Enter dans le champ
+document.getElementById('search-input').addEventListener('keydown', e => {
+  if (e.key === 'Enter') filterMoviesBySearch();
+});
+
+// Bouton Film aléatoire redirige vers un film aléatoire
+document.getElementById('random-movie-box').addEventListener('click', () => {
+  const links = [...document.querySelectorAll('.movie-item a, .movie-grid-item a')];
+  if (!links.length) return;
+  const randomLink = links[Math.floor(Math.random() * links.length)].href;
+  window.location.href = randomLink;
+});
+
+// Gestion du clic sur "Catégories"
+document.getElementById('categories-link').addEventListener('click', e => {
+  document.querySelector('.content').style.display = 'none';
+  document.getElementById('random-movie-box').parentElement.style.display = 'none';
+
+  const sectionDiscover = document.querySelector('.movie-grid-section');
+  sectionDiscover.style.display = 'block';
+
+  document.getElementById('filter-panel').style.display = 'block';
+
+  document.querySelectorAll('.movie-grid-item').forEach(item => item.style.display = 'block');
+
+  document.getElementById('search-input').value = '';
+  localStorage.removeItem('searchQuery');
+
+  resetFilters();
+});
+
+// Filtrage par catégorie et année
+const categoryFilter = document.getElementById('category-filter');
+const yearFilter = document.getElementById('year-filter');
+const resetBtn = document.getElementById('reset-filters');
+
+function filterMoviesByCategoryAndYear() {
+  const selectedCategory = categoryFilter.value.toLowerCase();
+  const selectedYear = yearFilter.value;
+
+  document.querySelectorAll('.movie-grid-item').forEach(item => {
+    const categories = (item.getAttribute('category') || "").toLowerCase().split(' / ').map(c => c.trim());
+    const year = item.getAttribute('data-year') || "";
+
+    const categoryMatch = !selectedCategory || categories.includes(selectedCategory);
+    const yearMatch = selectedYear === 'all' || year === selectedYear;
+
+    item.style.display = (categoryMatch && yearMatch) ? 'block' : 'none';
+  });
+}
+
+function resetFilters() {
+  categoryFilter.value = "";
+  yearFilter.value = "all";
+  filterMoviesByCategoryAndYear();
+}
+
+categoryFilter.addEventListener('change', filterMoviesByCategoryAndYear);
+yearFilter.addEventListener('change', filterMoviesByCategoryAndYear);
+resetBtn.addEventListener('click', resetFilters);
+
+// Scroll vers le haut quand le champ recherche reçoit le focus
+const searchInput = document.getElementById("search-input");
+searchInput.addEventListener('focus', () => window.scrollTo({ top: 0, behavior: 'smooth' }));
+searchInput.addEventListener('keydown', () => window.scrollTo({ top: 0, behavior: 'auto' }));
+document.getElementById('filter-panel').style.display = "none";
+</script>
+
+</body>
+</html>
