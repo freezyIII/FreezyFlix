@@ -20,7 +20,7 @@
 
 <ul class="federant-regular">
 <li><a href="index.html">Accueil</a></li>
-<li><a href="#" id="categories-link">Catégories</a></li>
+<li><a href="index.html#categories" id="categories-link">Catégories</a></li>
 <li><a href="faq.html">FAQ</a></li>
 <li><a href="https://www.paypal.com/donate/?hosted_button_id=9TKRSPG4UTSJ2" class="animated-link" target="_blank">
 <span>F</span><span>a</span><span>i</span><span>r</span><span>e</span> 
@@ -116,13 +116,10 @@ document.addEventListener('DOMContentLoaded', () => {
 document.addEventListener('dragstart', (event) => {
   event.preventDefault();
 });
+
+
+
 </script>
-</script>
-<script>
-document.getElementById('categories-link').addEventListener('click', e => {
-  e.preventDefault();
-  window.location.href = 'index.html#categories';
-});
-</script>
+
 </body>
 </html>

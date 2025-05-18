@@ -12,40 +12,32 @@
 <body class="page_index">
 
 <header>
-  <a href="index.html" class="logo" aria-label="Accueil">
-    <img src="https://i.imgur.com/7Ddaoy6.png" alt="Logo FreezyFlix" />
-  </a>
-  <ul class="federant-regular">
-    <li><a href="index.html">Accueil</a></li>
-    <li><a href="#" id="categories-link">Catégories</a></li>
-    <li><a href="faq.html">FAQ</a></li>
-    <li><a href="https://www.paypal.com/donate/?hosted_button_id=9TKRSPG4UTSJ2" class="animated-link no-underline" target="_blank">
-      <span>F</span><span>a</span><span>i</span><span>r</span><span>e</span> 
-      <span>u</span><span>n</span> 
-      <span>d</span><span>o</span><span>n</span>
-    </a></li>
-  </ul>
-  <div class="search-container">
-    <input type="text" id="search-input" class="search-box" placeholder="Rechercher..." />
-    <button onclick="filterGames()" class="search-icon">🔍</button>
-  </div>
+<a href="index.html" class="logo" aria-label="Accueil"><img src="https://i.imgur.com/7Ddaoy6.png" alt="Logo FreezyFlix" /></a>
+<ul class="federant-regular">
+<li><a href="index.html">Accueil</a></li>
+<li><a href="#categories" id="categories-link">Catégories</a></li>
+<li><a href="faq.html">FAQ</a></li>
+<li><a href="https://www.paypal.com/donate/?hosted_button_id=9TKRSPG4UTSJ2" class="animated-link no-underline" target="_blank">
+<span>F</span><span>a</span><span>i</span><span>r</span><span>e</span> 
+<span>u</span><span>n</span> 
+<span>d</span><span>o</span><span>n</span></a></li></ul>
+
+<div class="search-container">
+<input type="text" id="search-input" class="search-box" placeholder="Rechercher..." />
+<button class="search-icon">🔍</button>
+</div>
 </header>
 
-<section class="content">
-  <h2 class="titan-one-regular">Films à la une</h2>
-  <div id="movieCarousel" class="movie-carousel">
-    <div class="movie-container">
-      <div class="movie-item"><a href="movie-details.html?title=Minecraft, le film"><img src="https://i.imgur.com/OT3zPtV.png" loading="lazy" /><div class="resolution">1080p</div></a></div>
-      <div class="movie-item"><a href="movie-details.html?title=Violent Night"><img src="https://fr.web.img6.acsta.net/pictures/22/10/19/17/48/3044641.jpg" loading="lazy" /><div class="resolution">1080p</div></a></div>
-      <div class="movie-item"><a href="movie-details.html?title=Sonic 3, le film"><img src="https://fr.web.img4.acsta.net/img/85/e7/85e77c51c172da4aec13679210295a11.jpg" loading="lazy" /><div class="resolution">1080p</div></a></div>
-      <div class="movie-item"><a href="movie-details.html?title=Red One"><img src="https://fr.web.img6.acsta.net/c_310_420/img/11/4d/114d28897d8f491d67f12b943711e9b0.jpg" loading="lazy" /><div class="resolution">1080p</div></a></div>
-      <div class="movie-item"><a href="movie-details.html?title=Ninja Turtles: Teenage Years"><img src="https://fr.web.img4.acsta.net/pictures/23/06/28/10/49/2274361.jpg" loading="lazy" /><div class="resolution">1080p</div></a></div>
-    </div>
-  </div>
+<section class="content"><h2 class="titan-one-regular">Films à la une</h2><div id="movieCarousel" class="movie-carousel"><div class="movie-container">
+<div class="movie-item"><a href="movie-details.html?title=Minecraft, le film"><img src="https://i.imgur.com/OT3zPtV.png" loading="lazy" /><div class="resolution">1080p</div></a></div>
+<div class="movie-item"><a href="movie-details.html?title=Violent Night"><img src="https://fr.web.img6.acsta.net/pictures/22/10/19/17/48/3044641.jpg" loading="lazy" /><div class="resolution">1080p</div></a></div>
+<div class="movie-item"><a href="movie-details.html?title=Sonic 3, le film"><img src="https://fr.web.img4.acsta.net/img/85/e7/85e77c51c172da4aec13679210295a11.jpg" loading="lazy" /><div class="resolution">1080p</div></a></div>
+<div class="movie-item"><a href="movie-details.html?title=Red One"><img src="https://fr.web.img6.acsta.net/c_310_420/img/11/4d/114d28897d8f491d67f12b943711e9b0.jpg" loading="lazy" /><div class="resolution">1080p</div></a></div>
+<div class="movie-item"><a href="movie-details.html?title=Ninja Turtles: Teenage Years"><img src="https://fr.web.img4.acsta.net/pictures/23/06/28/10/49/2274361.jpg" loading="lazy" /><div class="resolution">1080p</div></a></div></div></div>
 </section>
 
 <section style="text-align:center; margin: 20px 0;">
-  <div id="random-movie-box" style="display:inline-block; padding: 20px 40px; border: 3px solid #00aaff; border-radius: 10px; cursor:pointer; font-weight:bold; font-size: 1.2em; color:#00aaff; user-select:none;">🎬 Film Aléatoire</div>
+<div id="random-movie-box" style="display:inline-block; padding: 20px 40px; border: 3px solid #00aaff; border-radius: 10px; cursor:pointer; font-weight:bold; font-size: 1.2em; color:#00aaff; user-select:none;">🎬 Film Aléatoire</div>
 </section>
 
 <section class="movie-grid-section">
@@ -93,26 +85,8 @@
     </div>
   </div>
 
-<div class="movie-grid">
-<div class="movie-grid-item" category="Action / Animation / Aventure / Comédie / Fantastique / Science-fiction"><a href="movie-details.html?title=Sonic 2, le film"><img src="https://i.imgur.com/eCkKVwa.png" loading="lazy"><div class="resolution">1080p</div></a></div>
-<div class="movie-grid-item" category="Action / Aventure / Comédie / Fantastique"><a href="movie-details.html?title=Red One"><img src="https://i.imgur.com/pDKXMz3.png" loading="lazy"><div class="resolution">1080p</div></a></div>
-<div class="movie-grid-item" category="Action / Aventure / Fantastique / Science-fiction"><a href="movie-details.html?title=Aquaman et le Royaume perdu"><img src="https://i.imgur.com/LTHjf0H.png" loading="lazy"><div class="resolution">1080p</div></a></div>
-<div class="movie-grid-item" category="Action / Aventure / Fantastique / Science-fiction"><a href="movie-details.html?title=Aquaman"><img src="https://i.imgur.com/c05yvpE.jpeg" loading="lazy"><div class="resolution">1080p</div></a></div>
-<div class="movie-grid-item" category="Action / Animation / Aventure / Comédie"><a href="movie-details.html?title=Minecraft, le film"><img src="https://i.imgur.com/ij81S7j.png" loading="lazy"><div class="resolution">1080p</div></a></div>
-<div class="movie-grid-item" category="Animation / Aventure / Comédie / Science-fiction"><a href="movie-details.html?title=Sonic 3, le film"><img src="https://i.imgur.com/7Yj3yRy.png" loading="lazy"><div class="resolution">1080p</div></a></div>
-<div class="movie-grid-item" category="Aventure / Comédie musicale / Fantastique"><a href="movie-details.html?title=Wonka"><img src="https://i.imgur.com/E8u1cWC.png" loading="lazy"><div class="resolution">1080p</div></a></div>
-<div class="movie-grid-item" category="Animation / Aventure / Comédie / Fantastique"><a href="movie-details.html?title=Astérix : Le Secret de la potion magique"><img src="https://i.imgur.com/pHwKexK.png" loading="lazy"><div class="resolution">1080p</div></a></div>
-<div class="movie-grid-item" category="Animation / Aventure / Comédie / Fantastique"><a href="movie-details.html?title=L'Île des Miam-nimaux : Tempête de boulettes géantes 2"><img src="https://i.imgur.com/vWFCNbd.png" loading="lazy"><div class="resolution">1080p</div></a></div>
-<div class="movie-grid-item" category="Animation / Aventure / Comédie / Fantastique"><a href="movie-details.html?title=Tempête de boulettes géantes"><img src="https://i.imgur.com/HZKkI4T.png" loading="lazy"><div class="resolution">1080p</div></a></div>
-<div class="movie-grid-item" category="Animation / Comédie"><a href="movie-details.html?title=South Park : la fin de l'obésité"><img src="https://i.imgur.com/WItI643.png" loading="lazy"><div class="resolution">1080p</div></a></div>
-<div class="movie-grid-item" category="Action / Animation / Aventure / Comédie / Fantastique"><a href="movie-details.html?title=Ninja Turtles: Teenage Years"><img src="https://i.imgur.com/L7gLeDh.png" loading="lazy"><div class="resolution">1080p</div></a></div>
-<div class="movie-grid-item" category="Animation / Comédie / Fantastique"><a href="movie-details.html?title=L'Étrange Noël du petit Batman"><img src="https://i.imgur.com/49k2NVQ.png" loading="lazy"><div class="resolution">1080p</div></a></div>
-<div class="movie-grid-item" category="Animation / Comédie / Fantastique / Comédie musicale"><a href="movie-details.html?title=Descendants : L'Ascension de Red"><img src="https://i.imgur.com/UB6WbZR.png" loading="lazy"><div class="resolution">1080p</div></a></div>
-<div class="movie-grid-item" category="Animation / Aventure / Comédie / Fantastique"><a href="movie-details.html?title=Garfield : Héros malgré lui"><img src="https://i.imgur.com/FxQKHhv.png" loading="lazy"><div class="resolution">1080p</div></a></div>
-<div class="movie-grid-item" category="Comédie / Drame"><a href="movie-details.html?title=Dear Santa"><img src="https://i.imgur.com/GM7Qb7d.png" loading="lazy"><div class="resolution">4K</div></a></div>
-<div class="movie-grid-item" category="Action / Comédie / Horreur / Thriller"><a href="movie-details.html?title=Violent Night"><img src="https://i.imgur.com/PpkJr2u.jpeg" loading="lazy"><div class="resolution">1080p</div></a></div>
-<div class="movie-grid-item" category="Comédie / Horreur / Thriller"><a href="movie-details.html?title=There's Something in the Barn"><img src="https://i.imgur.com/i3Tr6jB.jpeg" loading="lazy"><div class="resolution">4K</div></a></div>
-</div></section>
+<div class="movie-grid" id="movie-grid"></div>
+
 
 
 
@@ -141,6 +115,9 @@ function filterMoviesBySearch() {
   const sectionRandom = document.getElementById('random-movie-box').parentElement;
   const sectionDiscover = document.querySelector('.movie-grid-section');
 
+  // 👇 Masquer le panneau de filtre en cas de recherche
+  document.getElementById('filter-panel').style.display = "none";
+
   if (!searchTerm) {
     localStorage.removeItem('searchQuery');
     movieItems.forEach(item => item.style.display = "block");
@@ -165,6 +142,7 @@ function filterMoviesBySearch() {
   sectionDiscover.style.display = visibleCount ? "block" : "none";
 }
 
+
 // Recherche au clic sur l’icône loupe
 document.querySelector('.search-icon').addEventListener('click', filterMoviesBySearch);
 // Recherche au Enter dans le champ
@@ -182,6 +160,7 @@ document.getElementById('random-movie-box').addEventListener('click', () => {
 
 // Gestion du clic sur "Catégories"
 document.getElementById('categories-link').addEventListener('click', e => {
+  e.preventDefault();
   document.querySelector('.content').style.display = 'none';
   document.getElementById('random-movie-box').parentElement.style.display = 'none';
 
@@ -197,6 +176,7 @@ document.getElementById('categories-link').addEventListener('click', e => {
 
   resetFilters();
 });
+
 
 // Filtrage par catégorie et année
 const categoryFilter = document.getElementById('category-filter');
@@ -233,6 +213,53 @@ const searchInput = document.getElementById("search-input");
 searchInput.addEventListener('focus', () => window.scrollTo({ top: 0, behavior: 'smooth' }));
 searchInput.addEventListener('keydown', () => window.scrollTo({ top: 0, behavior: 'auto' }));
 document.getElementById('filter-panel').style.display = "none";
+
+window.addEventListener('load', () => {
+  if(window.location.hash === '#categories') {
+    // simuler le comportement clic sur catégories
+    document.querySelector('.content').style.display = 'none';
+    document.getElementById('random-movie-box').parentElement.style.display = 'none';
+    const sectionDiscover = document.querySelector('.movie-grid-section');
+    sectionDiscover.style.display = 'block';
+    document.getElementById('filter-panel').style.display = 'block';
+    document.querySelectorAll('.movie-grid-item').forEach(item => item.style.display = 'block');
+    document.getElementById('search-input').value = '';
+    localStorage.removeItem('searchQuery');
+    resetFilters();
+  }
+});
+async function loadMovies() {
+  try {
+    const response = await fetch('films.json');
+    const movies = await response.json();
+
+    const movieGrid = document.getElementById('movie-grid');
+    movieGrid.innerHTML = ''; // vider avant d'ajouter
+
+    movies.forEach(movie => {
+      const categoriesStr = movie.category.join(' / ');
+      const movieHTML = `
+        <div class="movie-grid-item" category="${categoriesStr}" data-year="${movie.year}" data-title="${movie.title}">
+          <a href="${movie.url}">
+            <img src="${movie.image}" loading="lazy" alt="${movie.title}" />
+            <div class="resolution">${movie.resolution}</div>
+          </a>
+        </div>
+      `;
+      movieGrid.insertAdjacentHTML('beforeend', movieHTML);
+    });
+
+    // Puis on relance les fonctions de filtrage (si besoin)
+    resetFilters();
+
+  } catch (error) {
+    console.error('Erreur chargement films:', error);
+  }
+}
+
+// Appeler au chargement de la page
+window.addEventListener('load', loadMovies);
+
 </script>
 
 </body>

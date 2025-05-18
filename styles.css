@@ -131,7 +131,10 @@ header.faq-header {background: #1f1f1f;padding: 0 20px;display: flex;justify-con
 100% {opacity: 1;color: #FF1493;}}
 
 
-  /* Conteneur filtre */
+
+  /* Filtrage Catégories - Années */
+
+
   #filter-panel {
     display: flex;
     flex-wrap: wrap;
@@ -144,7 +147,6 @@ header.faq-header {background: #1f1f1f;padding: 0 20px;display: flex;justify-con
     font-family: 'Federant', cursive;
   }
   
-  /* Catégories en boutons "pills" */
   .category-pill {
     background: #e0f5ff;
     color: #007acc;
@@ -170,12 +172,10 @@ header.faq-header {background: #1f1f1f;padding: 0 20px;display: flex;justify-con
     border-color: #005f8a;
   }
 
-  /* Icône dans pill */
   .category-pill i {
     font-size: 1.1em;
   }
 
-  /* Filtre année */
   #year-filter {
     min-width: 120px;
     padding: 8px;
@@ -186,7 +186,6 @@ header.faq-header {background: #1f1f1f;padding: 0 20px;display: flex;justify-con
     font-family: 'Federant', cursive;
   }
   
-  /* Bouton reset */
   #reset-filters {
     background: #00aaff;
     color: #fff;
@@ -202,7 +201,6 @@ header.faq-header {background: #1f1f1f;padding: 0 20px;display: flex;justify-con
   background-color: #008ecc;
 }
 
-  /* Conteneur des filtres */
   .filters-group {
     display: flex;
     flex-wrap: wrap;
@@ -211,7 +209,6 @@ header.faq-header {background: #1f1f1f;padding: 0 20px;display: flex;justify-con
     justify-content: center;
   }
 
-  /* Label stylé */
   label {
     font-weight: 700;
     color: #004466;
@@ -234,7 +231,7 @@ header.faq-header {background: #1f1f1f;padding: 0 20px;display: flex;justify-con
 }
 
 .category-pill.selected {
-  background-color: #000; /* noir */
+  background-color: #000;
   color: white;
 }
 
