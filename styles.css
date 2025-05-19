@@ -1,6 +1,10 @@
 * {margin: 0; padding: 0; box-sizing: border-box; user-select: none;}
 body {font-family: 'Arial', sans-serif;overflow-x: hidden;color: #ddd;background: #181818}
-.container {display: flex; justify-content: center;}
+.container {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
 .description-title {font-size: 1.8rem; color: #d40000; margin-bottom: 10px; text-align: center;}
 .download-btn {display: inline-block;background-color: #00796b;color: #fff;font-size: 1.4rem;padding: 0.5rem 1rem;margin-top: 2rem;border: none;border-radius: 6px;cursor: pointer;text-transform: uppercase;font-weight: bold;text-align: center;transition: background-color 0.3s ease;margin-left: auto;margin-right: auto;}
 .download-btn:hover {background-color: #004d40;}
@@ -17,6 +21,7 @@ h2 {color: #ef2626;}
 .movie-category-container {width: 800px;background-color: #ff0000;border-radius: 0 0 15px 15px;display: flex;justify-content: center;align-items: center;padding: 10px 0;box-sizing: border-box;margin: 0 auto;flex-wrap: wrap;height: auto;}
 .movie-category {font-size: 1.2rem;color: white;font-weight: bold;margin: 0 10px;text-align: center;}
 .movie-duration, .movie-release-date, .movie-size {text-align: center; font-size: 16px;margin-top: 7px;color: white;}
+.movie-size {margin-bottom: 20px;}
 .movie-carousel {width: 100%;margin: 20px auto;display: flex;justify-content: center;gap: 20px;padding: 0 10px;box-sizing: border-box;overflow: visible;align-items: center;height: 450px;}
 .movie-container {display: flex; flex-wrap: nowrap; transition: transform 1s ease; gap: 10px;}
 .movie-item {position: relative;width: 300px;height: 450px;text-align: center;background: #424242;border-radius: 15px;box-shadow: 0 6px 15px rgba(0, 0, 0, 0.7);transition: transform 0.3s ease;}
@@ -132,117 +137,23 @@ header.faq-header {background: #1f1f1f;padding: 0 20px;display: flex;justify-con
 
 
 
-  /* Filtrage Catégories - Années */
+/* Filtrage Catégories - Années */
+#filter-panel {display: flex;flex-wrap: wrap;justify-content: center;gap: 20px;padding: 15px;border: 2px solid #00aaff;border-radius: 8px;background: #f0f8ff;font-family: 'Federant', cursive;}
+.category-pill {background: #e0f5ff;color: #007acc;border: 2px solid #00aaff;border-radius: 30px;padding: 8px 16px;font-weight: 600;font-size: 1em;cursor: pointer;user-select: none;display: flex;align-items: center;gap: 8px;transition: all 0.3s ease;}
+.category-pill:hover {background: #00aaff;color: white;}
+.category-pill.selected {background: #007acc;color: white;border-color: #005f8a;}
+.category-pill i {font-size: 1.1em;}
+#year-filter {min-width: 120px;padding: 8px;font-size: 1em;border: 2px solid #00aaff;border-radius: 5px;cursor: pointer;font-family: 'Federant', cursive;}
+#reset-filters {background: #00aaff;color: #fff;border: none;border-radius: 5px;font-weight: 700;padding: 10px 24px;cursor: pointer;transition: background 0.3s ease;font-family: 'Federant', cursive;}
+#reset-filters:hover {background-color: #008ecc;}
+.filters-group {display: flex;flex-wrap: wrap;gap: 15px;align-items: center;justify-content: center;}
+label {font-weight: 700;color: #004466;font-size: 1.1em;margin-right: 8px;font-family: 'Titan One', cursive;}
+.category-pill {cursor: pointer;padding: 6px 12px;border: 2px solid #00aaff;border-radius: 20px;font-family: 'Federant', cursive;color: #0077cc;user-select: none;position: relative;transition: background-color 0.3s, color 0.3s;font-weight: 700;}
+.category-pill.selected {background-color: #000;color: white;}
+.category-pill.selected::before {content: '';position: absolute;left: 8px;top: 50%;transform: translateY(-50%);width: 10px;height: 10px;background: white;border-radius: 50%;}
 
 
-  #filter-panel {
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: center;
-    gap: 20px;
-    padding: 15px;
-    border: 2px solid #00aaff;
-    border-radius: 8px;
-    background: #f0f8ff;
-    font-family: 'Federant', cursive;
-  }
-  
-  .category-pill {
-    background: #e0f5ff;
-    color: #007acc;
-    border: 2px solid #00aaff;
-    border-radius: 30px;
-    padding: 8px 16px;
-    font-weight: 600;
-    font-size: 1em;
-    cursor: pointer;
-    user-select: none;
-    display: flex;
-    align-items: center;
-    gap: 8px;
-    transition: all 0.3s ease;
-  }
-  .category-pill:hover {
-    background: #00aaff;
-    color: white;
-  }
-  .category-pill.selected {
-    background: #007acc;
-    color: white;
-    border-color: #005f8a;
-  }
 
-  .category-pill i {
-    font-size: 1.1em;
-  }
-
-  #year-filter {
-    min-width: 120px;
-    padding: 8px;
-    font-size: 1em;
-    border: 2px solid #00aaff;
-    border-radius: 5px;
-    cursor: pointer;
-    font-family: 'Federant', cursive;
-  }
-  
-  #reset-filters {
-    background: #00aaff;
-    color: #fff;
-    border: none;
-    border-radius: 5px;
-    font-weight: 700;
-    padding: 10px 24px;
-    cursor: pointer;
-    transition: background 0.3s ease;
-    font-family: 'Federant', cursive;
-  }
-#reset-filters:hover {
-  background-color: #008ecc;
-}
-
-  .filters-group {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 15px;
-    align-items: center;
-    justify-content: center;
-  }
-
-  label {
-    font-weight: 700;
-    color: #004466;
-    font-size: 1.1em;
-    margin-right: 8px;
-    font-family: 'Titan One', cursive;
-  }
-
-  .category-pill {
-  cursor: pointer;
-  padding: 6px 12px;
-  border: 2px solid #00aaff;
-  border-radius: 20px;
-  font-family: 'Federant', cursive;
-  color: #0077cc;
-  user-select: none;
-  position: relative;
-  transition: background-color 0.3s, color 0.3s;
-  font-weight: 700;
-}
-
-.category-pill.selected {
-  background-color: #000;
-  color: white;
-}
-
-.category-pill.selected::before {
-  content: '';
-  position: absolute;
-  left: 8px;
-  top: 50%;
-  transform: translateY(-50%);
-  width: 10px;
-  height: 10px;
-  background: white;
-  border-radius: 50%;
-}
+/* Bouton doré */
+.gold-button {display: inline-block;width: auto;background: linear-gradient(45deg, #FFD700, #FFA500);border: none;color: white;padding: 8px 16px;margin: 1.5rem auto 0 auto;font-size: 1.4rem;font-weight: bold;cursor: pointer;border-radius: 6px;transition: background 0.3s ease;text-transform: uppercase;}
+.gold-button:hover {background: linear-gradient(45deg, #FFA500, #FFD700);}
