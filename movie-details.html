@@ -10,13 +10,10 @@
 <style>@import url('https://fonts.googleapis.com/css2?family=Federant&display=swap');</style>
 </head>
 <body class="page_movie_details">
-
-
   
 <header>
 <a href="index.html" class="logo" aria-label="Accueil">
-<img src="https://i.imgur.com/7Ddaoy6.png" alt="Logo FreezyFlix">
-             
+<img src="https://i.imgur.com/7Ddaoy6.png" alt="Logo FreezyFlix">  
 
 <ul class="federant-regular">
 <li><a href="index.html">Accueil</a></li>
@@ -29,16 +26,10 @@
 </a></li></ul>
 </header>
 
-
-
 <h1 class="titan-one-regular" id="movieTitle"></h1>
 <div id="movieIframeContainer" class="movie-iframe-container"></div>
 <div id="movieCategory" class="movie-category-container"><p id="movieCategoryText" class="movie-category"></p></div>
-<div class="container">
-  <button id="downloadButton" class="download-btn"></button>
-  <button id="bonusButton" class="gold-btn" style="display: none;">Bouton Bonus</button>
-</div>
-
+<div class="container"><button id="downloadButton" class="download-btn"></button><button id="bonusButton" class="gold-btn" style="display: none;">Bouton Bonus</button></div>
   
 <p id="movieDescription" class="movie-description"></p>
 <p id="movieReleaseDate" class="movie-release-date"><strong>Date de sortie :</strong> <span id="releaseDateValue"></span></p>
@@ -79,8 +70,6 @@
 { title: "Violent Night",                                            category: "Action / Comédie / Horreur / Thriller",                                                                             youtubeUrl: "https://www.youtube.com/embed/X5bs3RuQ7iI",   releaseDate: "2 décembre 2022",      duration: "1h51",   size: "1,85 GB",   downloadUrl: "https://www.clictune.com/kkkN",    description: "Une équipe d'élite de mercenaires fait irruption dans un complexe familial la veille de Noël, prenant tout le monde en otage à l'intérieur. Cependant, ils ne sont pas préparés à un combattant surprise: le Père Noël est sur le terrain et il est sur le point de montrer pourquoi ce Nick n'est pas un saint." },
 { title: "There's Something in the Barn",                            category: "Comédie / Horreur / Thriller",                                                                                      youtubeUrl: "https://www.youtube.com/embed/B8h6qUUUkPU",   releaseDate: "10 novembre 2023",     duration: "1h40",   size: "4,27 GB",   downloadUrl: "https://www.clictune.com/klF9",    description: "Bill, ses deux enfants et leur belle-mère déménagent dans la splendeur norvégienne enneigée, au sein d'un chalet isolé. Les parents forcent l'enthousiasme, la fille boude ses amies perdues et le fils se rend vite à l'évidence : il y a quelque chose dans la grange." }];
 
-
-
   const urlParams = new URLSearchParams(window.location.search);
   const movieTitle = urlParams.get('title');
 
@@ -103,14 +92,9 @@
     downloadBtn.onclick = () => window.open(selectedMovie.downloadUrl, '_blank');
 
     // Bouton de téléchargement doré
-    if (selectedMovie.title === "Ad Astra") {const goldenBtn = document.createElement('button'); goldenBtn.textContent = "Télécharger qualité maximum 48,12 GB"; goldenBtn.className = 'gold-button'; goldenBtn.onclick = () => window.open("https://www.clictune.com/kxjS", '_blank');
-    
-      // Ajoute le bouton sous le vert
-      document.querySelector('.container').appendChild(goldenBtn);
-    }
-  }
+if (selectedMovie.title === "Ad Astra") {const goldenBtn = document.createElement('button');goldenBtn.textContent = "Télécharger qualité maximum 48,12 GB";goldenBtn.className = 'gold-button';goldenBtn.onclick = () => window.open("https://www.clictune.com/kxjS", '_blank');document.querySelector('.container').appendChild(goldenBtn);}
+if (selectedMovie.title === "Interstellar") {const goldenBtn = document.createElement('button');goldenBtn.textContent = "Télécharger qualité maximum 73,40 GB";goldenBtn.className = 'gold-button';goldenBtn.onclick = () => window.open("https://www.clictune.com/kxkj", '_blank');document.querySelector('.container').appendChild(goldenBtn);}
+}
 </script>
-
-
 </body>
 </html>

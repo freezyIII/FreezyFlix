@@ -43,101 +43,83 @@
 <section class="movie-grid-section">
   <h2 class="titan-one-regular">Découvrir d'autres films</h2>
 
-  <div id="filter-panel" style="margin: 20px auto; max-width: 600px; padding: 15px; border-radius: 8px; background: #00aaff22; border: 2px solid #00aaff; font-family: 'Federant', cursive;">
-    <div style="display: flex; gap: 20px; flex-wrap: wrap; justify-content: center; align-items: center;">
-      <div style="flex: 1 1 200px; min-width: 180px;">
-        <label for="category-filter" style="color: #0077cc; font-weight: 700; display: block; margin-bottom: 6px; font-size: 1rem;">Catégorie :</label>
-        <select id="category-filter" style="width: 100%; padding: 8px 12px; font-size: 1rem; border: 2px solid #00aaff; border-radius: 6px; background-color: white; color: #0077cc; cursor: pointer; transition: border-color 0.3s;">
-          <option value="" selected>Toutes les catégories</option>
-          <option value="action">Action</option>
-          <option value="animation">Animation</option>
-          <option value="anime">Animé</option>
-          <option value="aventure">Aventure</option>
-          <option value="comédie">Comédie</option>
-          <option value="comédie musicale">Comédie musicale</option>
-          <option value="detective">Détective</option>
-          <option value="drame">Drame</option>
-          <option value="fantastique">Fantastique</option>
-          <option value="historique">Historique</option>
-          <option value="horreur">Horreur</option>
-          <option value="policier">Policier</option>
-          <option value="romance">Romance</option>
-          <option value="science-fiction">Science-fiction</option>
-          <option value="sport">Sport</option>
-          <option value="surnaturel">Surnaturel</option>
-          <option value="thriller">Thriller</option>
-        </select>
-      </div>
+<div id="filter-panel" style="margin: 20px auto; max-width: 600px; padding: 15px; border-radius: 8px; background: #00aaff22; border: 2px solid #00aaff; font-family: 'Federant', cursive;"><div style="display: flex; gap: 20px; flex-wrap: wrap; justify-content: center; align-items: center;"><div style="flex: 1 1 200px; min-width: 180px;"><label for="category-filter" style="color: #0077cc; font-weight: 700; display: block; margin-bottom: 6px; font-size: 1rem;">Catégorie :</label><select id="category-filter" style="width: 100%; padding: 8px 12px; font-size: 1rem; border: 2px solid #00aaff; border-radius: 6px; background-color: white; color: #0077cc; cursor: pointer; transition: border-color 0.3s;">
+<option value="" selected>Toutes les catégories</option>
+<option value="action">Action</option>
+<option value="animation">Animation</option>
+<option value="anime">Animé</option>
+<option value="aventure">Aventure</option>
+<option value="comédie">Comédie</option>
+<option value="comédie musicale">Comédie musicale</option>
+<option value="detective">Détective</option>
+<option value="drame">Drame</option>
+<option value="fantastique">Fantastique</option>
+<option value="historique">Historique</option>
+<option value="horreur">Horreur</option>
+<option value="policier">Policier</option>
+<option value="romance">Romance</option>
+<option value="science-fiction">Science-fiction</option>
+<option value="sport">Sport</option>
+<option value="surnaturel">Surnaturel</option>
+<option value="thriller">Thriller</option>
+</select></div>
 
-      <div style="flex: 1 1 120px; min-width: 120px;">
-        <label for="year-filter" style="color: #0077cc; font-weight: 700; display: block; margin-bottom: 6px; font-size: 1rem;">Année :</label>
-        <select id="year-filter" style="width: 100%; padding: 8px 12px; font-size: 1rem; border: 2px solid #00aaff; border-radius: 6px; background-color: white; color: #0077cc; cursor: pointer; transition: border-color 0.3s;">
-          <option value="all" selected>Toutes</option>
-          <option value="2025">2025</option>
-          <option value="2024">2024</option>
-          <option value="2023">2023</option>
-          <option value="2022">2022</option>
-          <option value="2021">2021</option>
-          <option value="2020">2020</option>
-          <option value="2019">2019</option>
-          <option value="2018">2018</option>
-          <option value="2017">2017</option>
-          <option value="2016">2016</option>
-          <option value="2015">2015</option>
-          <option value="2014">2014</option>
-          <option value="2013">2013</option>
-          <option value="2012">2012</option>
-          <option value="2011">2011</option>
-          <option value="2010">2010</option>
-          <option value="2009">2009</option>
-        </select>
-      </div>
+<div style="flex: 1 1 120px; min-width: 120px;"><label for="year-filter" style="color: #0077cc; font-weight: 700; display: block; margin-bottom: 6px; font-size: 1rem;">Année :</label><select id="year-filter" style="width: 100%; padding: 8px 12px; font-size: 1rem; border: 2px solid #00aaff; border-radius: 6px; background-color: white; color: #0077cc; cursor: pointer; transition: border-color 0.3s;">
+<option value="all" selected>Toutes</option>
+<option value="2025">2025</option>
+<option value="2024">2024</option>
+<option value="2023">2023</option>
+<option value="2022">2022</option>
+<option value="2021">2021</option>
+<option value="2020">2020</option>
+<option value="2019">2019</option>
+<option value="2018">2018</option>
+<option value="2017">2017</option>
+<option value="2016">2016</option>
+<option value="2015">2015</option>
+<option value="2014">2014</option>
+<option value="2013">2013</option>
+<option value="2012">2012</option>
+<option value="2011">2011</option>
+<option value="2010">2010</option>
+<option value="2009">2009</option>
+</select></div>
 
-      <div style="flex: 0 0 auto; align-self: flex-end;">
-        <button id="reset-filters" style="background-color: #00aaff; border: none; color: white; padding: 10px 20px; font-weight: 700; font-size: 1rem; border-radius: 6px; cursor: pointer; transition: background-color 0.3s;">
-          Réinitialiser
-        </button>
-      </div>
-    </div>
-  </div>
-
+<div style="flex: 0 0 auto; align-self: flex-end;"><button id="reset-filters" style="background-color: #00aaff; border: none; color: white; padding: 10px 20px; font-weight: 700; font-size: 1rem; border-radius: 6px; cursor: pointer; transition: background-color 0.3s;">Réinitialiser</button></div></div></div>
 
 <!--<div class="movie-grid-item" category="" data-year="">    <a href="movie-details.html?title=">    <img src=""  loading="lazy"><div class="resolution">1080p</div></a></div>-->
-
 <div class="movie-grid">
-<div class="movie-grid-item" category="Animation / Aventure" data-year="2024">    <a href="movie-details.html?title=Flow">    <img src="https://i.imgur.com/c1xt9Ju.png"  loading="lazy"><div class="resolution">4K</div></a></div>
-<div class="movie-grid-item" category="Drame / Sport" data-year="2002">    <a href="movie-details.html?title=Ali">    <img src="https://i.imgur.com/Wy01ShM.png"  loading="lazy"><div class="resolution">1080p</div></a></div>
-<div class="movie-grid-item" category="Drame / Romance" data-year="2016">    <a href="movie-details.html?title=Moonlight">    <img src="https://i.imgur.com/pagdUm8.png"  loading="lazy"><div class="resolution">1080p</div></a></div>
-<div class="movie-grid-item" category="Action / Aventure / Drame / Science-fiction / Thriller" data-year="2014">    <a href="movie-details.html?title=Interstellar">    <img src="https://i.imgur.com/Uc0cBa4.png"  loading="lazy"><div class="resolution">1080p</div></a></div>
-<div class="movie-grid-item" category="Action / Aventure / Drame / Horreur / Science-fiction / Thriller" data-year="2022">    <a href="movie-details.html?title=Prey">    <img src="https://i.imgur.com/ljz7zjq.png"  loading="lazy"><div class="resolution">4K</div></a></div>
-<div class="movie-grid-item" category="Aventure / Drame / Science-fiction / Thriller" data-year="2019">    <a href="movie-details.html?title=Ad Astra">    <img src="https://i.imgur.com/ZDFxQ3P.png"  loading="lazy"><div class="resolution">4K</div></a></div>
-<div class="movie-grid-item" category="Action / Animation / Anime / Aventure / Drame / Fantastique / Horreur / Science-fiction / Surnaturel / Thriller" data-year="1991">    <a href="movie-details.html?title=Akira">    <img src="https://i.imgur.com/TsDV4yF.png"  loading="lazy"><div class="resolution">1080p</div></a></div>
-<div class="movie-grid-item" category="Action / Comédie / Crime / Détective / Drame / Policier" data-year="2014">    <a href="movie-details.html?title=Night Call">    <img src="https://i.imgur.com/05lSKAD.png"  loading="lazy"><div class="resolution">1080p</div></a></div>
-<div class="movie-grid-item" category="Drame" data-year="2025">    <a href="movie-details.html?title=Un parfait inconnu">    <img src="https://i.imgur.com/woUXCRb.png"  loading="lazy"><div class="resolution">1080p</div></a></div>
-<div class="movie-grid-item" category="Action / Aventure / Drame / Guerre / Historique" data-year="2003">                         <a href="movie-details.html?title=Master and Commander : De l'autre côté du monde">        <img src="https://i.imgur.com/qetuycf.png"  loading="lazy"><div class="resolution">1080p</div></a></div>
-<div class="movie-grid-item" category="Drame / Horreur / Science-fiction / Thriller" data-year="">                                <a href="movie-details.html?title=La Plateforme">                                          <img src="https://i.imgur.com/pnt9cJ6.png"  loading="lazy"><div class="resolution">1080p</div></a></div>
-<div class="movie-grid-item" category="Action / Thriller" data-year="2017">                                                       <a href="movie-details.html?title=American Assassin">                                      <img src="https://i.imgur.com/HXelDhT.png"  loading="lazy"><div class="resolution">1080p</div></a></div>
-<div class="movie-grid-item" category="Action / Animation / Aventure / Comédie / Fantastique / Science-fiction" data-year="2022"> <a href="movie-details.html?title=Sonic 2, le film">                                       <img src="https://i.imgur.com/eCkKVwa.png"  loading="lazy"><div class="resolution">1080p</div></a></div>
-<div class="movie-grid-item" category="Action / Aventure / Comédie / Fantastique" data-year="2024">                               <a href="movie-details.html?title=Red One">                                                <img src="https://i.imgur.com/pDKXMz3.png"  loading="lazy"><div class="resolution">1080p</div></a></div>
-<div class="movie-grid-item" category="Action / Aventure / Fantastique / Science-fiction" data-year="2023">                       <a href="movie-details.html?title=Aquaman et le Royaume perdu">                            <img src="https://i.imgur.com/LTHjf0H.png"  loading="lazy"><div class="resolution">1080p</div></a></div>
-<div class="movie-grid-item" category="Action / Aventure / Fantastique / Science-fiction" data-year="2018">                       <a href="movie-details.html?title=Aquaman">                                                <img src="https://i.imgur.com/c05yvpE.jpeg" loading="lazy"><div class="resolution">1080p</div></a></div>
-<div class="movie-grid-item" category="Action / Animation / Aventure / Comédie" data-year="2025">                                 <a href="movie-details.html?title=Minecraft, le film">                                     <img src="https://i.imgur.com/ij81S7j.png"  loading="lazy"><div class="resolution">1080p</div></a></div>
-<div class="movie-grid-item" category="Animation / Aventure / Comédie / Science-fiction" data-year="2024">                        <a href="movie-details.html?title=Sonic 3, le film">                                       <img src="https://i.imgur.com/7Yj3yRy.png"  loading="lazy"><div class="resolution">1080p</div></a></div>
-<div class="movie-grid-item" category="Aventure / Comédie musicale / Fantastique" data-year="2023">                               <a href="movie-details.html?title=Wonka">                                                  <img src="https://i.imgur.com/E8u1cWC.png"  loading="lazy"><div class="resolution">1080p</div></a></div>
-<div class="movie-grid-item" category="Animation / Aventure / Comédie / Comédie Musicale / Fantastique" data-year="2018">         <a href="movie-details.html?title=Astérix : Le Secret de la potion magique">               <img src="https://i.imgur.com/pHwKexK.png"  loading="lazy"><div class="resolution">1080p</div></a></div>
-<div class="movie-grid-item" category="Action / Animation / Aventure / Comédie / Fantastique" data-year="2014">                   <a href="movie-details.html?title=L'Île des Miam-nimaux : Tempête de boulettes géantes 2"> <img src="https://i.imgur.com/vWFCNbd.png"  loading="lazy"><div class="resolution">1080p</div></a></div>
-<div class="movie-grid-item" category="Animation / Aventure / Comédie / Fantastique" data-year="2009">                            <a href="movie-details.html?title=Tempête de boulettes géantes">                           <img src="https://i.imgur.com/HZKkI4T.png"  loading="lazy"><div class="resolution">1080p</div></a></div>
-<div class="movie-grid-item" category="Animation / Comédie" data-year="2024">                                                     <a href="movie-details.html?title=South Park : la fin de l'obésité">                       <img src="https://i.imgur.com/WItI643.png"  loading="lazy"><div class="resolution">1080p</div></a></div>
-<div class="movie-grid-item" category="Action / Animation / Aventure / Comédie / Fantastique" data-year="2023">                   <a href="movie-details.html?title=Ninja Turtles: Teenage Years">                           <img src="https://i.imgur.com/L7gLeDh.png"  loading="lazy"><div class="resolution">1080p</div></a></div>
-<div class="movie-grid-item" category="Animation / Comédie / Fantastique" data-year="2023">                                       <a href="movie-details.html?title=L'Étrange Noël du petit Batman">                         <img src="https://i.imgur.com/49k2NVQ.png"  loading="lazy"><div class="resolution">1080p</div></a></div>
-<div class="movie-grid-item" category="Animation / Comédie / Fantastique / Comédie musicale" data-year="2024">                    <a href="movie-details.html?title=Descendants : L'Ascension de Red">                       <img src="https://i.imgur.com/UB6WbZR.png"  loading="lazy"><div class="resolution">1080p</div></a></div>
-<div class="movie-grid-item" category="Animation / Aventure / Comédie / Fantastique" data-year="2024">                            <a href="movie-details.html?title=Garfield : Héros malgré lui">                            <img src="https://i.imgur.com/FxQKHhv.png"  loading="lazy"><div class="resolution">1080p</div></a></div>
-<div class="movie-grid-item" category="Comédie / Drame" data-year="2024">                                                         <a href="movie-details.html?title=Dear Santa">                                             <img src="https://i.imgur.com/GM7Qb7d.png"  loading="lazy"><div class="resolution">4K</div></a></div>
-<div class="movie-grid-item" category="Action / Comédie / Horreur / Thriller" data-year="2022">                                   <a href="movie-details.html?title=Violent Night">                                          <img src="https://i.imgur.com/PpkJr2u.jpeg" loading="lazy"><div class="resolution">1080p</div></a></div>
-<div class="movie-grid-item" category="Comédie / Horreur / Thriller" data-year="2023">                                            <a href="movie-details.html?title=There's Something in the Barn">                          <img src="https://i.imgur.com/i3Tr6jB.jpeg" loading="lazy"><div class="resolution">4K</div></a></div>
+<div class="movie-grid-item" category="Animation / Aventure" data-year="2024">                                                                                              <a href="movie-details.html?title=Flow">                                                   <img src="https://i.imgur.com/c1xt9Ju.png"  loading="lazy"><div class="resolution">4K</div></a></div>
+<div class="movie-grid-item" category="Drame / Sport" data-year="2002">                                                                                                     <a href="movie-details.html?title=Ali">                                                    <img src="https://i.imgur.com/Wy01ShM.png"  loading="lazy"><div class="resolution">1080p</div></a></div>
+<div class="movie-grid-item" category="Drame / Romance" data-year="2016">                                                                                                   <a href="movie-details.html?title=Moonlight">                                              <img src="https://i.imgur.com/pagdUm8.png"  loading="lazy"><div class="resolution">1080p</div></a></div>
+<div class="movie-grid-item" category="Action / Aventure / Drame / Science-fiction / Thriller" data-year="2014">                                                            <a href="movie-details.html?title=Interstellar">                                           <img src="https://i.imgur.com/Uc0cBa4.png"  loading="lazy"><div class="resolution">1080p</div></a></div>
+<div class="movie-grid-item" category="Action / Aventure / Drame / Horreur / Science-fiction / Thriller" data-year="2022">                                                  <a href="movie-details.html?title=Prey">                                                   <img src="https://i.imgur.com/ljz7zjq.png"  loading="lazy"><div class="resolution">4K</div></a></div>
+<div class="movie-grid-item" category="Aventure / Drame / Science-fiction / Thriller" data-year="2019">                                                                     <a href="movie-details.html?title=Ad Astra">                                               <img src="https://i.imgur.com/ZDFxQ3P.png"  loading="lazy"><div class="resolution">4K</div></a></div>
+<div class="movie-grid-item" category="Action / Animation / Anime / Aventure / Drame / Fantastique / Horreur / Science-fiction / Surnaturel / Thriller" data-year="1991">   <a href="movie-details.html?title=Akira">                                                  <img src="https://i.imgur.com/TsDV4yF.png"  loading="lazy"><div class="resolution">1080p</div></a></div>
+<div class="movie-grid-item" category="Action / Comédie / Crime / Détective / Drame / Policier" data-year="2014">                                                           <a href="movie-details.html?title=Night Call">                                             <img src="https://i.imgur.com/05lSKAD.png"  loading="lazy"><div class="resolution">1080p</div></a></div>
+<div class="movie-grid-item" category="Drame" data-year="2025">                                                                                                             <a href="movie-details.html?title=Un parfait inconnu">                                     <img src="https://i.imgur.com/woUXCRb.png"  loading="lazy"><div class="resolution">1080p</div></a></div>
+<div class="movie-grid-item" category="Action / Aventure / Drame / Guerre / Historique" data-year="2003">                                                                   <a href="movie-details.html?title=Master and Commander : De l'autre côté du monde">        <img src="https://i.imgur.com/qetuycf.png"  loading="lazy"><div class="resolution">1080p</div></a></div>
+<div class="movie-grid-item" category="Drame / Horreur / Science-fiction / Thriller" data-year="">                                                                          <a href="movie-details.html?title=La Plateforme">                                          <img src="https://i.imgur.com/pnt9cJ6.png"  loading="lazy"><div class="resolution">1080p</div></a></div>
+<div class="movie-grid-item" category="Action / Thriller" data-year="2017">                                                                                                 <a href="movie-details.html?title=American Assassin">                                      <img src="https://i.imgur.com/HXelDhT.png"  loading="lazy"><div class="resolution">1080p</div></a></div>
+<div class="movie-grid-item" category="Action / Animation / Aventure / Comédie / Fantastique / Science-fiction" data-year="2022">                                           <a href="movie-details.html?title=Sonic 2, le film">                                       <img src="https://i.imgur.com/eCkKVwa.png"  loading="lazy"><div class="resolution">1080p</div></a></div>
+<div class="movie-grid-item" category="Action / Aventure / Comédie / Fantastique" data-year="2024">                                                                         <a href="movie-details.html?title=Red One">                                                <img src="https://i.imgur.com/pDKXMz3.png"  loading="lazy"><div class="resolution">1080p</div></a></div>
+<div class="movie-grid-item" category="Action / Aventure / Fantastique / Science-fiction" data-year="2023">                                                                 <a href="movie-details.html?title=Aquaman et le Royaume perdu">                            <img src="https://i.imgur.com/LTHjf0H.png"  loading="lazy"><div class="resolution">1080p</div></a></div>
+<div class="movie-grid-item" category="Action / Aventure / Fantastique / Science-fiction" data-year="2018">                                                                 <a href="movie-details.html?title=Aquaman">                                                <img src="https://i.imgur.com/c05yvpE.jpeg" loading="lazy"><div class="resolution">1080p</div></a></div>
+<div class="movie-grid-item" category="Action / Animation / Aventure / Comédie" data-year="2025">                                                                           <a href="movie-details.html?title=Minecraft, le film">                                     <img src="https://i.imgur.com/ij81S7j.png"  loading="lazy"><div class="resolution">1080p</div></a></div>
+<div class="movie-grid-item" category="Animation / Aventure / Comédie / Science-fiction" data-year="2024">                                                                  <a href="movie-details.html?title=Sonic 3, le film">                                       <img src="https://i.imgur.com/7Yj3yRy.png"  loading="lazy"><div class="resolution">1080p</div></a></div>
+<div class="movie-grid-item" category="Aventure / Comédie musicale / Fantastique" data-year="2023">                                                                         <a href="movie-details.html?title=Wonka">                                                  <img src="https://i.imgur.com/E8u1cWC.png"  loading="lazy"><div class="resolution">1080p</div></a></div>
+<div class="movie-grid-item" category="Animation / Aventure / Comédie / Comédie Musicale / Fantastique" data-year="2018">                                                   <a href="movie-details.html?title=Astérix : Le Secret de la potion magique">               <img src="https://i.imgur.com/pHwKexK.png"  loading="lazy"><div class="resolution">1080p</div></a></div>
+<div class="movie-grid-item" category="Action / Animation / Aventure / Comédie / Fantastique" data-year="2014">                                                             <a href="movie-details.html?title=L'Île des Miam-nimaux : Tempête de boulettes géantes 2"> <img src="https://i.imgur.com/vWFCNbd.png"  loading="lazy"><div class="resolution">1080p</div></a></div>
+<div class="movie-grid-item" category="Animation / Aventure / Comédie / Fantastique" data-year="2009">                                                                      <a href="movie-details.html?title=Tempête de boulettes géantes">                           <img src="https://i.imgur.com/HZKkI4T.png"  loading="lazy"><div class="resolution">1080p</div></a></div>
+<div class="movie-grid-item" category="Animation / Comédie" data-year="2024">                                                                                               <a href="movie-details.html?title=South Park : la fin de l'obésité">                       <img src="https://i.imgur.com/WItI643.png"  loading="lazy"><div class="resolution">1080p</div></a></div>
+<div class="movie-grid-item" category="Action / Animation / Aventure / Comédie / Fantastique" data-year="2023">                                                             <a href="movie-details.html?title=Ninja Turtles: Teenage Years">                           <img src="https://i.imgur.com/L7gLeDh.png"  loading="lazy"><div class="resolution">1080p</div></a></div>
+<div class="movie-grid-item" category="Animation / Comédie / Fantastique" data-year="2023">                                                                                 <a href="movie-details.html?title=L'Étrange Noël du petit Batman">                         <img src="https://i.imgur.com/49k2NVQ.png"  loading="lazy"><div class="resolution">1080p</div></a></div>
+<div class="movie-grid-item" category="Animation / Comédie / Fantastique / Comédie musicale" data-year="2024">                                                              <a href="movie-details.html?title=Descendants : L'Ascension de Red">                       <img src="https://i.imgur.com/UB6WbZR.png"  loading="lazy"><div class="resolution">1080p</div></a></div>
+<div class="movie-grid-item" category="Animation / Aventure / Comédie / Fantastique" data-year="2024">                                                                      <a href="movie-details.html?title=Garfield : Héros malgré lui">                            <img src="https://i.imgur.com/FxQKHhv.png"  loading="lazy"><div class="resolution">1080p</div></a></div>
+<div class="movie-grid-item" category="Comédie / Drame" data-year="2024">                                                                                                   <a href="movie-details.html?title=Dear Santa">                                             <img src="https://i.imgur.com/GM7Qb7d.png"  loading="lazy"><div class="resolution">4K</div></a></div>
+<div class="movie-grid-item" category="Action / Comédie / Horreur / Thriller" data-year="2022">                                                                             <a href="movie-details.html?title=Violent Night">                                          <img src="https://i.imgur.com/PpkJr2u.jpeg" loading="lazy"><div class="resolution">1080p</div></a></div>
+<div class="movie-grid-item" category="Comédie / Horreur / Thriller" data-year="2023">                                                                                      <a href="movie-details.html?title=There's Something in the Barn">                          <img src="https://i.imgur.com/i3Tr6jB.jpeg" loading="lazy"><div class="resolution">4K</div></a></div>
 </div></section>
-
-
 
 <script>
 // Ajout de l'attribut data-title à chaque élément film pour faciliter la recherche
@@ -279,6 +261,5 @@ window.addEventListener('load', () => {
 });
 
 </script>
-
 </body>
 </html>
