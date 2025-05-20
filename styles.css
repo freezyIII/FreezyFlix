@@ -1,3 +1,7 @@
+img {
+  user-drag: none; /* Empêche le glissement de l'image */
+  -webkit-user-drag: none; /* Pour les navigateurs basés sur WebKit comme Safari */
+}
 * {margin: 0; padding: 0; box-sizing: border-box; user-select: none;}
 body {font-family: 'Arial', sans-serif;overflow-x: hidden;color: #ddd;background: #181818}
 .container {display: flex;flex-direction: column;gap: 10px;}
