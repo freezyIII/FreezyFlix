@@ -12,21 +12,13 @@
 <body class="page_index">
 
 <header>
-<a href="index.html" class="logo" aria-label="Accueil"><img src="https://i.imgur.com/7Ddaoy6.png" alt="Logo FreezyFlix" /></a>
-<ul class="federant-regular">
+<a href="index.html" class="logo" aria-label="Accueil"><img src="https://i.imgur.com/7Ddaoy6.png" alt="Logo FreezyFlix" /></a><ul class="federant-regular">
 <li><a href="index.html">Accueil</a></li>
 <li><a href="#categories" id="categories-link">Catégories</a></li>
 <li><a href="faq.html">FAQ</a></li>
-<li><a href="https://www.paypal.com/donate/?hosted_button_id=9TKRSPG4UTSJ2" class="animated-link no-underline" target="_blank">
-<span>F</span><span>a</span><span>i</span><span>r</span><span>e</span> 
-<span>u</span><span>n</span> 
-<span>d</span><span>o</span><span>n</span></a></li></ul>
+<li><a href="https://www.paypal.com/donate/?hosted_button_id=9TKRSPG4UTSJ2" class="animated-link no-underline" target="_blank"><span>F</span><span>a</span><span>i</span><span>r</span><span>e</span> <span>u</span><span>n</span> <span>d</span><span>o</span><span>n</span></a></li></ul>
 
-<div class="search-container">
-<input type="text" id="search-input" class="search-box" placeholder="Rechercher..." />
-<button class="search-icon">🔍</button>
-</div>
-</header>
+<div class="search-container"><input type="text" id="search-input" class="search-box" placeholder="Rechercher..." /><button class="search-icon">🔍</button></div></header>
 
 <section class="content"><h2 class="titan-one-regular">Films à la une</h2><div id="movieCarousel" class="movie-carousel"><div class="movie-container">
 <div class="movie-item"><a href="movie-details.html?title=Minecraft, le film"><img src="https://i.imgur.com/OT3zPtV.png" loading="lazy" /><div class="resolution">1080p</div></a></div>
@@ -36,12 +28,9 @@
 <div class="movie-item"><a href="movie-details.html?title=Ninja Turtles: Teenage Years"><img src="https://fr.web.img4.acsta.net/pictures/23/06/28/10/49/2274361.jpg" loading="lazy" /><div class="resolution">1080p</div></a></div></div></div>
 </section>
 
-<section style="text-align:center; margin: 20px 0;">
-<div id="random-movie-box" style="display:inline-block; padding: 20px 40px; border: 3px solid #00aaff; border-radius: 10px; cursor:pointer; font-weight:bold; font-size: 1.2em; color:#00aaff; user-select:none;">🎬 Film Aléatoire</div>
-</section>
+<section style="text-align:center; margin: 20px 0;"><div id="random-movie-box" style="display:inline-block; padding: 20px 40px; border: 3px solid #00aaff; border-radius: 10px; cursor:pointer; font-weight:bold; font-size: 1.2em; color:#00aaff; user-select:none;">🎬 Film Aléatoire</div></section>
 
-<section class="movie-grid-section">
-  <h2 class="titan-one-regular">Découvrir d'autres films</h2>
+<section class="movie-grid-section"><h2 class="titan-one-regular">Découvrir d'autres films</h2>
 
 <div id="filter-panel" style="margin: 20px auto; max-width: 600px; padding: 15px; border-radius: 8px; background: #00aaff22; border: 2px solid #00aaff; font-family: 'Federant', cursive;"><div style="display: flex; gap: 20px; flex-wrap: wrap; justify-content: center; align-items: center;"><div style="flex: 1 1 200px; min-width: 180px;"><label for="category-filter" style="color: #0077cc; font-weight: 700; display: block; margin-bottom: 6px; font-size: 1rem;">Catégorie :</label><select id="category-filter" style="width: 100%; padding: 8px 12px; font-size: 1rem; border: 2px solid #00aaff; border-radius: 6px; background-color: white; color: #0077cc; cursor: pointer; transition: border-color 0.3s;">
 <option value="" selected>Toutes les catégories</option>
@@ -88,6 +77,13 @@
 <option value="2009">2009</option>
 </select></div>
 
+<div style="flex: 1 1 120px; min-width: 120px;"><label for="quality-filter" style="color: #0077cc; font-weight: 700; display: block; margin-bottom: 6px; font-size: 1rem;">Qualité :</label><select id="quality-filter" style="width: 100%; padding: 8px 12px; font-size: 1rem; border: 2px solid #00aaff; border-radius: 6px; background-color: white; color: #0077cc; cursor: pointer; transition: border-color 0.3s;">
+<option value="" selected>Toutes</option>
+<option value="1080p">1080p</option>
+<option value="4K">4K</option>
+</select></div>
+
+
 <div style="flex: 0 0 auto; align-self: flex-end;"><button id="reset-filters" style="background-color: #00aaff; border: none; color: white; padding: 10px 20px; font-weight: 700; font-size: 1rem; border-radius: 6px; cursor: pointer; transition: background-color 0.3s;">Réinitialiser</button></div></div></div>
 
 <!--<div class="movie-grid-item" category="" data-year=""><a href="movie-details.html?title="><img src="" loading="lazy"><div class="resolution">1080p</div></a></div>-->
@@ -98,7 +94,7 @@
 <div class="movie-grid-item" category="Action / Aventure / Comédie / Drame / Guerre / Romance" data-year="1991"><a href="movie-details.html?title=Hot Shots!"><img src="https://i.imgur.com/FWIZUHa.png" loading="lazy"><div class="resolution">1080p</div></a></div>
 <div class="movie-grid-item" category="Action / Comédie / Comédie Musicale / Drame / Parodie / Policier / Romance / Thriller" data-year="1984"><a href="movie-details.html?title=Top secret !"><img src="https://i.imgur.com/Xyw8X6i.png" loading="lazy"><div class="resolution">4K</div></a></div>
 <div class="movie-grid-item" category="Comédie / Drame / Romance / Science-fiction" data-year="1982"><a href="movie-details.html?title=Y a-t-il enfin un pilote dans l'avion ?"><img src="https://i.imgur.com/PN0YWDj.png" loading="lazy"><div class="resolution">4K</div></a></div>
-<div class="movie-grid-item" category="Comédiedata-year="1982"><a href="movie-details.html?title=Le père Noël est une ordure"><img src="https://i.imgur.com/pzfEM7m.png" loading="lazy"><div class="resolution">1080p</div></a></div>
+<div class="movie-grid-item" category="Comédie" data-year="1982"><a href="movie-details.html?title=Le père Noël est une ordure"><img src="https://i.imgur.com/pzfEM7m.png" loading="lazy"><div class="resolution">1080p</div></a></div>
 <div class="movie-grid-item" category="Action / Comédie / Criminel / Policier / Thriller" data-year="1991"><a href="movie-details.html?title=Y a-t-il un flic pour sauver le président ?"><img src="https://i.imgur.com/LWFhkhu.png" loading="lazy"><div class="resolution">1080p</div></a></div>
 <div class="movie-grid-item" category="Action / Comédie / Criminel / Policier" data-year="1994"><a href="movie-details.html?title=Y a-t-il un flic pour sauver Hollywood ?"><img src="https://i.imgur.com/MeFk2jS.png" loading="lazy"><div class="resolution">1080p</div></a></div>
 <div class="movie-grid-item" category="Action / Aventure / Comédie / Drame / Policier / Romance / Thriller" data-year="1988"><a href="movie-details.html?title=Y a-t-il un flic pour sauver la reine ?"><img src="https://i.imgur.com/4OdPKvQ.png" loading="lazy"><div class="resolution">4K</div></a></div>
@@ -167,143 +163,119 @@
 </div></section>
 
 <script>
-// Ajout de l'attribut data-title à chaque élément film pour faciliter la recherche
+// Ajout data-title pour chaque film à partir du paramètre URL "title"
 document.querySelectorAll('.movie-grid-item, .movie-item').forEach(item => {
   const link = item.querySelector('a');
   if (!link) return;
-
-  const url = new URL(link.href, window.location.origin);
-  const title = url.searchParams.get('title');
-  if (title) item.setAttribute('data-title', title);
+  const title = new URL(link.href, location.origin).searchParams.get('title');
+  if (title) item.dataset.title = title;
 });
 
 // Fonction pour retirer les accents
-function removeAccents(str) {
-  return str.normalize("NFD").replace(/[\u0300-\u036f]/g, "");
-}
+const removeAccents = str => str.normalize("NFD").replace(/[\u0300-\u036f]/g, "");
 
-// Fonction de filtrage par recherche texte
-function filterMoviesBySearch() {
-  const input = document.getElementById("search-input").value.trim().toLowerCase();
-  const searchTerm = removeAccents(input);
-  const movieItems = document.querySelectorAll(".movie-grid-item");
-  const sectionFeatured = document.querySelector('.content');
-  const sectionRandom = document.getElementById('random-movie-box').parentElement;
-  const sectionDiscover = document.querySelector('.movie-grid-section');
+// Fonction pour afficher/masquer les films selon la recherche texte
+function filterBySearch() {
+  const search = removeAccents(document.getElementById('search-input').value.trim().toLowerCase());
+  const movies = document.querySelectorAll('.movie-grid-item');
+  const sections = {
+    featured: document.querySelector('.content'),
+    random: document.getElementById('random-movie-box').parentElement,
+    discover: document.querySelector('.movie-grid-section')
+  };
 
-  // 👇 Masquer le panneau de filtre en cas de recherche
-  document.getElementById('filter-panel').style.display = "none";
+  document.getElementById('filter-panel').style.display = 'none';
 
-  if (!searchTerm) {
+  if (!search) {
     localStorage.removeItem('searchQuery');
-    movieItems.forEach(item => item.style.display = "block");
-    sectionFeatured.style.display = "";
-    sectionRandom.style.display = "";
-    sectionDiscover.style.display = "";
+    movies.forEach(m => m.style.display = '');
+    Object.values(sections).forEach(s => s.style.display = '');
     return;
   }
 
-  localStorage.setItem('searchQuery', searchTerm);
-  let visibleCount = 0;
-
-  movieItems.forEach(item => {
-    const title = removeAccents((item.getAttribute('data-title') || "").toLowerCase());
-    const match = title.includes(searchTerm);
-    item.style.display = match ? "block" : "none";
-    if (match) visibleCount++;
+  localStorage.setItem('searchQuery', search);
+  let countVisible = 0;
+  movies.forEach(m => {
+    const title = removeAccents((m.dataset.title || '').toLowerCase());
+    const match = title.includes(search);
+    m.style.display = match ? '' : 'none';
+    if (match) countVisible++;
   });
 
-  sectionFeatured.style.display = "none";
-  sectionRandom.style.display = "none";
-  sectionDiscover.style.display = visibleCount ? "block" : "none";
+  sections.featured.style.display = 'none';
+  sections.random.style.display = 'none';
+  sections.discover.style.display = countVisible ? '' : 'none';
 }
 
+// Filtrage par catégories, année, qualité
+function filterMovies() {
+  const category = document.getElementById('category-filter').value.toLowerCase();
+  const year = document.getElementById('year-filter').value;
+  const quality = document.getElementById('quality-filter').value;
 
-// Recherche au clic sur l’icône loupe
-document.querySelector('.search-icon').addEventListener('click', filterMoviesBySearch);
-// Recherche au Enter dans le champ
+  document.querySelectorAll('.movie-grid-item').forEach(item => {
+    const categories = (item.getAttribute('category') || '').toLowerCase().split(' / ').map(c => c.trim());
+    const itemYear = item.dataset.year || '';
+    const resolution = item.querySelector('.resolution')?.textContent.trim() || '';
+
+    const show = (!category || categories.includes(category)) &&
+                 (year === 'all' || itemYear === year) &&
+                 (!quality || resolution === quality);
+
+    item.style.display = show ? '' : 'none';
+  });
+}
+
+// Réinitialisation des filtres
+function resetFilters() {
+  document.getElementById('category-filter').value = '';
+  document.getElementById('year-filter').value = 'all';
+  document.getElementById('quality-filter').value = '';
+  filterMovies();
+}
+
+// Événements
+document.querySelector('.search-icon').onclick = filterBySearch;
 document.getElementById('search-input').addEventListener('keydown', e => {
-  if (e.key === 'Enter') filterMoviesBySearch();
+  if (e.key === 'Enter') filterBySearch();
 });
 
-// Bouton Film aléatoire redirige vers un film aléatoire
-document.getElementById('random-movie-box').addEventListener('click', () => {
+document.getElementById('random-movie-box').onclick = () => {
   const links = [...document.querySelectorAll('.movie-item a, .movie-grid-item a')];
   if (!links.length) return;
-  const randomLink = links[Math.floor(Math.random() * links.length)].href;
-  window.location.href = randomLink;
-});
+  window.location.href = links[Math.floor(Math.random() * links.length)].href;
+};
 
-// Gestion du clic sur "Catégories"
-document.getElementById('categories-link').addEventListener('click', e => {
+document.getElementById('categories-link').onclick = e => {
   e.preventDefault();
   document.querySelector('.content').style.display = 'none';
   document.getElementById('random-movie-box').parentElement.style.display = 'none';
-
-  const sectionDiscover = document.querySelector('.movie-grid-section');
-  sectionDiscover.style.display = 'block';
-
-  document.getElementById('filter-panel').style.display = 'block';
-
-  document.querySelectorAll('.movie-grid-item').forEach(item => item.style.display = 'block');
-
+  document.querySelector('.movie-grid-section').style.display = '';
+  document.getElementById('filter-panel').style.display = '';
+  document.querySelectorAll('.movie-grid-item').forEach(m => m.style.display = '');
   document.getElementById('search-input').value = '';
   localStorage.removeItem('searchQuery');
-
   resetFilters();
+};
+
+['category-filter', 'year-filter', 'quality-filter'].forEach(id => {
+  document.getElementById(id).addEventListener('change', filterMovies);
 });
 
+document.getElementById('reset-filters').onclick = resetFilters;
 
-// Filtrage par catégorie et année
-const categoryFilter = document.getElementById('category-filter');
-const yearFilter = document.getElementById('year-filter');
-const resetBtn = document.getElementById('reset-filters');
-
-function filterMoviesByCategoryAndYear() {
-  const selectedCategory = categoryFilter.value.toLowerCase();
-  const selectedYear = yearFilter.value;
-
-  document.querySelectorAll('.movie-grid-item').forEach(item => {
-    const categories = (item.getAttribute('category') || "").toLowerCase().split(' / ').map(c => c.trim());
-    const year = item.getAttribute('data-year') || "";
-
-    const categoryMatch = !selectedCategory || categories.includes(selectedCategory);
-    const yearMatch = selectedYear === 'all' || year === selectedYear;
-
-    item.style.display = (categoryMatch && yearMatch) ? 'block' : 'none';
-  });
-}
-
-function resetFilters() {
-  categoryFilter.value = "";
-  yearFilter.value = "all";
-  filterMoviesByCategoryAndYear();
-}
-
-categoryFilter.addEventListener('change', filterMoviesByCategoryAndYear);
-yearFilter.addEventListener('change', filterMoviesByCategoryAndYear);
-resetBtn.addEventListener('click', resetFilters);
-
-// Scroll vers le haut quand le champ recherche reçoit le focus
-const searchInput = document.getElementById("search-input");
-searchInput.addEventListener('focus', () => window.scrollTo({ top: 0, behavior: 'smooth' }));
-searchInput.addEventListener('keydown', () => window.scrollTo({ top: 0, behavior: 'auto' }));
-document.getElementById('filter-panel').style.display = "none";
+document.getElementById('search-input').addEventListener('focus', () => window.scrollTo({ top: 0, behavior: 'smooth' }));
 
 window.addEventListener('load', () => {
-  if(window.location.hash === '#categories') {
-    // simuler le comportement clic sur catégories
-    document.querySelector('.content').style.display = 'none';
-    document.getElementById('random-movie-box').parentElement.style.display = 'none';
-    const sectionDiscover = document.querySelector('.movie-grid-section');
-    sectionDiscover.style.display = 'block';
-    document.getElementById('filter-panel').style.display = 'block';
-    document.querySelectorAll('.movie-grid-item').forEach(item => item.style.display = 'block');
-    document.getElementById('search-input').value = '';
-    localStorage.removeItem('searchQuery');
-    resetFilters();
+  // Masquer le panneau par défaut
+  document.getElementById('filter-panel').style.display = 'none';
+
+  if (location.hash === '#categories') {
+    // Simuler le clic sur catégories si hash présent
+    document.getElementById('categories-link').click();
   }
 });
+
 
 </script>
 </body>
