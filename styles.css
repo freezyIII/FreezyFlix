@@ -26,8 +26,9 @@ h2 {color: #ef2626;}
 .movie-item img {width: 100%;height: 100%;object-fit: cover;border-radius: 15px;}
 .movie-item:hover::after,
 .movie-grid-item:hover::after {content: attr(data-title);position: absolute;bottom: 0;left: 0;width: 100%;background: rgba(0, 0, 0, 0.7);color: rgb(184, 20, 20);font-size: 14px;padding: 10px 0;text-align: center;opacity: 1;transform: translateY(0);display: flex;justify-content: center;align-items: center;pointer-events: none;color: rgb(255, 255, 255);}
-.movie-item .resolution {background: gold; color: black; font-size: 12px; font-weight: bold; padding: 5px 10px; border-radius: 5px; box-shadow: 0 4px 8px rgba(0, 0, 0, 0.5); position: absolute; top: 10px; left: 10px; pointer-events: none;}
-.movie-grid-item .resolution {background: gold; color: black; font-size: 12px; font-weight: bold; padding: 5px 10px; border-radius: 5px; position: absolute; top: 10px; left: 10px; pointer-events: none;}
+.resolution, .serie {position: absolute;top: 10px;padding: 5px 10px;font-size: 12px;font-weight: bold;border-radius: 5px;box-shadow: 0 4px 8px rgba(0, 0, 0, 0.5);user-select: none;text-transform: uppercase;pointer-events: none;z-index: 10;white-space: nowrap;}
+.resolution {left: 10px;background: gold;color: black;}
+.serie {right: 10px;background-color: #800080;color: white;}
 .movie-grid {display: grid;grid-template-columns: repeat(8, 200px);grid-gap: 12px;justify-content: center;box-sizing: border-box;margin: 0 auto;}
 .movie-grid-section {padding: 40px 20px;background: #121212;text-align: center;color: #eee;}
 .movie-grid-section-results {padding: 40px 20px;text-align: center;}
@@ -65,7 +66,6 @@ strong {font-weight: bold;}
 .federant-regular {font-family: "Federant", serif;font-weight: 400;font-style: normal;}
 
 
-
 #random-movie-box {transition: all 0.2s ease;}
 #random-movie-box:hover {transform: scale(1.05);box-shadow: 0 10px 20px rgba(0, 0, 0, 0.8);}
 
@@ -81,8 +81,6 @@ strong {font-weight: bold;}
         opacity: 1;
     }
 }
-
-
 
 /* Faq */
 :root {--faq-primary-color: #353333;--faq-secondary-color: #0f0f0f;--faq-accent-color: #4CAF50;--faq-text-color: #ffffff;--faq-background-color: #2d2d2d;--faq-white: #fff;--faq-link-color: blue;--faq-hover-color: #000000;}
@@ -104,8 +102,6 @@ header.faq-header {background: #1f1f1f;padding: 0 20px;display: flex;justify-con
 .faq-discord-link:hover {text-decoration: underline;}
 .FAQ-title {color: red;justify-content: center;display: flex;margin-top: 20px;text-decoration: underline;}
   
-
-
 
 /* Don */
 .animated-link {font-size: 20px;font-weight: bold;text-decoration: none;color: black;display: inline-block;}
@@ -132,7 +128,7 @@ header.faq-header {background: #1f1f1f;padding: 0 20px;display: flex;justify-con
 100% {opacity: 1;color: #FF1493;}}
 
 
-
+#filter-panel {display: none;}
 #filter-panel label,
 #filter-panel select {font-family: 'Federant', cursive;font-size: 1rem;color: #0077cc;}
 .category-pill {background: #e0f5ff;color: #007acc;border: 2px solid #00aaff;border-radius: 30px;padding: 8px 16px;font-weight: 600;font-size: 1em;cursor: pointer;user-select: none;display: flex;align-items: center;gap: 8px;transition: all 0.3s ease;}
@@ -147,7 +143,6 @@ label {font-weight: 700;color: #004466;font-size: 1.1em;margin-right: 8px;font-f
 .category-pill {cursor: pointer;padding: 6px 12px;border: 2px solid #00aaff;border-radius: 20px;font-family: 'Federant', cursive;color: #0077cc;user-select: none;position: relative;transition: background-color 0.3s, color 0.3s;font-weight: 700;}
 .category-pill.selected {background-color: #000;color: white;}
 .category-pill.selected::before {content: '';position: absolute;left: 8px;top: 50%;transform: translateY(-50%);width: 10px;height: 10px;background: white;border-radius: 50%;}
-
 
 
 /* Bouton doré */

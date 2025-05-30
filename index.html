@@ -32,7 +32,7 @@
 
 <section class="movie-grid-section"><h2 class="titan-one-regular">Découvrir d'autres films</h2>
 
-<div id="filter-panel" style="margin: 20px auto; max-width: 600px; padding: 15px; border-radius: 8px; background: #00aaff22; border: 2px solid #00aaff; font-family: 'Federant', cursive;"><div style="display: flex; gap: 20px; flex-wrap: wrap; justify-content: center; align-items: center;"><div style="flex: 1 1 200px; min-width: 180px;"><label for="category-filter" style="color: #0077cc; font-weight: 700; display: block; margin-bottom: 6px; font-size: 1rem;">Catégorie :</label><select id="category-filter" style="width: 100%; padding: 8px 12px; font-size: 1rem; border: 2px solid #00aaff; border-radius: 6px; background-color: white; color: #0077cc; cursor: pointer; transition: border-color 0.3s;">
+<div id="filter-panel" style="margin: 20px auto; max-width: 700px; padding: 15px; border-radius: 8px; background: #00aaff22; border: 2px solid #00aaff; font-family: 'Federant', cursive;"><div style="display: flex; gap: 20px; flex-wrap: wrap; justify-content: center; align-items: center;"><div style="flex: 1 1 200px; min-width: 180px;"><label for="category-filter" style="color: #0077cc; font-weight: 700; display: block; margin-bottom: 6px; font-size: 1rem;">Catégorie :</label><select id="category-filter" style="width: 100%; padding: 8px 12px; font-size: 1rem; border: 2px solid #00aaff; border-radius: 6px; background-color: white; color: #0077cc; cursor: pointer; transition: border-color 0.3s;">
 <option value="" selected>Toutes les catégories</option>
 <option value="action">Action</option>
 <option value="animation">Animation</option>
@@ -54,6 +54,12 @@
 <option value="surnaturel">Surnaturel</option>
 <option value="thriller">Thriller</option>
 <option value="western">Western</option>
+</select></div>
+
+<div style="flex: 1 1 120px; min-width: 120px;"><label for="type-filter" style="color: #0077cc; font-weight: 700; display: block; margin-bottom: 6px; font-size: 1rem;">Type :</label><select id="type-filter" style="width: 100%; padding: 8px 12px; font-size: 1rem; border: 2px solid #00aaff; border-radius: 6px; background-color: white; color: #0077cc; cursor: pointer; transition: border-color 0.3s;">
+<option value="" selected>Tous</option>
+<option value="film">Film</option>
+<option value="serie">Série</option>
 </select></div>
 
 <div style="flex: 1 1 120px; min-width: 120px;"><label for="year-filter" style="color: #0077cc; font-weight: 700; display: block; margin-bottom: 6px; font-size: 1rem;">Année :</label><select id="year-filter" style="width: 100%; padding: 8px 12px; font-size: 1rem; border: 2px solid #00aaff; border-radius: 6px; background-color: white; color: #0077cc; cursor: pointer; transition: border-color 0.3s;">
@@ -83,11 +89,11 @@
 <option value="4K">4K</option>
 </select></div>
 
-
 <div style="flex: 0 0 auto; align-self: flex-end;"><button id="reset-filters" style="background-color: #00aaff; border: none; color: white; padding: 10px 20px; font-weight: 700; font-size: 1rem; border-radius: 6px; cursor: pointer; transition: background-color 0.3s;">Réinitialiser</button></div></div></div>
 
 <!--<div class="movie-grid-item" category="" data-year=""><a href="movie-details.html?title="><img src="" loading="lazy"><div class="resolution">1080p</div></a></div>-->
 <div class="movie-grid">
+<div class="movie-grid-item" category="Action / Animation / Comédie" data-year="1997"><a href="movie-details.html?title=South Park"><img src="https://i.imgur.com/OrZtbG5.png" loading="lazy"><div class="resolution">1080p</div><div class="serie">Série</div></a></div>
 <div class="movie-grid-item" category="Action / Aventure / Fantasy / Comédie / Drame / Science-fiction" data-year="2022"><a href="movie-details.html?title=Les Animaux fantastiques : Les Secrets de Dumbledore"><img src="https://i.imgur.com/jAJ2L7X.png" loading="lazy"><div class="resolution">4K</div></a></div>
 <div class="movie-grid-item" category="Action / Aventure / Fantasy / Comédie / Drame / Science-fiction" data-year="2018"><a href="movie-details.html?title=Les Animaux fantastiques : Les Crimes de Grindelwald"><img src="https://i.imgur.com/SYFCkgh.png" loading="lazy"><div class="resolution">1080p</div></a></div>
 <div class="movie-grid-item" category="Action / Aventure / Fantasy / Comédie / Drame / Science-fiction" data-year="2016"><a href="movie-details.html?title=Les Animaux fantastiques"><img src="https://i.imgur.com/EXvlwxw.png" loading="lazy"><div class="resolution">1080p</div></a></div>
@@ -105,10 +111,9 @@
 <div class="movie-grid-item" category="Action / Comédie" data-year="1976"><a href="movie-details.html?title=L'Aile ou la Cuisse"><img src="https://i.imgur.com/7MtopjU.png" loading="lazy"><div class="resolution">1080p</div></a></div>
 <div class="movie-grid-item" category="Action / Aventure / Drame / Fantasy / Romance / Science-fiction / Thriller" data-year="2014"><a href="movie-details.html?title=The Giver"><img src="https://i.imgur.com/SC41UQz.png" loading="lazy"><div class="resolution">1080p</div></a></div>
 <div class="movie-grid-item" category="Action / Animation / Aventure / Fantasy / Comédie / Drame / Romance / Science-fiction" data-year="2023"><a href="movie-details.html?title=Super Mario Bros., le film"><img src="https://i.imgur.com/o49uJdh.png" loading="lazy"><div class="resolution">1080p</div></a></div>
-<div class="movie-grid-item" category="Comédie" data-year="2011"><a href="movie-details.html?title=Suits : Avocats sur mesure (Saison 1)"><img src="https://i.imgur.com/EDbz8LM.png" loading="lazy"><div class="resolution">1080p</div></a></div>
+<div class="movie-grid-item" category="Comédie" data-year="2011"><a href="movie-details.html?title=Suits : Avocats sur mesure"><img src="https://i.imgur.com/EDbz8LM.png" loading="lazy"><div class="resolution">1080p</div><div class="serie">Série</div></a></div>
 <div class="movie-grid-item" category="Action / Aventure / Drame / Romance / Science-fiction / Thriller" data-year="2021"><a href="movie-details.html?title=Matrix Resurrections"><img src="https://i.imgur.com/MZVysx3.png" loading="lazy"><div class="resolution">1080p</div></a></div>
 <div class="movie-grid-item" category="Action / Comédie / Criminel / Drame / Policier / Thriller" data-year="1999"><a href="movie-details.html?title=Fight Club"><img src="https://i.imgur.com/WSSwhNa.png" loading="lazy"><div class="resolution">1080p</div></a></div>
-<div class="movie-grid-item" category="Action / Aventure / Fantasy / Comédie / Drame / Science-fiction" data-year="2022"><a href="movie-details.html?title=Les Animaux fantastiques : Les Secrets de Dumbledore"><img src="https://i.imgur.com/5v1CUqL.png" loading="lazy"><div class="resolution">4K</div></a></div>
 <div class="movie-grid-item" category="Comédie" data-year="2015"><a href="movie-details.html?title=Babysitting 2"><img src="https://i.imgur.com/4ps1HPu.png" loading="lazy"><div class="resolution">1080p</div></a></div>
 <div class="movie-grid-item" category="Comédie" data-year="2014"><a href="movie-details.html?title=Babysitting"><img src="https://i.imgur.com/tiIezTw.png" loading="lazy"><div class="resolution">1080p</div></a></div>
 <div class="movie-grid-item" category="Action / Animation / Aventure / Comédie / Drame" data-year="2017"><a href="movie-details.html?title=Cars 3"><img src="https://i.imgur.com/9KNmyDO.png" loading="lazy"><div class="resolution">1080p</div></a></div>
@@ -215,27 +220,34 @@ function filterMovies() {
   const category = document.getElementById('category-filter').value.toLowerCase();
   const year = document.getElementById('year-filter').value;
   const quality = document.getElementById('quality-filter').value;
+  const type = document.getElementById('type-filter').value.toLowerCase();
 
   document.querySelectorAll('.movie-grid-item').forEach(item => {
     const categories = (item.getAttribute('category') || '').toLowerCase().split(' / ').map(c => c.trim());
     const itemYear = item.dataset.year || '';
     const resolution = item.querySelector('.resolution')?.textContent.trim() || '';
+    const itemType = (item.dataset.type || '').toLowerCase();
 
-    const show = (!category || categories.includes(category)) &&
-                 (year === 'all' || itemYear === year) &&
-                 (!quality || resolution === quality);
+    const show = 
+      (!category || categories.includes(category)) &&
+      (year === 'all' || itemYear === year) &&
+      (!quality || resolution === quality) &&
+      (!type || itemType === type);
 
     item.style.display = show ? '' : 'none';
   });
 }
+
 
 // Réinitialisation des filtres
 function resetFilters() {
   document.getElementById('category-filter').value = '';
   document.getElementById('year-filter').value = 'all';
   document.getElementById('quality-filter').value = '';
+  document.getElementById('type-filter').value = '';
   filterMovies();
 }
+
 
 // Événements
 document.querySelector('.search-icon').onclick = filterBySearch;
@@ -270,15 +282,24 @@ document.getElementById('reset-filters').onclick = resetFilters;
 document.getElementById('search-input').addEventListener('focus', () => window.scrollTo({ top: 0, behavior: 'smooth' }));
 
 window.addEventListener('load', () => {
-  // Masquer le panneau par défaut
   document.getElementById('filter-panel').style.display = 'none';
 
   if (location.hash === '#categories') {
-    // Simuler le clic sur catégories si hash présent
     document.getElementById('categories-link').click();
   }
 });
 
+document.getElementById('categories-link').addEventListener('click', function(event) {
+  event.preventDefault();
+
+  const filterPanel = document.getElementById('filter-panel');
+  
+  if (filterPanel.style.display === 'none' || filterPanel.style.display === '') {
+    filterPanel.style.display = 'flex';
+  } else {
+    filterPanel.style.display = 'none';
+  }
+});
 
 </script>
 </body>
