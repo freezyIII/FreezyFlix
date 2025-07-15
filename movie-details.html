@@ -154,9 +154,9 @@
 
     // Bouton de téléchargement vert
     const downloadBtn = document.getElementById('downloadButton');
-if (selectedMovie.title === "Man of Steel") {
-  downloadBtn.style.display = 'none'; // cacher le bouton vert
-} else {
+if (selectedMovie.title === "Man of Steel") {downloadBtn.style.display = 'none';
+} 
+else {
   downloadBtn.textContent = 'Télécharger';
   downloadBtn.onclick = () => window.open(selectedMovie.downloadUrl, '_blank');
 }
