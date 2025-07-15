@@ -154,8 +154,12 @@
 
     // Bouton de téléchargement vert
     const downloadBtn = document.getElementById('downloadButton');
-    downloadBtn.textContent = 'Télécharger';
-    downloadBtn.onclick = () => window.open(selectedMovie.downloadUrl, '_blank');
+if (selectedMovie.title === "Man of Steel") {
+  downloadBtn.style.display = 'none'; // cacher le bouton vert
+} else {
+  downloadBtn.textContent = 'Télécharger';
+  downloadBtn.onclick = () => window.open(selectedMovie.downloadUrl, '_blank');
+}
 
     // Bouton de téléchargement doré
 if (selectedMovie.title === "Ad Astra") {const goldenBtn = document.createElement('button');goldenBtn.textContent = "Télécharger qualité maximum 48,12 GB";goldenBtn.className = 'gold-button';goldenBtn.onclick = () => window.open("https://www.clictune.com/kxjS", '_blank');document.querySelector('.container').appendChild(goldenBtn);}
