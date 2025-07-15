@@ -36,7 +36,10 @@
 <p id="movieDuration" class="movie-duration"><strong>Durée :</strong> <span id="durationValue"></span></p>
 <p id="movieSize" class="movie-size"><strong>Taille :</strong> <span id="sizeValue"></span></p>
 
-<!--{ title: "", category: "", youtubeUrl: "", releaseDate: "", duration: "", size: " GB", downloadUrl: "", description: "" },-->
+<!--
+{ title: "", category: "", youtubeUrl: "", releaseDate: "", duration: "", size: " GB", downloadUrl: "", description: "" },
+-->
+
 <script>const allMovies = [
 { title: "Batman v Superman : L'Aube de la justice", category: "Action / Aventure / Drame / Science-fiction", youtubeUrl: "https://www.youtube.com/embed/rW4ZaR2Jndg", releaseDate: "23 mars 2016", duration: "2h31", size: "63,60 GB", downloadUrl: "https://www.clictune.com/lg9Y", description: "Craignant les débordements d'un superhéros aux pouvoirs infinis, le justicier de Gotham City, lui-même doté d'une détermination et d'une force de frappe redoutables, affronte le sauveur des temps modernes adulé de Metropolis sous le regard du monde entier qui se demande quel type de héros lui convient le mieux." },
 { title: "Man of Steel", category: "Action / Aventure / Fantasy / Drame / Science-fiction", youtubeUrl: "https://www.youtube.com/embed/Xw4VeR7tCxU", releaseDate: "19 juin 2013", duration: "2h23", size: "79,19 GB", downloadUrl: "https://www.clictune.com/lg9X", description: "Lorsque Jor-El comprend que sa planète, Krypton, est au bord de l'annihilation, il décide d'envoyer son fils unique, Kal-El, sur la planète Terre dans le but de sauver sa race." },
@@ -155,14 +158,26 @@
 
     // Bouton de téléchargement vert
 const downloadBtn = document.getElementById('downloadButton');
-downloadBtn.textContent = 'Télécharger';
-downloadBtn.onclick = () => window.open(selectedMovie.downloadUrl, '_blank');
+
+const forbiddenTitles = [
+  "Batman v Superman : L'Aube de la justice",
+  "Man of Steel"
+];
+
+if (downloadBtn && forbiddenTitles.includes(selectedMovie.title)) {
+  downloadBtn.remove();
+} else if (downloadBtn) {
+  downloadBtn.textContent = 'Télécharger';
+  downloadBtn.onclick = () => window.open(selectedMovie.downloadUrl, '_blank');
+}
 
 
     // Bouton de téléchargement doré
 if (selectedMovie.title === "Ad Astra") {const goldenBtn = document.createElement('button');goldenBtn.textContent = "Télécharger qualité maximum 48,12 GB";goldenBtn.className = 'gold-button';goldenBtn.onclick = () => window.open("https://www.clictune.com/kxjS", '_blank');document.querySelector('.container').appendChild(goldenBtn);}
 if (selectedMovie.title === "Interstellar") {const goldenBtn = document.createElement('button');goldenBtn.textContent = "Télécharger qualité maximum 73,40 GB";goldenBtn.className = 'gold-button';goldenBtn.onclick = () => window.open("https://www.clictune.com/kxkj", '_blank');document.querySelector('.container').appendChild(goldenBtn);}
 if (selectedMovie.title === "Le Hobbit: La désolation de Smaug") {const goldenBtn = document.createElement('button');goldenBtn.textContent = "Télécharger qualité maximum 94,71 GB";goldenBtn.className = 'gold-button';goldenBtn.onclick = () => window.open("https://www.clictune.com/kxvU", '_blank');document.querySelector('.container').appendChild(goldenBtn);}
+if (selectedMovie.title === "Batman v Superman : L'Aube de la justice") {const goldenBtn = document.createElement('button');goldenBtn.textContent = "Télécharger qualité maximum";goldenBtn.className = 'gold-button';goldenBtn.onclick = () => window.open("https://www.clictune.com/lg9Y", '_blank');document.querySelector('.container').appendChild(goldenBtn);}
+if (selectedMovie.title === "Man of Steel") {const goldenBtn = document.createElement('button');goldenBtn.textContent = "Télécharger qualité maximum";goldenBtn.className = 'gold-button';goldenBtn.onclick = () => window.open("https://www.clictune.com/lg9X", '_blank');document.querySelector('.container').appendChild(goldenBtn);}
 }
 let contentHtml = "";
 
