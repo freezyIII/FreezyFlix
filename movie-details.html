@@ -154,17 +154,9 @@
     document.getElementById('movieIframeContainer').innerHTML = iframe;
 
     // Bouton de téléchargement vert
-// Bouton de téléchargement vert
 const downloadBtn = document.getElementById('downloadButton');
-if (selectedMovie.title === "Man of Steel") {
-  downloadBtn.style.display = 'none';
-if (selectedMovie.title === "Batman v Superman : L'Aube de la justice") {
-  downloadBtn.style.display = 'none';
-} 
-else {
-  downloadBtn.textContent = 'Télécharger';
-  downloadBtn.onclick = () => window.open(selectedMovie.downloadUrl, '_blank');
-}
+downloadBtn.textContent = 'Télécharger';
+downloadBtn.onclick = () => window.open(selectedMovie.downloadUrl, '_blank');
 
 
     // Bouton de téléchargement doré
