@@ -285,9 +285,10 @@ function filterMovies() {
     // Qualité
     const resolution = item.querySelector('.resolution')?.textContent.trim() || '';
 
-    // Type : "serie" si la div .serie existe, sinon "film"
-    const itemType = item.querySelector('.serie') ? 'serie' : 'film';
+    // Type : "serie" si la div .serie existe à l'intérieur, sinon "film"
+    const itemType = item.querySelector('a > .serie') ? 'serie' : 'film';
 
+    // Vérifier si le film doit s'afficher
     const show = 
       (!category || categories.includes(category)) &&
       (year === 'all' || itemYear === year) &&
@@ -297,6 +298,7 @@ function filterMovies() {
     item.style.display = show ? '' : 'none';
   });
 }
+
 
 
 
