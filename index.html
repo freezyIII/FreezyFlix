@@ -276,10 +276,17 @@ function filterMovies() {
   const type = document.getElementById('type-filter').value.toLowerCase();
 
   document.querySelectorAll('.movie-grid-item').forEach(item => {
+    // Catégories
     const categories = (item.getAttribute('category') || '').toLowerCase().split(' / ').map(c => c.trim());
+
+    // Année
     const itemYear = item.dataset.year || '';
+
+    // Qualité
     const resolution = item.querySelector('.resolution')?.textContent.trim() || '';
-    const itemType = (item.dataset.type || '').toLowerCase();
+
+    // Type : "serie" si la div .serie existe, sinon "film"
+    const itemType = item.querySelector('.serie') ? 'serie' : 'film';
 
     const show = 
       (!category || categories.includes(category)) &&
@@ -290,6 +297,7 @@ function filterMovies() {
     item.style.display = show ? '' : 'none';
   });
 }
+
 
 
 // Réinitialisation des filtres
@@ -357,6 +365,7 @@ document.getElementById('categories-link').addEventListener('click', function(ev
 </script>
 </body>
 </html>
+
 
 
 
