@@ -269,6 +269,7 @@ function filterBySearch() {
 }
 
 // Filtrage par catégories, année, qualité
+
 function filterMovies() {
   const category = document.getElementById('category-filter').value.toLowerCase();
   const year = document.getElementById('year-filter').value;
@@ -276,19 +277,11 @@ function filterMovies() {
   const type = document.getElementById('type-filter').value.toLowerCase();
 
   document.querySelectorAll('.movie-grid-item').forEach(item => {
-    // Catégories
     const categories = (item.getAttribute('category') || '').toLowerCase().split(' / ').map(c => c.trim());
-
-    // Année
     const itemYear = item.dataset.year || '';
-
-    // Qualité
     const resolution = item.querySelector('.resolution')?.textContent.trim() || '';
+    const itemType = (item.dataset.type || '').toLowerCase();
 
-    // Type : "serie" si la div .serie existe à l'intérieur, sinon "film"
-    const itemType = item.querySelector('a > .serie') ? 'serie' : 'film';
-
-    // Vérifier si le film doit s'afficher
     const show = 
       (!category || categories.includes(category)) &&
       (year === 'all' || itemYear === year) &&
@@ -298,8 +291,6 @@ function filterMovies() {
     item.style.display = show ? '' : 'none';
   });
 }
-
-
 
 
 // Réinitialisation des filtres
@@ -367,6 +358,7 @@ document.getElementById('categories-link').addEventListener('click', function(ev
 </script>
 </body>
 </html>
+
 
 
 
