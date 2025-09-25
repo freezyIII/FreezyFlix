@@ -184,6 +184,9 @@
     document.getElementById('durationValue').textContent = selectedMovie.duration;
     document.getElementById('sizeValue').textContent = selectedMovie.size;
 
+    const iframe = `<iframe src="${selectedMovie.youtubeUrl}" frameborder="0" allowfullscreen></iframe>`;
+    document.getElementById('movieIframeContainer').innerHTML = iframe;
+
     // Bouton de téléchargement vert
 const downloadBtn = document.getElementById('downloadButton');
 
@@ -207,7 +210,6 @@ if (selectedMovie.title === "Le Hobbit: La désolation de Smaug") {const goldenB
 if (selectedMovie.title === "Batman v Superman : L'Aube de la justice") {const goldenBtn = document.createElement('button');goldenBtn.textContent = "Télécharger qualité maximum";goldenBtn.className = 'gold-button';goldenBtn.onclick = () => window.open("https://www.clictune.com/lg9Y", '_blank');document.querySelector('.container').appendChild(goldenBtn);}
 if (selectedMovie.title === "Man of Steel") {const goldenBtn = document.createElement('button');goldenBtn.textContent = "Télécharger qualité maximum";goldenBtn.className = 'gold-button';goldenBtn.onclick = () => window.open("https://www.clictune.com/lg9X", '_blank');document.querySelector('.container').appendChild(goldenBtn);}
 if (selectedMovie.title === "Mercredi") {document.body.style.background = "url('https://wallpapers-clan.com/wp-content/uploads/2023/12/wednesday-adams-with-umbrella-purple-desktop-wallpaper-preview.jpg') no-repeat center center fixed";document.body.style.backgroundSize = "cover";}
-if (selectedMovie.title === "South Park") {document.body.style.background = "url('https://images-wixmp-ed30a86b8c4ca887773594c2.wixmp.com/f/557c7d56-4da2-4897-aa10-c26e0670d31c/dd3q1fe-ab879926-f568-417b-9158-8dc3dca37061.png') no-repeat center center fixed";document.body.style.backgroundSize = "cover";}
 }
 let contentHtml = "";
 
@@ -224,6 +226,7 @@ document.getElementById('movieIframeContainer').innerHTML = contentHtml;
 </script>
 </body>
 </html>
+
 
 
 
