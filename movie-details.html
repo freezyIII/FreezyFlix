@@ -184,6 +184,11 @@ if (selectedMovie) {
   document.getElementById('durationValue').textContent = selectedMovie.duration;
   document.getElementById('sizeValue').textContent = selectedMovie.size;
 
+    if (selectedMovie.backgroundUrl) {
+    document.body.style.background = `url('${selectedMovie.backgroundUrl}') no-repeat center center fixed`;
+    document.body.style.backgroundSize = "cover";
+  }
+
   // Bouton de téléchargement vert
   const downloadBtn = document.getElementById('downloadButton');
   const forbiddenTitles = [
@@ -230,6 +235,7 @@ if (selectedMovie) {
 </script>
 </body>
 </html>
+
 
 
 
