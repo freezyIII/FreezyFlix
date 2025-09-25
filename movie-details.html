@@ -184,9 +184,6 @@
     document.getElementById('durationValue').textContent = selectedMovie.duration;
     document.getElementById('sizeValue').textContent = selectedMovie.size;
 
-    const iframe = `<iframe src="${selectedMovie.youtubeUrl}" frameborder="0" allowfullscreen></iframe>`;
-    document.getElementById('movieIframeContainer').innerHTML = iframe;
-
     // Bouton de téléchargement vert
 const downloadBtn = document.getElementById('downloadButton');
 
@@ -226,6 +223,7 @@ document.getElementById('movieIframeContainer').innerHTML = contentHtml;
 </script>
 </body>
 </html>
+
 
 
 
