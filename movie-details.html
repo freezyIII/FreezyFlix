@@ -200,29 +200,32 @@ if (downloadBtn && forbiddenTitles.includes(selectedMovie.title)) {
 }
 
 
-    // Bouton de téléchargement doré
-if (selectedMovie.title === "Ad Astra") {const goldenBtn = document.createElement('button');goldenBtn.textContent = "Télécharger qualité maximum 48,12 GB";goldenBtn.className = 'gold-button';goldenBtn.onclick = () => window.open("https://www.clictune.com/kxjS", '_blank');document.querySelector('.container').appendChild(goldenBtn);}
-if (selectedMovie.title === "Interstellar") {const goldenBtn = document.createElement('button');goldenBtn.textContent = "Télécharger qualité maximum 73,40 GB";goldenBtn.className = 'gold-button';goldenBtn.onclick = () => window.open("https://www.clictune.com/kxkj", '_blank');document.querySelector('.container').appendChild(goldenBtn);}
-if (selectedMovie.title === "Le Hobbit: La désolation de Smaug") {const goldenBtn = document.createElement('button');goldenBtn.textContent = "Télécharger qualité maximum 94,71 GB";goldenBtn.className = 'gold-button';goldenBtn.onclick = () => window.open("https://www.clictune.com/kxvU", '_blank');document.querySelector('.container').appendChild(goldenBtn);}
-if (selectedMovie.title === "Batman v Superman : L'Aube de la justice") {const goldenBtn = document.createElement('button');goldenBtn.textContent = "Télécharger qualité maximum";goldenBtn.className = 'gold-button';goldenBtn.onclick = () => window.open("https://www.clictune.com/lg9Y", '_blank');document.querySelector('.container').appendChild(goldenBtn);}
-if (selectedMovie.title === "Man of Steel") {const goldenBtn = document.createElement('button');goldenBtn.textContent = "Télécharger qualité maximum";goldenBtn.className = 'gold-button';goldenBtn.onclick = () => window.open("https://www.clictune.com/lg9X", '_blank');document.querySelector('.container').appendChild(goldenBtn);}
-if (selectedMovie.title === "Mercredi") {document.body.style.background = "url('https://wallpapers-clan.com/wp-content/uploads/2023/12/wednesday-adams-with-umbrella-purple-desktop-wallpaper-preview.jpg') no-repeat center center fixed";document.body.style.backgroundSize = "cover";}
-}
-let contentHtml = "";
+// Définir les boutons dorés avec leurs URLs et tailles
+const goldButtons = {
+  "Ad Astra": { url: "https://www.clictune.com/kxjS", size: "48,12 GB" },
+  "Interstellar": { url: "https://www.clictune.com/kxkj", size: "73,40 GB" },
+  "Le Hobbit: La désolation de Smaug": { url: "https://www.clictune.com/kxvU", size: "94,71 GB" },
+  "Batman v Superman : L'Aube de la justice": { url: "https://www.clictune.com/lg9Y" },
+  "Man of Steel": { url: "https://www.clictune.com/lg9X" }
+};
 
-if (selectedMovie.image) {
-  // Si une image est définie, on l'affiche à la place de la vidéo
-  contentHtml = `<img src="${selectedMovie.image}" alt="${selectedMovie.title}" style="width:800px; height:450px; object-fit:cover; border-radius:20px 20px 0 0;" />`;
-} else if (selectedMovie.youtubeUrl) {
-  // Sinon, on affiche la vidéo
-  contentHtml = `<iframe src="${selectedMovie.youtubeUrl}" frameborder="0" allowfullscreen></iframe>`;
+// Vérifier si le film sélectionné a un bouton doré
+if (goldButtons[selectedMovie.title]) {
+  const { url, size } = goldButtons[selectedMovie.title];
+
+  const goldenBtn = document.createElement('button');
+  goldenBtn.textContent = size ? `Télécharger qualité maximum ${size}` : "Télécharger qualité maximum";
+  goldenBtn.className = 'gold-button';
+  goldenBtn.onclick = () => window.open(url, '_blank');
+
+  document.querySelector('.container').appendChild(goldenBtn);
 }
 
-document.getElementById('movieIframeContainer').innerHTML = contentHtml;
 
 </script>
 </body>
 </html>
+
 
 
 
