@@ -55,7 +55,7 @@ ul li a[href="categories.html"]:hover {text-decoration: none;transform: scale(1.
 
 /* Recherche de Films */
 .search-container {display: flex;align-items: center;position: absolute;right: 30px;top: 50%;transform: translateY(-50%);}
-.search-box {background-color: #0d0d0d;color: white;border: none;padding: 8px 10px;border-radius: 2px;font-size: 18px;margin-right: 5px;width: 250px;box-shadow: 0px 0px 3px rgba(211, 211, 211, 0.531);}
+.search-box {background-color: #0d0d0d;color: white;border: none;padding: 8px 10px;border-radius: 2px;font-size: 18px;margin-right: 5px;width: 250px;box-shadow: #211E1E}
 .search-box:focus {outline: none;box-shadow: 0 0 8px rgba(159, 4, 4, 0.7);}
 .search-icon {background-color: transparent;border: none;color: white;font-size: 18px;cursor: pointer;transition: transform 0.3s ease, color 0.3s ease;}
 .search-icon:hover {color: #ff7300;transform: scale(1.07) translateY(-1%);}
@@ -178,5 +178,6 @@ label {font-weight: 700;color: #004466;font-size: 1.1em;margin-right: 8px;font-f
         transform: translateY(110vh);
     }
 }
+
 
 
