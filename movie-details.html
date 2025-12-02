@@ -239,8 +239,39 @@ if (selectedMovie) {
 
 
 </script>
+
+
+
+
+
+
+  <div id="snow-container"></div>
+
+<script>
+    function createSnowflake() {
+        const snowflake = document.createElement("div");
+        snowflake.classList.add("snowflake");
+        snowflake.style.left = Math.random() * 100 + "vw";
+        snowflake.style.animationDuration = (Math.random() * 3 + 2) + "s";
+        snowflake.style.opacity = Math.random();
+        snowflake.style.fontSize = Math.random() * 12 + 10 + "px";
+        snowflake.innerHTML = "❄";
+
+        document.getElementById("snow-container").appendChild(snowflake);
+
+        // supprimer après la chute
+        setTimeout(() => {
+            snowflake.remove();
+        }, 5000);
+    }
+
+    // créer un flocon toutes les 200 ms
+    setInterval(createSnowflake, 200);
+</script>
+
 </body>
 </html>
+
 
 
 
