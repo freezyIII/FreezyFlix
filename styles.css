@@ -149,3 +149,39 @@ label {font-weight: 700;color: #004466;font-size: 1.1em;margin-right: 8px;font-f
 /* Bouton doré */
 .gold-button {display: inline-block;width: auto;background: linear-gradient(45deg, #FFD700, #FFA500);border: none;color: white;padding: 8px 16px;margin: 1.5rem auto 0 auto;font-size: 1.4rem;font-weight: bold;cursor: pointer;border-radius: 6px;transition: background 0.3s ease;text-transform: uppercase;}
 .gold-button:hover {background: linear-gradient(45deg, #FFA500, #FFD700);}
+
+
+
+
+
+#snow-container {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    pointer-events: none; /* pour ne pas bloquer les clics */
+    overflow: hidden;
+    z-index: 9999;
+}
+
+.snowflake {
+    position: absolute;
+    top: -10px;
+    color: white;
+    animation-name: fall;
+    animation-timing-function: linear;
+    animation-iteration-count: 1;
+}
+
+/* Animation de chute */
+@keyframes fall {
+    0% {
+        transform: translateY(0);
+    }
+    100% {
+        transform: translateY(110vh);
+    }
+}
+
+
