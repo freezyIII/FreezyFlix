@@ -1,3 +1,33 @@
+<script>
+  // Si l'URL ne contient pas ?dev=1 → afficher maintenance
+  const params = new URLSearchParams(window.location.search);
+  const dev = params.get("dev");
+
+  if (dev !== "1") {
+    document.body.innerHTML = `
+      <style>
+        body {
+          background: #f2f2f2;
+          font-family: Arial;
+          text-align: center;
+          padding-top: 100px;
+        }
+        h1 {
+          color: #333;
+          font-size: 40px;
+        }
+        p {
+          color: #666;
+          font-size: 20px;
+        }
+      </style>
+      <h1>Maintenance</h1>
+      <p>Le site est actuellement en maintenance.<br>Veuillez revenir plus tard.</p>
+    `;
+  }
+</script>
+
+
 <!DOCTYPE html>
 <html lang="fr">
 <head>
@@ -402,6 +432,7 @@ document.getElementById('categories-link').addEventListener('click', function(ev
   
 </body>
 </html>
+
 
 
 
