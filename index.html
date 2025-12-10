@@ -9,38 +9,7 @@
 </head>
 <body class="page_index">
 
-            <script>
-  // Si l'URL ne contient pas ?dev=1 → afficher maintenance
-  const params = new URLSearchParams(window.location.search);
-  const dev = params.get("dev");
 
-  if (dev !== "1") {
-    document.body.innerHTML = `
-      <style>
-        body {
-          background: #f2f2f2;
-          font-family: Arial;
-          text-align: center;
-          padding-top: 100px;
-        }
-        h1 {
-          color: #333;
-          font-size: 40px;
-        }
-        p {
-          color: #666;
-          font-size: 20px;
-        }
-      </style>
-      <h1>Maintenance</h1>
-      <p>Le site est actuellement en maintenance.<br>Veuillez revenir plus tard.</p>
-    `;
-  }
-</script>        
-
-
-<!--
-  
 
 <header>
 <a href="index.html" class="logo" aria-label="Accueil"><img src="https://i.imgur.com/7Ddaoy6.png" alt="Logo FreezyFlix" /></a><ul class="federant-regular">
@@ -127,7 +96,7 @@
   
 <div class="movie-grid-item" category="" data-year=""><a href="movie-details.html?title="><img src="" loading="lazy"><div class="resolution">1080p</div></a></div>
 -->
-<!--
+
 <div class="movie-grid">
 <div class="movie-grid-item" category="Action / Aventure / Fantasy / Drame / Guerre" data-year="2014"><a href="movie-details.html?title=Le Hobbit : la bataille des cinq armées"><img src="https://i.imgur.com/Ajc8tVB.png" loading="lazy"><div class="resolution">4K</div></a></div>
 <div class="movie-grid-item" category="Action / Aventure / Drame" data-year="2000"><a href="movie-details.html?title=Gladiator"><img src="https://i.imgur.com/G6p8KE9.png" loading="lazy"><div class="resolution">1080p</div></a></div>
@@ -434,3 +403,4 @@ document.getElementById('categories-link').addEventListener('click', function(ev
 </body>
 </html>
             
+
