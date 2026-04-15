@@ -205,7 +205,7 @@ function setupFavoriteButton() {
 
 // ---------------------- ESPACE COMMENTAIRES ----------------------
 function setupCommentsSection() {
-  const ADMIN_UID = "KtbPQGILOOezNNhfHn91L0prAIx2";
+  const ADMIN_UID = "XlNybs8vBsUQdA86cP8BDNAzTMN2";
 
   onAuthStateChanged(auth, async user => {
     if (user) {
