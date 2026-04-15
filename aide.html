@@ -5,7 +5,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>FreezyFlix</title>
 <link href="https://fonts.googleapis.com/css2?family=Titan+One&family=Federant&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="css/movie-details.css" />
+<link rel="stylesheet" href="css/aide.css" />
 <link rel="stylesheet" href="css/navbar.css">
 </head>
 
@@ -36,54 +36,70 @@
 <button class="login-button" id="loginBtn"><img src="https://upload.wikimedia.org/wikipedia/commons/5/53/Google_%22G%22_Logo.svg" class="google-logo">Connexion</button></div>
 </header>
 
-<h1 class="titan-one-regular" id="movieTitle"></h1>
 
-<div class="movie-header-container"><div id="movieIframeContainer"></div><div id="movieCategory" class="movie-category-container"><p id="movieCategoryText" class="movie-category"></p></div>
 
-<button id="favoriteBtn" class="favorite-btn">⭐ Ajouter aux favoris</button>
-
-<p id="movieDescription" class="movie-description"></p><div class="movie-info-table-container">
-<table class="movie-table-with-button"><thead><tr>
-<th>Taille</th>
-<th>Qualité</th>
-<th>Résolution</th>
-<th></th></tr></thead><tbody id="downloadsTableBody"></tbody></table></div></div>
-
-<p id="movieReleaseDate" class="movie-release-date"><strong>Date de sortie :</strong> <span id="releaseDateValue"></span></p>
-<p id="movieDuration" class="movie-duration"><strong>Durée :</strong> <span id="durationValue"></span></p>
-
-<section class="comments-section"><div class="comments-header"><div class="comments-title">
-<svg aria-hidden="true" focusable="false" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" height="1em" width="1em">
-<path d="M21.99 4c0-1.1-.89-2-1.99-2H4c-1.1 0-2 .9-2 2v12c0 1.1.9 2 2 2h14l4 4-.01-18zM20 4v13.17L18.83 16H4V4h16zM6 12h12v2H6zm0-3h12v2H6zm0-3h12v2H6z"></path></svg>Commentaires</div><hr></div>
-
-<p id="loginToCommentMessage" class="login-to-comment" style="display:none;">Veuillez vous connecter pour afficher l’espace commentaire.</p>
-
-<div class="comment-box-container" id="commentBoxContainer" style="visibility:hidden;"><img id="commentAvatar" class="comment-avatar"><div class="comment-content"><label class="comment-label">
-<span class="comment-text-label">Commenter en tant que</span>
-<strong id="comment-username"></strong></label>
-
-<textarea placeholder="Laisser un commentaire"></textarea><div class="comment-buttons" id="commentButtons" style="display: none;">
-<button class="cancel-btn" id="cancelBtn">Annuler</button>
-<button class="submit-btn" id="submitBtn">Commentaire</button></div></div></div>
-<div id="commentsList" class="comments-list"></div>
+<main>
+<section class="aide-header">
+<h1>Centre d'aide</h1>
+<p>Trouvez toutes les réponses à vos questions sur FreezyFlix.</p>
 </section>
 
-<!-- Modal de confirmation -->
-<div id="confirmModal" class="confirm-modal" style="display:none;">
-  <div class="confirm-modal-content">
-    <p id="confirmMessage">Êtes-vous sûr ?</p>
-    <div class="confirm-buttons">
-      <button id="confirmYes">Oui</button>
-      <button id="confirmNo">Non</button>
-    </div>
-  </div>
-</div>
+<section class="aide-container">
+<div class="aide-item" onclick="toggleAide(0)">
+<div class="aide-question">Comment regarder un film ?</div>
+<div class="aide-answer">
+Il n'est pas possible de visionner un film directement sur notre plateforme. Les films sont uniquement disponibles en téléchargement via le bouton situé sous chaque bande-annonce.
+</div></div>
 
-<div id="toast" class="toast"></div>
+<div class="aide-item" onclick="toggleAide(1)">
+<div class="aide-question">Où puis-je faire des demandes de nouveaux films ?</div>
+<div class="aide-answer">
+Pour demander des films, il vous faudra créer un compte, puis vous rendre sur votre profil et aller dans 
+<a href="request-movie.html" class="aide-lien-vert">Demande de films</a>.
+</div></div>
 
+<div class="aide-item" onclick="toggleAide(2)">
+<div class="aide-question">Les films sont-ils disponibles en plusieurs langues ?</div>
+<div class="aide-answer">
+Tous nos films sont disponibles en français (VF), en anglais (VO), et parfois dans d’autres langues.
+</div></div>
 
-<script type="module" src="js/movie-details.js"></script>
-<script src="js/movies.js"></script>
+<div class="aide-item" onclick="toggleAide(3)">
+<div class="aide-question">Je n'ai pas d'écran 4K, que faire ?</div>
+<div class="aide-answer">
+Les films en 4K seront automatiquement adaptés et lus en 1080p si votre écran ne prend pas en charge cette résolution.
+</div></div>
+
+<div class="aide-item" onclick="toggleAide(4)">
+<div class="aide-question">Le film demande l'installation d'un nouveau codec ou l'achat d'une extension vidéo HEVC. Que faire ?</div>
+<div class="aide-answer">
+Utilisez un lecteur compatible comme <a href="https://github.com/clsid2/mpc-hc/releases" target="_blank" class="aide-lien-vert">MPC-HC</a> pour lire les fichiers encodés en H.265.
+</div></div>
+
+<div class="aide-item" onclick="toggleAide(5)">
+<div class="aide-question">Comment changer la langue d'un film ?</div>
+<div class="aide-answer">
+Pour changer la langue d’un film, sélectionnez « Piste audio » dans l’onglet « Lecture ». 
+<a href="javascript:void(0)" class="voir-plus" onclick="showImage(event, 5)">Voir Plus</a>
+<div class="aide-image" id="aide-image-5" style="display:none; margin-top:10px;">
+<img src="https://i.imgur.com/xMwNGOd.png" alt="Explication langue" style="width:100%; border-radius:8px;">
+</div></div></div>
+
+<div class="aide-item" onclick="toggleAide(6)">
+<div class="aide-question">Pourquoi les couleurs de mon film sont-elles fades ?</div>
+<div class="aide-answer">
+Les couleurs peuvent paraître fades à cause d’un mauvais réglage du lecteur vidéo. Utiliser un renderer comme <a href="https://www.madshi.net/" target="_blank" class="aide-lien-vert">madVR</a>. Aucun réglage nécessaire.
+<a href="javascript:void(0)" class="voir-plus" onclick="showImage(event, 6)">Voir le Guide D'installation</a>
+<div class="aide-image" id="aide-image-6" style="display:none; margin-top:10px;">
+<div class="aide-caption">Étape 1 : Clic droit “Options”.</div>
+<img src="https://i.imgur.com/xMwNGOd.png" alt="Étape 1" style="width:100%; border-radius:8px;">
+<div class="aide-caption">Étape 2 : Dans "Sortie", sélectionner madVR.</div>
+<img src="https://i.imgur.com/3vK0e3o.png" alt="Étape 2" style="width:100%; border-radius:8px;">
+</div></div></div>
+
+</section></main>
+
+<script src="js/aide.js"></script>
 <script type="module" src="js/navbar.js"></script>
 </body>
 </html>
