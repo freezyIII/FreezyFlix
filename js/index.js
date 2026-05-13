@@ -348,6 +348,10 @@ if (typeof movies !== "undefined" && movieGrid) {
       <a href="movie-details.html?title=${encodeURIComponent(movie.title)}">
         <img src="${movie.img}" loading="lazy">
         <span class="content-type-badge">${kind}</span>
+        <div class="movie-overlay">
+          <div class="movie-title">${movie.title}</div>
+          <div class="movie-description">${movie.description}</div>
+        </div>
       </a>
     `;
 

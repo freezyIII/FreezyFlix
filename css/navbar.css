@@ -13,7 +13,7 @@ header {
   min-height: 68px;
   padding: 10px 28px;
   color: #ff3d00;
-  background: linear-gradient(180deg, #070707 0%, rgba(10, 10, 10, 0.97) 45%, rgba(12, 12, 12, 0.94) 100%);
+  background: #000;
   border-bottom: 1px solid rgba(255, 255, 255, 0.07);
   box-shadow: 0 8px 32px rgba(0, 0, 0, 0.75);
   backdrop-filter: saturate(140%) blur(12px);
