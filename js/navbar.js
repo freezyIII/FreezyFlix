@@ -144,7 +144,7 @@ async function navigateWithoutReload(url, shouldPushState = true) {
 }
 
 document.addEventListener('click', (event) => {
-    const link = event.target.closest('header ul.federant-regular a:not(.animated-link)');
+    const link = event.target.closest('header .logo, header ul.federant-regular a:not(.animated-link)');
     if (!link) return;
     if (event.metaKey || event.ctrlKey || event.shiftKey || event.altKey || event.button !== 0) return;
 

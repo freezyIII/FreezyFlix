@@ -48,6 +48,86 @@ function contentTypeLabelFromCatalog(title, fallbackType) {
   return "Film";
 }
 
+async function setupGridFavoriteButtons(root = document) {
+  const buttons = Array.from(root.querySelectorAll(".favorite-card-btn"));
+  if (!buttons.length) return;
+
+  const [{ auth, db }, { doc, getDoc, setDoc, deleteDoc, serverTimestamp }, { onAuthStateChanged }] = await Promise.all([
+    import("./database.js"),
+    import("https://www.gstatic.com/firebasejs/10.6.0/firebase-firestore.js"),
+    import("https://www.gstatic.com/firebasejs/10.6.0/firebase-auth.js")
+  ]);
+
+  function setFavoriteState(title, isFavorite) {
+    buttons
+      .filter(button => button.dataset.title === title)
+      .forEach(button => {
+        button.classList.toggle("is-favorite", isFavorite);
+        button.setAttribute("aria-label", isFavorite ? "Retirer des favoris" : "Ajouter aux favoris");
+        button.setAttribute("aria-pressed", String(isFavorite));
+      });
+  }
+
+  function movieFromButton(button) {
+    const title = button.dataset.title || "";
+    return typeof movies !== "undefined" ? movies.find(movie => movie.title === title) : null;
+  }
+
+  buttons.forEach(button => {
+    if (button.dataset.favoriteReady === "true") return;
+    button.dataset.favoriteReady = "true";
+    button.setAttribute("aria-pressed", "false");
+
+    button.addEventListener("click", async (event) => {
+      event.preventDefault();
+      event.stopPropagation();
+
+      const user = auth.currentUser;
+      if (!user) {
+        alert("Connecte-toi pour ajouter ce film aux favoris.");
+        return;
+      }
+
+      const movie = movieFromButton(button);
+      if (!movie) return;
+
+      const favRef = doc(db, "users", user.uid, "favorites", movie.title);
+      const snap = await getDoc(favRef);
+
+      if (snap.exists()) {
+        await deleteDoc(favRef);
+        setFavoriteState(movie.title, false);
+      } else {
+        await setDoc(favRef, {
+          title: movie.title,
+          img: movie.img,
+          description: movie.description || "",
+          resolution: movie.downloads?.[0]?.resolution || "",
+          type: movie.type || "",
+          createdAt: serverTimestamp()
+        });
+        setFavoriteState(movie.title, true);
+      }
+    });
+  });
+
+  onAuthStateChanged(auth, async user => {
+    if (!user) {
+      buttons.forEach(button => button.classList.remove("is-favorite"));
+      return;
+    }
+
+    await Promise.all(buttons.map(async button => {
+      const movie = movieFromButton(button);
+      if (!movie) return;
+
+      const favRef = doc(db, "users", user.uid, "favorites", movie.title);
+      const snap = await getDoc(favRef);
+      setFavoriteState(movie.title, snap.exists());
+    }));
+  });
+}
+
 onReady(() => {
   // -------------------- Variables --------------------
   const randomBox = document.getElementById("random-movie-box");
@@ -78,6 +158,15 @@ onReady(() => {
     }
   }
   updateTotalMovies();
+
+  const filterWrapper = document.querySelector(".filter-wrapper");
+  if (totalMoviesDiv && filterWrapper) {
+    const gridToolbar = document.createElement("div");
+    gridToolbar.className = "grid-toolbar";
+    totalMoviesDiv.parentNode.insertBefore(gridToolbar, totalMoviesDiv);
+    gridToolbar.appendChild(totalMoviesDiv);
+    gridToolbar.appendChild(filterWrapper);
+  }
 
   // -------------------- À la une (carrousel large) --------------------
   (function initFeaturedHero() {
@@ -348,6 +437,11 @@ if (typeof movies !== "undefined" && movieGrid) {
     const kind = movie.type === "serie" ? "Série" : "Film";
 
     movieDiv.innerHTML = `
+      <button type="button" class="favorite-card-btn" data-title="${escAttr(movie.title)}" aria-label="Ajouter aux favoris">
+        <svg viewBox="0 0 24 24" aria-hidden="true" focusable="false">
+          <path d="M12 3.4l2.58 5.23 5.77.84-4.17 4.07.98 5.75L12 16.57l-5.16 2.72.98-5.75-4.17-4.07 5.77-.84L12 3.4z"/>
+        </svg>
+      </button>
       <a href="movie-details.html?title=${encodeURIComponent(movie.title)}">
         <img src="${movie.img}" loading="lazy">
         <span class="content-type-badge">${kind}</span>
@@ -362,6 +456,7 @@ if (typeof movies !== "undefined" && movieGrid) {
   });
 
   updateTotalMovies();
+  setupGridFavoriteButtons(movieGrid);
 }
 
 
