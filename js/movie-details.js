@@ -190,6 +190,7 @@ function setupFavoriteButton() {
         await setDoc(favRef, {
           title: selectedMovie.title,
           img: selectedMovie.img,
+          description: selectedMovie.description || "",
           resolution: selectedMovie.downloads?.[0]?.resolution || "",
           type: selectedMovie.type || "",
           createdAt: serverTimestamp()

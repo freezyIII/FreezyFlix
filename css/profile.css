@@ -83,7 +83,8 @@ textarea { min-height: 100px; }
 /* Faforis & évaluation */
 .favorites-empty, .evaluation-empty {display: flex;flex-direction: column;align-items: center;justify-content: center;text-align: center;}
 .favorites-empty svg, .evaluation-empty svg {width: 30px;height: 30px;fill: #ccc;margin-bottom: 10px;}
-#favoritesContent {max-width: 1100px;}
+#favoritesContent {width: 100%;max-width: 1100px;margin: 0 auto;}
+#favoritesContent .movie-grid {grid-template-columns: repeat(5, 200px);justify-content: start;max-width: 1048px;margin: 0 auto;}
 
 /* Supprimer le Compte */
 .delete-account-btn {position: absolute;bottom: 15px;left: 15px;padding: 10px 22px;border: 1px solid rgba(255, 0, 0, 0.5);border-radius: 12px;font-weight: 600;font-size: 0.9rem;cursor: pointer;text-decoration: none;color: #ff5555;background: rgba(255, 0, 0, 0.05);backdrop-filter: blur(8px);box-shadow: 0 4px 20px rgba(0,0,0,0.4);transition: all 0.3s ease;}

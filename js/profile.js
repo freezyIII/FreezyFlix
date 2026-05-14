@@ -190,18 +190,28 @@ async function loadFavorites() {
     grid.className = "movie-grid";
 snapshot.forEach(docSnap => {
   const movie = docSnap.data();
+  const catalogMovie = typeof movies !== "undefined"
+    ? movies.find(item => item.title === movie.title)
+    : null;
+  const title = movie.title || catalogMovie?.title || "Titre inconnu";
+  const image = movie.img || catalogMovie?.img || "";
+  const description = movie.description || catalogMovie?.description || "";
+  const type = movie.type || catalogMovie?.type || "film";
+  const kind = type === "serie" ? "Série" : "Film";
 
   const item = document.createElement("div");
   item.className = "movie-grid-item";
-  item.setAttribute("data-title", movie.title);
+  item.setAttribute("data-title", title.toLowerCase());
 
   item.innerHTML = `
-    <a href="movie-details.html?title=${encodeURIComponent(movie.title)}">
-      <img src="${movie.img}" loading="lazy" />
-      ${movie.type === "serie" ? `<div class="serie">SÉRIE</div>` : ""}
-      ${movie.resolution ? `<div class="resolution">${movie.resolution}</div>` : ""}
+    <a href="movie-details.html?title=${encodeURIComponent(title)}">
+      <img src="${image}" loading="lazy" alt="${title}">
+      <span class="content-type-badge">${kind}</span>
+      <div class="movie-overlay">
+        <div class="movie-title">${title}</div>
+        <div class="movie-description">${description}</div>
+      </div>
     </a>
-    <div class="movie-title">${movie.title}</div>  <!-- TITRE SOUS L'IMAGE -->
   `;
 
   grid.appendChild(item);
