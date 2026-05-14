@@ -37,13 +37,32 @@
 .submit-btn:hover {background-color: #ff3b3b;}
 .comments-list {display: flex;flex-direction: column;margin-top: 20px;}
 .comment-item {display: flex;gap: 12px;align-items: flex-start;padding: 1.125rem 0;}
-.comment-text .username-time {justify-content: space-between;align-items: center;margin-bottom: 5px;gap: 10px;}
+.comment-text .username-time {display: inline-flex;align-items: center;margin-bottom: 5px;gap: 10px;}
+.comment-text {width: 100%;}
 .comment-text .username {font-weight: bold;}
 .comment-text .comment-time {font-size: 0.75rem;color: #aaa;}
 .comment-text p {margin: 0;color: #fff;}
 .comment-actions {display: flex;align-items: center;gap: 10px;margin-top: 5px;}
 .reply-btn {display: inline-flex;align-items: center;gap: 4px;background: none;border: none;color: #fff;cursor: pointer;font-weight: bold;padding: 10px 0;font-size: 0.8rem;line-height: 1;transition: color 0.2s;vertical-align: middle;}
 .reply-btn svg {width: 14px;height: 14px;fill: currentColor;}
+.reply-form-container {margin-top: 8px;}
+.reply-form {display: flex;flex-direction: column;gap: 8px;}
+.reply-form textarea {width: 100%;min-height: 44px;padding: 10px 12px;border-radius: 6px;border: 1px solid #444;background: #121212;color: #fff;resize: vertical;}
+.reply-form textarea:focus {outline: none;border-color: #ff1e1e7b;box-shadow: 0 0 0 4px #ff1e1e1c;}
+.reply-form-actions {display: flex;justify-content: flex-end;gap: 8px;}
+.cancel-reply-btn, .submit-reply-btn {padding: 7px 13px;border: none;border-radius: 8px;cursor: pointer;font-weight: bold;}
+.cancel-reply-btn {background: #555;color: #fff;}
+.submit-reply-btn {background: #ef2626;color: #fff;}
+.replies-list {display: flex;flex-direction: column;gap: 12px;margin-top: 12px;padding-left: 18px;border-left: 1px solid rgba(255, 255, 255, 0.14);}
+.reply-item {display: flex;gap: 10px;align-items: flex-start;}
+.reply-avatar {width: 60px;height: 60px;border-radius: 50%;object-fit: cover;flex-shrink: 0;}
+.reply-text {width: 100%;}
+.reply-text .username-time {display: inline-flex;align-items: center;gap: 10px;margin-bottom: 5px;}
+.reply-text .username {font-weight: bold;}
+.reply-text p {margin: 0;color: #fff;}
+.reply-actions {display: flex;align-items: center;gap: 10px;margin-top: 5px;}
+.delete-reply {background: none;border: none;color: red;padding: 8px 15px;width: 100%;text-align: left;cursor: pointer;}
+.delete-reply:hover {background: rgba(255,0,0,0.1);}
 .more-wrapper {position: relative;display: inline-flex;align-items: center;}
 .more-btn {display: inline-flex;align-items: center;gap: 6px;background: none;border: none;cursor: pointer;font-size: 14px;color: #ffffff;}
 .more-btn svg {width: 20px;height: 20px;fill: currentColor;transition: transform 0.3s ease;}

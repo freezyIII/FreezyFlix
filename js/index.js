@@ -151,6 +151,9 @@ onReady(() => {
   const currentPage = window.location.pathname.split("/").pop() || "index.html";
   const pageContentType = currentPage === "films.html" ? "film" : currentPage === "serie.html" ? "serie" : "";
   const pageContentHeading = pageContentType === "serie" ? "SERIES" : "FILMS";
+  const movieRowsPerPage = 8;
+  let currentMoviePage = 1;
+  let paginationDiv = null;
 
   window.updateTotalMovies = function () {
     if (totalMoviesDiv) {
@@ -160,12 +163,120 @@ onReady(() => {
   updateTotalMovies();
 
   const filterWrapper = document.querySelector(".filter-wrapper");
-  if (totalMoviesDiv && filterWrapper) {
+  if (totalMoviesDiv) {
     const gridToolbar = document.createElement("div");
     gridToolbar.className = "grid-toolbar";
     totalMoviesDiv.parentNode.insertBefore(gridToolbar, totalMoviesDiv);
     gridToolbar.appendChild(totalMoviesDiv);
-    gridToolbar.appendChild(filterWrapper);
+    paginationDiv = document.createElement("div");
+    paginationDiv.className = "movie-pagination";
+    gridToolbar.appendChild(paginationDiv);
+    if (filterWrapper) {
+      gridToolbar.appendChild(filterWrapper);
+    } else {
+      const toolbarSpacer = document.createElement("div");
+      toolbarSpacer.className = "grid-toolbar-spacer";
+      toolbarSpacer.setAttribute("aria-hidden", "true");
+      gridToolbar.appendChild(toolbarSpacer);
+    }
+  }
+
+  function getGridItems() {
+    return movieGrid ? Array.from(movieGrid.querySelectorAll(".movie-grid-item")) : [];
+  }
+
+  function isMovieAllowed(movie) {
+    return movie.dataset.filterVisible !== "false" && movie.dataset.searchVisible !== "false";
+  }
+
+  function getMoviesPerPage() {
+    if (!movieGrid) return movieRowsPerPage;
+
+    const gridWidth = movieGrid.clientWidth;
+    const styles = window.getComputedStyle(movieGrid);
+    const columnGap = parseFloat(styles.columnGap) || 12;
+    const columnWidth = 200;
+    const columns = Math.max(1, Math.min(8, Math.floor((gridWidth + columnGap) / (columnWidth + columnGap))));
+
+    return columns * movieRowsPerPage;
+  }
+
+  function renderPagination(totalPages) {
+    if (!paginationDiv) return;
+
+    paginationDiv.innerHTML = "";
+    paginationDiv.hidden = totalPages < 1;
+
+    for (let i = 1; i <= totalPages; i++) {
+      const button = document.createElement("button");
+      button.type = "button";
+      button.className = `pagination-btn${i === currentMoviePage ? " active" : ""}`;
+      button.textContent = i;
+      button.setAttribute("aria-label", `Page ${i}`);
+      button.setAttribute("aria-current", i === currentMoviePage ? "page" : "false");
+      button.addEventListener("click", () => {
+        window.applyMoviePagination(i);
+      });
+      paginationDiv.appendChild(button);
+    }
+  }
+
+  window.applyMoviePagination = function (page = currentMoviePage) {
+    const items = getGridItems();
+    const allowedItems = items.filter(isMovieAllowed);
+    const moviesPerPage = getMoviesPerPage();
+    const totalPages = Math.ceil(allowedItems.length / moviesPerPage);
+    const hasNoResult = allowedItems.length === 0;
+
+    currentMoviePage = hasNoResult ? 1 : Math.min(Math.max(page, 1), totalPages);
+
+    items.forEach(movie => {
+      movie.hidden = true;
+    });
+
+    if (!hasNoResult) {
+      const start = (currentMoviePage - 1) * moviesPerPage;
+      allowedItems.slice(start, start + moviesPerPage).forEach(movie => {
+        movie.hidden = false;
+      });
+    }
+
+    if (totalMoviesDiv) {
+      totalMoviesDiv.textContent = hasNoResult ? "Aucun résultat trouvé" : pageContentHeading;
+      totalMoviesDiv.classList.toggle("no-results-message", hasNoResult);
+      totalMoviesDiv.parentElement?.classList.toggle("has-no-results", hasNoResult);
+    }
+
+    renderPagination(hasNoResult ? 0 : totalPages);
+  };
+
+  window.addEventListener("resize", () => {
+    window.applyMoviePagination?.(currentMoviePage);
+  });
+
+  function applyCurrentFiltersToGrid() {
+    const categoryFilter = document.getElementById("category-filter");
+    const yearFilter = document.getElementById("year-filter");
+    const qualityFilter = document.getElementById("quality-filter");
+    const category = categoryFilter?.value || "";
+    const year = yearFilter?.value || "all";
+    const quality = qualityFilter?.value || "";
+
+    getGridItems().forEach(movie => {
+      let visible = true;
+
+      if (category) {
+        const movieCategories = movie.dataset.category.toLowerCase().split(" / ");
+        if (!movieCategories.includes(category.toLowerCase())) visible = false;
+      }
+
+      if (year !== "all" && movie.dataset.year !== year) visible = false;
+      if (quality && movie.dataset.quality !== quality) visible = false;
+
+      movie.dataset.filterVisible = String(visible);
+    });
+
+    window.applyMoviePagination(1);
   }
 
   // -------------------- À la une (carrousel large) --------------------
@@ -337,25 +448,7 @@ if (filterBtn && filterPanel) {
 
   // Appliquer → filtrer les films et mettre à jour l'état sauvegardé
   applyBtn?.addEventListener("click", () => {
-    const category = categoryFilter.value;
-    const year = yearFilter.value;
-    const quality = qualityFilter.value;
-
-    document.querySelectorAll(".movie-grid-item").forEach(movie => {
-      let visible = true;
-
-      if (category) {
-        const movieCategories = movie.dataset.category.toLowerCase().split(" / ");
-        if (!movieCategories.includes(category.toLowerCase())) visible = false;
-      }
-
-      if (year !== "all" && movie.dataset.year !== year) visible = false;
-      if (quality && movie.dataset.quality !== quality) visible = false;
-
-      movie.hidden = !visible;
-    });
-
-    updateTotalMovies();
+    applyCurrentFiltersToGrid();
 
     // fermer le panneau
     filterPanel.classList.remove("active");
@@ -430,6 +523,8 @@ if (typeof movies !== "undefined" && movieGrid) {
     movieDiv.dataset.title = movie.title.toLowerCase();
     movieDiv.dataset.category = movie.category.toLowerCase();
     movieDiv.dataset.type = movie.type || "film";
+    movieDiv.dataset.filterVisible = "true";
+    movieDiv.dataset.searchVisible = "true";
     const releaseYear = movie.releaseDate?.match(/\d{4}$/)?.[0] || "";
     movieDiv.dataset.year = releaseYear;
     movieDiv.dataset.quality = movie.downloads?.[0]?.resolution || "";
@@ -456,6 +551,7 @@ if (typeof movies !== "undefined" && movieGrid) {
   });
 
   updateTotalMovies();
+  window.applyMoviePagination(1);
   setupGridFavoriteButtons(movieGrid);
 }
 
@@ -463,25 +559,7 @@ if (typeof movies !== "undefined" && movieGrid) {
 const applyBtn = document.getElementById("apply-filters");
 
 applyBtn?.addEventListener("click", () => {
-  const category = document.getElementById("category-filter").value;
-  const year = document.getElementById("year-filter").value;
-  const quality = document.getElementById("quality-filter").value;
-
-document.querySelectorAll(".movie-grid-item").forEach(movie => {
-  let visible = true;
-
-if (category) {
-  const movieCategories = movie.dataset.category.toLowerCase().split(" / "); // découpe toutes les catégories
-  if (!movieCategories.includes(category.toLowerCase())) visible = false;
-}
-
-  if (year !== "all" && movie.dataset.year !== year) visible = false;
-  if (quality && movie.dataset.quality !== quality) visible = false;
-
-  movie.hidden = !visible;
-});
-
-  updateTotalMovies();
+  applyCurrentFiltersToGrid();
 
   // fermer le panneau filtre
   filterPanel.classList.remove("active");
@@ -521,28 +599,12 @@ onReady(() => {
         if (!movieGrid) return;
 
         const movies = movieGrid.querySelectorAll(".movie-grid-item");
-        let visibleMovies = 0;
 
         movies.forEach(movie => {
             const title = movie.getAttribute("data-title")?.toLowerCase() || "";
-            if (title.includes(searchText)) {
-                movie.hidden = false;
-                visibleMovies++;
-            } else {
-                movie.hidden = true;
-            }
+            movie.dataset.searchVisible = String(title.includes(searchText));
         });
 
-        // Mettre à jour le titre de section ou le message vide
-        const totalMoviesDiv = document.getElementById("totalMovies");
-        if (totalMoviesDiv) {
-            const currentPage = window.location.pathname.split("/").pop() || "index.html";
-            const hasNoResult = visibleMovies === 0;
-
-            totalMoviesDiv.textContent = hasNoResult
-                ? "Aucun résultat trouvé"
-                : currentPage === "serie.html" ? "SERIES" : "FILMS";
-            totalMoviesDiv.classList.toggle("no-results-message", hasNoResult);
-        }
+        window.applyMoviePagination?.(1);
     }
 });

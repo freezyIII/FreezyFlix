@@ -82,6 +82,52 @@ function timeAgo(date) {
   return `il y a ${years} an${years > 1 ? 's' : ''}`;
 }
 
+function escapeHTML(value) {
+  return String(value)
+    .replace(/&/g, "&amp;")
+    .replace(/</g, "&lt;")
+    .replace(/>/g, "&gt;")
+    .replace(/"/g, "&quot;")
+    .replace(/'/g, "&#039;");
+}
+
+function validateCommentText(text) {
+  const forbiddenWords = [
+    "putain","connard","salope","enculé","pute","pd","pédé","fdp","bite",
+    "couille","salaud","bouffon","ptn","seins","anus","salop","enfoiré"
+  ];
+  if (new RegExp(`\\b(${forbiddenWords.join('|')})\\b`, 'i').test(text)) {
+    showToast("Votre commentaire contient des mots interdits !", 4000);
+    return false;
+  }
+
+  const linkRegex = /\b(?:https?:\/\/|www\.)[^\s]+|\b\S+\.(com|net|org|fr|info|io|xyz|gov|edu|co|us|eu)\b/i;
+  if (linkRegex.test(text)) {
+    showToast("Les liens ne sont pas autorisés dans les commentaires !", 4000);
+    return false;
+  }
+
+  return true;
+}
+
+async function getUserPublicData(userId) {
+  let username = "Utilisateur";
+  let photoURL = "default-avatar.png";
+
+  try {
+    const userDoc = await getDoc(doc(db, "users", userId));
+    if (userDoc.exists()) {
+      const userData = userDoc.data();
+      username = userData.nomUtilisateur || username;
+      photoURL = userData.photoURL || photoURL;
+    }
+  } catch (err) {
+    console.error(err);
+  }
+
+  return { username, photoURL };
+}
+
 async function showConfirm(message) {
   return new Promise(resolve => {
     const modal = document.getElementById("confirmModal");
@@ -266,20 +312,7 @@ async function handleCommentSubmit() {
   const text = elements.textarea.value.trim();
   if (!text) return;
 
-  const forbiddenWords = [
-    "putain","connard","salope","enculé","pute","pd","pédé","fdp","bite",
-    "couille","salaud","bouffon","ptn","seins","anus","salop","enfoiré"
-  ];
-  if (new RegExp(`\\b(${forbiddenWords.join('|')})\\b`, 'i').test(text)) {
-    showToast("Votre commentaire contient des mots interdits !", 4000);
-    return;
-  }
-
-  const linkRegex = /\b(?:https?:\/\/|www\.)[^\s]+|\b\S+\.(com|net|org|fr|info|io|xyz|gov|edu|co|us|eu)\b/i;
-  if (linkRegex.test(text)) {
-    showToast("Les liens ne sont pas autorisés dans les commentaires !", 4000);
-    return;
-  }
+  if (!validateCommentText(text)) return;
 
   const user = auth.currentUser;
   if (!user) return alert("Vous devez être connecté pour commenter.");
@@ -316,22 +349,13 @@ async function loadComments() {
     const data = docSnap.data();
     const timestamp = data.timestamp?.toDate ? data.timestamp.toDate() : new Date(data.timestamp);
 
-    let username = "Utilisateur";
-    let photoURL = "default-avatar.png";
-
-    try {
-      const userDoc = await getDoc(doc(db, "users", data.userId));
-      if (userDoc.exists()) {
-        const userData = userDoc.data();
-        username = userData.nomUtilisateur || username;
-        photoURL = userData.photoURL || photoURL;
-      }
-    } catch (err) { console.error(err); }
+    const { username, photoURL } = await getUserPublicData(data.userId);
 
     const isOwner = currentUser && currentUser.uid === data.userId;
 
     const div = createCommentElement(docSnap.id, data, username, photoURL, timestamp, isOwner);
     elements.commentsList.appendChild(div);
+    await loadReplies(docSnap.id, div.querySelector(".replies-list"));
   }
 }
 
@@ -361,7 +385,7 @@ function createCommentElement(commentId, data, username, photoURL, timestamp, is
       <span class="username">${username}</span>
       <span class="comment-time">${timeAgo(timestamp)}</span>
     </div>
-    <p>${data.text}</p>
+    <p>${escapeHTML(data.text)}</p>
     <div class="comment-actions">
       <button class="reply-btn">
         <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" height="16" width="16">
@@ -383,6 +407,8 @@ function createCommentElement(commentId, data, username, photoURL, timestamp, is
 </div>
       </div>
     </div>
+    <div class="reply-form-container"></div>
+    <div class="replies-list"></div>
   `;
 
   div.appendChild(avatarLink); // Ajouter le lien de l’avatar
@@ -395,6 +421,8 @@ function createCommentElement(commentId, data, username, photoURL, timestamp, is
 function setupCommentActions(div, commentId, data, isOwner) {
   const moreBtn = div.querySelector(".more-btn");
   const menu = div.querySelector(".more-menu");
+  const replyBtn = div.querySelector(".reply-btn");
+  const replyFormContainer = div.querySelector(".reply-form-container");
 
   moreBtn.addEventListener("click", e => {
     e.stopPropagation();
@@ -404,6 +432,38 @@ function setupCommentActions(div, commentId, data, isOwner) {
 
   const deleteBtn = div.querySelector(".delete-comment");
   const reportBtn = div.querySelector(".report-comment");
+
+  replyBtn?.addEventListener("click", () => {
+    const user = auth.currentUser;
+    if (!user) return alert("Vous devez être connecté pour répondre.");
+
+    if (replyFormContainer.innerHTML.trim()) {
+      replyFormContainer.innerHTML = "";
+      return;
+    }
+
+    replyFormContainer.innerHTML = `
+      <div class="reply-form">
+        <textarea placeholder="Écrire une réponse"></textarea>
+        <div class="reply-form-actions">
+          <button type="button" class="cancel-reply-btn">Annuler</button>
+          <button type="button" class="submit-reply-btn">Répondre</button>
+        </div>
+      </div>
+    `;
+
+    const textarea = replyFormContainer.querySelector("textarea");
+    textarea.focus();
+
+    replyFormContainer.querySelector(".cancel-reply-btn").addEventListener("click", () => {
+      replyFormContainer.innerHTML = "";
+    });
+
+    replyFormContainer.querySelector(".submit-reply-btn").addEventListener("click", async () => {
+      await handleReplySubmit(commentId, textarea.value);
+      replyFormContainer.innerHTML = "";
+    });
+  });
 
   if (isOwner || isFounder) { // <-- ici on ajoute isFounder
     deleteBtn?.addEventListener("click", async () => {
@@ -458,5 +518,99 @@ function setupCommentActions(div, commentId, data, isOwner) {
         showToast("Erreur lors du signalement", 4000);
       }
     });
+  }
+}
+
+async function handleReplySubmit(commentId, rawText) {
+  const text = rawText.trim();
+  if (!text) return;
+  if (!validateCommentText(text)) return;
+
+  const user = auth.currentUser;
+  if (!user) return alert("Vous devez être connecté pour répondre.");
+
+  try {
+    await addDoc(collection(db, "comments", movieTitle, "comments", commentId, "replies"), {
+      userId: user.uid,
+      text,
+      timestamp: new Date()
+    });
+
+    showToast("Réponse ajoutée !");
+    loadComments();
+  } catch (error) {
+    console.error("Erreur lors de l'ajout de la réponse:", error);
+    showToast("Erreur lors de l'ajout de la réponse", 4000);
+  }
+}
+
+async function loadReplies(commentId, repliesList) {
+  if (!repliesList) return;
+
+  const repliesQuery = query(
+    collection(db, "comments", movieTitle, "comments", commentId, "replies"),
+    orderBy("timestamp", "asc")
+  );
+  const snapshot = await getDocs(repliesQuery);
+  const currentUser = auth.currentUser;
+
+  repliesList.innerHTML = "";
+
+  for (const replySnap of snapshot.docs) {
+    const reply = replySnap.data();
+    const timestamp = reply.timestamp?.toDate ? reply.timestamp.toDate() : new Date(reply.timestamp);
+    const { username, photoURL } = await getUserPublicData(reply.userId);
+    const canDelete = isFounder || (currentUser && currentUser.uid === reply.userId);
+
+    const replyEl = document.createElement("div");
+    replyEl.className = "reply-item";
+    replyEl.innerHTML = `
+      <a href="profile.html?uid=${reply.userId}">
+        <img class="reply-avatar" src="${photoURL}" alt="${escapeHTML(username)}">
+      </a>
+      <div class="reply-text">
+        <div class="username-time">
+          <span class="username">${escapeHTML(username)}</span>
+          <span class="comment-time">${timeAgo(timestamp)}</span>
+        </div>
+        <p>${escapeHTML(reply.text)}</p>
+        ${canDelete ? `
+          <div class="reply-actions">
+            <div class="more-wrapper">
+              <button class="more-btn" aria-label="Plus d’options">
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" height="1em" width="1em" fill="white">
+                  <path d="M12 8c1.1 0 2-.9 2-2s-.9-2-2-2-2 .9-2 2 .9 2 2 2zm0 2c-1.1 0-2 .9-2 2s.9 2 2 2 2-.9 2-2-.9-2-2-2zm0 6c-1.1 0-2 .9-2 2s.9 2 2 2 2-.9 2-2-.9-2-2-2z"></path>
+                </svg>
+                <span class="more-text">Plus</span>
+              </button>
+              <div class="more-menu" style="display:none;">
+                <button class="delete-reply">Supprimer</button>
+              </div>
+            </div>
+          </div>
+        ` : ""}
+      </div>
+    `;
+
+    const replyMoreBtn = replyEl.querySelector(".more-btn");
+    const replyMenu = replyEl.querySelector(".more-menu");
+    replyMoreBtn?.addEventListener("click", e => {
+      e.stopPropagation();
+      document.querySelectorAll(".more-menu").forEach(menu => {
+        if (menu !== replyMenu) menu.style.display = "none";
+      });
+      replyMenu.style.display = replyMenu.style.display === "block" ? "none" : "block";
+    });
+
+    replyEl.querySelector(".delete-reply")?.addEventListener("click", async () => {
+      const confirmed = await showConfirm("Supprimer cette réponse ?");
+      if (!confirmed) return;
+
+      await deleteDoc(doc(db, "comments", movieTitle, "comments", commentId, "replies", replySnap.id));
+      showToast("Réponse supprimée !");
+      loadComments();
+    });
+
+    repliesList.appendChild(replyEl);
   }
 }
