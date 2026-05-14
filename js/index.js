@@ -70,12 +70,11 @@ onReady(() => {
   // -------------------- Compteur de films --------------------
   const currentPage = window.location.pathname.split("/").pop() || "index.html";
   const pageContentType = currentPage === "films.html" ? "film" : currentPage === "serie.html" ? "serie" : "";
-  const pageContentLabel = pageContentType === "serie" ? "séries" : "films";
+  const pageContentHeading = pageContentType === "serie" ? "SERIES" : "FILMS";
 
   window.updateTotalMovies = function () {
-    if (movieGrid && totalMoviesDiv) {
-      const visibleMovies = movieGrid.querySelectorAll(".movie-grid-item:not([hidden])").length;
-      totalMoviesDiv.textContent = `Total de ${pageContentLabel} : ${visibleMovies}`;
+    if (totalMoviesDiv) {
+      totalMoviesDiv.textContent = pageContentHeading;
     }
   }
   updateTotalMovies();
@@ -427,22 +426,28 @@ onReady(() => {
         if (!movieGrid) return;
 
         const movies = movieGrid.querySelectorAll(".movie-grid-item");
+        let visibleMovies = 0;
+
         movies.forEach(movie => {
             const title = movie.getAttribute("data-title")?.toLowerCase() || "";
             if (title.includes(searchText)) {
                 movie.hidden = false;
+                visibleMovies++;
             } else {
                 movie.hidden = true;
             }
         });
 
-        // Mettre à jour le compteur
+        // Mettre à jour le titre de section ou le message vide
         const totalMoviesDiv = document.getElementById("totalMovies");
         if (totalMoviesDiv) {
-            const visibleMovies = movieGrid.querySelectorAll(".movie-grid-item:not([hidden])").length;
             const currentPage = window.location.pathname.split("/").pop() || "index.html";
-            const label = currentPage === "serie.html" ? "séries" : "films";
-            totalMoviesDiv.textContent = `Total de ${label} : ${visibleMovies}`;
+            const hasNoResult = visibleMovies === 0;
+
+            totalMoviesDiv.textContent = hasNoResult
+                ? "Aucun résultat trouvé"
+                : currentPage === "serie.html" ? "SERIES" : "FILMS";
+            totalMoviesDiv.classList.toggle("no-results-message", hasNoResult);
         }
     }
 });

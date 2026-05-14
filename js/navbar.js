@@ -298,15 +298,21 @@ function showBanPanel(reason) {
 
 // ================== MENU ==================
 if (Avatar) {
-    Avatar.addEventListener("click", () => {
-        dropdownMenu.style.display =
-            dropdownMenu.style.display === "block" ? "none" : "block";
+    Avatar.setAttribute("role", "button");
+    Avatar.setAttribute("aria-haspopup", "menu");
+    Avatar.setAttribute("aria-expanded", "false");
+
+    Avatar.addEventListener("click", (e) => {
+        e.stopPropagation();
+        const isOpen = dropdownMenu?.classList.toggle("is-open");
+        Avatar.setAttribute("aria-expanded", String(Boolean(isOpen)));
     });
 }
 
 document.addEventListener("click", (e) => {
     if (profileMenuContainer && !profileMenuContainer.contains(e.target)) {
-        dropdownMenu.style.display = "none";
+        dropdownMenu?.classList.remove("is-open");
+        Avatar?.setAttribute("aria-expanded", "false");
     }
 });
 
