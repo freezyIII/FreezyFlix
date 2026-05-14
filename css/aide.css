@@ -92,9 +92,11 @@ a.voir-plus:hover {
     color: #CC0000 !important;
 }
 
-::-webkit-scrollbar {
-    width: 0px;
-}
+* {scrollbar-width: thin;scrollbar-color: #2b2b2b #000;}
+::-webkit-scrollbar {width: 10px;height: 10px;}
+::-webkit-scrollbar-track {background: #000;}
+::-webkit-scrollbar-thumb {background: #2b2b2b;border-radius: 999px;border: 2px solid #000;}
+::-webkit-scrollbar-thumb:hover {background: #3a3a3a;}
 .aide-image img {
     max-width: 100%;
     height: auto;

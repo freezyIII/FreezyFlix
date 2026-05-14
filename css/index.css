@@ -103,7 +103,11 @@ img, a {-webkit-user-drag: none;}
 }
 
 .movie-grid-row {display: flex; justify-content: center; gap: 10px; width: 100%; box-sizing: border-box;}
-::-webkit-scrollbar {width: 0px;}
+* {scrollbar-width: thin;scrollbar-color: #2b2b2b #000;}
+::-webkit-scrollbar {width: 10px;height: 10px;}
+::-webkit-scrollbar-track {background: #000;}
+::-webkit-scrollbar-thumb {background: #2b2b2b;border-radius: 999px;border: 2px solid #000;}
+::-webkit-scrollbar-thumb:hover {background: #3a3a3a;}
 .titan-one-regular {font-family: "Titan One", serif;font-weight: 400;font-style: normal;text-align: center;color: #ef2626;}
 #random-movie-box {display: inline-block;padding: 20px 40px;transition: all 0.2s ease;border: 3px solid #00aaff;border-radius: 10px;cursor: pointer;font-weight: bold;font-size: 1.2em;color: #00aaff;user-select: none;}
 #random-movie-box:hover {transform: scale(1.05);box-shadow: 0 10px 20px rgba(0, 0, 0, 0.8);}

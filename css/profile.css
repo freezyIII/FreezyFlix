@@ -69,8 +69,11 @@ textarea { min-height: 100px; }
 .toast {position: fixed;bottom: 20px;right: 20px;background-color: #008000;color: #00ff00;padding: 12px 20px;border-radius: 8px;box-shadow: 0 4px 15px rgba(0,0,0,0.4);font-size: 0.95rem;font-weight: bold;opacity: 0;transform: translateY(20px);transition: opacity 0.3s ease, transform 0.3s ease;z-index: 2000;pointer-events: none;}
 .toast.show {opacity: 1;transform: translateY(0);}
 
-/* Supprimer scrollbar */
-::-webkit-scrollbar {width: 0px;}
+* {scrollbar-width: thin;scrollbar-color: #2b2b2b #000;}
+::-webkit-scrollbar {width: 10px;height: 10px;}
+::-webkit-scrollbar-track {background: #000;}
+::-webkit-scrollbar-thumb {background: #2b2b2b;border-radius: 999px;border: 2px solid #000;}
+::-webkit-scrollbar-thumb:hover {background: #3a3a3a;}
 
 /* Modifier la Poto de Profil */
 .panel-avatar-wrapper {position: relative;display: inline-block;width: 160px;height: 160px;border-radius: 50%;overflow: hidden;cursor: pointer;}
