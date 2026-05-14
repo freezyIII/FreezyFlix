@@ -116,6 +116,12 @@ img, a {-webkit-user-drag: none;}
   position: relative;
   display: inline-block;
 }
+.random-movie-section .filter-wrapper {
+  display: none;
+}
+.grid-toolbar .filter-wrapper {
+  display: inline-block;
+}
 
 .filter-btn {
   display: inline-flex;

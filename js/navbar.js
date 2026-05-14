@@ -57,21 +57,27 @@ const spaPages = new Set(["index.html", "films.html", "serie.html", "aide.html",
 let isNavigating = false;
 
 function addPageStyles(nextDocument) {
-    nextDocument.querySelectorAll('link[rel="stylesheet"]').forEach(link => {
+    const styleLoads = Array.from(nextDocument.querySelectorAll('link[rel="stylesheet"]')).map(link => {
         const href = link.getAttribute('href');
-        if (!href) return;
+        if (!href) return Promise.resolve();
 
         const absoluteHref = new URL(href, window.location.href).href;
         const alreadyLoaded = Array.from(document.querySelectorAll('link[rel="stylesheet"]'))
             .some(currentLink => currentLink.href === absoluteHref);
 
-        if (!alreadyLoaded) {
+        if (alreadyLoaded) return Promise.resolve();
+
+        return new Promise(resolve => {
             const newLink = document.createElement('link');
             newLink.rel = 'stylesheet';
             newLink.href = absoluteHref;
+            newLink.onload = resolve;
+            newLink.onerror = resolve;
             document.head.appendChild(newLink);
-        }
+        });
     });
+
+    return Promise.all(styleLoads);
 }
 
 function replacePageBody(nextDocument) {
@@ -127,7 +133,7 @@ async function navigateWithoutReload(url, shouldPushState = true) {
         const nextDocument = new DOMParser().parseFromString(html, 'text/html');
 
         document.title = nextDocument.title;
-        addPageStyles(nextDocument);
+        await addPageStyles(nextDocument);
         replacePageBody(nextDocument);
 
         if (shouldPushState) history.pushState({}, '', url.href);
