@@ -2,7 +2,7 @@
  * « Films à la une » : bandeau large, défilement toutes les 7 s.
  * Titres = js/movies.js (Film / Série lu depuis le catalogue). Remplace `img` si besoin.
  */
-const FEATURED_HERO_MOVIES = [
+window.FEATURED_HERO_MOVIES = [
   {
     title: "Zootopie 2",
     img: "https://i.postimg.cc/HLQvPYDh/Sans-titre-1.png",
@@ -24,7 +24,15 @@ const FEATURED_HERO_MOVIES = [
     img: "https://i.postimg.cc/sD5rRrr1/Sans-titre-1.png",
   },
 ];
-const FEATURED_HERO_INTERVAL_MS = 7000;
+window.FEATURED_HERO_INTERVAL_MS = 7000;
+
+function onReady(callback) {
+  if (document.readyState === "loading") {
+    document.addEventListener("DOMContentLoaded", callback, { once: true });
+  } else {
+    callback();
+  }
+}
 
 function escAttr(s) {
   return String(s).replace(/&/g, "&amp;").replace(/"/g, "&quot;");
@@ -40,7 +48,7 @@ function contentTypeLabelFromCatalog(title, fallbackType) {
   return "Film";
 }
 
-document.addEventListener("DOMContentLoaded", () => {
+onReady(() => {
   // -------------------- Variables --------------------
   const randomBox = document.getElementById("random-movie-box");
   const movieGrid = document.getElementById("movieGrid");
@@ -60,10 +68,14 @@ document.addEventListener("DOMContentLoaded", () => {
   const headerOffset = header.offsetTop;
 
   // -------------------- Compteur de films --------------------
+  const currentPage = window.location.pathname.split("/").pop() || "index.html";
+  const pageContentType = currentPage === "films.html" ? "film" : currentPage === "serie.html" ? "serie" : "";
+  const pageContentLabel = pageContentType === "serie" ? "séries" : "films";
+
   window.updateTotalMovies = function () {
     if (movieGrid && totalMoviesDiv) {
       const visibleMovies = movieGrid.querySelectorAll(".movie-grid-item:not([hidden])").length;
-      totalMoviesDiv.textContent = `Total de films : ${visibleMovies}`;
+      totalMoviesDiv.textContent = `Total de ${pageContentLabel} : ${visibleMovies}`;
     }
   }
   updateTotalMovies();
@@ -178,7 +190,6 @@ document.addEventListener("DOMContentLoaded", () => {
   // -------------------- Filtres --------------------
 if (filterBtn && filterPanel) {
   const categoryFilter = document.getElementById("category-filter");
-  const typeFilter = document.getElementById("type-filter");
   const yearFilter = document.getElementById("year-filter");
   const qualityFilter = document.getElementById("quality-filter");
   const applyBtn = document.getElementById("apply-filters");
@@ -189,7 +200,6 @@ if (filterBtn && filterPanel) {
   function saveFilterValues() {
     previousFilterValues = {
       category: categoryFilter.value,
-      type: typeFilter.value,
       year: yearFilter.value,
       quality: qualityFilter.value,
     };
@@ -198,7 +208,6 @@ if (filterBtn && filterPanel) {
   // Restaurer l'état précédent
   function restoreFilterValues() {
     categoryFilter.value = previousFilterValues.category || "";
-    typeFilter.value = previousFilterValues.type || "";
     yearFilter.value = previousFilterValues.year || "all";
     qualityFilter.value = previousFilterValues.quality || "";
   }
@@ -234,7 +243,6 @@ if (filterBtn && filterPanel) {
   // Bouton réinitialiser → remettre les filtres par défaut
   resetBtn?.addEventListener("click", () => {
     categoryFilter.selectedIndex = 0;
-    typeFilter.selectedIndex = 0;
     yearFilter.selectedIndex = 0;
     qualityFilter.selectedIndex = 0;
   });
@@ -242,7 +250,6 @@ if (filterBtn && filterPanel) {
   // Appliquer → filtrer les films et mettre à jour l'état sauvegardé
   applyBtn?.addEventListener("click", () => {
     const category = categoryFilter.value;
-    const type = typeFilter.value;
     const year = yearFilter.value;
     const quality = qualityFilter.value;
 
@@ -252,11 +259,6 @@ if (filterBtn && filterPanel) {
       if (category) {
         const movieCategories = movie.dataset.category.toLowerCase().split(" / ");
         if (!movieCategories.includes(category.toLowerCase())) visible = false;
-      }
-
-      if (type) {
-        if (type === "film" && movie.dataset.type === "serie") visible = false;
-        if (type === "serie" && movie.dataset.type !== "serie") visible = false;
       }
 
       if (year !== "all" && movie.dataset.year !== year) visible = false;
@@ -331,7 +333,9 @@ if (filterBtn && filterPanel) {
   // -------------------- Initialisation des films (movieGrid) --------------------
 
 if (typeof movies !== "undefined" && movieGrid) {
-  movies.forEach(movie => {
+  movies
+  .filter(movie => !pageContentType || (movie.type || "film") === pageContentType)
+  .forEach(movie => {
     const movieDiv = document.createElement("div");
     movieDiv.className = "movie-grid-item";
 
@@ -366,7 +370,6 @@ const applyBtn = document.getElementById("apply-filters");
 
 applyBtn?.addEventListener("click", () => {
   const category = document.getElementById("category-filter").value;
-  const type = document.getElementById("type-filter").value;
   const year = document.getElementById("year-filter").value;
   const quality = document.getElementById("quality-filter").value;
 
@@ -377,12 +380,6 @@ if (category) {
   const movieCategories = movie.dataset.category.toLowerCase().split(" / "); // découpe toutes les catégories
   if (!movieCategories.includes(category.toLowerCase())) visible = false;
 }
-
-
-  if (type) {
-    if (type === "film" && movie.dataset.type === "serie") visible = false;
-    if (type === "serie" && movie.dataset.type !== "serie") visible = false;
-  }
 
   if (year !== "all" && movie.dataset.year !== year) visible = false;
   if (quality && movie.dataset.quality !== quality) visible = false;
@@ -417,7 +414,7 @@ document.querySelectorAll('.featured-hero-slide, .movie-grid-item').forEach(item
 });
 
 
-document.addEventListener("DOMContentLoaded", () => {
+onReady(() => {
     const urlParams = new URLSearchParams(window.location.search);
     const query = urlParams.get("q")?.toLowerCase() || "";
 
@@ -443,7 +440,9 @@ document.addEventListener("DOMContentLoaded", () => {
         const totalMoviesDiv = document.getElementById("totalMovies");
         if (totalMoviesDiv) {
             const visibleMovies = movieGrid.querySelectorAll(".movie-grid-item:not([hidden])").length;
-            totalMoviesDiv.textContent = `Total de films : ${visibleMovies}`;
+            const currentPage = window.location.pathname.split("/").pop() || "index.html";
+            const label = currentPage === "serie.html" ? "séries" : "films";
+            totalMoviesDiv.textContent = `Total de ${label} : ${visibleMovies}`;
         }
     }
 });

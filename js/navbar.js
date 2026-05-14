@@ -16,6 +16,156 @@ const contentSection = document.querySelector('.content');
 const randomMovieSection = document.querySelector('.random-movie-section');
 const randomBox = document.getElementById("random-movie-box");
 
+// ================== ONGLET ACTIF ==================
+const navLinkSelector = 'header ul.federant-regular a:not(.animated-link), nav ul.federant-regular a:not(.animated-link)';
+
+function setActiveNavLink() {
+    const navLinks = document.querySelectorAll(navLinkSelector);
+    if (!navLinks.length) return;
+
+    const currentPage = window.location.pathname.split('/').pop() || 'index.html';
+    const currentType = new URLSearchParams(window.location.search).get('type');
+
+    navLinks.forEach(link => {
+        const href = link.getAttribute('href') || '';
+        const linkUrl = new URL(href, window.location.origin);
+        const linkPage = linkUrl.pathname.split('/').pop() || 'index.html';
+        const linkType = linkUrl.searchParams.get('type');
+        const isInternalPage = linkUrl.origin === window.location.origin && linkPage.endsWith('.html');
+        let isActive = false;
+
+        if (!isInternalPage) {
+            isActive = false;
+        } else if (currentPage === 'films.html') {
+            isActive = linkPage === 'films.html' && !link.classList.contains('series-link');
+        } else if (currentPage === 'serie.html') {
+            isActive = linkPage === 'serie.html' || link.classList.contains('series-link');
+        } else {
+            isActive = linkPage === currentPage && !linkType;
+        }
+
+        link.classList.toggle('nav-active', isActive);
+        link.toggleAttribute('aria-current', isActive);
+        if (isActive) link.setAttribute('aria-current', 'page');
+    });
+}
+
+setActiveNavLink();
+
+// ================== NAVIGATION SANS RECHARGEMENT ==================
+const spaPages = new Set(["index.html", "films.html", "serie.html", "aide.html", "support.html"]);
+let isNavigating = false;
+
+function addPageStyles(nextDocument) {
+    nextDocument.querySelectorAll('link[rel="stylesheet"]').forEach(link => {
+        const href = link.getAttribute('href');
+        if (!href) return;
+
+        const absoluteHref = new URL(href, window.location.href).href;
+        const alreadyLoaded = Array.from(document.querySelectorAll('link[rel="stylesheet"]'))
+            .some(currentLink => currentLink.href === absoluteHref);
+
+        if (!alreadyLoaded) {
+            const newLink = document.createElement('link');
+            newLink.rel = 'stylesheet';
+            newLink.href = absoluteHref;
+            document.head.appendChild(newLink);
+        }
+    });
+}
+
+function replacePageBody(nextDocument) {
+    const currentHeader = document.querySelector('header');
+
+    Array.from(document.body.childNodes).forEach(node => {
+        if (node === currentHeader || node.nodeName === 'SCRIPT') return;
+        node.remove();
+    });
+
+    const firstScript = document.body.querySelector('script');
+    Array.from(nextDocument.body.childNodes).forEach(node => {
+        if (node.nodeName === 'HEADER' || node.nodeName === 'SCRIPT') return;
+        document.body.insertBefore(document.importNode(node, true), firstScript);
+    });
+}
+
+function loadClassicScript(src) {
+    return new Promise((resolve, reject) => {
+        const script = document.createElement('script');
+        script.src = `${src}${src.includes('?') ? '&' : '?'}spa=${Date.now()}`;
+        script.onload = resolve;
+        script.onerror = reject;
+        document.body.appendChild(script);
+    });
+}
+
+async function loadPageScripts(nextDocument) {
+    const scripts = Array.from(nextDocument.body.querySelectorAll('script[src]'));
+
+    for (const script of scripts) {
+        const rawSrc = script.getAttribute('src');
+        if (!rawSrc || rawSrc.includes('js/navbar.js')) continue;
+
+        const src = new URL(rawSrc, window.location.href).href;
+        if (script.type === 'module') {
+            await import(`${src}${src.includes('?') ? '&' : '?'}spa=${Date.now()}`);
+        } else {
+            await loadClassicScript(src);
+        }
+    }
+}
+
+async function navigateWithoutReload(url, shouldPushState = true) {
+    if (isNavigating) return;
+    isNavigating = true;
+
+    try {
+        const response = await fetch(url.href, { headers: { Accept: 'text/html' } });
+        if (!response.ok) throw new Error(`Navigation impossible: ${response.status}`);
+
+        const html = await response.text();
+        const nextDocument = new DOMParser().parseFromString(html, 'text/html');
+
+        document.title = nextDocument.title;
+        addPageStyles(nextDocument);
+        replacePageBody(nextDocument);
+
+        if (shouldPushState) history.pushState({}, '', url.href);
+        setActiveNavLink();
+        window.scrollTo(0, 0);
+
+        await loadPageScripts(nextDocument);
+    } catch (error) {
+        console.warn('Navigation client-side indisponible, chargement normal.', error);
+        window.location.href = url.href;
+    } finally {
+        isNavigating = false;
+    }
+}
+
+document.addEventListener('click', (event) => {
+    const link = event.target.closest('header ul.federant-regular a:not(.animated-link)');
+    if (!link) return;
+    if (event.metaKey || event.ctrlKey || event.shiftKey || event.altKey || event.button !== 0) return;
+
+    const url = new URL(link.href, window.location.href);
+    const targetPage = url.pathname.split('/').pop() || 'index.html';
+    if (url.origin !== window.location.origin || !spaPages.has(targetPage)) return;
+
+    event.preventDefault();
+
+    const currentUrl = new URL(window.location.href);
+    if (url.pathname === currentUrl.pathname && url.search === currentUrl.search) return;
+
+    navigateWithoutReload(url);
+});
+
+window.addEventListener('popstate', () => {
+    const url = new URL(window.location.href);
+    const page = url.pathname.split('/').pop() || 'index.html';
+    if (spaPages.has(page)) navigateWithoutReload(url, false);
+});
+
 // ⛔ Sécurité si navbar absente
 if (!loginBtn || !Avatar) {
     console.warn("Navbar absente sur cette page");
