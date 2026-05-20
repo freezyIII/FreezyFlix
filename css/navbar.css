@@ -24,7 +24,8 @@ header {
 
 /* Logo */
 .logo { position: relative; display: flex; align-items: center; flex-shrink: 0; z-index: 1; }
-.logo img { height: 44px; width: auto; display: block; }
+.logo img { height: 44px; width: auto; display: block; transition: transform 0.3s ease, filter 0.3s ease; }
+.logo:hover img { transform: scale(1.08); filter: brightness(1.15); }
 
 /* Zone recherche, placee juste avant le profil */
 .search-container {

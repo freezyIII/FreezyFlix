@@ -60,7 +60,18 @@
 </section>
 
 <section class="random-movie-section">
-  <div id="random-movie-box">🎬 Film Aléatoire</div>
+  <button id="random-movie-box" class="random-movie-btn" aria-label="Découvrir un film aléatoire">
+    <div class="random-movie-content">
+      <svg class="random-movie-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="28" height="28">
+        <path d="M7.5 5.6L1 9v6l6.5 3.4V5.6zM23 9L10 2v20l13-7zm-6 6.5c-2.33 0-4.31-1.46-5.12-3.5h-1.48c.81 2.05 2.79 3.5 5.12 3.5s4.31-1.46 5.12-3.5h-1.48c-.81 2.04-2.79 3.5-5.12 3.5z" fill="currentColor"/>
+      </svg>
+      <div class="random-movie-text">
+        <div class="random-movie-title">🎲 Découvrez un film</div>
+        <div class="random-movie-subtitle">Surprise aléatoire</div>
+      </div>
+      <div class="random-movie-spark"></div>
+    </div>
+  </button>
 
 <div class="filter-wrapper">
 <button type="button" id="toggleFilters" class="filter-btn" aria-expanded="false" aria-controls="filter-panel">

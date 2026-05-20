@@ -1,20 +1,25 @@
 import { auth, db } from './database.js';
-import { collection, setDoc, doc } from "https://www.gstatic.com/firebasejs/10.6.0/firebase-firestore.js";
+import { setDoc, doc, getDoc, serverTimestamp } from "https://www.gstatic.com/firebasejs/10.6.0/firebase-firestore.js";
 
 // ---- Sélecteurs ----
 const form = document.getElementById('supportForm');
 const toast = document.getElementById('toast');
 const typeSelect = document.getElementById('type');
 const messageInput = document.getElementById('message');
-const urlInput = document.getElementById('url');
+const urlInput = document.getElementById('url') || null;
 const submitBtn = form.querySelector('button[type="submit"]');
+const charCount = document.querySelector('.char-count');
 
 // ---- Reset messages d'erreur au typing ----
-[typeSelect, messageInput, urlInput].forEach(el => el.addEventListener('input', () => {
+[typeSelect, messageInput, urlInput].filter(Boolean).forEach(el => el.addEventListener('input', () => {
   const span = el.nextElementSibling;
   span.textContent = '';
   span.classList.remove('active');
 }));
+
+messageInput.addEventListener('input', () => {
+  if (charCount) charCount.textContent = `${messageInput.value.length} / 2000`;
+});
 
 // ---- Fonction Toast ----
 function showToast(msg, duration = 3000) {
@@ -24,19 +29,31 @@ function showToast(msg, duration = 3000) {
 }
 
 // ---- Fonction pour sauvegarder le support ----
-async function saveSupport(userId, formData) {
+async function saveSupport(user, formData) {
   try {
+    const userRef = doc(db, "users", user.uid);
+    const userSnap = await getDoc(userRef);
+    const userData = userSnap.exists() ? userSnap.data() : {};
+    const userName = userData.nomUtilisateur || user.displayName || "Utilisateur";
+
     // Génération d'un ID unique pour Firestore
-    const docId = `${userId}_${Date.now()}`;
+    const docId = `${user.uid}_${Date.now()}`;
     await setDoc(doc(db, "support", docId), {
       ...formData,
-      userId,
+      userId: user.uid,
+      userName,
+      userEmail: userData.email || user.email || "",
+      userPhotoURL: userData.photoURL || user.photoURL || "",
+      status: "nouveau",
+      createdAt: serverTimestamp(),
       date: new Date().toISOString()
     });
     showToast("Message envoyé !");
+    return true;
   } catch (err) {
     console.error("Erreur Firebase :", err);
     showToast("Erreur lors de l'envoi. Réessayez !");
+    return false;
   }
 }
 
@@ -67,7 +84,7 @@ form.addEventListener('submit', async e => {
     isValid = false;
   }
 
-  if (urlInput.value.trim()) {
+  if (urlInput && urlInput.value.trim()) {
     try {
       new URL(urlInput.value);
     } catch {
@@ -85,12 +102,18 @@ form.addEventListener('submit', async e => {
   // ---- Préparer les données et sauvegarder ----
   const formData = {
     type: typeSelect.value,
-    message: messageInput.value.trim(),
-    url: urlInput.value.trim() || null
+    message: messageInput.value.trim()
   };
 
-  await saveSupport(user.uid, formData);
+  if (urlInput && urlInput.value.trim()) {
+    formData.url = urlInput.value.trim();
+  }
 
-  form.reset();
+  const saved = await saveSupport(user, formData);
+
+  if (saved) {
+    form.reset();
+    if (charCount) charCount.textContent = "0 / 2000";
+  }
   submitBtn.disabled = false;
 });

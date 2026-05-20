@@ -520,7 +520,7 @@ if (typeof movies !== "undefined" && movieGrid) {
     const movieDiv = document.createElement("div");
     movieDiv.className = "movie-grid-item";
 
-    movieDiv.dataset.title = movie.title.toLowerCase();
+movieDiv.dataset.title = movie.title.toLowerCase();
     movieDiv.dataset.category = movie.category.toLowerCase();
     movieDiv.dataset.type = movie.type || "film";
     movieDiv.dataset.filterVisible = "true";
@@ -588,7 +588,10 @@ document.querySelectorAll('.featured-hero-slide, .movie-grid-item').forEach(item
 
 onReady(() => {
     const urlParams = new URLSearchParams(window.location.search);
-    const query = urlParams.get("q")?.toLowerCase() || "";
+const query = urlParams.get("q") || "";
+const normalizedQuery = normalizeSearch(query);
+
+    const queryToUse = normalizedQuery;
 
     if (query) {
         filterMovies(query);
@@ -601,7 +604,7 @@ onReady(() => {
         const movies = movieGrid.querySelectorAll(".movie-grid-item");
 
         movies.forEach(movie => {
-            const title = movie.getAttribute("data-title")?.toLowerCase() || "";
+const title = movie.getAttribute("data-title") || "";
             movie.dataset.searchVisible = String(title.includes(searchText));
         });
 

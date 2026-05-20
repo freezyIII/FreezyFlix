@@ -1,107 +1,321 @@
 <!DOCTYPE html>
 <html lang="fr">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>FreezyFlix</title>
-<link href="https://fonts.googleapis.com/css2?family=Titan+One&family=Federant&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="css/aide.css" />
-<link rel="stylesheet" href="css/navbar.css">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Centre d'aide - FreezyFlix</title>
+    <link href="https://fonts.googleapis.com/css2?family=Titan+One&family=Federant&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="css/aide.css" />
+    <link rel="stylesheet" href="css/navbar.css">
 </head>
 
 <body>
-<header>
-<a href="index.html" class="logo" aria-label="Accueil"><img src="https://i.postimg.cc/pTVgBVY9/Logo-Freezy-III.png" alt="Logo FreezyFlix" /></a>
+    <header>
+        <a href="index.html" class="logo" aria-label="Accueil"><img src="https://i.postimg.cc/pTVgBVY9/Logo-Freezy-III.png" alt="Logo FreezyFlix" /></a>
 
-<div class="search-container">
-<div class="search-icon-wrapper">
-<svg aria-hidden="true" focusable="false" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" class="icon-svg">
-<path d="M15.5 14h-.79l-.28-.27C15.41 12.59 16 11.11 16 9.5 16 5.91 13.09 3 9.5 3S3 5.91 3 9.5 5.91 16 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19l-4.99-5zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14z"/></svg></div>
-<input type="text" id="search-input" class="search-box" placeholder="Rechercher des films, des séries..." autocomplete="off" autocorrect="off" spellcheck="false" name="search-field" value="">
-</div>
+        <div class="search-container">
+            <div class="search-icon-wrapper">
+                <svg aria-hidden="true" focusable="false" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" class="icon-svg">
+                    <path d="M15.5 14h-.79l-.28-.27C15.41 12.59 16 11.11 16 9.5 16 5.91 13.09 3 9.5 3S3 5.91 3 9.5 5.91 16 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19l-4.99-5zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14z"/></svg>
+            </div>
+            <input type="text" id="search-input" class="search-box" placeholder="Rechercher des films, des séries..." autocomplete="off" autocorrect="off" spellcheck="false" name="search-field" value="">
+        </div>
 
-<ul class="federant-regular">
-<li><a href="index.html">Accueil</a></li>
-<li><a href="films.html">Films</a></li>
-<li><a href="serie.html" class="series-link">Séries</a></li>
-<li><a href="aide.html">Aide</a></li>
-<li><a href="support.html">Support</a></li><li>
-<a href="https://www.paypal.com/donate/?hosted_button_id=9TKRSPG4UTSJ2" class="animated-link no-underline" target="_blank">
-<span>F</span><span>a</span><span>i</span><span>r</span><span>e</span> <span>u</span><span>n</span> <span>d</span><span>o</span><span>n</span></a></li></ul>
+        <ul class="federant-regular">
+            <li><a href="index.html">Accueil</a></li>
+            <li><a href="films.html">Films</a></li>
+            <li><a href="serie.html" class="series-link">Séries</a></li>
+            <li><a href="aide.html">Aide</a></li>
+            <li><a href="support.html">Support</a></li>
+            <li>
+                <a href="https://www.paypal.com/donate/?hosted_button_id=9TKRSPG4UTSJ2" class="animated-link no-underline" target="_blank">
+                    <span>F</span><span>a</span><span>i</span><span>r</span><span>e</span> <span>u</span><span>n</span> <span>d</span><span>o</span><span>n</span>
+                </a>
+            </li>
+        </ul>
 
-<div class="login-profile-container">
-<span id="userPseudo" class="user-pseudo" style="display:none;"></span><div class="profile-menu" id="profileMenuContainer" style="display:none;"><img id="Avatar" class="avatar">
-<div class="dropdown-menu" id="dropdownMenu">
-<a href="#" id="menuProfile"><svg class="menu-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="20" height="20" style="vertical-align: middle; margin-right: 8px;"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zM7.07 18.28c.43-.9 3.05-1.78 4.93-1.78s4.51.88 4.93 1.78C15.57 19.36 13.86 20 12 20s-3.57-.64-4.93-1.72zm11.29-1.45c-1.43-1.74-4.9-2.33-6.36-2.33s-4.93.59-6.36 2.33C4.62 15.49 4 13.82 4 12c0-4.41 3.59-8 8-8s8 3.59 8 8c0 1.82-.62 3.49-1.64 4.83zM12 6c-1.94 0-3.5 1.56-3.5 3.5S10.06 13 12 13s3.5-1.56 3.5-3.5S13.94 6 12 6zm0 5c-.83 0-1.5-.67-1.5-1.5S11.17 8 12 8s1.5.67 1.5 1.5S12.83 11 12 11z"/></svg>Profil</a>
-<a href="#" id="menuSettings"><svg class="menu-icon" xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" style="vertical-align: middle; margin-right: 8px;"><path d="M19.43 12.98c.04-.32.07-.64.07-.98 0-.34-.03-.66-.07-.98l2.11-1.65c.19-.15.24-.42.12-.64l-2-3.46c-.09-.16-.26-.25-.44-.25-.06 0-.12.01-.17.03l-2.49 1c-.52-.4-1.08-.73-1.69-.98l-.38-2.65C14.46 2.18 14.25 2 14 2h-4c-.25 0-.46.18-.49.42l-.38 2.65c-.61.25-1.17.59-1.69.98l-2.49-1c-.06-.02-.12-.03-.18-.03-.17 0-.34.09-.43.25l-2 3.46c-.13.22-.07.49.12.64l2.11 1.65c-.04.32-.07.65-.07.98 0 .33.03.66.07.98l-2.11 1.65c-.19.15-.24.42-.12.64l2 3.46c.09.16.26.25.44.25.06 0 .12-.01.17-.03l2.49-1c.52.4 1.08.73 1.69.98l.38 2.65c.03.24.24.42.49.42h4c.25 0 .46-.18.49-.42l.38-2.65c.61-.25 1.17-.59 1.69-.98l2.49 1c.06.02.12.03.18.03.17 0 .34-.09.43-.25l2-3.46c.12-.22.07-.49-.12-.64l-2.11-1.65zm-1.98-1.71c.04.31.05.52.05.73 0 .21-.02.43-.05.73l-.14 1.13.89.7 1.08.84-.7 1.21-1.27-.51-1.04-.42-.9.68c-.43.32-.84.56-1.25.73l-1.06.43-.16 1.13-.2 1.35h-1.4l-.19-1.35-.16-1.13-1.06-.43c-.43-.18-.83-.41-1.23-.71l-.91-.7-1.06.43-1.27.51-.7-1.21 1.08-.84.89-.7-.14-1.13c-.03-.31-.05-.54-.05-.74s.02-.43.05-.73l.14-1.13-.89-.7-1.08-.84.7-1.21 1.27.51 1.04.42.9-.68c.43-.32.84-.56 1.25-.73l1.06-.43.16-1.13.2-1.35h1.39l.19 1.35.16 1.13 1.06.43c.43.18.83.41 1.23.71l.91.7 1.06-.43 1.27-.51.7 1.21-1.07.85-.89.7.14 1.13zM12 8c-2.21 0-4 1.79-4 4s1.79 4 4 4 4-1.79 4-4-1.79-4-4-4zm0 6c-1.1 0-2-.9-2-2s.9-2 2-2 2 .9 2 2-.9 2-2 2z"/></svg>Demande de Films</a>
-<a href="#" id="menuLogout"><svg class="menu-icon" xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" style="vertical-align: middle; margin-right: 8px;"><path d="M16 13v-2H7V8l-5 4 5 4v-3h9zm3-10H5c-1.1 0-2 .9-2 2v6h2V5h14v14H5v-6H3v6c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2z"/></svg>Déconnexion</a></div></div>
-<button class="login-button" id="loginBtn"><img src="https://upload.wikimedia.org/wikipedia/commons/5/53/Google_%22G%22_Logo.svg" class="google-logo">Connexion</button></div>
-</header>
+        <div class="login-profile-container">
+            <span id="userPseudo" class="user-pseudo" style="display:none;"></span>
+            <div class="profile-menu" id="profileMenuContainer" style="display:none;">
+                <img id="Avatar" class="avatar">
+                <div class="dropdown-menu" id="dropdownMenu">
+                    <a href="#" id="menuProfile">
+                        <svg class="menu-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="20" height="20" style="vertical-align: middle; margin-right: 8px;">
+                            <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zM7.07 18.28c.43-.9 3.05-1.78 4.93-1.78s4.51.88 4.93 1.78C15.57 19.36 13.86 20 12 20s-3.57-.64-4.93-1.72zm11.29-1.45c-1.43-1.74-4.9-2.33-6.36-2.33s-4.93.59-6.36 2.33C4.62 15.49 4 13.82 4 12c0-4.41 3.59-8 8-8s8 3.59 8 8c0 1.82-.62 3.49-1.64 4.83zM12 6c-1.94 0-3.5 1.56-3.5 3.5S10.06 13 12 13s3.5-1.56 3.5-3.5S13.94 6 12 6zm0 5c-.83 0-1.5-.67-1.5-1.5S11.17 8 12 8s1.5.67 1.5 1.5S12.83 11 12 11z"/>
+                        </svg>
+                        Profil
+                    </a>
+                    <a href="#" id="menuSettings">
+                        <svg class="menu-icon" xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" style="vertical-align: middle; margin-right: 8px;">
+                            <path d="M19.43 12.98c.04-.32.07-.64.07-.98 0-.34-.03-.66-.07-.98l2.11-1.65c.19-.15.24-.42.12-.64l-2-3.46c-.09-.16-.26-.25-.44-.25-.06 0-.12.01-.17.03l-2.49 1c-.52-.4-1.08-.73-1.69-.98l-.38-2.65C14.46 2.18 14.25 2 14 2h-4c-.25 0-.46.18-.49.42l-.38 2.65c-.61.25-1.17.59-1.69.98l-2.49-1c-.06-.02-.12-.03-.18-.03-.17 0-.34.09-.43.25l-2 3.46c-.13.22-.07.49.12.64l2.11 1.65c-.04.32-.07.65-.07.98 0 .33.03.66.07.98l-2.11 1.65c-.19.15-.24.42-.12.64l2 3.46c.09.16.26.25.44.25.06 0 .12-.01.17-.03l2.49-1c.52.4 1.08.73 1.69.98l.38 2.65c.03.24.24.42.49.42h4c.25 0 .46-.18.49-.42l.38-2.65c.61-.25 1.17-.59 1.69-.98l2.49 1c.06.02.12.03.18.03.17 0 .34-.09.43-.25l2-3.46c.12-.22.07-.49-.12-.64l-2.11-1.65zm-1.98-1.71c.04.31.05.52.05.73 0 .21-.02.43-.05.73l-.14 1.13.89.7 1.08.84-.7 1.21-1.27-.51-1.04-.42-.9.68c-.43.32-.84.56-1.25.73l-1.06.43-.16 1.13-.2 1.35h-1.4l-.19-1.35-.16-1.13-1.06-.43c-.43-.18-.83-.41-1.23-.71l-.91-.7-1.06.43-1.27.51-.7-1.21 1.08-.84.89-.7-.14-1.13c-.03-.31-.05-.54-.05-.74s.02-.43.05-.73l.14-1.13-.89-.7-1.08-.84.7-1.21 1.27.51 1.04.42.9-.68c.43-.32.84-.56 1.25-.73l1.06-.43.16-1.13.2-1.35h1.39l.19 1.35.16 1.13 1.06.43c.43.18.83.41 1.23.71l.91.7 1.06-.43 1.27-.51.7 1.21-1.07.85-.89.7.14 1.13zM12 8c-2.21 0-4 1.79-4 4s1.79 4 4 4 4-1.79 4-4-1.79-4-4-4zm0 6c-1.1 0-2-.9-2-2s.9-2 2-2 2 .9 2 2-.9 2-2 2z"/>
+                        </svg>
+                        Demande de Films
+                    </a>
+                    <a href="#" id="menuLogout">
+                        <svg class="menu-icon" xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" style="vertical-align: middle; margin-right: 8px;">
+                            <path d="M16 13v-2H7V8l-5 4 5 4v-3h9zm3-10H5c-1.1 0-2 .9-2 2v6h2V5h14v14H5v-6H3v6c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2z"/>
+                        </svg>
+                        Déconnexion
+                    </a>
+                </div>
+            </div>
+            <button class="login-button" id="loginBtn"><img src="https://upload.wikimedia.org/wikipedia/commons/5/53/Google_%22G%22_Logo.svg" class="google-logo">Connexion</button>
+        </div>
+    </header>
 
+    <main>
+        <!-- HEADER AIDE -->
+        <section class="aide-header">
+            <h1>Centre d'aide</h1>
+            <p>Trouvez toutes les réponses à vos questions sur FreezyFlix.</p>
+        </section>
 
+        <!-- WRAPPER PRINCIPAL -->
+        <section class="aide-wrapper">
+            <!-- SIDEBAR CATEGORIES -->
+            <aside class="aide-sidebar">
+                <div class="categories-list">
+                    <button class="category-btn active" data-category="important">
+                        <svg class="category-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="20" height="20">
+                            <path d="M1 21h22L12 2 1 21zm12-3h-2v-2h2v2zm0-4h-2v-4h2v4z" fill="currentColor"/>
+                        </svg>
+                        <span>Important</span>
+                    </button>
+                    <button class="category-btn" data-category="contenu">
+                        <svg class="category-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="20" height="20">
+                            <path d="M4 6h16v2H4zm0 5h16v2H4zm0 5h16v2H4z" fill="currentColor"/>
+                        </svg>
+                        <span>Contenu</span>
+                    </button>
+                    <button class="category-btn" data-category="telecharger">
+                        <svg class="category-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="20" height="20">
+                            <path d="M19 9h-4V3H9v6H5l7 7 7-7zM5 18v2h14v-2H5z" fill="currentColor"/>
+                        </svg>
+                        <span>Télécharger</span>
+                    </button>
+                    <button class="category-btn" data-category="streaming">
+                        <svg class="category-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="20" height="20">
+                            <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 15l-5-5h3V9h4v3h3l-5 5z" fill="currentColor"/>
+                        </svg>
+                        <span>Streaming</span>
+                    </button>
+                </div>
+            </aside>
 
-<main>
-<section class="aide-header">
-<h1>Centre d'aide</h1>
-<p>Trouvez toutes les réponses à vos questions sur FreezyFlix.</p>
-</section>
+            <!-- CONTENU PRINCIPAL -->
+            <div class="aide-content">
+                <!-- CATEGORIE: IMPORTANT -->
+                <div class="category-content active" data-category="important">
+                    <h2 class="category-title">⚠️ Important</h2>
+                    <div class="faq-list">
+                        <div class="faq-item">
+                            <div class="faq-header">
+                                <h3>📺 Pourquoi installer MPC-HC ?</h3>
+                                <svg class="faq-toggle" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="24" height="24">
+                                    <path d="M7 10l5 5 5-5z" fill="currentColor"/>
+                                </svg>
+                            </div>
+                            <div class="faq-body">
+                                <p>Les films de bonne qualité ont besoin d'un bon lecteur vidéo pour ne pas avoir de bugs visuels et audio. <strong>MPC-HC</strong> est gratuit, léger et supporte tous les formats vidéo avancés (H.265, 10-bit, HDR, etc.).</p>
+                                <p style="margin-top: 12px;">
+                                    <strong>Téléchargez MPC-HC :</strong><br/>
+                                    <a href="https://github.com/clsid2/mpc-hc/releases" target="_blank" class="aide-link">📥 https://github.com/clsid2/mpc-hc/releases</a>
+                                </p>
+                            </div>
+                        </div>
 
-<section class="aide-container">
-<div class="aide-item" onclick="toggleAide(0)">
-<div class="aide-question">Comment regarder un film ?</div>
-<div class="aide-answer">
-Il n'est pas possible de visionner un film directement sur notre plateforme. Les films sont uniquement disponibles en téléchargement via le bouton situé sous chaque bande-annonce.
-</div></div>
+                        <div class="faq-item">
+                            <div class="faq-header">
+                                <h3>⬇️ Pourquoi utiliser JDownloader 2 ?</h3>
+                                <svg class="faq-toggle" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="24" height="24">
+                                    <path d="M7 10l5 5 5-5z" fill="currentColor"/>
+                                </svg>
+                            </div>
+                            <div class="faq-body">
+                                <p><strong>JDownloader 2</strong> gère vos téléchargements automatiquement. Vous pouvez ajouter tous vos films en une seule fois, et il les téléchargera un par un en arrière-plan.</p>
+                                <p style="margin-top: 12px;">L'avantage principal : <strong>vous pouvez éteindre votre PC</strong> et revenir plus tard pour continuer les téléchargements. Rien ne sera perdu.</p>
+                                <p style="margin-top: 12px;">
+                                    <strong>Téléchargez JDownloader 2 :</strong><br/>
+                                    <a href="https://jdownloader.org/download/index" target="_blank" class="aide-link">📥 https://jdownloader.org/download/index</a>
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
 
-<div class="aide-item" onclick="toggleAide(1)">
-<div class="aide-question">Où puis-je faire des demandes de nouveaux films ?</div>
-<div class="aide-answer">
-Pour demander des films, il vous faudra créer un compte, puis vous rendre sur votre profil et aller dans 
-<a href="request-movie.html" class="aide-lien-vert">Demande de films</a>.
-</div></div>
+                <!-- CATEGORIE: CONTENU ET CATALOGUE -->
+                <div class="category-content" data-category="contenu">
+                    <h2 class="category-title">Contenu et Catalogue</h2>
+                    <div class="faq-list">
+                        <div class="faq-item">
+                            <div class="faq-header">
+                                <h3>Où puis-je faire des demandes de nouveaux films ?</h3>
+                                <svg class="faq-toggle" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="24" height="24">
+                                    <path d="M7 10l5 5 5-5z" fill="currentColor"/>
+                                </svg>
+                            </div>
+                            <div class="faq-body">
+                                <p>Pour demander des films, il vous faudra créer un compte, puis vous rendre sur votre profil et aller dans <a href="request-movie.html" class="aide-link">Demande de films</a>.</p>
+                            </div>
+                        </div>
 
-<div class="aide-item" onclick="toggleAide(2)">
-<div class="aide-question">Les films sont-ils disponibles en plusieurs langues ?</div>
-<div class="aide-answer">
-Tous nos films sont disponibles en français (VF), en anglais (VO), et parfois dans d’autres langues.
-</div></div>
+                        <div class="faq-item">
+                            <div class="faq-header">
+                                <h3>Puis-je regarder les films sur mobile ?</h3>
+                                <svg class="faq-toggle" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="24" height="24">
+                                    <path d="M7 10l5 5 5-5z" fill="currentColor"/>
+                                </svg>
+                            </div>
+                            <div class="faq-body">
+                                <p>Non, les films ne sont pas conçus pour être visionnés sur mobile. Cependant, il est possible de télécharger le film, puis de le transférer sur une clé USB ou un disque dur afin de le brancher directement sur votre téléviseur.</p>
+                            </div>
+                        </div>
 
-<div class="aide-item" onclick="toggleAide(3)">
-<div class="aide-question">Je n'ai pas d'écran 4K, que faire ?</div>
-<div class="aide-answer">
-Les films en 4K seront automatiquement adaptés et lus en 1080p si votre écran ne prend pas en charge cette résolution.
-</div></div>
+                        <div class="faq-item">
+                            <div class="faq-header">
+                                <h3>Les films sont-ils disponibles en plusieurs langues ?</h3>
+                                <svg class="faq-toggle" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="24" height="24">
+                                    <path d="M7 10l5 5 5-5z" fill="currentColor"/>
+                                </svg>
+                            </div>
+                            <div class="faq-body">
+                                <p>Tous nos films sont disponibles en français (VF), en anglais (VO), et parfois dans d'autres langues.</p>
+                            </div>
+                        </div>
 
-<div class="aide-item" onclick="toggleAide(4)">
-<div class="aide-question">Le film demande l'installation d'un nouveau codec ou l'achat d'une extension vidéo HEVC. Que faire ?</div>
-<div class="aide-answer">
-Utilisez un lecteur compatible comme <a href="https://github.com/clsid2/mpc-hc/releases" target="_blank" class="aide-lien-vert">MPC-HC</a> pour lire les fichiers encodés en H.265.
-</div></div>
+                        <div class="faq-item">
+                            <div class="faq-header">
+                                <h3>Pourquoi le téléchargement est lent ?</h3>
+                                <svg class="faq-toggle" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="24" height="24">
+                                    <path d="M7 10l5 5 5-5z" fill="currentColor"/>
+                                </svg>
+                            </div>
+                            <div class="faq-body">
+                                <p>Le problème ne vient pas de votre connexion, mais de l'hébergeur des fichiers, 1fichier.com, qui peut parfois limiter la vitesse de téléchargement en fonction de la charge de ses serveurs ou du type d'accès (gratuit ou payant).</p>
+                            </div>
+                        </div>
 
-<div class="aide-item" onclick="toggleAide(5)">
-<div class="aide-question">Comment changer la langue d'un film ?</div>
-<div class="aide-answer">
-Pour changer la langue d’un film, sélectionnez « Piste audio » dans l’onglet « Lecture ». 
-<a href="javascript:void(0)" class="voir-plus" onclick="showImage(event, 5)">Voir Plus</a>
-<div class="aide-image" id="aide-image-5" style="display:none; margin-top:10px;">
-<img src="https://i.imgur.com/xMwNGOd.png" alt="Explication langue" style="width:100%; border-radius:8px;">
-</div></div></div>
+                        <div class="faq-item">
+                            <div class="faq-header">
+                                <h3>À quelle fréquence ajoutez-vous de nouveaux films ?</h3>
+                                <svg class="faq-toggle" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="24" height="24">
+                                    <path d="M7 10l5 5 5-5z" fill="currentColor"/>
+                                </svg>
+                            </div>
+                            <div class="faq-body">
+                                <p>Pour le lancement de notre site, nous privilégions avant tout l'ajout rapide des films demandés par les utilisateurs. De nouveaux contenus peuvent également être ajoutés régulièrement, en fonction du temps disponible.</p>
+                            </div>
+                        </div>
 
-<div class="aide-item" onclick="toggleAide(6)">
-<div class="aide-question">Pourquoi les couleurs de mon film sont-elles fades ?</div>
-<div class="aide-answer">
-Les couleurs peuvent paraître fades à cause d’un mauvais réglage du lecteur vidéo. Utiliser un renderer comme <a href="https://www.madshi.net/" target="_blank" class="aide-lien-vert">madVR</a>. Aucun réglage nécessaire.
-<a href="javascript:void(0)" class="voir-plus" onclick="showImage(event, 6)">Voir le Guide D'installation</a>
-<div class="aide-image" id="aide-image-6" style="display:none; margin-top:10px;">
-<div class="aide-caption">Étape 1 : Clic droit “Options”.</div>
-<img src="https://i.imgur.com/xMwNGOd.png" alt="Étape 1" style="width:100%; border-radius:8px;">
-<div class="aide-caption">Étape 2 : Dans "Sortie", sélectionner madVR.</div>
-<img src="https://i.imgur.com/3vK0e3o.png" alt="Étape 2" style="width:100%; border-radius:8px;">
-</div></div></div>
+                        <div class="faq-item">
+                            <div class="faq-header">
+                                <h3>Quels formats et qualités de téléchargement sont disponibles ?</h3>
+                                <svg class="faq-toggle" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="24" height="24">
+                                    <path d="M7 10l5 5 5-5z" fill="currentColor"/>
+                                </svg>
+                            </div>
+                            <div class="faq-body">
+                                <p>Nous proposons différents formats et qualités de vidéo afin de s'adapter à tous les besoins : 1080p, 4K, Full HD, HD, Blu-ray, Remux Blu-ray ou HDTV. Les films sont généralement disponibles en formats .mp4 ou .mkv.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
 
-</section></main>
+                <!-- CATEGORIE: TELECHARGER -->
+                <div class="category-content" data-category="telecharger">
+                    <h2 class="category-title">Télécharger</h2>
+                    <div class="faq-list">
+                        <div class="faq-item">
+                            <div class="faq-header">
+                                <h3>Je n'ai pas d'écran 4K, que faire ?</h3>
+                                <svg class="faq-toggle" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="24" height="24">
+                                    <path d="M7 10l5 5 5-5z" fill="currentColor"/>
+                                </svg>
+                            </div>
+                            <div class="faq-body">
+                                <p>Les films en 4K seront automatiquement adaptés et lus en 1080p si votre écran ne prend pas en charge cette résolution.</p>
+                            </div>
+                        </div>
 
-<script src="js/aide.js"></script>
-<script type="module" src="js/navbar.js"></script>
+                        <div class="faq-item">
+                            <div class="faq-header">
+                                <h3>Le film demande l'installation d'un nouveau codec ou l'achat d'une extension video HEVC. Que faire ?</h3>
+                                <svg class="faq-toggle" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="24" height="24">
+                                    <path d="M7 10l5 5 5-5z" fill="currentColor"/>
+                                </svg>
+                            </div>
+                            <div class="faq-body">
+                                <p>Utilisez un lecteur compatible comme <a href="https://github.com/clsid2/mpc-hc/releases" target="_blank" class="aide-link">MPC-HC</a> pour lire les fichiers encodes en H.265.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- CATEGORIE: STREAMING -->
+                <div class="category-content" data-category="streaming">
+                    <h2 class="category-title">Streaming</h2>
+                    <div class="faq-list">
+                        <div class="faq-item">
+                            <div class="faq-header">
+                                <h3>Comment regarder un film sur le site ?</h3>
+                                <svg class="faq-toggle" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="24" height="24">
+                                    <path d="M7 10l5 5 5-5z" fill="currentColor"/>
+                                </svg>
+                            </div>
+                            <div class="faq-body">
+                                <p>Il n'est pas possible de visionner un film directement sur notre plateforme. Les films sont uniquement disponibles en téléchargement via le bouton situé sous chaque bande-annonce.</p>
+                            </div>
+                        </div>
+
+                        <div class="faq-item">
+                            <div class="faq-header">
+                                <h3>Comment changer la langue d'un film ?</h3>
+                                <svg class="faq-toggle" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="24" height="24">
+                                    <path d="M7 10l5 5 5-5z" fill="currentColor"/>
+                                </svg>
+                            </div>
+                            <div class="faq-body">
+                                <p>Pour changer la langue d'un film, sélectionnez Piste audio dans l'onglet Lecture.</p>
+                                <div class="faq-image-container">
+                                    <button class="show-image-btn" data-toggle="image">Voir une illustration</button>
+                                    <img src="https://i.postimg.cc/T1dBwyDB/x-Mw-NGOd-(1).jpg" alt="Explication langue" class="faq-image" style="display:none;">
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="faq-item">
+                            <div class="faq-header">
+                                <h3>Pourquoi les couleurs de mon film sont-elles fades ?</h3>
+                                <svg class="faq-toggle" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="24" height="24">
+                                    <path d="M7 10l5 5 5-5z" fill="currentColor"/>
+                                </svg>
+                            </div>
+                            <div class="faq-body">
+                                <p>Les couleurs peuvent paraître fades à cause d'un mauvais réglage du lecteur vidéo. Utilisez un renderer comme <a href="https://www.madshi.net/" target="_blank" class="aide-link">madVR</a> pour améliorer la qualité.</p>
+                                <div class="faq-image-container">
+                                    <button class="show-image-btn" data-toggle="guide">Guide d'installation</button>
+                                    <div class="faq-image-guide" style="display:none;">
+                                        <div class="guide-step">
+                                            <strong>Étape 1:</strong>
+                                            <p>Après l'installation, sélectionnez Options dans Affichage.</p>
+                                            <img src="https://i.postimg.cc/1RVvGr9M/Capture-d-ecran-2026-05-14-225950.png" alt="Étape 1" class="faq-image">
+                                        </div>
+                                        <div class="guide-step">
+                                            <strong>Étape 2:</strong>
+                                            <p>Dans Sortie, sélectionnez madVR</p>
+                                            <img src="https://i.postimg.cc/4nCtPcQ1/3v-K0e3o.png" alt="Étape 2" class="faq-image">
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <script src="js/aide.js"></script>
+    <script type="module" src="js/navbar.js"></script>
 </body>
 </html>
