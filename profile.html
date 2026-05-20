@@ -58,20 +58,8 @@
       <p id="profileDate" class="profile-date"></p>
       <p id="profileDescription" class="profile-description"></p>
       <div id="profileActions" style="display:flex; gap:10px; align-items:center;">
-        <button id="followBtn" class="follow-btn"><span class="btn-text">Suivre</span></button>
         <a class="edit-profile-btn">Modifier le profil</a>
       </div>
-    </div>
-  </div>
-
-  <div class="followers-wrapper">
-    <div class="follower-item">
-      <span class="follower-count" id="followersCount">0</span>
-      <span class="follower-text">Abonnés</span>
-    </div>
-    <div class="follower-item">
-      <span class="follower-count" id="followingCount">0</span>
-      <span class="follower-text">Abonnement</span>
     </div>
   </div>
 </section>
@@ -87,18 +75,18 @@
 <div class="edit-panel">
 <a href="#" class="close-panel">&times;</a>
 <div class="panel-left">
-<div class="panel-avatar-wrapper">
-<img id="panelAvatar" alt="Avatar" class="panel-avatar" src="https://lh3.googleusercontent.com/a/ACg8ocK0wLbXePE7U7v2xIUeokWxQv5L_X1h6G2HKBuR2SBt_z5wL7RW=s96-c">
-<div class="panel-avatar-overlay">
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
-<path d="M3 17.25V21h3.75L17.81 9.94l-3.75-3.75L3 17.25zM20.71 7.04a1 1 0 0 0 0-1.41l-2.34-2.34a1 1 0 0 0-1.41 0l-1.83 1.83 3.75 3.75 1.83-1.83z"/>
-</svg>
-</div>
-</div>
-<p class="panel-avatar-text">Votre avatar</p>
-<a href="#" id="deleteAccountBtn" class="delete-account-btn">Supprimer le compte</a>
-</div>
-<div class="panel-right">
+    <div class="panel-avatar-wrapper">
+      <img id="panelAvatar" alt="Avatar" class="panel-avatar" src="https://lh3.googleusercontent.com/a/ACg8ocK0wLbXePE7U7v2xIUeokWxQv5L_X1h6G2HKBuR2SBt_z5wL7RW=s96-c">
+      <div class="panel-avatar-overlay">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+          <path d="M3 17.25V21h3.75L17.81 9.94l-3.75-3.75L3 17.25zM20.71 7.04a1 1 0 0 0 0-1.41l-2.34-2.34a1 1 0 0 0-1.41 0l-1.83 1.83 3.75 3.75 1.83-1.83z"/>
+        </svg>
+      </div>
+    </div>
+    <p class="panel-avatar-text">Cliquez sur l'avatar pour le modifier</p>
+    <a href="#" id="deleteAccountBtn" class="delete-account-btn">Supprimer le compte</a>
+  </div>
+  <div class="panel-right">
 <h2>Modifier le profil</h2>
 <form id="editProfileForm">
 <div class="form-group">
@@ -162,33 +150,6 @@
 </div>
 </div>
 </main>
-
-<button id="friendsBtn" class="friends-btn" aria-label="Amis">
-  <span class="material-symbols-outlined">
-    group_add
-  </span>
-</button>
-
-<div id="friendsPanel" class="friends-panel">
-  <div class="panel-header">
-    <input type="text" id="friendSearch" placeholder="Rechercher des personnes..." autocomplete="off">
-  </div>
-  <div class="panel-body" id="friendsList">
-    <p style="color:#ccc; text-align:center; margin-top:20px;">Aucun résultat</p>
-  </div>
-</div>
-
-<div id="followPanel" class="overlay" style="display:none;">
-  <div class="panel-center">
-    <div class="panel-header">
-      <h2 id="followPanelTitle">Abonnés</h2>
-      <button id="closeFollowPanel" class="close-panel">&times;</button>
-    </div>
-    <div id="followList" class="follow-list">
-    </div>
-  </div>
-</div>
-
 
 <div id="toast" class="toast">Profil mis à jour !</div>
 

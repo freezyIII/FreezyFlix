@@ -25,23 +25,31 @@ textarea#description {resize: none;}
 .tab-text { color: #ccc; font-size: 0.9rem; text-align: center; }
 
 /* Panel de Modifier le Profil */
-.overlay {position: fixed; top: 0; left: 0; width: 100%; height: 100%;backdrop-filter: blur(5px); background-color: rgba(0,0,0,0.4);display: none; justify-content: center; align-items: center; z-index: 1000; padding: 20px;}
+.overlay {position: fixed; top: 0; left: 0; width: 100%; height: 100%;backdrop-filter: blur(12px); background-color: rgba(0,0,0,0.65);display: none; justify-content: center; align-items: center; z-index: 1000; padding: 20px;}
 .overlay:target { display: flex; }
-.edit-panel {display: flex; background-color: #1c1c1c; border: 0.5px solid #555;border-radius: 6px; box-shadow: 0 6px 30px rgba(0,0,0,0.5);width: 700px; max-width: 95%; min-height: 600px; padding: 30px; color: #fff; position: relative;}
-.close-panel { position: absolute; top: 10px; right: 15px; color: #fff; font-size: 1.8rem; text-decoration: none; }
-.panel-left { flex: 1; display: flex; flex-direction: column; align-items: center; justify-content: flex-start; padding-right: 20px; border-right: 1px solid #555; }
-.panel-avatar { width: 160px; height: 160px; border-radius: 50%; object-fit: cover; margin-bottom: 10px; border: 2px solid #fff; }
-.panel-avatar-text { color: #ccc; font-size: 0.95rem; }
-.panel-right { flex: 2; padding: 20px; display: flex; flex-direction: column; }
-.panel-right h2 { text-align: left; margin-top: 0; margin-bottom: 20px; }
-label { margin-bottom: 5px; font-size: 0.95rem; }
-.edit-panel .panel-right .form-group input, .edit-panel .panel-right .form-group textarea { padding: 10px; border-radius: 4px; border: 1px solid #555; background-color: #181818; color: #fff; font-size: 0.95rem; resize: vertical;margin-bottom: 15px; }
-textarea { min-height: 100px; }
+.edit-panel {display: flex; background: rgba(15,15,15,0.96); border: 1px solid rgba(255,255,255,0.1); border-radius: 28px; box-shadow: 0 24px 80px rgba(0,0,0,0.45);width: 780px; max-width: 98%; min-height: 580px; padding: 0; color: #fff; position: relative; overflow: hidden;}
+.close-panel { position: absolute; top: 18px; right: 18px; color: #fff; font-size: 1.9rem; text-decoration: none; z-index: 2; }
+.panel-left { flex: 1; display: flex; flex-direction: column; align-items: center; justify-content: flex-start; padding: 40px 30px; border-right: 1px solid rgba(255,255,255,0.08); background: linear-gradient(180deg, rgba(255,255,255,0.03), rgba(255,255,255,0)); }
+.panel-avatar { width: 170px; height: 170px; border-radius: 50%; object-fit: cover; margin-bottom: 14px; border: 2px solid rgba(255,255,255,0.18); box-shadow: 0 16px 35px rgba(0,0,0,0.25); }
+.panel-avatar-text { color: #bbb; font-size: 0.95rem; margin: 0 0 18px; text-align: center; max-width: 220px; }
+.panel-right { flex: 1.6; padding: 34px 36px; display: flex; flex-direction: column; gap: 18px; }
+.panel-right h2 { text-align: left; margin-top: 0; margin-bottom: 8px; font-size: 1.85rem; letter-spacing: 0.02em; }
+.panel-right p { color: #bbb; margin: 0 0 20px; font-size: 0.95rem; line-height: 1.6; }
+label { margin-bottom: 8px; font-size: 0.95rem; color: #ddd; }
+.edit-panel .panel-right .form-group input, .edit-panel .panel-right .form-group textarea { padding: 14px 15px; border-radius: 16px; border: 1px solid rgba(255,255,255,0.12); background-color: rgba(255,255,255,0.04); color: #f5f5f5; font-size: 0.95rem; resize: vertical;margin-bottom: 12px; transition: border-color 0.25s ease, box-shadow 0.25s ease; }
+.edit-panel .panel-right .form-group input:focus, .edit-panel .panel-right .form-group textarea:focus { outline: none; border-color: #ff8b3c; box-shadow: 0 0 0 4px rgba(255,139,60,0.12); }
+textarea { min-height: 120px; }
 
-@media (max-width: 700px) { 
-.edit-panel { flex-direction: column; padding: 20px; min-height: auto; } 
-.panel-left { border-right: none; border-bottom: 1px solid #555; padding-right: 0; padding-bottom: 20px; } 
-.panel-right { padding-left: 0; } }
+@media (max-width: 860px) { 
+.edit-panel { flex-direction: column; min-height: auto; } 
+.panel-left { border-right: none; border-bottom: 1px solid rgba(255,255,255,0.08); padding: 30px; } 
+.panel-right { padding: 28px 24px; } }
+
+@media (max-width: 620px) { 
+.profile-container {padding: 6% 6% 3% 6%;flex-direction: column;align-items: stretch;} 
+.profile-actions { margin: 0 6% 18px; gap: 18px;flex-wrap: wrap; } 
+.edit-panel { width: 100%; } 
+.panel-left, .panel-right { padding: 24px 18px; } }
 
 /* Bouton Modifier le Profil */
 .edit-profile-btn {display: none;align-items: center;gap: 5px;background-color: #181818;border: 1.3px solid rgba(200,200,200,0.28);color: #ddd;padding: 7px 10px;border-radius: 6px;font-size: 0.85rem;font-weight: bold;cursor: pointer;width: fit-content;text-decoration: none;transition: 0.08s linear;}
@@ -49,13 +57,13 @@ textarea { min-height: 100px; }
 .edit-profile-btn svg {width: 16px;height: 16px;fill: #ddd;}
 
 /* Bouton Annuler / Enregistrer de Modifier le Profil */
-.form-buttons {position: absolute;bottom: 15px;right: 15px;display: flex;gap: 12px;}
+.form-buttons {display: flex;justify-content: flex-end;gap: 14px;margin-top: 8px;flex-wrap: wrap;}
 .form-buttons button,
-.form-buttons .cancel-btn {padding: 10px 22px;border: 1px solid rgba(255,255,255,0.2);border-radius: 12px;font-weight: 600;font-size: 0.9rem;cursor: pointer;text-decoration: none;color: #fff;background: rgba(255, 255, 255, 0.045);backdrop-filter: blur(8px);box-shadow: 0 4px 20px rgba(0,0,0,0.4);transition: all 0.3s ease;}
+.form-buttons .cancel-btn {padding: 12px 24px;border: 1px solid rgba(255,255,255,0.14);border-radius: 999px;font-weight: 700;font-size: 0.95rem;cursor: pointer;text-decoration: none;color: #fff;background: rgba(255, 255, 255, 0.06);backdrop-filter: blur(12px);box-shadow: 0 16px 30px rgba(0,0,0,0.28);transition: all 0.3s ease;}
 .form-buttons button:hover,
-.form-buttons .cancel-btn:hover {background: rgba(255, 255, 255, 0.075);box-shadow: 0 6px 25px rgba(0,0,0,0.5);transform: translateY(-2px);border-color: rgba(255,255,255,0.3);}
+.form-buttons .cancel-btn:hover {background: rgba(255, 255, 255, 0.12);box-shadow: 0 18px 35px rgba(0,0,0,0.35);transform: translateY(-2px);border-color: rgba(255,255,255,0.28);}
 .form-buttons button:active,
-.form-buttons .cancel-btn:active {transform: translateY(0);box-shadow: 0 3px 15px rgba(0,0,0,0.4);}
+.form-buttons .cancel-btn:active {transform: translateY(0);box-shadow: 0 12px 22px rgba(0,0,0,0.28);}
 
 /* Compteur de caractère de profil */
 .form-group {position: relative;display: flex;flex-direction: column;}
@@ -76,18 +84,19 @@ textarea { min-height: 100px; }
 ::-webkit-scrollbar-thumb:hover {background: #3a3a3a;}
 
 /* Modifier la Poto de Profil */
-.panel-avatar-wrapper {position: relative;display: inline-block;width: 160px;height: 160px;border-radius: 50%;overflow: hidden;cursor: pointer;}
-.panel-avatar-wrapper img {width: 100%;height: 100%;border-radius: 50%;object-fit: cover;transition: filter 0.3s ease;}
-.panel-avatar-overlay {position: absolute;top: 0;left: 0;width: 100%;height: 100%;border-radius: 50%;background-color: rgba(0,0,0,0.4);display: flex;align-items: center;justify-content: center;opacity: 0;transition: opacity 0.3s ease;pointer-events: none;}
-.panel-avatar-overlay svg {width: 40px;height: 40px;fill: #fff;}
-.panel-avatar-wrapper:hover img {filter: brightness(60%);}
+.panel-avatar-wrapper {position: relative;display: inline-flex;width: 170px;height: 170px;border-radius: 50%;overflow: hidden;cursor: pointer;transition: transform 0.25s ease;}
+.panel-avatar-wrapper img {width: 100%;height: 100%;border-radius: 50%;object-fit: cover;transition: transform 0.3s ease, filter 0.3s ease;}
+.panel-avatar-overlay {position: absolute;top: 0;left: 0;width: 100%;height: 100%;border-radius: 50%;background: rgba(0,0,0,0.45);display: flex;align-items: center;justify-content: center;opacity: 0;transition: opacity 0.3s ease;}
+.panel-avatar-overlay svg {width: 42px;height: 42px;fill: #fff;}
+.panel-avatar-wrapper:hover {transform: scale(1.02);}
+.panel-avatar-wrapper:hover img {filter: brightness(65%);}
 .panel-avatar-wrapper:hover .panel-avatar-overlay {opacity: 1;}
 
 /* Faforis & évaluation */
 .favorites-empty, .evaluation-empty {display: flex;flex-direction: column;align-items: center;justify-content: center;text-align: center;}
 .favorites-empty svg, .evaluation-empty svg {width: 30px;height: 30px;fill: #ccc;margin-bottom: 10px;}
 #favoritesContent {width: 100%;max-width: 1100px;margin: 0 auto;}
-#favoritesContent .movie-grid {grid-template-columns: repeat(5, 200px);justify-content: start;max-width: 1048px;margin: 0 auto;}
+#favoritesContent .movie-grid {display: grid;grid-template-columns: repeat(5, 200px);gap: 12px;justify-content: start;max-width: 1048px;margin: 0 auto;}
 
 /* Supprimer le Compte */
 .delete-account-btn {position: absolute;bottom: 15px;left: 15px;padding: 10px 22px;border: 1px solid rgba(255, 0, 0, 0.5);border-radius: 12px;font-weight: 600;font-size: 0.9rem;cursor: pointer;text-decoration: none;color: #ff5555;background: rgba(255, 0, 0, 0.05);backdrop-filter: blur(8px);box-shadow: 0 4px 20px rgba(0,0,0,0.4);transition: all 0.3s ease;}
@@ -109,51 +118,3 @@ textarea { min-height: 100px; }
 .popup-buttons .delete-btn {background-color: #ff3d00; color: #fff; box-shadow: 0 4px 12px rgba(255,61,0,0.4);}
 .popup-buttons .delete-btn:hover {background-color: #ff5722; transform: translateY(-2px); box-shadow: 0 6px 18px rgba(255,87,34,0.5);}
 
-/* Pannel amis */
-.friend-avatar-link {cursor: pointer;}
-.friend-item {display: flex;align-items: center;justify-content: space-between;padding: 8px 10px;border-bottom: 1px solid #444;}
-.friend-left {display: flex;align-items: center;gap: 10px;}
-.friend-left img {width: 40px;height: 40px;border-radius: 50%;object-fit: cover;}
-.friend-follow-btn {padding: 6px 14px;border-radius: 14px;font-size: 0.8rem;font-weight: 600;cursor: pointer;border: 1px solid rgba(255,255,255,0.25);background: rgba(255,255,255,0.06);color: #fff;transition: 0.2s ease;}
-.friend-follow-btn:hover {background: rgba(255,255,255,0.15);}
-.friend-follow-btn.following {background: rgba(255, 120, 40, 0.25);border-color: rgba(255, 120, 40, 0.6);}
-.friends-btn {position: fixed;bottom: 30px;right: 30px;width: 60px;height: 60px;border-radius: 50%;background-color: #ff7733;color: #fff;display: flex;align-items: center;justify-content: center;font-size: 32px;cursor: pointer;z-index: 1500;border: none;box-shadow: 0 4px 15px rgba(0,0,0,0.4);transition: transform 0.2s ease;}
-.friends-btn:hover { transform: scale(1.05); }
-.friends-panel {position: fixed;top: 15%;           bottom: 15%;        right: 30px;        width: 300px;       max-width: 90%;background-color: #1c1c1c;border: 1px solid #555;border-radius: 12px;box-shadow: 0 6px 25px rgba(0,0,0,0.5);display: none;flex-direction: column;z-index: 2000;}
-.friends-panel .panel-header {padding: 10px;border-bottom: 1px solid #555;}
-.friends-panel .panel-header input {width: 100%;padding: 8px 12px;border-radius: 8px;border: 1px solid #555;background-color: #181818;color: #fff;font-size: 0.95rem;}
-.friends-panel .panel-body {flex: 1;overflow-y: auto;padding: 10px;}
-
-/* Bouton suivre */
-.follow-btn {display: flex;align-items: center;gap: 5px;background-color: #181818;border: 1.3px solid rgba(200, 200, 200, 0.28);color: #ddd;padding: 7px 10px;border-radius: 6px;font-size: 0.85rem;font-weight: bold;cursor: pointer;width: fit-content;text-decoration: none;transition: 0.08s linear;}
-.follow-btn:hover {background-color: #252525;border-color: rgba(230,230,230,0.45);}
-
-/* Compteur d'abonnés */
-.followers-wrapper {display: flex;gap: 20px;align-items: center;color: #fff;font-size: 0.95rem;}
-.follower-item {display: flex;flex-direction: column;align-items: center;text-align: center;}
-.follower-count {font-weight: bold;font-size: 1.1rem;color: #ff7733;}
-.follower-text {font-size: 0.85rem;color: #ccc;}
-.profile-main {flex: 1;display: flex;flex-direction: column;gap: 10px;}
-
-/* Pannel follow / following */
-.panel-center {background: #111;padding: 20px;border-radius: 12px;width: 90%;max-width: 400px;height: 500px;overflow-y: auto;color: #fff;position: relative;box-shadow: 0 8px 20px rgba(0, 0, 0, 0.5);transition: transform 0.3s ease, opacity 0.3s ease;}
-.panel-header {display: flex;justify-content: space-between;align-items: center;margin-bottom: 15px;font-weight: 600;}
-.close-panel {background: none;border: none;font-size: 24px;color: #fff;cursor: pointer;transition: color 0.2s ease, transform 0.2s ease;}
-.close-panel:hover {color: #f33;transform: scale(1.1);}
-.follow-list .follow-item {display: flex;align-items: center;gap: 12px;padding: 10px 0;border-bottom: 1px solid #333;transition: background 0.2s ease;cursor: pointer;border-radius: 8px;}
-.follow-list .follow-item:hover {background: rgba(255, 255, 255, 0.05);}
-.follow-list .follow-item img {width: 42px;height: 42px;border-radius: 50%;object-fit: cover;flex-shrink: 0;transition: transform 0.2s ease;}
-.follow-list .follow-item:hover img {transform: scale(1.05);}
-
-#friendsBtn {display: none;}
-
-.follow-item {display: flex;align-items: center;justify-content: space-between;padding: 10px 14px;border-radius: 8px;cursor: pointer;}
-.follow-left {display: flex;align-items: center;gap: 10px;}
-.follow-left img {width: 40px;height: 40px;border-radius: 50%;object-fit: cover;}
-.follow-list-btn {padding: 6px 14px;font-size: 0.8rem;}
-.follow-item {display: flex;justify-content: space-between;align-items: center;}
-.follow-right {display: flex;align-items: center;gap: 10px;}
-.remove-follower-btn {background: none;border: none;color: #ff3d00;cursor: pointer;display: flex;align-items: center;justify-content: center;padding: 6px;border-radius: 6px;transition: 0.2s;}
-.remove-follower-btn:hover {background: rgba(255, 61, 0, 0.1);transform: scale(1.05);}
-.remove-follower-btn svg {display: block;
-}#followBtn { visibility: hidden; }

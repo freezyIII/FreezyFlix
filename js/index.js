@@ -38,14 +38,22 @@ function escAttr(s) {
   return String(s).replace(/&/g, "&amp;").replace(/"/g, "&quot;");
 }
 
+function normalizeSearch(text) {
+  return String(text || "")
+    .toLowerCase()
+    .normalize("NFD")
+    .replace(/[\u0300-\u036f]/g, "")
+    .trim();
+}
+
 /** Libellé Film / Série selon movies.js (ou secours si titre absent du catalogue). */
 function contentTypeLabelFromCatalog(title, fallbackType) {
   if (typeof movies !== "undefined") {
     const entry = movies.find((x) => x.title === title);
-    if (entry) return entry.type === "serie" ? "Série" : "Film";
+    if (entry) return entry.type === "serie" ? "SÉRIE" : "FILM";
   }
-  if (fallbackType === "serie") return "Série";
-  return "Film";
+  if (fallbackType === "serie") return "SÉRIE";
+  return "FILM";
 }
 
 async function setupGridFavoriteButtons(root = document) {
@@ -150,10 +158,151 @@ onReady(() => {
   // -------------------- Compteur de films --------------------
   const currentPage = window.location.pathname.split("/").pop() || "index.html";
   const pageContentType = currentPage === "films.html" ? "film" : currentPage === "serie.html" ? "serie" : "";
-  const pageContentHeading = pageContentType === "serie" ? "SERIES" : "FILMS";
+  const pageContentHeading = pageContentType === "serie" ? "SERIES" : pageContentType === "film" ? "FILMS" : "ACCUEIL";
   const movieRowsPerPage = 8;
   let currentMoviePage = 1;
   let paginationDiv = null;
+
+  const isHomePage = currentPage === "index.html" || currentPage === "";
+  const HOME_CATEGORIES = [
+    { label: "Aventure", filter: "aventure" },
+    { label: "Horreur", filter: "horreur" },
+    { label: "Animation", filter: "animation" },
+    { label: "Fantastique", filter: "fantastique" },
+    { label: "Romance", filter: "romance" },
+    { label: "Policier", filter: "policier" }
+  ];
+
+  function shuffleArray(array) {
+    const copy = Array.from(array);
+    for (let i = copy.length - 1; i > 0; i--) {
+      const j = Math.floor(Math.random() * (i + 1));
+      [copy[i], copy[j]] = [copy[j], copy[i]];
+    }
+    return copy;
+  }
+
+  function getMoviesForGenre(tag) {
+    return movies.filter(movie => String(movie.category || "").toLowerCase().includes(tag));
+  }
+
+  function getTodayKey() {
+    return new Date().toISOString().slice(0, 10);
+  }
+
+  function loadDailySelection() {
+    try {
+      const raw = localStorage.getItem("homeCategorySelection");
+      if (!raw) return null;
+      const parsed = JSON.parse(raw);
+      if (parsed?.date !== getTodayKey()) return null;
+      return parsed.categories || null;
+    } catch {
+      return null;
+    }
+  }
+
+  function saveDailySelection(categories) {
+    try {
+      localStorage.setItem(
+        "homeCategorySelection",
+        JSON.stringify({ date: getTodayKey(), categories })
+      );
+    } catch {
+      // If localStorage est désactivé, on ignore silencieusement.
+    }
+  }
+
+  function getDailyMoviesForCategory(category) {
+    const stored = loadDailySelection() || {};
+    if (Array.isArray(stored[category.filter]) && stored[category.filter].length > 0) {
+      return stored[category.filter]
+        .map(title => movies.find(movie => movie.title === title))
+        .filter(Boolean);
+    }
+
+    const selectedMovies = shuffleArray(getMoviesForGenre(category.filter)).slice(0, 8);
+    stored[category.filter] = selectedMovies.map(movie => movie.title);
+    saveDailySelection(stored);
+    return selectedMovies;
+  }
+
+  function createMovieCard(movie) {
+    const movieDiv = document.createElement("div");
+    movieDiv.className = "movie-grid-item";
+    movieDiv.dataset.title = movie.title.toLowerCase();
+    movieDiv.dataset.category = movie.category.toLowerCase();
+    movieDiv.dataset.type = movie.type || "film";
+    movieDiv.dataset.filterVisible = "true";
+    movieDiv.dataset.searchVisible = "true";
+    const releaseYear = movie.releaseDate?.match(/\d{4}$/)?.[0] || "";
+    movieDiv.dataset.year = releaseYear;
+    movieDiv.dataset.quality = movie.downloads?.[0]?.resolution || "";
+
+    const kind = movie.type === "serie" ? "SÉRIE" : "FILM";
+
+    movieDiv.innerHTML = `
+      <button type="button" class="favorite-card-btn" data-title="${escAttr(movie.title)}" aria-label="Ajouter aux favoris">
+        <svg viewBox="0 0 24 24" aria-hidden="true" focusable="false">
+          <path d="M12 3.4l2.58 5.23 5.77.84-4.17 4.07.98 5.75L12 16.57l-5.16 2.72.98-5.75-4.17-4.07 5.77-.84L12 3.4z"/>
+        </svg>
+      </button>
+      <a href="movie-details.html?title=${encodeURIComponent(movie.title)}">
+        <img src="${movie.img}" loading="lazy">
+        <span class="content-type-badge">${kind}</span>
+        <div class="movie-overlay">
+          <div class="movie-title">${movie.title}</div>
+          <div class="movie-description">${movie.description}</div>
+        </div>
+      </a>
+    `;
+
+    return movieDiv;
+  }
+
+  function setupScrollAnimations() {
+    if (!('IntersectionObserver' in window)) return;
+
+    const observer = new IntersectionObserver((entries, observerInstance) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('is-visible');
+          observerInstance.unobserve(entry.target);
+        }
+      });
+    }, {
+      root: null,
+      rootMargin: '0px',
+      threshold: 0.01
+    });
+
+    document.querySelectorAll('.category-header h2, .movie-grid-item').forEach(element => {
+      observer.observe(element);
+    });
+  }
+
+  function renderHomeCategorySections() {
+    const categorySections = document.getElementById("categorySections");
+    if (!categorySections) return;
+
+    HOME_CATEGORIES.forEach(category => {
+      const section = document.createElement("section");
+      section.className = "home-category-section";
+      section.innerHTML = `
+        <div class="category-header">
+          <h2 class="titan-one-regular">${category.label}</h2>
+          <a class="category-see-all" href="films.html?cat=${encodeURIComponent(category.filter)}">Voir tout</a>
+        </div>
+        <div class="movie-grid category-movie-grid" aria-label="Films ${category.label}"></div>
+      `;
+
+      categorySections.appendChild(section);
+      const sectionGrid = section.querySelector(".movie-grid");
+      getDailyMoviesForCategory(category).forEach(movie => {
+        sectionGrid.appendChild(createMovieCard(movie));
+      });
+    });
+  }
 
   window.updateTotalMovies = function () {
     if (totalMoviesDiv) {
@@ -163,7 +312,12 @@ onReady(() => {
   updateTotalMovies();
 
   const filterWrapper = document.querySelector(".filter-wrapper");
-  if (totalMoviesDiv) {
+  if (isHomePage) {
+    filterWrapper?.remove();
+    totalMoviesDiv?.remove();
+  }
+
+  if (!isHomePage && totalMoviesDiv) {
     const gridToolbar = document.createElement("div");
     gridToolbar.className = "grid-toolbar";
     totalMoviesDiv.parentNode.insertBefore(gridToolbar, totalMoviesDiv);
@@ -514,45 +668,23 @@ if (filterBtn && filterPanel) {
   // -------------------- Initialisation des films (movieGrid) --------------------
 
 if (typeof movies !== "undefined" && movieGrid) {
-  movies
-  .filter(movie => !pageContentType || (movie.type || "film") === pageContentType)
-  .forEach(movie => {
-    const movieDiv = document.createElement("div");
-    movieDiv.className = "movie-grid-item";
+  if (isHomePage) {
+    renderHomeCategorySections();
+    updateTotalMovies();
+    setupGridFavoriteButtons();
+  } else {
+    movies
+      .filter(movie => !pageContentType || (movie.type || "film") === pageContentType)
+      .forEach(movie => {
+        movieGrid.appendChild(createMovieCard(movie));
+      });
 
-movieDiv.dataset.title = movie.title.toLowerCase();
-    movieDiv.dataset.category = movie.category.toLowerCase();
-    movieDiv.dataset.type = movie.type || "film";
-    movieDiv.dataset.filterVisible = "true";
-    movieDiv.dataset.searchVisible = "true";
-    const releaseYear = movie.releaseDate?.match(/\d{4}$/)?.[0] || "";
-    movieDiv.dataset.year = releaseYear;
-    movieDiv.dataset.quality = movie.downloads?.[0]?.resolution || "";
+    updateTotalMovies();
+    window.applyMoviePagination(1);
+    setupGridFavoriteButtons(movieGrid);
+  }
 
-    const kind = movie.type === "serie" ? "Série" : "Film";
-
-    movieDiv.innerHTML = `
-      <button type="button" class="favorite-card-btn" data-title="${escAttr(movie.title)}" aria-label="Ajouter aux favoris">
-        <svg viewBox="0 0 24 24" aria-hidden="true" focusable="false">
-          <path d="M12 3.4l2.58 5.23 5.77.84-4.17 4.07.98 5.75L12 16.57l-5.16 2.72.98-5.75-4.17-4.07 5.77-.84L12 3.4z"/>
-        </svg>
-      </button>
-      <a href="movie-details.html?title=${encodeURIComponent(movie.title)}">
-        <img src="${movie.img}" loading="lazy">
-        <span class="content-type-badge">${kind}</span>
-        <div class="movie-overlay">
-          <div class="movie-title">${movie.title}</div>
-          <div class="movie-description">${movie.description}</div>
-        </div>
-      </a>
-    `;
-
-    movieGrid.appendChild(movieDiv);
-  });
-
-  updateTotalMovies();
-  window.applyMoviePagination(1);
-  setupGridFavoriteButtons(movieGrid);
+  setupScrollAnimations();
 }
 
 
@@ -587,27 +719,46 @@ document.querySelectorAll('.featured-hero-slide, .movie-grid-item').forEach(item
 
 
 onReady(() => {
-    const urlParams = new URLSearchParams(window.location.search);
-const query = urlParams.get("q") || "";
-const normalizedQuery = normalizeSearch(query);
+  const urlParams = new URLSearchParams(window.location.search);
+  const query = urlParams.get("q") || "";
+  const normalizedQuery = normalizeSearch(query);
 
-    const queryToUse = normalizedQuery;
+  const pageSearchInput = document.getElementById("page-search-input");
+  const navSearchInput = document.getElementById("search-input");
 
-    if (query) {
-        filterMovies(query);
+  if (query) {
+    if (pageSearchInput) {
+      pageSearchInput.value = query;
     }
-
-    function filterMovies(searchText) {
-        const movieGrid = document.getElementById("movieGrid");
-        if (!movieGrid) return;
-
-        const movies = movieGrid.querySelectorAll(".movie-grid-item");
-
-        movies.forEach(movie => {
-const title = movie.getAttribute("data-title") || "";
-            movie.dataset.searchVisible = String(title.includes(searchText));
-        });
-
-        window.applyMoviePagination?.(1);
+    if (navSearchInput) {
+      navSearchInput.value = "";
     }
+    filterMovies(normalizedQuery);
+  }
+
+  if (pageSearchInput) {
+    pageSearchInput.addEventListener("keypress", (e) => {
+      if (e.key === "Enter") {
+        const value = pageSearchInput.value.trim();
+        if (value) {
+          window.location.href = `search.html?q=${encodeURIComponent(value)}`;
+        }
+      }
+    });
+  }
+
+  function filterMovies(searchText) {
+    const movieGrid = document.getElementById("movieGrid");
+    if (!movieGrid) return;
+
+    const movies = movieGrid.querySelectorAll(".movie-grid-item");
+
+    movies.forEach(movie => {
+      const title = movie.getAttribute("data-title") || "";
+      const normalizedTitle = normalizeSearch(title);
+      movie.dataset.searchVisible = String(normalizedTitle.includes(searchText));
+    });
+
+    window.applyMoviePagination?.(1);
+  }
 });

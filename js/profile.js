@@ -37,17 +37,6 @@ const favoritesContent = document.getElementById('favoritesContent');
 const evaluationContent = document.getElementById('evaluationContent');
 const links = document.querySelectorAll('.profile-link');
 
-const friendsPanel = document.getElementById('friendsPanel');
-const friendsList = document.getElementById('friendsList');
-const searchInput = document.getElementById('friendSearch');
-
-const followPanel = document.getElementById('followPanel');
-const followList = document.getElementById('followList');
-const followPanelTitle = document.getElementById('followPanelTitle');
-const closeFollowPanel = document.getElementById('closeFollowPanel');
-
-const followBtn = document.getElementById('followBtn');
-
 const toast = document.getElementById('toast');
 
 const MAX_USERNAME_CHARS = 16;
@@ -103,24 +92,24 @@ const isUsernameAvailable = async (username, currentUid) => {
   return snap.docs.every(doc => doc.id === currentUid);
 };
 
-const showTab = (tabName) => {
+const showTab = (tabName, currentUser = auth.currentUser) => {
   favoritesContent.style.display = tabName === "Favoris" ? "block" : "none";
   evaluationContent.style.display = tabName === "Évaluation" ? "block" : "none";
-  if (tabName === "Favoris") loadFavorites();
+  if (tabName === "Favoris") loadFavorites(currentUser);
   if (tabName === "Évaluation") loadEvaluations();
 };
+
+let initialTabName = 'Favoris';
 
 links.forEach(link => {
   link.addEventListener('click', e => {
     e.preventDefault();
     links.forEach(l => l.classList.remove('active'));
     link.classList.add('active');
-    showTab(link.textContent.trim());
+    initialTabName = link.textContent.trim();
+    showTab(initialTabName);
   });
 });
-
-const activeLink = document.querySelector('.profile-link.active');
-if (activeLink) showTab(activeLink.textContent.trim());
 
 const displayUserProfileByUid = async (uidToDisplay, currentUserUid) => {
   try {
@@ -142,7 +131,6 @@ const displayUserProfileByUid = async (uidToDisplay, currentUserUid) => {
 
     if (uidToDisplay !== currentUserUid) editProfileBtn.style.display = "none";
 
-    loadFavorites();
     loadEvaluations();
 
 const avatarAnimationDiv = document.getElementById('avatarAnimation');
@@ -169,13 +157,17 @@ if (userData?.founder === true) {
   }
 };
 
-async function loadFavorites() {
+async function loadFavorites(currentUser = auth.currentUser) {
   const container = favoritesContent;
   container.innerHTML = "";
 
-  const user = auth.currentUser;
-  if (!user) return;
-  const uidToLoad = profileUid || user.uid;
+  const uidToLoad = profileUid || currentUser?.uid;
+  if (!uidToLoad) {
+    container.innerHTML = `<div class="favorites-empty"><p>Connecte-toi pour voir tes favoris</p></div>`;
+    return;
+  }
+
+  const isOwnProfile = !profileUid || profileUid === currentUser?.uid;
 
   try {
     const q = query(collection(db, "users", uidToLoad, "favorites"), orderBy("createdAt", "desc"));
@@ -197,13 +189,22 @@ snapshot.forEach(docSnap => {
   const image = movie.img || catalogMovie?.img || "";
   const description = movie.description || catalogMovie?.description || "";
   const type = movie.type || catalogMovie?.type || "film";
-  const kind = type === "serie" ? "Série" : "Film";
+  const kind = type === "serie" ? "SÉRIE" : "FILM";
 
   const item = document.createElement("div");
-  item.className = "movie-grid-item";
+  item.className = "movie-grid-item is-visible";
   item.setAttribute("data-title", title.toLowerCase());
 
+  const favoriteButton = `
+    <button type="button" class="favorite-card-btn is-favorite" data-title="${title.replace(/"/g, '&quot;')}" aria-label="Retirer des favoris" aria-pressed="true"${isOwnProfile ? '' : ' disabled aria-disabled="true"'}>
+      <svg viewBox="0 0 24 24" aria-hidden="true" focusable="false">
+        <path d="M12 3.4l2.58 5.23 5.77.84-4.17 4.07.98 5.75L12 16.57l-5.16 2.72.98-5.75-4.17-4.07 5.77-.84L12 3.4z"/>
+      </svg>
+    </button>
+  `;
+
   item.innerHTML = `
+    ${favoriteButton}
     <a href="movie-details.html?title=${encodeURIComponent(title)}">
       <img src="${image}" loading="lazy" alt="${title}">
       <span class="content-type-badge">${kind}</span>
@@ -215,6 +216,26 @@ snapshot.forEach(docSnap => {
   `;
 
   grid.appendChild(item);
+
+  if (isOwnProfile) {
+    const favBtn = item.querySelector('.favorite-card-btn');
+    favBtn.addEventListener('click', async (event) => {
+      event.preventDefault();
+      event.stopPropagation();
+
+      try {
+        await deleteDoc(doc(db, "users", uidToLoad, "favorites", title));
+        item.remove();
+        if (!grid.children.length) {
+          container.innerHTML = `<div class="favorites-empty"><p>Aucun favori pour l'instant</p></div>`;
+        }
+        showToast("Favori retiré");
+      } catch (err) {
+        console.error("Erreur suppression favori :", err);
+        showToast("Impossible de retirer ce favori");
+      }
+    });
+  }
 });
     container.appendChild(grid);
   } catch (err) {
@@ -299,7 +320,7 @@ changeAvatarForm.addEventListener('submit', e => {
   e.preventDefault();
   const inputUrl = avatarUrlInput.value.trim();
 
-  if (inputUrl) {e
+  if (inputUrl) {
     tempAvatarUrl = inputUrl;
     panelAvatar.src = tempAvatarUrl;
   } else {
@@ -437,291 +458,11 @@ onAuthStateChanged(auth, async (user) => {
   const uidToDisplay = profileUid || user.uid;
   const isOwnProfile = uidToDisplay === user.uid;
 
-  const snap = await getDoc(doc(db, "users", user.uid));
-  const data = snap.data();
-
   editProfileBtn.style.display = isOwnProfile ? 'flex' : 'none';
-  followBtn.style.display = isOwnProfile ? 'none' : 'flex';
-  friendsBtn.style.display = isOwnProfile ? 'flex' : 'none';
-
-  document.getElementById('followersCount').addEventListener('click', () => showFollowPanel('followers'));
-  document.getElementById('followingCount').addEventListener('click', () => showFollowPanel('following'));
 
   await displayUserProfileByUid(uidToDisplay, user.uid);
-  await updateFollowCounts();
-
-  document.getElementById('friendsBtn').addEventListener('click', () => {
-    friendsPanel.style.display = friendsPanel.style.display === 'flex' ? 'none' : 'flex';
-  });
-});
-
-async function loadFriends() {
-  const snapshot = await getDocs(collection(db, "users"));
-  allFriends = snapshot.docs.map(doc => ({ id: doc.id, ...doc.data() }));
-  displayFriends(allFriends);
-}
-
-async function setupFollowButton(button, targetUid) {
-  const currentUid = auth.currentUser.uid;
-  const followersRef = doc(db, "users", targetUid, "followers", currentUid);
-  const followingRef = doc(db, "users", currentUid, "following", targetUid);
-
-  const snap = await getDoc(followersRef);
-  if (snap.exists()) {
-    button.classList.add('following');
-    button.querySelector('span').textContent = 'Abonné';
-  }
-
-  button.addEventListener('click', async (e) => {
-    e.stopPropagation();
-    const isFollowing = button.classList.contains('following');
-    try {
-      if (isFollowing) {
-        await deleteDoc(followersRef);
-        await deleteDoc(followingRef);
-        button.classList.remove('following');
-        button.querySelector('span').textContent = 'Suivre';
-      } else {
-        await setDoc(followersRef, { uid: currentUid, followedAt: new Date().toISOString() });
-        await setDoc(followingRef, { uid: targetUid, followedAt: new Date().toISOString() });
-        button.classList.add('following');
-        button.querySelector('span').textContent = 'Abonné';
-      }
-      await updateFollowCounts();
-    } catch (err) {
-      console.error("Erreur follow :", err);
-      showToast("Erreur lors du suivi", 3000);
-    }
-  });
-}
-
-function displayFriends(friends) {
-  friendsList.innerHTML = '';
-  const currentUid = auth.currentUser.uid;
-
-  if (friends.length === 0) {
-    friendsList.innerHTML = `<p style="color:#ccc; text-align:center; margin-top:20px;">Aucun résultat</p>`;
-    return;
-  }
-
-  friends.forEach(friend => {
-    if (friend.id === currentUid) return;
-
-    const div = document.createElement('div');
-    div.className = 'friend-item';
-
-div.innerHTML = `
-  <div class="friend-left">
-    <img 
-      class="friend-avatar-link"
-      data-uid="${friend.id}"
-      src="${friend.photoURL || friend.customAvatarURL || 'https://via.placeholder.com/40'}"
-    >
-    <span>${friend.nomUtilisateur || 'Utilisateur'}</span>
-  </div>
-  <button class="friend-follow-btn" data-uid="${friend.id}">
-    <span>Suivre</span>
-  </button>
-`;
-
-friendsList.appendChild(div);
-
-div.querySelector('.friend-avatar-link').addEventListener('click', () => {
-  window.location.href = `profile.html?uid=${friend.id}`;
-});
-
-setupFollowButton(div.querySelector('.friend-follow-btn'), friend.id);  
-});
-}
-
-searchInput.addEventListener('input', () => {
-  const query = searchInput.value.toLowerCase();
-  const filtered = allFriends.filter(friend => 
-    friend.nomUtilisateur?.toLowerCase().includes(query)
-  );
-  displayFriends(filtered);
-});
-
-loadFriends();
-
-followBtn.addEventListener('click', async () => {
-  const user = auth.currentUser;
-  if (!user || !profileUid) return;
-
-  const currentUserUid = user.uid;
-  const profileUserUid = profileUid;
-
-  const followersRef = doc(db, "users", profileUserUid, "followers", currentUserUid);
-  const followingRef = doc(db, "users", currentUserUid, "following", profileUserUid);
-
-  try {
-    const followersSnap = await getDoc(followersRef);
-
-    if (followersSnap.exists()) {
-      await deleteDoc(followersRef);
-      await deleteDoc(followingRef);
-      followBtn.querySelector('.btn-text').textContent = "Suivre";
-    } else {
-      await setDoc(followersRef, {
-        uid: currentUserUid,
-        followedAt: new Date().toISOString()
-      });
-      await setDoc(followingRef, {
-        uid: profileUserUid,
-        followedAt: new Date().toISOString()
-      });
-      followBtn.querySelector('.btn-text').textContent = "Abonné";
-    }
-
-    await updateFollowCounts();
-  } catch (err) {
-    console.error("Erreur follow/unfollow :", err);
-    showToast("Impossible de modifier le suivi", 3000);
-  }
+  showTab(document.querySelector('.profile-link.active')?.textContent.trim() || 'Favoris', user);
 });
 
 
-const updateFollowCounts = async () => {
-  if (!profileUid) return;
 
-  const followersSnap = await getDocs(collection(db, "users", profileUid, "followers"));
-  const followingSnap = await getDocs(collection(db, "users", profileUid, "following"));
-
-  document.getElementById('followersCount').textContent = followersSnap.size;
-  document.getElementById('followingCount').textContent = followingSnap.size;
-
-followBtn.style.visibility = 'hidden';
-
-const isFollowing = followersSnap.docs.some(doc => doc.id === auth.currentUser.uid);
-followBtn.querySelector('.btn-text').textContent = isFollowing ? "Abonné" : "Suivre";
-
-followBtn.style.visibility = 'visible';
-followBtn.disabled = false;
-};
-
-
-closeFollowPanel.addEventListener('click', () => {
-  followPanel.style.display = 'none';
-});
-
-const showFollowPanel = async (type) => {
-  if (!profileUid) return;
-  const isOwner = auth.currentUser.uid === profileUid;
-  followList.innerHTML = '';
-  followPanelTitle.textContent = type === 'followers' ? 'Abonnés' : 'Abonnement';
-
-  const collectionRef = collection(db, "users", profileUid, type);
-  const snapshot = await getDocs(collectionRef);
-
-  if (snapshot.empty) {
-    followList.innerHTML = `<p style="color:#ccc; text-align:center; margin-top:20px;">Aucune personne</p>`;
-    followPanel.style.display = 'flex';
-    return;
-  }
-
-for (const docSnap of snapshot.docs) {
-    const userUid = docSnap.id;
-    const userSnap = await getDoc(doc(db, "users", userUid));
-    const userData = userSnap.exists() ? userSnap.data() : { nomUtilisateur: 'Utilisateur', photoURL: '' };
-
-    const div = document.createElement('div');
-    div.className = 'follow-item';
-div.innerHTML = `
-  <div class="follow-left">
-    <img src="${userData.photoURL || 'https://via.placeholder.com/40'}">
-    <span>${userData.nomUtilisateur || 'Utilisateur'}</span>
-  </div>
-
-  <div class="follow-right">
-
-    ${
-      userUid !== auth.currentUser.uid
-        ? `
-          <button class="follow-btn follow-list-btn">
-            <span class="btn-text">Suivre</span>
-          </button>
-        `
-        : ''
-    }
-
-    ${
-      isOwner && type === 'followers'
-        ? `
-          <button class="remove-follower-btn" aria-label="Retirer">
-            <svg viewBox="0 0 24 24" width="18" height="18">
-              <path d="M18.3 5.71L12 12l6.3 6.29-1.41 1.42L10.59 13.4 4.29 19.7 2.88 18.29 9.17 12 2.88 5.71 4.29 4.29l6.3 6.29 6.3-6.29z" fill="currentColor"/>
-            </svg>
-          </button>
-        `
-        : ''
-    }
-
-  </div>
-`;
-
-const removeBtn = div.querySelector('.remove-follower-btn');
-
-if (removeBtn) {
-  removeBtn.addEventListener('click', async (e) => {
-    e.stopPropagation();
-
-    await deleteDoc(doc(db, "users", profileUid, "followers", userUid));
-    await deleteDoc(doc(db, "users", userUid, "following", profileUid));
-
-    div.remove();
-    await updateFollowCounts();
-  });
-}
-
-
-div.querySelector('.follow-left').addEventListener('click', () => {
-  window.location.href = `profile.html?uid=${userUid}`;
-});
-
-const followBtn = div.querySelector('.follow-list-btn');
-
-if (followBtn) {
-  const currentUid = auth.currentUser.uid;
-
-  const followersRef = doc(db, "users", userUid, "followers", currentUid);
-  const followingRef = doc(db, "users", currentUid, "following", userUid);
-
-  const snap = await getDoc(followersRef);
-  if (snap.exists()) {
-    followBtn.classList.add('following');
-    followBtn.querySelector('.btn-text').textContent = "Abonné";
-  }
-
-  followBtn.addEventListener('click', async (e) => {
-    e.stopPropagation();
-
-    const isFollowing = followBtn.classList.contains('following');
-
-    if (isFollowing) {
-      await deleteDoc(followersRef);
-      await deleteDoc(followingRef);
-      followBtn.classList.remove('following');
-      followBtn.querySelector('.btn-text').textContent = "Suivre";
-    } else {
-      await setDoc(followersRef, {
-        uid: currentUid,
-        followedAt: new Date().toISOString()
-      });
-      await setDoc(followingRef, {
-        uid: userUid,
-        followedAt: new Date().toISOString()
-      });
-      followBtn.classList.add('following');
-      followBtn.querySelector('.btn-text').textContent = "Abonné";
-    }
-
-    await updateFollowCounts();
-  });
-}
-
-    followList.appendChild(div);
-}
-
-
-  followPanel.style.display = 'flex';
-};

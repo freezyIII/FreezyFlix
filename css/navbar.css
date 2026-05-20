@@ -71,6 +71,77 @@ header {
   box-shadow: none;
 }
 
+.page-search-wrapper {
+  width: min(95%, 860px);
+  max-width: 860px;
+  margin: 34px auto 24px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 14px;
+  text-align: center;
+}
+
+.page-search-container {
+  width: 100%;
+  position: relative;
+}
+
+.page-search-title {
+  margin: 0;
+  font-size: clamp(1.9rem, 4vw, 2.4rem);
+  font-weight: 700;
+  letter-spacing: 0.02em;
+  text-align: center;
+  color: transparent;
+  background: linear-gradient(90deg, #ef2626 0%, #a14fff 35%, #78aaff 65%, #ef2626 100%);
+  background-size: 200% 200%;
+  -webkit-background-clip: text;
+  background-clip: text;
+  animation: category-text-glow 8s ease-in-out infinite;
+  text-shadow: 0 0 8px rgba(175, 20, 80, 0.35);
+}
+
+.page-search-box {
+  width: 100%;
+  min-height: 54px;
+  padding: 16px 18px 16px 52px;
+  border-radius: 20px;
+  border: 1px solid rgba(255, 255, 255, 0.18);
+  background: rgba(255, 255, 255, 0.1);
+  color: #f0f0f0;
+  font-size: 18px;
+  transition: border-color 0.2s ease, box-shadow 0.2s ease, background 0.2s ease;
+  user-select: text;
+  box-shadow: inset 0 0 0 1px rgba(255, 255, 255, 0.04);
+}
+
+.page-search-container .search-icon-wrapper {
+  position: absolute;
+  left: 14px;
+  top: 50%;
+  transform: translateY(-50%);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  pointer-events: none;
+  color: rgba(255, 255, 255, 0.5);
+}
+
+.page-search-box::placeholder { color: rgba(255, 255, 255, 0.38); }
+
+.page-search-box:hover {
+  background: rgba(255, 255, 255, 0.1);
+  border-color: rgba(255, 255, 255, 0.22);
+}
+
+.page-search-box:focus {
+  outline: none;
+  border-color: #e50914;
+  background: rgba(255, 255, 255, 0.1);
+  box-shadow: none;
+}
+
 /* Navigation texte (Federant déjà chargée sur les pages principales) */
 header ul.federant-regular {
   font-family: "Inter", "Segoe UI", Arial, sans-serif;

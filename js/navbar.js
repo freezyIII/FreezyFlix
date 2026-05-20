@@ -186,6 +186,7 @@ function showUser({ displayName, photoURL }) {
   Avatar.src = photoURL || "default-avatar.png";
   profileMenuContainer.style.display = "flex";
   loginBtn.style.display = "none";
+  cacheUserProfile({ displayName, photoURL });
 }
 
 function hideUser() {
@@ -193,10 +194,54 @@ function hideUser() {
     if (profileMenuContainer) profileMenuContainer.style.display = "none";
     if (Avatar) Avatar.removeAttribute("src");
     if (loginBtn) loginBtn.style.display = "inline-block";
+    clearCachedUserProfile();
+}
+
+const authCacheKey = "freezyflix_user_profile";
+
+function cacheUserProfile({ displayName, photoURL }) {
+    try {
+        localStorage.setItem(authCacheKey, JSON.stringify({
+            displayName: displayName || "Utilisateur",
+            photoURL: photoURL || "default-avatar.png"
+        }));
+    } catch {
+        // localStorage peut être indisponible, on ignore.
+    }
+}
+
+function clearCachedUserProfile() {
+    try {
+        localStorage.removeItem(authCacheKey);
+    } catch {
+        // localStorage peut être indisponible, on ignore.
+    }
+}
+
+function restoreCachedUserProfile() {
+    if (!userPseudo || !Avatar || !profileMenuContainer || !loginBtn) return;
+
+    try {
+        const raw = localStorage.getItem(authCacheKey);
+        if (!raw) return;
+
+        const cached = JSON.parse(raw);
+        if (!cached?.displayName) return;
+
+        userPseudo.textContent = cached.displayName;
+        Avatar.src = cached.photoURL || "default-avatar.png";
+        userPseudo.style.display = "inline-block";
+        profileMenuContainer.style.display = "flex";
+        loginBtn.style.display = "none";
+    } catch {
+        // Ignore invalid cache data.
+    }
 }
 
 // ================== AUTH ==================
 let unsubscribeUser = null;
+
+restoreCachedUserProfile();
 
 onAuthStateChanged(auth, (user) => {
   if (unsubscribeUser) {
@@ -211,13 +256,18 @@ onAuthStateChanged(auth, (user) => {
 
   const userRef = doc(db, "users", user.uid);
   unsubscribeUser = onSnapshot(userRef, (snap) => {
-    if (!snap.exists()) return;
-
-    const data = snap.data();
-    showUser({
-      displayName: data.nomUtilisateur,
-      photoURL: data.photoURL
-    });
+    if (snap.exists()) {
+      const data = snap.data();
+      showUser({
+        displayName: data.nomUtilisateur || user.displayName || "Utilisateur",
+        photoURL: data.photoURL || user.photoURL || "default-avatar.png"
+      });
+    } else {
+      showUser({
+        displayName: user.displayName || "Utilisateur",
+        photoURL: user.photoURL || "default-avatar.png"
+      });
+    }
   });
 });
 

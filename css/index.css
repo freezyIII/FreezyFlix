@@ -437,7 +437,21 @@ img, a {-webkit-user-drag: none;}
 .grid-toolbar {width: 100%;max-width: 1684px;display: grid;grid-template-columns: 1fr auto 1fr;align-items: center;gap: 16px;margin: 0 0 15px;}
 .grid-toolbar .filter-wrapper {justify-self: end;}
 .movie-grid {display: grid;grid-template-columns: repeat(auto-fill, 200px);justify-content: start;gap: 12px;box-sizing: border-box;width: 100%;max-width: 1684px;}
-.movie-grid-item {width: 100%;aspect-ratio: 2 / 3;position: relative;background: #424242;border-radius: 10px;border: 1px solid rgba(255, 255, 255, 0.1);transition: transform 0.3s ease;cursor: pointer;overflow: hidden;box-shadow: 0 6px 15px rgba(0, 0, 0, 0.7);}
+.category-sections {width: 100%;max-width: 1684px;display: flex;flex-direction: column;gap: 38px;margin-top: 20px;}
+.home-category-section {width: 100%;}
+.category-header {display: flex;justify-content: space-between;align-items: center;gap: 16px;margin-bottom: 18px;flex-wrap: wrap;}
+.category-header h2 {margin: 0;font-size: 1.8rem;opacity: 0;transform: translateY(20px);transition: opacity 0.5s ease-out, transform 0.5s ease-out;color: transparent;background: linear-gradient(90deg, #ef2626 0%, #a14fff 35%, #78aaff 65%, #ef2626 100%);background-size: 200% 200%;-webkit-background-clip: text;background-clip: text;animation: category-text-glow 8s ease-in-out infinite;text-shadow: 0 0 8px rgba(175, 20, 80, 0.35);}
+.category-header h2.is-visible {opacity: 1;transform: translateY(0);}
+.category-see-all {color: #78aaff;text-decoration: none;font-weight: 700;white-space: nowrap;}
+.category-see-all:hover {color: #a4c8ff;}
+
+@keyframes category-text-glow {
+  0%, 100% {background-position: 0% 50%;text-shadow: 0 0 7px rgba(175, 20, 80, 0.35);}
+  50% {background-position: 100% 50%;text-shadow: 0 0 12px rgba(75, 110, 225, 0.38);}
+}
+.category-movie-grid {grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));}
+.movie-grid-item {width: 100%;aspect-ratio: 2 / 3;position: relative;background: #424242;border-radius: 10px;border: 1px solid rgba(255, 255, 255, 0.1);transition: transform 0.3s ease, opacity 0.5s ease;cursor: pointer;overflow: hidden;box-shadow: 0 6px 15px rgba(0, 0, 0, 0.7);opacity: 0;transform: translateY(20px);}
+.movie-grid-item.is-visible {opacity: 1;transform: translateY(0);}
 .movie-grid-item img {width: 100%;height: 100%;object-fit: cover;display: block;border-radius: 6px;}
 .favorite-card-btn {position: absolute;top: 10px;right: 10px;z-index: 8;width: 34px;height: 34px;display: flex;align-items: center;justify-content: center;padding: 0;border-radius: 50%;border: none;background: rgba(0, 0, 0, 0.72);color: transparent;cursor: pointer;opacity: 0;transform: scale(0.92);transition: opacity 0.18s ease, transform 0.18s ease, background 0.18s ease, color 0.18s ease;}
 .favorite-card-btn svg {width: 18px;height: 18px;display: block;}
@@ -493,24 +507,23 @@ img, a {-webkit-user-drag: none;}
   }
 }
 .movie-grid-item:hover {box-shadow: 0 10px 20px rgba(0, 0, 0, 0.8);}
-  pointer-events: none;
-  border-bottom-left-radius: 6px;
-  border-bottom-right-radius: 6px;
-}
 /* Pastille Film / Série (grille + à la une) */
 .content-type-badge {
   position: absolute;
   top: 10px;
   left: 10px;
-  z-index: 4;
+  z-index: 10;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
   padding: 5px 10px;
   font-size: 10px;
   font-weight: 700;
   letter-spacing: 0.07em;
   text-transform: uppercase;
   color: rgba(255, 255, 255, 0.94);
-  background: rgba(0, 0, 0, 0.5);
-  border: 1px solid rgba(255, 255, 255, 0.12);
+  background: rgba(0, 0, 0, 0.75);
+  border: 1px solid rgba(255, 255, 255, 0.16);
   border-radius: 8px;
   backdrop-filter: blur(10px);
   -webkit-backdrop-filter: blur(10px);
