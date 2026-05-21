@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>FreezyFlix</title>
+  <style>@import url('https://fonts.googleapis.com/css2?family=Federant&display=swap');</style>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body class="faq-page">
+
+<header>
+<nav><a href="index.html" class="logo" aria-label="Accueil">
+<img src="https://i.postimg.cc/pTVgBVY9/Logo-Freezy-III.png" alt="Logo FreezyFlix"></a>
+</header>
+
+<ul class="federant-regular">
+<li><a href="index.html">Accueil</a></li>
+<li><a href="films.html">Films</a></li>
+<li><a href="serie.html" class="series-link">Séries</a></li>
+<li><a href="index.html#categories" id="categories-link">Catégories</a></li>
+<li><a href="faq.html">FAQ</a></li>
+<li><a href="https://www.paypal.com/donate/?hosted_button_id=9TKRSPG4UTSJ2" class="animated-link" target="_blank">
+<span>F</span><span>a</span><span>i</span><span>r</span><span>e</span> 
+<span>u</span><span>n</span> 
+<span>d</span><span>o</span><span>n</span>
+</a></li></ul>
+
+<div class="FAQ-title"><h1>FAQ - Foire Aux Questions</h1></div>
+
+<div class="faq-container"><h1 style="margin-bottom: 20px;">Les questions fréquemment posées</h1>
+    
+<div class="faq-item-container"><div class="faq-item" onclick="toggleFAQ(0)"><div class="faq-question-container">
+<div class="faq-question">Comment regarder un film ?</div></div>
+<div class="faq-answer"><p>Il n'est pas possible de visionner un film directement sur notre plateforme. Les films sont uniquement disponibles en téléchargement via le bouton vert « Télécharger » situé sous chaque bande-annonce.</p></div></div>
+
+<div class="faq-item" onclick="toggleFAQ(1)"><div class="faq-question-container"><div class="faq-question">Où puis-je faire des demandes de nouveaux films ou signaler un problème ?</div></div>
+<div class="faq-answer"><p>Toutes les demandes de nouveaux films, ainsi que les signalements de liens non fonctionnels ou de bugs, doivent être faites sur notre <a href="https://discord.gg/5kX3Sb2wd4" target="_blank" class="faq-discord-link">Discord</a>, dans les salons spécifiques dédiés.</p></div></div>
+
+<div class="faq-item" onclick="toggleFAQ(2)"><div class="faq-question-container"><div class="faq-question">Les films sont-ils disponibles en plusieurs langues ?</div></div>
+<div class="faq-answer"><p>Tous les films proposés sont exclusivement en version française (VF). Aucune autre langue ne sera disponible.</p></div></div>
+
+<div class="faq-item" onclick="toggleFAQ(3)"><div class="faq-question-container"><div class="faq-question">Je n'ai pas d'écran 4K, que faire ?</div></div>
+<div class="faq-answer"><p>Les films en 4K seront automatiquement adaptés et lus en 1080p si votre écran ne prend pas en charge cette résolution.</p></div></div>
+
+<div class="faq-item" onclick="toggleFAQ(4)"><div class="faq-question-container"><div class="faq-question">Le film demande l'installation d'un nouveau codec ou l'achat d'une extension vidéo HEVC. Que faire ?</div></div>
+<div class="faq-answer"><p>Utilisez un lecteur compatible comme <a href="https://github.com/clsid2/mpc-hc/releases" target="_blank" class="faq-discord-link">MPC-HC</a> pour lire les fichiers encodés en H.265.</p></div></div></div></div>
+
+
+
+<script>
+    function toggleFAQ(index) {
+      const faqItems = document.querySelectorAll('.faq-item');
+      faqItems.forEach((item, i) => {
+        if (i !== index) item.classList.remove('active');
+      });
+      faqItems[index].classList.toggle('active');
+    }
+    document.addEventListener('dragstart', (event) => {
+  event.preventDefault();
+});
+</script>
+
+<footer class="footer-rules">
+<div class="footer-rules-top">
+<button id="rulesBtn" class="footer-rules-btn" aria-label="Charte d'utilisation">
+<span class="icon">📜</span>
+<span>Charte d'utilisation</span>
+</button>
+</div>
+<div class="footer-separator"></div>
+<div class="footer-copyright">
+© 2026 FreezyFlix. Tous droits réservés.
+</div>
+</footer>
+
+<div id="rulesOverlay" class="rules-overlay"><div id="rulesPanel" class="rules-panel">
+<div class="rules-header">
+<h3>Charte d'utilisation</h3>
+<button id="closeRules" aria-label="Fermer">✖</button></div>
+
+<div class="rules-content">
+<p>Bienvenue sur FreezyFlix ! Pour profiter pleinement de notre plateforme et garantir une expérience agréable à tous, merci de respecter cette Charte d'utilisation :</p>
+<h4>1. Respect et comportement</h4>
+<p>Tout comportement irrespectueux, injurieux, discriminatoire, harcelant ou menaçant envers d'autres utilisateurs est strictement interdit. Les échanges doivent rester courtois et constructifs. Les utilisateurs qui ne respectent pas cette règle pourront être suspendus ou bannis.</p>
+<h4>2. Contenus et sécurité</h4>
+<p>Vous vous engagez à ne pas publier, partager ou promouvoir de contenus illégaux, piratés, ou incitant à la haine. Tout contenu signalé comme illégal sera supprimé immédiatement et pourra entraîner des sanctions.</p>
+<h4>3. Publicité et promotions</h4>
+<p>Toute publicité, lien ou promotion vers des sites externes est strictement interdite. Les contenus violant cette règle seront supprimés et l'utilisateur pourra faire l'objet de sanctions, jusqu'à la suspension définitive du compte.</p>
+<h4>4. Utilisation responsable de la plateforme</h4>
+<p>FreezyFlix est conçu pour le visionnage et la découverte de contenus. Toute utilisation abusive est interdite, notamment : l'utilisation de scripts, bots ou logiciels automatisés, l'envoi de spams ou messages répétitifs, les tentatives de piratage ou de perturbation du service, le contournement des restrictions mises en place. Tout compte utilisé de manière abusive pourra être suspendu ou supprimé sans avertissement.</p>
+<h4>5. Modifications et mises à jour</h4>
+<p>Cette Charte peut être modifiée à tout moment pour s'adapter aux évolutions légales ou fonctionnelles de la plateforme. Les utilisateurs sont invités à consulter régulièrement cette Charte. La continuité de l'utilisation de FreezyFlix implique l'acceptation des règles et des mises à jour.</p>
+<h4>6. Signalement et assistance</h4>
+<p>Si vous constatez un comportement inapproprié, un contenu illégal ou de la publicité non autorisée, merci de nous contacter immédiatement via la page <a href="aide.html" style="color:#00aaff;">Aide</a>. Vos signalements seront pris en compte avec confidentialité et sérieux.</p>
+<h4>7. Sanctions et mesures disciplinaires</h4>
+<p>Tout manquement aux règles énoncées dans cette Charte pourra entraîner des sanctions, incluant la suppression de contenus, la suspension temporaire ou définitive du compte.</p>
+<p>Merci de votre compréhension et de votre respect des règles. Nous vous souhaitons un agréable visionnage sur FreezyFlix !</p></div></div></div>
+
+<script src="js/index.js"></script>
+
+</body>

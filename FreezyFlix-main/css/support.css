@@ -1,0 +1,521 @@
+/* ===========================
+   SUPPORT PAGE - PROFESSIONAL CSS
+   =========================== */
+
+* {
+    box-sizing: border-box;
+}
+
+body {
+    background: #000;
+    color: #ddd;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+}
+
+main {
+    flex: 1;
+}
+
+/* HEADER SUPPORT */
+.support-header {
+    text-align: center;
+    background: linear-gradient(180deg, rgba(239, 38, 38, 0.08) 0%, transparent 100%);
+    padding: 60px 20px 40px;
+    margin-bottom: 40px;
+    border-bottom: 1px solid rgba(239, 38, 38, 0.15);
+}
+
+.support-header h1 {
+    font-family: "Titan One", serif;
+    font-size: clamp(2rem, 8vw, 3rem);
+    background: linear-gradient(90deg, #ef2626 0%, #a14fff 50%, #78aaff 100%);
+    background-size: 200% 200%;
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+    animation: support-header-glow 4s ease-in-out infinite;
+    margin: 0 0 16px 0;
+    letter-spacing: 1px;
+}
+
+@keyframes support-header-glow {
+    0%, 100% { background-position: 0% 50%; }
+    50% { background-position: 100% 50%; }
+}
+
+.support-header p {
+    font-family: 'Arial', sans-serif;
+    font-size: 1.1rem;
+    color: #aaa;
+    margin: 0;
+    font-weight: 400;
+    max-width: 600px;
+    margin: 0 auto;
+}
+
+/* MAIN WRAPPER */
+.support-wrapper {
+    width: 90%;
+    max-width: 1000px;
+    margin: 0 auto 60px;
+    display: flex;
+    flex-direction: column;
+    gap: 50px;
+}
+
+/* INFO CARDS */
+.support-info {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+    gap: 24px;
+    margin-bottom: 40px;
+}
+
+.info-card {
+    background: linear-gradient(145deg, #1a1a1a 0%, #0f0f0f 100%);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 16px;
+    padding: 32px 24px;
+    text-align: center;
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    position: relative;
+    overflow: hidden;
+}
+
+.info-card::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 3px;
+    background: linear-gradient(90deg, #ef2626 0%, #a14fff 50%, #78aaff 100%);
+    background-size: 200% 200%;
+    animation: card-border-glow 4s ease-in-out infinite;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+}
+
+@keyframes card-border-glow {
+    0%, 100% { background-position: 0% 50%; }
+    50% { background-position: 100% 50%; }
+}
+
+.info-card:hover {
+    border-color: rgba(239, 38, 38, 0.3);
+    box-shadow: 0 12px 40px rgba(239, 38, 38, 0.2);
+    transform: translateY(-6px);
+}
+
+.info-card:hover::before {
+    opacity: 1;
+}
+
+.info-icon {
+    margin-bottom: 16px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 72px;
+    height: 72px;
+    border-radius: 50%;
+    background: linear-gradient(135deg, rgba(239, 38, 38, 0.15) 0%, rgba(161, 79, 255, 0.15) 100%);
+    color: #ef2626;
+    transition: all 0.3s ease;
+}
+
+.info-card:hover .info-icon {
+    background: linear-gradient(135deg, rgba(239, 38, 38, 0.25) 0%, rgba(161, 79, 255, 0.25) 100%);
+    transform: scale(1.1);
+}
+
+.info-icon svg {
+    transition: transform 0.3s ease;
+}
+
+.info-card:hover .info-icon svg {
+    transform: scale(1.1);
+}
+
+.info-card h3 {
+    font-family: 'Arial', sans-serif;
+    font-size: 1.4rem;
+    color: #fff;
+    margin: 0 0 12px 0;
+    font-weight: 600;
+    letter-spacing: 0.3px;
+}
+
+.info-card p {
+    font-family: 'Arial', sans-serif;
+    color: #bbb;
+    font-size: 0.95rem;
+    line-height: 1.6;
+    margin: 0;
+}
+
+/* FORM CONTAINER */
+.support-form-container {
+    background: linear-gradient(145deg, #1a1a1a 0%, #0f0f0f 100%);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 20px;
+    padding: 40px;
+    box-shadow: 0 20px 60px rgba(0, 0, 0, 0.6), 0 0 0 1px rgba(239, 38, 38, 0.1);
+}
+
+.form-header {
+    text-align: center;
+    margin-bottom: 32px;
+}
+
+.form-header h2 {
+    font-family: "Titan One", serif;
+    font-size: clamp(1.5rem, 5vw, 2rem);
+    background: linear-gradient(90deg, #ef2626 0%, #a14fff 50%, #78aaff 100%);
+    background-size: 200% 200%;
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+    animation: form-header-glow 4s ease-in-out infinite;
+    margin: 0 0 12px 0;
+}
+
+@keyframes form-header-glow {
+    0%, 100% { background-position: 0% 50%; }
+    50% { background-position: 100% 50%; }
+}
+
+.form-header p {
+    font-family: 'Arial', sans-serif;
+    font-size: 1rem;
+    color: #aaa;
+    margin: 0;
+    font-weight: 400;
+}
+
+/* FORM */
+form {
+    display: flex;
+    flex-direction: column;
+    gap: 24px;
+}
+
+.form-group {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+label {
+    font-family: 'Arial', sans-serif;
+    font-size: 1rem;
+    font-weight: 600;
+    color: #fff;
+    display: flex;
+    align-items: center;
+    gap: 6px;
+}
+
+.required {
+    color: #ef2626;
+}
+
+.optional {
+    color: #888;
+    font-size: 0.85rem;
+    font-weight: 400;
+}
+
+input,
+select,
+textarea {
+    padding: 14px 16px;
+    border-radius: 10px;
+    border: 2px solid rgba(255, 255, 255, 0.15);
+    background: #121212;
+    color: #ddd;
+    font-size: 0.95rem;
+    font-family: 'Arial', sans-serif;
+    transition: all 0.3s ease;
+}
+
+input::placeholder,
+textarea::placeholder {
+    color: #666;
+}
+
+input:focus,
+select:focus,
+textarea:focus {
+    outline: none;
+    border-color: #ef2626;
+    background: #1a1a1a;
+    box-shadow: 0 0 0 3px rgba(239, 38, 38, 0.15);
+}
+
+textarea {
+    resize: vertical;
+    min-height: 150px;
+    line-height: 1.6;
+}
+
+.char-count {
+    font-size: 0.8rem;
+    color: #888;
+    text-align: right;
+    margin-top: 4px;
+}
+
+/* ERROR MESSAGES */
+.error-message {
+    color: #ef2626;
+    font-size: 0.8rem;
+    font-weight: 500;
+    display: none;
+    margin-top: -4px;
+}
+
+.error-message.active {
+    display: block;
+}
+
+input.error,
+select.error,
+textarea.error {
+    border-color: #ef2626;
+    background: rgba(239, 38, 38, 0.05);
+}
+
+/* SUBMIT BUTTON */
+.submit-btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 12px;
+    padding: 16px 32px;
+    border: none;
+    border-radius: 12px;
+    background: linear-gradient(135deg, #ef2626 0%, #a14fff 100%);
+    color: #fff;
+    font-size: 1.05rem;
+    font-weight: 700;
+    cursor: pointer;
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    box-shadow: 0 10px 28px rgba(239, 38, 38, 0.35);
+    margin-top: 12px;
+    position: relative;
+    overflow: hidden;
+}
+
+.submit-btn::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+    transition: left 0.5s ease;
+}
+
+.submit-btn:hover {
+    background: linear-gradient(135deg, #ff3b3b 0%, #b45fff 100%);
+    transform: translateY(-2px);
+    box-shadow: 0 14px 36px rgba(239, 38, 38, 0.45);
+}
+
+.submit-btn:hover::before {
+    left: 100%;
+}
+
+.submit-btn:active {
+    transform: translateY(0);
+    box-shadow: 0 6px 16px rgba(239, 38, 38, 0.35);
+}
+
+.submit-btn svg {
+    width: 22px;
+    height: 22px;
+    fill: currentColor;
+}
+
+/* TOAST NOTIFICATIONS */
+.toast {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    background: linear-gradient(135deg, #4CAF50 0%, #45a049 100%);
+    color: #fff;
+    padding: 16px 24px;
+    border-radius: 10px;
+    font-size: 0.95rem;
+    font-weight: 600;
+    font-family: 'Arial', sans-serif;
+    opacity: 0;
+    transform: translateY(100px) scale(0.8);
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    z-index: 2000;
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.5);
+    max-width: 350px;
+}
+
+.toast.show {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+}
+
+.toast.error {
+    background: linear-gradient(135deg, #ef2626 0%, #ff3b3b 100%);
+}
+
+/* SCROLLBAR */
+* {
+    scrollbar-width: thin;
+    scrollbar-color: #2b2b2b #000;
+}
+
+::-webkit-scrollbar {
+    width: 10px;
+    height: 10px;
+}
+
+::-webkit-scrollbar-track {
+    background: #000;
+}
+
+::-webkit-scrollbar-thumb {
+    background: #2b2b2b;
+    border-radius: 999px;
+    border: 2px solid #000;
+}
+
+::-webkit-scrollbar-thumb:hover {
+    background: #3a3a3a;
+}
+
+/* ===== RESPONSIVE ===== */
+
+@media (max-width: 1024px) {
+    .support-wrapper {
+        width: 95%;
+    }
+
+    .support-form-container {
+        padding: 30px;
+    }
+
+    form {
+        gap: 20px;
+    }
+}
+
+@media (max-width: 768px) {
+    .support-header {
+        padding: 40px 20px 30px;
+        margin-bottom: 30px;
+    }
+
+    .support-header h1 {
+        font-size: 2rem;
+        margin-bottom: 12px;
+    }
+
+    .support-header p {
+        font-size: 0.95rem;
+    }
+
+    .support-wrapper {
+        width: 95%;
+        gap: 30px;
+    }
+
+    .support-info {
+        grid-template-columns: 1fr;
+        gap: 16px;
+    }
+
+    .info-card {
+        padding: 24px;
+    }
+
+    .info-icon {
+        font-size: 2.5rem;
+    }
+
+    .support-form-container {
+        padding: 24px;
+    }
+
+    input,
+    select,
+    textarea {
+        padding: 12px 14px;
+        font-size: 16px;
+    }
+
+    .submit-btn {
+        padding: 14px 24px;
+        font-size: 0.95rem;
+        gap: 10px;
+    }
+
+    .submit-btn svg {
+        width: 18px;
+        height: 18px;
+    }
+
+    .toast {
+        bottom: 15px;
+        right: 15px;
+        max-width: 300px;
+    }
+}
+
+@media (max-width: 480px) {
+    .support-header {
+        padding: 30px 15px 20px;
+        margin-bottom: 20px;
+    }
+
+    .support-header h1 {
+        font-size: 1.6rem;
+    }
+
+    .support-header p {
+        font-size: 0.9rem;
+    }
+
+    .support-wrapper {
+        width: 98%;
+        gap: 20px;
+    }
+
+    .support-form-container {
+        padding: 20px;
+    }
+
+    .info-card {
+        padding: 20px;
+    }
+
+    .info-icon {
+        font-size: 2rem;
+    }
+
+    label {
+        font-size: 0.95rem;
+    }
+
+    textarea {
+        min-height: 120px;
+    }
+
+    .submit-btn {
+        padding: 12px 20px;
+        font-size: 0.9rem;
+    }
+}
