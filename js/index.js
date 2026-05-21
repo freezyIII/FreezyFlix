@@ -158,7 +158,7 @@ onReady(() => {
   // -------------------- Compteur de films --------------------
   const currentPage = window.location.pathname.split("/").pop() || "index.html";
   const pageContentType = currentPage === "films.html" ? "film" : currentPage === "serie.html" ? "serie" : "";
-  const pageContentHeading = pageContentType === "serie" ? "SERIES" : pageContentType === "film" ? "FILMS" : "ACCUEIL";
+  const pageContentHeading = pageContentType === "serie" ? "SERIES" : pageContentType === "film" ? "FILMS" : currentPage === "search.html" ? "" : "ACCUEIL";
   const movieRowsPerPage = 8;
   let currentMoviePage = 1;
   let paginationDiv = null;
@@ -333,6 +333,13 @@ onReady(() => {
       toolbarSpacer.setAttribute("aria-hidden", "true");
       gridToolbar.appendChild(toolbarSpacer);
     }
+
+    // Ajouter la pagination en bas de la grille
+    const bottomPaginationDiv = document.createElement("div");
+    bottomPaginationDiv.className = "movie-pagination-bottom";
+    bottomPaginationDiv.setAttribute("aria-label", "Pagination en bas");
+    movieGrid.parentNode.insertBefore(bottomPaginationDiv, movieGrid.nextSibling);
+    window.bottomPaginationDiv = bottomPaginationDiv;
   }
 
   function getGridItems() {
@@ -361,6 +368,11 @@ onReady(() => {
     paginationDiv.innerHTML = "";
     paginationDiv.hidden = totalPages < 1;
 
+    if (window.bottomPaginationDiv) {
+      window.bottomPaginationDiv.innerHTML = "";
+      window.bottomPaginationDiv.hidden = totalPages < 1;
+    }
+
     for (let i = 1; i <= totalPages; i++) {
       const button = document.createElement("button");
       button.type = "button";
@@ -372,6 +384,15 @@ onReady(() => {
         window.applyMoviePagination(i);
       });
       paginationDiv.appendChild(button);
+
+      // Dupliquer le bouton pour la pagination en bas
+      if (window.bottomPaginationDiv) {
+        const bottomButton = button.cloneNode(true);
+        bottomButton.addEventListener("click", () => {
+          window.applyMoviePagination(i);
+        });
+        window.bottomPaginationDiv.appendChild(bottomButton);
+      }
     }
   }
 

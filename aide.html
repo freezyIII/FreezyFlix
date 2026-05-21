@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Centre d'aide - FreezyFlix</title>
     <link href="https://fonts.googleapis.com/css2?family=Titan+One&family=Federant&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="css/index.css" />
     <link rel="stylesheet" href="css/aide.css" />
     <link rel="stylesheet" href="css/navbar.css">
 </head>
@@ -66,8 +67,8 @@
     <main>
         <!-- HEADER AIDE -->
         <section class="aide-header">
-            <h1>Centre d'aide</h1>
-            <p>Trouvez toutes les réponses à vos questions sur FreezyFlix.</p>
+            <h1 class="titan-one-regular">Centre d'aide</h1>
+            <p class="federant-regular">Trouvez toutes les réponses à vos questions sur FreezyFlix.</p>
         </section>
 
         <!-- WRAPPER PRINCIPAL -->
@@ -161,18 +162,6 @@
 
                         <div class="faq-item">
                             <div class="faq-header">
-                                <h3>Puis-je regarder les films sur mobile ?</h3>
-                                <svg class="faq-toggle" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="24" height="24">
-                                    <path d="M7 10l5 5 5-5z" fill="currentColor"/>
-                                </svg>
-                            </div>
-                            <div class="faq-body">
-                                <p>Non, les films ne sont pas conçus pour être visionnés sur mobile. Cependant, il est possible de télécharger le film, puis de le transférer sur une clé USB ou un disque dur afin de le brancher directement sur votre téléviseur.</p>
-                            </div>
-                        </div>
-
-                        <div class="faq-item">
-                            <div class="faq-header">
                                 <h3>Les films sont-ils disponibles en plusieurs langues ?</h3>
                                 <svg class="faq-toggle" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="24" height="24">
                                     <path d="M7 10l5 5 5-5z" fill="currentColor"/>
@@ -180,18 +169,6 @@
                             </div>
                             <div class="faq-body">
                                 <p>Tous nos films sont disponibles en français (VF), en anglais (VO), et parfois dans d'autres langues.</p>
-                            </div>
-                        </div>
-
-                        <div class="faq-item">
-                            <div class="faq-header">
-                                <h3>Pourquoi le téléchargement est lent ?</h3>
-                                <svg class="faq-toggle" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="24" height="24">
-                                    <path d="M7 10l5 5 5-5z" fill="currentColor"/>
-                                </svg>
-                            </div>
-                            <div class="faq-body">
-                                <p>Le problème ne vient pas de votre connexion, mais de l'hébergeur des fichiers, 1fichier.com, qui peut parfois limiter la vitesse de téléchargement en fonction de la charge de ses serveurs ou du type d'accès (gratuit ou payant).</p>
                             </div>
                         </div>
 
@@ -209,13 +186,14 @@
 
                         <div class="faq-item">
                             <div class="faq-header">
-                                <h3>Quels formats et qualités de téléchargement sont disponibles ?</h3>
+                                <h3>Que signifient les différents types de qualité ?</h3>
                                 <svg class="faq-toggle" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="24" height="24">
                                     <path d="M7 10l5 5 5-5z" fill="currentColor"/>
                                 </svg>
                             </div>
                             <div class="faq-body">
-                                <p>Nous proposons différents formats et qualités de vidéo afin de s'adapter à tous les besoins : 1080p, 4K, Full HD, HD, Blu-ray, Remux Blu-ray ou HDTV. Les films sont généralement disponibles en formats .mp4 ou .mkv.</p>
+                                <p>Pour comprendre les différentes qualités disponibles (Blu-ray, Remux, Web, etc.), consultez notre guide détaillé.</p>
+                                <button class="show-quality-btn" id="showQualityGuide">Voir les types de qualité</button>
                             </div>
                         </div>
                     </div>
@@ -225,6 +203,18 @@
                 <div class="category-content" data-category="telecharger">
                     <h2 class="category-title">Télécharger</h2>
                     <div class="faq-list">
+                        <div class="faq-item">
+                            <div class="faq-header">
+                                <h3>Pourquoi le téléchargement est lent ?</h3>
+                                <svg class="faq-toggle" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="24" height="24">
+                                    <path d="M7 10l5 5 5-5z" fill="currentColor"/>
+                                </svg>
+                            </div>
+                            <div class="faq-body">
+                                <p>Le problème ne vient pas de votre connexion, mais de l'hébergeur des fichiers, 1fichier.com, qui peut parfois limiter la vitesse de téléchargement en fonction de la charge de ses serveurs ou du type d'accès (gratuit ou payant).</p>
+                            </div>
+                        </div>
+
                         <div class="faq-item">
                             <div class="faq-header">
                                 <h3>Je n'ai pas d'écran 4K, que faire ?</h3>
@@ -239,13 +229,13 @@
 
                         <div class="faq-item">
                             <div class="faq-header">
-                                <h3>Le film demande l'installation d'un nouveau codec ou l'achat d'une extension video HEVC. Que faire ?</h3>
+                                <h3>Le film demande l'installation d'un nouveau codec ou l'achat d'une extension vidéo HEVC. Que faire ?</h3>
                                 <svg class="faq-toggle" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="24" height="24">
                                     <path d="M7 10l5 5 5-5z" fill="currentColor"/>
                                 </svg>
                             </div>
                             <div class="faq-body">
-                                <p>Utilisez un lecteur compatible comme <a href="https://github.com/clsid2/mpc-hc/releases" target="_blank" class="aide-link">MPC-HC</a> pour lire les fichiers encodes en H.265.</p>
+                                <p>Utilisez un lecteur compatible comme <a href="https://github.com/clsid2/mpc-hc/releases" target="_blank" class="aide-link">MPC-HC</a> pour lire les fichiers encodés en H.265.</p>
                             </div>
                         </div>
                     </div>
@@ -255,6 +245,18 @@
                 <div class="category-content" data-category="streaming">
                     <h2 class="category-title">Streaming</h2>
                     <div class="faq-list">
+                        <div class="faq-item">
+                            <div class="faq-header">
+                                <h3>Puis-je regarder les films sur mobile ?</h3>
+                                <svg class="faq-toggle" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="24" height="24">
+                                    <path d="M7 10l5 5 5-5z" fill="currentColor"/>
+                                </svg>
+                            </div>
+                            <div class="faq-body">
+                                <p>Non, les films ne sont pas conçus pour être visionnés sur mobile. Cependant, il est possible de télécharger le film, puis de le transférer sur une clé USB ou un disque dur afin de le brancher directement sur votre téléviseur.</p>
+                            </div>
+                        </div>
+
                         <div class="faq-item">
                             <div class="faq-header">
                                 <h3>Comment regarder un film sur le site ?</h3>
@@ -315,7 +317,98 @@
         </section>
     </main>
 
+    <footer class="footer-rules">
+<div class="footer-rules-top">
+<button id="rulesBtn" class="footer-rules-btn" aria-label="Charte d'utilisation">
+<span class="icon">📜</span>
+<span>Charte d'utilisation</span>
+</button>
+</div>
+<div class="footer-separator"></div>
+<div class="footer-copyright">
+© 2026 FreezyFlix. Tous droits réservés.
+</div>
+</footer>
+
+<div id="rulesOverlay" class="rules-overlay"><div id="rulesPanel" class="rules-panel">
+<div class="rules-header">
+<h3>Charte d'utilisation</h3>
+<button id="closeRules" aria-label="Fermer">✖</button></div>
+
+<div class="rules-content">
+<p>Bienvenue sur FreezyFlix ! Pour profiter pleinement de notre plateforme et garantir une expérience agréable à tous, merci de respecter cette Charte d'utilisation :</p>
+<h4>1. Respect et comportement</h4>
+<p>Tout comportement irrespectueux, injurieux, discriminatoire, harcelant ou menaçant envers d'autres utilisateurs est strictement interdit. Les échanges doivent rester courtois et constructifs. Les utilisateurs qui ne respectent pas cette règle pourront être suspendus ou bannis.</p>
+<h4>2. Contenus et sécurité</h4>
+<p>Vous vous engagez à ne pas publier, partager ou promouvoir de contenus illégaux, piratés, ou incitant à la haine. Tout contenu signalé comme illégal sera supprimé immédiatement et pourra entraîner des sanctions.</p>
+<h4>3. Publicité et promotions</h4>
+<p>Toute publicité, lien ou promotion vers des sites externes est strictement interdite. Les contenus violant cette règle seront supprimés et l'utilisateur pourra faire l'objet de sanctions, jusqu'à la suspension définitive du compte.</p>
+<h4>4. Utilisation responsable de la plateforme</h4>
+<p>FreezyFlix est conçu pour le visionnage et la découverte de contenus. Toute utilisation abusive est interdite, notamment : l'utilisation de scripts, bots ou logiciels automatisés, l'envoi de spams ou messages répétitifs, les tentatives de piratage ou de perturbation du service, le contournement des restrictions mises en place. Tout compte utilisé de manière abusive pourra être suspendu ou supprimé sans avertissement.</p>
+<h4>5. Modifications et mises à jour</h4>
+<p>Cette Charte peut être modifiée à tout moment pour s'adapter aux évolutions légales ou fonctionnelles de la plateforme. Les utilisateurs sont invités à consulter régulièrement cette Charte. La continuité de l'utilisation de FreezyFlix implique l'acceptation des règles et des mises à jour.</p>
+<h4>6. Signalement et assistance</h4>
+<p>Si vous constatez un comportement inapproprié, un contenu illégal ou de la publicité non autorisée, merci de nous contacter immédiatement via la page <a href="aide.html" style="color:#00aaff;">Aide</a>. Vos signalements seront pris en compte avec confidentialité et sérieux.</p>
+<h4>7. Sanctions et mesures disciplinaires</h4>
+<p>Tout manquement aux règles énoncées dans cette Charte pourra entraîner des sanctions, incluant la suppression de contenus, la suspension temporaire ou définitive du compte.</p>
+<p>Merci de votre compréhension et de votre respect des règles. Nous vous souhaitons un agréable visionnage sur FreezyFlix !</p></div></div></div>
+
+<!-- QUALITY GUIDE PANEL -->
+<div id="qualityOverlay" class="quality-overlay">
+    <div id="qualityPanel" class="quality-panel">
+        <div class="quality-header">
+            <h3>Types de qualité</h3>
+            <button id="closeQuality" aria-label="Fermer">✖</button>
+        </div>
+        <div class="quality-content">
+            <div class="quality-table-header">
+                <div class="quality-header-name">Qualité</div>
+                <div class="quality-header-desc">Description</div>
+                <div class="quality-header-compare">Comparaison (Netflix/Prime)</div>
+                <div class="quality-header-size">Taille approx. (film 2h)</div>
+            </div>
+            <div class="quality-item">
+                <div class="quality-name">Remux Blu-ray 4K UHD</div>
+                <div class="quality-desc">Meilleure qualité disponible. Copie exacte du Blu-ray 4K, sans compression.</div>
+                <div class="quality-compare">✅ Supérieur à Netflix 4K</div>
+                <div class="quality-size">~60 à 90 Go</div>
+            </div>
+            <div class="quality-item">
+                <div class="quality-name">Blu-ray 4K UHD</div>
+                <div class="quality-desc">Excellente qualité 4K, légèrement compressée par rapport au Remux.</div>
+                <div class="quality-compare">✅ Supérieur à Netflix 4K</div>
+                <div class="quality-size">~30 à 60 Go</div>
+            </div>
+            <div class="quality-item">
+                <div class="quality-name">Remux Blu-ray 1080p</div>
+                <div class="quality-desc">Copie exacte du Blu-ray 1080p sans compression.</div>
+                <div class="quality-compare">✅ Supérieur à Netflix 1080p</div>
+                <div class="quality-size">~20 à 35 Go</div>
+            </div>
+            <div class="quality-item">
+                <div class="quality-name">Blu-ray 1080p</div>
+                <div class="quality-desc">Très bonne qualité 1080p, légèrement compressée.</div>
+                <div class="quality-compare">✅ Supérieur à Netflix 1080p</div>
+                <div class="quality-size">~10-20 Go</div>
+            </div>
+            <div class="quality-item">
+                <div class="quality-name">Web 1080p</div>
+                <div class="quality-desc">Téléchargement depuis un service de streaming, bonne qualité.</div>
+                <div class="quality-compare">≈ Équivalent à Netflix 1080p</div>
+                <div class="quality-size">~3 à 6 Go</div>
+            </div>
+            <div class="quality-item">
+                <div class="quality-name">HDTV 1080p</div>
+                <div class="quality-desc">Enregistrement TV en 1080p, qualité variable.</div>
+                <div class="quality-compare">⚠️ Variable, souvent inférieur</div>
+                <div class="quality-size">~2 à 4 Go</div>
+            </div>
+        </div>
+    </div>
+</div>
+
     <script src="js/aide.js"></script>
+    <script src="js/index.js"></script>
     <script type="module" src="js/navbar.js"></script>
 </body>
 </html>

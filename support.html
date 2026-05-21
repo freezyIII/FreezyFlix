@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Support - FreezyFlix</title>
     <link href="https://fonts.googleapis.com/css2?family=Titan+One&family=Federant&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="css/index.css" />
     <link rel="stylesheet" href="css/support.css" />
     <link rel="stylesheet" href="css/navbar.css">
 </head>
@@ -65,22 +66,40 @@
     </header>
 
     <main>
+        <!-- SUPPORT HEADER -->
+        <section class="support-header">
+            <h1 class="titan-one-regular">Centre de Support</h1>
+            <p class="federant-regular">Une question ? Un problème ? Notre équipe est là pour vous aider.</p>
+        </section>
+
         <!-- SUPPORT CONTAINER -->
         <section class="support-wrapper">
             <!-- INFO CARDS -->
             <div class="support-info">
                 <div class="info-card">
-                    <div class="info-icon">🐛</div>
+                    <div class="info-icon">
+                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="48" height="48" fill="none" stroke="currentColor" stroke-width="1.5">
+                            <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm1 15h-2v-2h2v2zm0-4h-2V7h2v6z"/>
+                        </svg>
+                    </div>
                     <h3>Bug Report</h3>
                     <p>Rencontrez un problème ? Décrivez-le et nous le corrigerons au plus vite.</p>
                 </div>
                 <div class="info-card">
-                    <div class="info-icon">💡</div>
+                    <div class="info-icon">
+                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="48" height="48" fill="none" stroke="currentColor" stroke-width="1.5">
+                            <path d="M9 21c0 .55.45 1 1 1h4c.55 0 1-.45 1-1v-1H9v1zm3-19C8.14 2 5 5.14 5 9c0 2.38 1.19 4.47 3 5.74V17c0 .55.45 1 1 1h6c.55 0 1-.45 1-1v-2.26c1.81-1.27 3-3.36 3-5.74 0-3.86-3.14-7-7-7zm2.85 11.1l-.85.6V16h-4v-2.3l-.85-.6C7.8 12.16 7 10.63 7 9c0-2.76 2.24-5 5-5s5 2.24 5 5c0 1.63-.8 3.16-2.15 4.1z"/>
+                        </svg>
+                    </div>
                     <h3>Suggestions</h3>
                     <p>Vous avez une idée ? Partagez-la et aidez-nous à améliorer FreezyFlix.</p>
                 </div>
                 <div class="info-card">
-                    <div class="info-icon">❓</div>
+                    <div class="info-icon">
+                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="48" height="48" fill="none" stroke="currentColor" stroke-width="1.5">
+                            <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm1 17h-2v-2h2v2zm2.07-7.75l-.9.92C13.45 12.9 13 13.5 13 15h-2v-.5c0-1.1.45-2.1 1.17-2.83l1.24-1.26c.37-.36.59-.86.59-1.41 0-1.1-.9-2-2-2s-2 .9-2 2H8c0-2.21 1.79-4 4-4s4 1.79 4 4c0 .88-.36 1.68-.93 2.25z"/>
+                        </svg>
+                    </div>
                     <h3>Assistance</h3>
                     <p>Besoin d'aide ? Notre équipe est disponible pour répondre à vos questions.</p>
                 </div>
@@ -88,6 +107,10 @@
 
             <!-- FORM -->
             <div class="support-form-container">
+                <div class="form-header">
+                    <h2 class="titan-one-regular">Envoyez-nous un message</h2>
+                    <p class="federant-regular">Remplissez le formulaire ci-dessous et nous vous répondrons dans les plus brefs délais.</p>
+                </div>
                 <form id="supportForm" autocomplete="off" novalidate>
                     <!-- TYPE -->
                     <div class="form-group">
@@ -109,12 +132,10 @@
                         <span class="char-count">0 / 2000</span>
                     </div>
 
-
-
                     <!-- SUBMIT -->
                     <button type="submit" class="submit-btn">
-                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="20" height="20">
-                            <path d="M16.6915026,12.4744748 L3.50612381,13.2599618 C3.19218622,13.2599618 3.03521743,13.4170592 3.03521743,13.5741566 L1.15159189,20.0151496 C0.8376543,20.8006365 0.99,21.89 1.77946707,22.52 C2.41,22.99 3.50612381,23.1 4.13399899,22.9429026 L21.714504,14.0454487 C22.6563168,13.5741566 23.1272231,12.6315722 22.9702544,11.6889879 C22.9702544,11.6889879 22.9702544,11.6889879 22.9702544,11.5318905 L4.13399899,2.63506662 C3.34915502,2.31878985 2.40734225,2.42510624 1.77946707,3.0474181 C0.994623095,3.66975 0.837654326,4.76913533 1.15159189,5.40144722 L3.03521743,11.8424402 C3.03521743,12.1586772 3.34915502,12.3157746 3.50612381,12.3157746 L16.6915026,13.1012666 C16.6915026,13.1012666 17.1624089,13.1012666 17.1624089,12.7851475 L17.1624089,12.7851475 C17.1624089,12.3157746 16.6915026,12.4744748 16.6915026,12.4744748 Z"/>
+                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="20" height="20" fill="currentColor">
+                            <path d="M2.01 21L23 12 2.01 3 2 10l15 2-15 2z"/>
                         </svg>
                         Envoyer votre message
                     </button>
@@ -123,8 +144,45 @@
         </section>
     </main>
 
+    <footer class="footer-rules">
+<div class="footer-rules-top">
+<button id="rulesBtn" class="footer-rules-btn" aria-label="Charte d'utilisation">
+<span class="icon">📜</span>
+<span>Charte d'utilisation</span>
+</button>
+</div>
+<div class="footer-separator"></div>
+<div class="footer-copyright">
+© 2026 FreezyFlix. Tous droits réservés.
+</div>
+</footer>
+
+<div id="rulesOverlay" class="rules-overlay"><div id="rulesPanel" class="rules-panel">
+<div class="rules-header">
+<h3>Charte d'utilisation</h3>
+<button id="closeRules" aria-label="Fermer">✖</button></div>
+
+<div class="rules-content">
+<p>Bienvenue sur FreezyFlix ! Pour profiter pleinement de notre plateforme et garantir une expérience agréable à tous, merci de respecter cette Charte d'utilisation :</p>
+<h4>1. Respect et comportement</h4>
+<p>Tout comportement irrespectueux, injurieux, discriminatoire, harcelant ou menaçant envers d'autres utilisateurs est strictement interdit. Les échanges doivent rester courtois et constructifs. Les utilisateurs qui ne respectent pas cette règle pourront être suspendus ou bannis.</p>
+<h4>2. Contenus et sécurité</h4>
+<p>Vous vous engagez à ne pas publier, partager ou promouvoir de contenus illégaux, piratés, ou incitant à la haine. Tout contenu signalé comme illégal sera supprimé immédiatement et pourra entraîner des sanctions.</p>
+<h4>3. Publicité et promotions</h4>
+<p>Toute publicité, lien ou promotion vers des sites externes est strictement interdite. Les contenus violant cette règle seront supprimés et l'utilisateur pourra faire l'objet de sanctions, jusqu'à la suspension définitive du compte.</p>
+<h4>4. Utilisation responsable de la plateforme</h4>
+<p>FreezyFlix est conçu pour le visionnage et la découverte de contenus. Toute utilisation abusive est interdite, notamment : l'utilisation de scripts, bots ou logiciels automatisés, l'envoi de spams ou messages répétitifs, les tentatives de piratage ou de perturbation du service, le contournement des restrictions mises en place. Tout compte utilisé de manière abusive pourra être suspendu ou supprimé sans avertissement.</p>
+<h4>5. Modifications et mises à jour</h4>
+<p>Cette Charte peut être modifiée à tout moment pour s'adapter aux évolutions légales ou fonctionnelles de la plateforme. Les utilisateurs sont invités à consulter régulièrement cette Charte. La continuité de l'utilisation de FreezyFlix implique l'acceptation des règles et des mises à jour.</p>
+<h4>6. Signalement et assistance</h4>
+<p>Si vous constatez un comportement inapproprié, un contenu illégal ou de la publicité non autorisée, merci de nous contacter immédiatement via la page <a href="aide.html" style="color:#00aaff;">Aide</a>. Vos signalements seront pris en compte avec confidentialité et sérieux.</p>
+<h4>7. Sanctions et mesures disciplinaires</h4>
+<p>Tout manquement aux règles énoncées dans cette Charte pourra entraîner des sanctions, incluant la suppression de contenus, la suspension temporaire ou définitive du compte.</p>
+<p>Merci de votre compréhension et de votre respect des règles. Nous vous souhaitons un agréable visionnage sur FreezyFlix !</p></div></div></div>
+
     <div id="toast" class="toast"></div>
 
+    <script src="js/index.js"></script>
     <script type="module" src="js/support.js"></script>
     <script type="module" src="js/navbar.js"></script>
 </body>

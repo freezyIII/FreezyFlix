@@ -46,6 +46,32 @@ class AideManager {
                 this.toggleImage(btn);
             }
         });
+
+        // Quality guide button
+        document.addEventListener('click', (e) => {
+            const btn = e.target.closest('#showQualityGuide');
+            if (btn) {
+                e.preventDefault();
+                this.openQualityGuide();
+            }
+        });
+
+        // Close quality guide
+        document.addEventListener('click', (e) => {
+            const btn = e.target.closest('#closeQuality');
+            if (btn) {
+                e.preventDefault();
+                this.closeQualityGuide();
+            }
+        });
+
+        // Close quality guide on overlay click
+        document.addEventListener('click', (e) => {
+            const overlay = e.target.closest('#qualityOverlay');
+            if (overlay && e.target === overlay) {
+                this.closeQualityGuide();
+            }
+        });
     }
 
     /**
@@ -54,15 +80,18 @@ class AideManager {
     switchCategory(categoryId, clickedBtn) {
         // Remove active class from all buttons
         document.querySelectorAll('.category-btn').forEach(btn => btn.classList.remove('active'));
-        
+
         // Remove active class from all content sections
         document.querySelectorAll('.category-content').forEach(content => content.classList.remove('active'));
-        
+
+        // Remove active class from all FAQ items
+        document.querySelectorAll('.faq-item').forEach(item => item.classList.remove('active'));
+
         // Add active class to clicked button
         if (clickedBtn) {
             clickedBtn.classList.add('active');
         }
-        
+
         // Add active class to matching content section
         const contentSection = document.querySelector(`.category-content[data-category="${categoryId}"]`);
         if (contentSection) {
@@ -121,6 +150,28 @@ class AideManager {
         document.addEventListener('dragstart', (e) => {
             e.preventDefault();
         });
+    }
+
+    /**
+     * Open quality guide panel
+     */
+    openQualityGuide() {
+        const overlay = document.getElementById('qualityOverlay');
+        if (overlay) {
+            overlay.classList.add('open');
+            document.body.classList.add('no-scroll');
+        }
+    }
+
+    /**
+     * Close quality guide panel
+     */
+    closeQualityGuide() {
+        const overlay = document.getElementById('qualityOverlay');
+        if (overlay) {
+            overlay.classList.remove('open');
+            document.body.classList.remove('no-scroll');
+        }
     }
 }
 
