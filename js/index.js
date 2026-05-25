@@ -4,24 +4,24 @@
  */
 window.FEATURED_HERO_MOVIES = [
   {
+    title: "Mercredi",
+    img: "https://thumb.canalplus.pro/http/unsafe/1440x810/smart/creativemedia-image.canalplus.pro/content/0001/61/4eadd6bc1c7dcebb323ba6552203a2cb57349ba3.jpeg",
+  },
+  {
     title: "Zootopie 2",
-    img: "https://i.postimg.cc/HLQvPYDh/Sans-titre-1.png",
+    img: "https://www.boxofficepro.fr/app/uploads/2025/12/e69e82a4475e6fa6ac8928c94e82a51b.jpg",
   },
   {
     title: "Jurassic World : Renaissance",
-    img: "https://i.postimg.cc/hGrbdfRM/Sans-titre-1.png",
+    img: "https://proxymedia.woopic.com/api/v1/images/331%2FJURASSICWORW0231892_BAN1_2424_NEWTV_UHD.jpg",
   },
   {
     title: "The Fantastic Four : First Steps",
-    img: "https://i.postimg.cc/43BV3qpj/Sans-titre-1.png",
-  },
-  {
-    title: "Mercredi",
-    img: "https://i.postimg.cc/L8h31H6r/Sans-titre-1.png",
+    img: "https://marvelll.fr/wp-content/uploads/2025/06/les-4-fantastiques-premiers-pas-film-mcu-banniere.webp",
   },
   {
     title: "Lilo et Stitch",
-    img: "https://i.postimg.cc/sD5rRrr1/Sans-titre-1.png",
+    img: "https://geekotheque.com/wp-content/uploads/2025/03/fillm-lilo-stitch-2025.webp",
   },
 ];
 window.FEATURED_HERO_INTERVAL_MS = 7000;
@@ -305,7 +305,9 @@ onReady(() => {
   }
 
   window.updateTotalMovies = function () {
-    if (totalMoviesDiv) {
+    if (totalMoviesDiv && (currentPage === "films.html" || currentPage === "serie.html")) {
+      totalMoviesDiv.textContent = "";
+    } else if (totalMoviesDiv) {
       totalMoviesDiv.textContent = pageContentHeading;
     }
   }
@@ -417,9 +419,20 @@ onReady(() => {
     }
 
     if (totalMoviesDiv) {
-      totalMoviesDiv.textContent = hasNoResult ? "Aucun résultat trouvé" : pageContentHeading;
+      if (currentPage === "films.html" || currentPage === "serie.html") {
+        totalMoviesDiv.textContent = hasNoResult ? "Aucun résultat trouvé" : "";
+      } else {
+        totalMoviesDiv.textContent = hasNoResult ? "Aucun résultat trouvé" : pageContentHeading;
+      }
       totalMoviesDiv.classList.toggle("no-results-message", hasNoResult);
       totalMoviesDiv.parentElement?.classList.toggle("has-no-results", hasNoResult);
+    }
+
+    const pageCountDiv = document.getElementById("page-count");
+    if (pageCountDiv) {
+      const count = allowedItems.length;
+      const typeLabel = pageContentType === "serie" ? "séries" : "films";
+      pageCountDiv.textContent = count > 0 ? `${count} ${typeLabel} trouvées` : "";
     }
 
     renderPagination(hasNoResult ? 0 : totalPages);
@@ -459,18 +472,26 @@ onReady(() => {
     const viewport = document.getElementById("featuredHeroViewport");
     const track = document.getElementById("featuredHeroTrack");
     const dotsWrap = document.getElementById("featuredHeroDots");
+    const dotsWrapper = document.getElementById("featuredHeroDotsWrapper");
+    const progressBar = document.getElementById("featuredHeroProgressBar");
+    const pauseBtn = document.getElementById("featuredHeroPauseBtn");
     if (!viewport || !track || !FEATURED_HERO_MOVIES.length) return;
 
     let index = 0;
     let timer = null;
+    let isPaused = false;
+    let progressStartTime = 0;
+    let progressPausedTime = 0;
     const reduceMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
 
-    track.innerHTML = FEATURED_HERO_MOVIES.map((m) => {
+    track.innerHTML = FEATURED_HERO_MOVIES.map((m, index) => {
       const href = `movie-details.html?title=${encodeURIComponent(m.title)}`;
       const kind = escAttr(contentTypeLabelFromCatalog(m.title, m.type));
       const badge = `<span class="content-type-badge">${kind}</span>`;
+      const centeredClass = index >= 2 ? 'featured-hero-slide-centered' : '';
+      const loweredClass = m.title === "Mercredi" ? 'featured-hero-slide-lowered' : '';
       return `
-        <div class="featured-hero-slide" role="listitem" data-title="${escAttr(m.title)}">
+        <div class="featured-hero-slide ${centeredClass} ${loweredClass}" role="listitem" data-title="${escAttr(m.title)}">
           <a href="${href}">
             <img src="${m.img}" alt="${escAttr(m.title)}" width="1580" height="450" loading="lazy" decoding="async">
             ${badge}
@@ -489,11 +510,97 @@ onReady(() => {
     }
 
     function setDotsActive() {
-      if (!dotsWrap) return;
-      dotsWrap.querySelectorAll(".featured-hero-dot").forEach((d, i) => {
+      if (!dotsWrapper) return;
+      dotsWrapper.querySelectorAll(".featured-hero-dot").forEach((d, i) => {
         d.classList.toggle("is-active", i === index);
         d.setAttribute("aria-selected", String(i === index));
       });
+    }
+
+    function resetProgressBar() {
+      if (!progressBar) return;
+      // Always reset to 0 when changing slides manually, even if paused
+      progressStartTime = Date.now();
+      progressPausedTime = 0;
+      // Cancel any existing animation
+      if (progressBar._animation) {
+        progressBar._animation.cancel();
+        progressBar._animation = null;
+      }
+      // Only start animation if not paused
+      if (!isPaused) {
+        startProgressBarAnimation();
+      }
+    }
+
+    function startProgressBarAnimation() {
+      if (!progressBar || isPaused) return;
+      
+      // Stop any existing animation
+      if (progressBar._animation) {
+        progressBar._animation.cancel();
+        progressBar._animation = null;
+      }
+      
+      const duration = FEATURED_HERO_INTERVAL_MS;
+      const elapsed = progressPausedTime;
+      const remaining = duration - elapsed;
+      
+      // Use Web Animations API for better control
+      const pseudoElement = document.createElement('div');
+      pseudoElement.style.cssText = `
+        position: absolute;
+        top: 0;
+        left: 0;
+        height: 100%;
+        width: 100%;
+        background: linear-gradient(90deg, #ef2626, #ff4444);
+        border-radius: 2px;
+        transform: translateX(-100%);
+      `;
+      
+      // Clear existing animation
+      progressBar.innerHTML = '';
+      progressBar.appendChild(pseudoElement);
+      
+      const animation = pseudoElement.animate(
+        [
+          { transform: 'translateX(-100%)' },
+          { transform: 'translateX(0%)' }
+        ],
+        {
+          duration: remaining,
+          easing: 'linear'
+        }
+      );
+      
+      animation.onfinish = () => {
+        if (!isPaused) {
+          goTo(index + 1);
+        }
+      };
+      
+      // Store animation reference to pause it
+      progressBar._animation = animation;
+    }
+
+    function pauseProgressBar() {
+      if (!progressBar || !progressBar._animation) return;
+      progressBar._animation.pause();
+      progressPausedTime += Date.now() - progressStartTime;
+    }
+
+    function resumeProgressBar() {
+      if (!progressBar) return;
+      
+      // If there's an existing paused animation, just resume it
+      if (progressBar._animation) {
+        progressBar._animation.play();
+        progressStartTime = Date.now();
+      } else {
+        // Otherwise start a new animation from the paused position
+        startProgressBarAnimation();
+      }
     }
 
     function goTo(i, animate = true) {
@@ -505,28 +612,45 @@ onReady(() => {
         : "none";
       track.style.transform = `translateX(${-index * w}px)`;
       setDotsActive();
+      resetProgressBar();
     }
 
     function restartTimer() {
       clearInterval(timer);
-      if (reduceMotion || FEATURED_HERO_MOVIES.length <= 1) return;
+      if (reduceMotion || FEATURED_HERO_MOVIES.length <= 1 || isPaused) return;
       timer = setInterval(() => goTo(index + 1), FEATURED_HERO_INTERVAL_MS);
     }
 
-    if (dotsWrap && FEATURED_HERO_MOVIES.length > 1) {
-      dotsWrap.innerHTML = FEATURED_HERO_MOVIES.map(
+    if (dotsWrapper && FEATURED_HERO_MOVIES.length > 1) {
+      dotsWrapper.innerHTML = FEATURED_HERO_MOVIES.map(
         (_, i) =>
           `<button type="button" class="featured-hero-dot${i === 0 ? " is-active" : ""}" role="tab" aria-selected="${i === 0}" data-index="${i}" aria-label="Affiche ${i + 1} sur ${FEATURED_HERO_MOVIES.length}"></button>`
       ).join("");
-      dotsWrap.addEventListener("click", (e) => {
+      dotsWrapper.addEventListener("click", (e) => {
         const btn = e.target.closest(".featured-hero-dot");
         if (!btn) return;
         const i = parseInt(btn.getAttribute("data-index"), 10);
         if (!Number.isNaN(i)) goTo(i);
         restartTimer();
       });
-    } else if (dotsWrap) {
-      dotsWrap.innerHTML = "";
+    } else if (dotsWrapper) {
+      dotsWrapper.innerHTML = "";
+    }
+
+    // Pause button functionality
+    if (pauseBtn) {
+      pauseBtn.addEventListener("click", () => {
+        isPaused = !isPaused;
+        pauseBtn.classList.toggle("is-paused", isPaused);
+        pauseBtn.setAttribute("aria-label", isPaused ? "Play" : "Pause");
+        if (isPaused) {
+          clearInterval(timer);
+          pauseProgressBar();
+        } else {
+          restartTimer();
+          resumeProgressBar();
+        }
+      });
     }
 
     let resizeT;
