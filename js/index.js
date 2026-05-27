@@ -47,8 +47,12 @@ function normalizeSearch(text) {
 }
 
 /** Libellé Film / Série selon movies.js (ou secours si titre absent du catalogue). */
-function contentTypeLabelFromCatalog(title, fallbackType) {
-  if (typeof movies !== "undefined") {
+async function contentTypeLabelFromCatalog(title, fallbackType) {
+  if (window.waitForMovies) {
+    await window.waitForMovies();
+    const entry = window.movies.find((x) => x.title === title);
+    if (entry) return entry.type === "serie" ? "SÉRIE" : "FILM";
+  } else if (typeof movies !== "undefined") {
     const entry = movies.find((x) => x.title === title);
     if (entry) return entry.type === "serie" ? "SÉRIE" : "FILM";
   }
@@ -76,8 +80,12 @@ async function setupGridFavoriteButtons(root = document) {
       });
   }
 
-  function movieFromButton(button) {
+  async function movieFromButton(button) {
     const title = button.dataset.title || "";
+    if (window.waitForMovies) {
+      await window.waitForMovies();
+      return window.movies.find(movie => movie.title === title);
+    }
     return typeof movies !== "undefined" ? movies.find(movie => movie.title === title) : null;
   }
 
@@ -96,7 +104,7 @@ async function setupGridFavoriteButtons(root = document) {
         return;
       }
 
-      const movie = movieFromButton(button);
+      const movie = await movieFromButton(button);
       if (!movie) return;
 
       const favRef = doc(db, "users", user.uid, "favorites", movie.title);
@@ -157,8 +165,8 @@ onReady(() => {
 
   // -------------------- Compteur de films --------------------
   const currentPage = window.location.pathname.split("/").pop() || "index.html";
-  const pageContentType = currentPage === "films.html" ? "film" : currentPage === "serie.html" ? "serie" : "";
-  const pageContentHeading = pageContentType === "serie" ? "SERIES" : pageContentType === "film" ? "FILMS" : currentPage === "search.html" ? "" : "ACCUEIL";
+  const pageContentType = currentPage === "films.html" ? "movie" : currentPage === "serie.html" ? "serie" : "";
+  const pageContentHeading = pageContentType === "serie" ? "SERIES" : pageContentType === "movie" ? "FILMS" : currentPage === "search.html" ? "" : "ACCUEIL";
   const movieRowsPerPage = 8;
   let currentMoviePage = 1;
   let paginationDiv = null;
@@ -812,14 +820,39 @@ if (filterBtn && filterPanel) {
 
   // -------------------- Initialisation des films (movieGrid) --------------------
 
-if (typeof movies !== "undefined" && movieGrid) {
+// Wait for movies to load from Supabase
+if (window.waitForMovies) {
+  window.waitForMovies().then(() => {
+    if (movieGrid) {
+      if (isHomePage) {
+        renderHomeCategorySections();
+        updateTotalMovies();
+        setupGridFavoriteButtons();
+      } else {
+        const filteredMovies = window.movies
+          .filter(movie => !pageContentType || (movie.type || "movie") === pageContentType);
+
+        filteredMovies.forEach(movie => {
+          movieGrid.appendChild(createMovieCard(movie));
+        });
+
+        updateTotalMovies();
+        window.applyMoviePagination(1);
+        setupGridFavoriteButtons(movieGrid);
+      }
+
+      setupScrollAnimations();
+    }
+  });
+} else if (typeof movies !== "undefined" && movieGrid) {
+  // Fallback for synchronous loading (if movies.js is loaded directly)
   if (isHomePage) {
     renderHomeCategorySections();
     updateTotalMovies();
     setupGridFavoriteButtons();
   } else {
     movies
-      .filter(movie => !pageContentType || (movie.type || "film") === pageContentType)
+      .filter(movie => !pageContentType || (movie.type || "movie") === pageContentType)
       .forEach(movie => {
         movieGrid.appendChild(createMovieCard(movie));
       });

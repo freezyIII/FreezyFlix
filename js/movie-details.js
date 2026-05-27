@@ -35,9 +35,14 @@ let selectedMovie = null;
 let isFounder = false;
 
 // ---------------------- INITIALISATION ----------------------
-function init() {
-  // Récupérer le film sélectionné depuis movies.js
-  selectedMovie = movies.find(movie => movie.title.toLowerCase() === movieTitle?.toLowerCase());
+async function init() {
+  // Wait for movies to load from Supabase
+  if (window.waitForMovies) {
+    await window.waitForMovies();
+    selectedMovie = window.movies.find(movie => movie.title.toLowerCase() === movieTitle?.toLowerCase());
+  } else if (typeof movies !== "undefined") {
+    selectedMovie = movies.find(movie => movie.title.toLowerCase() === movieTitle?.toLowerCase());
+  }
 
   if (!selectedMovie) {
     console.warn("Film non trouvé :", movieTitle);
@@ -46,7 +51,7 @@ function init() {
 
   populateMovieDetails();
   setupVideoAndBackground();
-  setupDownloadsTable();
+  await setupDownloadsTable();
   setupFavoriteButton();
   setupCommentsSection();
 }
@@ -157,17 +162,17 @@ function populateMovieDetails() {
   setText('movieTitle', selectedMovie.title);
   setText('movieCategoryText', selectedMovie.category);
   setText('movieDescription', selectedMovie.description);
-  setText('releaseDateValue', selectedMovie.releaseDate);
+  setText('releaseDateValue', selectedMovie.release_date);
   setText('durationValue', selectedMovie.duration);
 }
 
 // ---------------------- VIDÉO ET FOND ----------------------
 function setupVideoAndBackground() {
-  if (selectedMovie.youtubeUrl) {
+  if (selectedMovie.youtube_url) {
     const iframeContainer = document.getElementById('movieIframeContainer');
     if (iframeContainer) {
       const iframe = document.createElement('iframe');
-      iframe.src = selectedMovie.youtubeUrl;
+      iframe.src = selectedMovie.youtube_url;
       iframe.width = "100%";
       iframe.height = "480";
       iframe.frameBorder = "0";
@@ -184,11 +189,47 @@ function setupVideoAndBackground() {
 }
 
 // ---------------------- TABLEAU DES TÉLÉCHARGEMENTS ----------------------
-function setupDownloadsTable() {
-  if (!elements.downloadsBody || !Array.isArray(selectedMovie.downloads)) return;
+async function fetchDownloadsFromSupabase(movieId) {
+  const SUPABASE_URL = 'https://ybuzmohtxmfchjlzisfz.supabase.co';
+  const SUPABASE_ANON_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InlidXptb2h0eG1mY2hqbHppc2Z6Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3Nzk4MDgxNzYsImV4cCI6MjA5NTM4NDE3Nn0.c_ul0aFQJaPhSa1QfebDhHmH9m8AYWoCCTKAHpslt7o';
+
+  try {
+    const response = await fetch(`${SUPABASE_URL}/rest/v1/downloads?movie_id=eq.${movieId}`, {
+      headers: {
+        'apikey': SUPABASE_ANON_KEY,
+        'Authorization': `Bearer ${SUPABASE_ANON_KEY}`,
+        'Content-Type': 'application/json'
+      }
+    });
+
+    if (!response.ok) {
+      console.error('Error fetching downloads:', response.status);
+      return [];
+    }
+
+    const downloads = await response.json();
+    console.log('Downloads for movie:', movieId, downloads);
+    return downloads;
+  } catch (error) {
+    console.error('Error fetching downloads:', error);
+    return [];
+  }
+}
+
+async function setupDownloadsTable() {
+  if (!elements.downloadsBody || !selectedMovie) return;
 
   elements.downloadsBody.innerHTML = '';
-  selectedMovie.downloads.forEach(dl => {
+
+  // Fetch downloads from Supabase using movie_id
+  const downloads = await fetchDownloadsFromSupabase(selectedMovie.id);
+
+  if (!Array.isArray(downloads) || downloads.length === 0) {
+    elements.downloadsBody.innerHTML = '<tr><td colspan="4" style="text-align:center;">Aucun téléchargement disponible</td></tr>';
+    return;
+  }
+
+  downloads.forEach(dl => {
     const tr = document.createElement("tr");
     tr.innerHTML = `
       <td>${dl.size || "--"}</td>
