@@ -170,11 +170,6 @@ async function loadFavorites(currentUser = auth.currentUser) {
   const isOwnProfile = !profileUid || profileUid === currentUser?.uid;
 
   try {
-    // Wait for movies to load from Supabase
-    if (window.waitForMovies) {
-      await window.waitForMovies();
-    }
-
     const q = query(collection(db, "users", uidToLoad, "favorites"), orderBy("createdAt", "desc"));
     const snapshot = await getDocs(q);
 
@@ -187,12 +182,9 @@ async function loadFavorites(currentUser = auth.currentUser) {
     grid.className = "movie-grid";
 snapshot.forEach(docSnap => {
   const movie = docSnap.data();
-  let catalogMovie = null;
-  if (window.waitForMovies) {
-    catalogMovie = window.movies.find(item => item.title === movie.title);
-  } else if (typeof movies !== "undefined") {
-    catalogMovie = movies.find(item => item.title === movie.title);
-  }
+  const catalogMovie = typeof movies !== "undefined"
+    ? movies.find(item => item.title === movie.title)
+    : null;
   const title = movie.title || catalogMovie?.title || "Titre inconnu";
   const image = movie.img || catalogMovie?.img || "";
   const description = movie.description || catalogMovie?.description || "";
